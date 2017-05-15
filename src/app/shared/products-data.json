@@ -1,0 +1,100 @@
+
+ [
+       {
+            "name": "Tomato",
+            "id": "1",
+            "code": "235",
+            "price": "5.00",
+            "imageUrl": "www.image.com/image.png",
+            "category": "foods",
+            "description": {
+                "detail": "the most memorable tomato souce",
+                "nutrition": "20% calories"
+            }
+        },
+        {
+            "name": "Orange",
+            "id": "2",
+            "code": "235",
+            "price": "15.00",
+            "imageUrl": "www.image.com/image.png",
+            "category": "foods",
+            "description": {
+                "detail": "the most memorable tomato souce",
+                "nutrition": "20% calories"
+            }
+        },
+        {
+            "name": "Mango",
+            "id": "3",
+            "code": "235",
+            "price": "4.00",
+            "imageUrl": "www.image.com/image.png",
+            "category": "foods",
+            "description": {
+                "detail": "the most memorable tomato souce",
+                "nutrition": "20% calories"
+            }
+        },
+        {
+            "name": "Carot",
+            "id": "4",
+            "code": "235",
+            "price": "2.00",
+            "imageUrl": "www.image.com/image.png",
+            "category": "foods",
+            "description": {
+                "detail": "the most memorable tomato souce",
+                "nutrition": "20% calories"
+            }
+        },
+        {
+            "name": "Strewbery",
+            "id": "5",
+            "code": "235",
+            "price": "3.00",
+            "imageUrl": "www.image.com/image.png",
+            "category": "foods",
+            "description": {
+                "detail": "the most memorable tomato souce",
+                "nutrition": "20% calories"
+            }
+        },
+        {
+            "name": "Peach",
+            "id": "6",
+            "code": "235",
+            "price": "6.00",
+            "imageUrl": "www.image.com/image.png",
+            "category": "foods",
+            "description": {
+                "detail": "the most memorable tomato souce",
+                "nutrition": "20% calories"
+            }
+        },
+        {
+            "name": "Grape",
+            "id": "7",
+            "code": "235",
+            "price": "5.00",
+            "imageUrl": "www.image.com/image.png",
+            "category": "foods",
+            "description": {
+                "detail": "the most memorable tomato souce",
+                "nutrition": "20% calories"
+            }
+        },
+        {
+            "name": "Banana",
+            "id": "8",
+            "code": "235",
+            "price": "7.00",
+            "imageUrl": "www.image.com/image.png",
+            "category": "foods",
+            "description": {
+                "detail": "the most memorable tomato souce",
+                "nutrition": "20% calories"
+            }
+        }
+      
+]

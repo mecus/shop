@@ -1,0 +1,26 @@
+
+  <md-toolbar class="" color="primary">
+    <div class="container top-menu">
+      <span routerLink="/home"><h1>Shop</h1></span>
+      <span class="spacer"></span>
+      <button md-icon-button [mdMenuTriggerFor]="menu">
+      <md-icon>menu</md-icon>
+    </button>
+    <md-menu #menu="mdMenu">
+      <button (click)="routing()" md-menu-item>
+        <md-icon>dialpad</md-icon>
+        <span>Products</span>
+      </button>
+      <button md-menu-item routerLink="/new-product">
+        <md-icon>voicemail</md-icon>
+        <span>New Product</span>
+      </button>
+      <button routerLink="/basket" md-menu-item>
+        <md-icon>notifications_off</md-icon>
+        <span>Basket</span>
+      </button>
+    </md-menu>
+    
+  </div>
+</md-toolbar>
+

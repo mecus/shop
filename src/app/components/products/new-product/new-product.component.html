@@ -1,0 +1,61 @@
+<div class="container">
+  <div class="form-container jumbotron">
+    
+    <cat-table></cat-table>
+    <form novalidate [formGroup]="pForm" (ngSubmit)="saveProduct(pForm.value)" class="example-form">
+      <table class="example-full-width" cellspacing="0">
+        <md-input-container class="example-full-width">
+          <input mdInput formControlName="name" placeholder="product name">
+        </md-input-container>
+        <md-input-container class="example-full-width">
+          <input mdInput formControlName="price" placeholder="price">
+        </md-input-container>
+      </table>
+      <table class="example-full-width" cellspacing="0">
+          <tr>
+            <td>
+              <md-input-container class="example-full-width">
+                <input formControlName="id" mdInput placeholder="id">
+              </md-input-container>
+            </td>
+            <td>
+              <md-input-container class="example-full-width">
+                <input formControlName="code" mdInput placeholder="code">
+              </md-input-container>
+            </td>
+          </tr>
+        </table>
+
+      <p>
+        <md-input-container class="example-full-width">
+          <input mdInput formControlName="imageUrl" placeholder="image url">
+        </md-input-container>
+        
+        <md-input-container class="example-full-width">
+          <input mdInput formControlName="category" placeholder="category">
+          
+        </md-input-container>
+      </p>
+      <p>Descriptions:</p>
+      <fieldset formGroupName="description">
+        <table class="example-full-width" cellspacing="0">
+          <tr>
+            <td>
+              <md-input-container class="example-full-width">
+                <textarea mdInput formControlName="detail" placeholder="details"></textarea>
+              </md-input-container>
+            </td>
+            <td>
+              <md-input-container class="example-full-width">
+                <textarea mdInput formControlName="nutrition" placeholder="nutrition"></textarea>
+              </md-input-container>
+            </td>
+          </tr>
+        </table>
+      </fieldset>
+      
+      <button type="submit" md-raised-button> Submit</button>
+    </form>
+  </div>
+
+</div>

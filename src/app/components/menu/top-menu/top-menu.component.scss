@@ -1,0 +1,13 @@
+md-toolbar{
+    background-color: #fff !important;
+    color: #000 !important;
+    height: 100px;
+    .top-menu{
+        display: flex;
+       
+        .spacer{
+            flex: 1;
+        }
+    }
+   
+}

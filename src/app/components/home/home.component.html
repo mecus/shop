@@ -1,0 +1,29 @@
+<div class="md-container">
+  <md-spinner></md-spinner>
+  <button md-raised-button> Google Button</button>
+  <a md-mini-fab ><md-icon>check</md-icon></a>
+  <p>How it works
+
+Progress components are built with two HTML elements, some CSS to set the width, and a few attributes.
+
+    We use the .progress as a wrapper to indicate the max value of the progress bar.
+    We use the inner .progress-bar to indicate the progress so far.
+    The .progress-bar requires an inline style, utility class, or custom CSS to set their width.
+    The .progress-bar also requires some role and aria attributes to make it accessible.
+
+Put that all together, and you have the following examples.</p>
+  <div>
+    {{list | async}}
+  </div>
+  <div>
+    <button (click)="add()" md-raised-button> Increment</button>
+    <button (click)="reset()" md-raised-button> Reset</button>
+   
+      <h3>{{counter | async}}</h3>
+  </div>
+
+  <h1>{{title}}</h1>
+
+  <button kendoButton (click)="onButtonClick()" [primary]="true">My Kendo UI Button</button>
+</div>
+
