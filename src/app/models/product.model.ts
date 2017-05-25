@@ -5,13 +5,20 @@ export interface iProduct {
     price: string;
     imageUrl: string;
     category: string;
-    origin: string;
     catCode: string;
     description: Description;
+    nutrition: nutrition;
 
 }
 export interface Description {
     detail: string;
-    nutrition: string;
+    size: string;
+    origin: string;
+}
+export interface nutrition {
+    energy: string;
+    fat: string;
+    saturates: string;
+    salt: string;
 }
 

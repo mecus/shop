@@ -18,9 +18,11 @@ export class ProductEffects {
         .ofType(product.LOAD_PRODUCT)
         .switchMap(() =>
             this.productService.getProducts()
-                .switchMap((product)=>
+                .switchMap((products)=>
                 //Need to Fix the data types
-                Observable.of({type: 'LOAD_PRODUCT_SUCCESS', payload: product})
+                Observable.of(new product.loadproductsuccess(products))
+                // Observable.of({type: product.LOAD_PRODUCT_SUCCESS, payload: products})
+                
                 )
             
                 

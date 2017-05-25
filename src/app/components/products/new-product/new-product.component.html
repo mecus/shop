@@ -1,8 +1,26 @@
 <div class="container">
   <div class="form-container jumbotron">
     
-    <cat-table></cat-table>
+    <!--<cat-table></cat-table>-->
     <form novalidate [formGroup]="pForm" (ngSubmit)="saveProduct(pForm.value)" class="example-form">
+      <div class="img-cat">
+        <div class="upload-wrapper">
+          <!--<p>product Image</p>-->
+          <div class="upload">
+            <div id="file-input">
+              <input (change)="inputChange($event)" type="file">
+                <img [src]="imageUrl" alt="image">
+              </div>
+          </div>
+        </div>
+        <div class="prod-category">
+          <md-select placeholder="food category" formControlName="category"  name="food">
+              <md-option *ngFor="let food of foods" [value]="food.value">
+                {{food.viewValue}}
+              </md-option>
+          </md-select>
+        </div>
+       </div>
       <table class="example-full-width" cellspacing="0">
         <md-input-container class="example-full-width">
           <input mdInput formControlName="name" placeholder="product name">
@@ -23,33 +41,75 @@
                 <input formControlName="code" mdInput placeholder="code">
               </md-input-container>
             </td>
+            
           </tr>
         </table>
-
+        
       <p>
-        <md-input-container class="example-full-width">
-          <input mdInput formControlName="imageUrl" placeholder="image url">
-        </md-input-container>
         
         <md-input-container class="example-full-width">
-          <input mdInput formControlName="category" placeholder="category">
-          
+          <input hidden mdInput formControlName="imageUrl" placeholder="image url">
         </md-input-container>
+
       </p>
+      
+      
       <p>Descriptions:</p>
       <fieldset formGroupName="description">
         <table class="example-full-width" cellspacing="0">
-          <tr>
-            <td>
+           <tr>
+             <td>
               <md-input-container class="example-full-width">
                 <textarea mdInput formControlName="detail" placeholder="details"></textarea>
               </md-input-container>
             </td>
+          </tr>
+          <tr>
             <td>
+              <md-input-container class="example-full-width">
+                <input formControlName="size" mdInput placeholder="size">
+              </md-input-container>
+            </td>
+            <td>
+              <md-input-container class="example-full-width">
+                <input mdInput formControlName="origin" placeholder="origin">
+              </md-input-container>
+            </td>
+          </tr>
+        </table>
+      </fieldset>
+      <p>Nutrition:</p>
+      <fieldset formGroupName="nutrition">
+        <table class="example-full-width" cellspacing="0">
+          <tr>
+            <td>
+              <md-input-container class="example-full-width">
+                <input mdInput formControlName="energy" placeholder="energy">
+              </md-input-container>
+            </td>
+            <td>
+              <md-input-container class="example-full-width">
+                <input mdInput formControlName="fat" placeholder="fat">
+              </md-input-container>
+            </td>
+            <!--<td>
               <md-input-container class="example-full-width">
                 <textarea mdInput formControlName="nutrition" placeholder="nutrition"></textarea>
               </md-input-container>
+            </td>-->
+          </tr>
+           <tr>
+            <td>
+              <md-input-container class="example-full-width">
+                <input mdInput formControlName="saturates" placeholder="saturates">
+              </md-input-container>
             </td>
+            <td>
+              <md-input-container class="example-full-width">
+                <input mdInput formControlName="salt" placeholder="salt">
+              </md-input-container>
+            </td>
+        
           </tr>
         </table>
       </fieldset>

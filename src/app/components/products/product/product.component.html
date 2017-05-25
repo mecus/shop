@@ -1,15 +1,15 @@
 <div class="container">
   <div class="row">
-    <div class="col col-lg-10">
+    <div class="col col-lg-9">
       <div class="row">
         <div class="col col-xs-6 col-sm-6 col-lg-3"
-        *ngFor="let product of products | async">
+        *ngFor="let product of products$ | async">
         
         <md-card class="example-card product-tile">
           <!--<md-card-header>
             <md-card-title>{{product.name}}</md-card-title>
           </md-card-header>-->
-          <img md-card-image  src="assets/IMG_0021.jpeg">
+          <img md-card-image  [src]="product.imageUrl">
           <md-card-content>
             {{product.name}}
             <p>{{product.price | currency: 'GBP': true}}</p>
@@ -25,8 +25,8 @@
         </div>
       </div>
     </div>
-    <div class="col col-lg-2">
-      This is going to have side bar
+    <div class="col col-lg-3">
+     <side-shop-cart></side-shop-cart>
     </div>
     
   </div>

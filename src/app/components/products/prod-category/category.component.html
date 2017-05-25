@@ -1,34 +1,96 @@
-<div class="container">
-  <div class="row">
-    <div class="col col-lg-10">
+<!--Listing out the Category for query selection -->
+<div class="list-menu">
+    <div class="container">
       <div class="row">
-        <div class="col col-xs-6 col-sm-6 col-lg-3" *ngFor="let product of products">
+        <div class="col-4">
+          <ul>
+            <li *ngFor="let cat of category">
+                  <div class="">
+                    {{cat.name}} >
+                  </div>
+              </li>
+          </ul>
+        </div>
+        <div class="col-8">
+          <div class="advert">
+            <h2 *ngIf="frozen">Displaying Advert and Promotion 1</h2>
+            <h2 *ngIf="drink">Displaying Advert and Promotion 2</h2>
+            <h2 *ngIf="dry">Displaying Advert and Promotion 3</h2>
+          </div>
+        </div>
         
-        <md-card class="example-card product-tile">
-          <!--<md-card-header>
-            <md-card-title>{{product.name}}</md-card-title>
-          </md-card-header>-->
-          <img md-card-image  src="assets/IMG_0021.jpeg">
-          <md-card-content>
-            {{product.name}}
-            <p>{{product.price | currency: 'GBP': 'true'}}</p>
-            <!--<p>
-              {{product.description.detail}}
-            </p>-->
-          </md-card-content>
-          <md-card-actions>
-            <button (click)="addToCart(product)" color="accent" md-raised-button>ADD</button>
-            
-          </md-card-actions>
-        </md-card>
+      </div><!--End of Row -->
+        
+        <!--<new-taxanomy></new-taxanomy>-->
+    </div><!--End of Container-->
+</div><!--End of List Menu Section-->
+
+<!--Main Page Content after category list-->
+<div class="container">
+  <div class="page-wrapper row">
+    <div class="main-content col col-lg-9">
+      <div class="row">
+        <div class="pd-item col col-xs-6 col-sm-6 col-lg-2" *ngFor="let product of products">
+          <md-card class="example-card product">
+            <img (click)="viewProduct(product)" md-card-image  [src]="product.imageUrl">
+            <md-card-content>
+              <p id="size">({{product.description.size}})</p>
+              <p id="title">{{product.name}}</p>
+              <p id="price">{{product.price | currency: 'GBP': 'true'}}</p>
+            </md-card-content>
+            <md-card-actions>
+                  <button (click)="addToCart(product)"  md-raised-button >ADD</button>
+            </md-card-actions>
+            <div class="inCart-wrapper" *ngFor="let cart of carts | async">
+                <div *ngIf="cart.name == product.name">
+                  <p id="inCart">{{cart.qty}} in cart</p>
+                </div>
+            </div>
+          </md-card>
         </div>
       </div>
     </div>
-    <div class="col col-lg-2">
-      
+    <div class="side-bar col col-lg-3">
       <side-shop-cart></side-shop-cart>
     </div>
     
   </div>
   
 </div>
+
+
+
+<!--<div class="md-container">
+  <div class="page-wrapper">
+    <div class="main-content">
+      <md-grid-list cols="6" rowHeight="200px">
+        <md-grid-tile *ngFor="let product of products"
+          [colspan]="2"
+          [rowspan]="1"
+        >
+        
+        <md-card class="example-card product-tile">
+       
+          <img md-card-image  [src]="product.imageUrl">
+          <md-card-content>
+            <a >{{product.name}}</a>
+            <p>{{product.price | currency: 'GBP': 'true'}}</p>
+        
+          </md-card-content>
+          <md-card-actions>
+            <button (click)="addToCart(product)" color="accent" md-raised-button>ADD</button>
+            
+          </md-card-actions>
+        </md-card>
+
+        </md-grid-tile>
+      </md-grid-list>
+    </div>
+
+    <div class="side-bar">
+      <side-shop-cart></side-shop-cart>
+    </div>
+    
+  </div>
+  
+</div>-->

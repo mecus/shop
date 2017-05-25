@@ -1,79 +1,55 @@
 import { Component, OnInit } from '@angular/core';
 import * as cat from '../../../store/actions/category.action';
 import { Store } from "@ngrx/store";
+import { TaxanomyService } from '../../../services/taxanomy.service';
 
 
 @Component({
   selector: 'sub-menu',
-  template:` 
-    <div>
-        <div class="sub-menu" color="accent">
-            <div class="cat container">
-                <ul>
-                <li (click)="freshFood()">Fresh Food</li> |
-                <li (click)="frozenFood()">Frozen food</li> |
-                <li (click)="beverages()">Beverages</li> |
-                <li (click)="drinks()">Drink</li> |
-                <li>Spices</li> |
-                <li>Bakery</li>
-                </ul>
-            </div>
-          
-            <md-menu #menu="mdMenu">
-            <button md-menu-item>
-                <md-icon>dialpad</md-icon>
-                <span>Redial</span>
-            </button>
-            <button md-menu-item disabled>
-                <md-icon>voicemail</md-icon>
-                <span>Check voicemail</span>
-            </button>
-            <button md-menu-item>
-                <md-icon>notifications_off</md-icon>
-                <span>Disable alerts</span>
-            </button>
-        </md-menu>
-    
-  
-    </div>
-    </div>
-   `,
-  styles:[`
-        .sub-menu{
-            background-color: #000;
-            height: 40px;
-            color: lightgrey;
-            padding-top: 10px;
-            margin-bottom: 10px;
-        }
-        md-toolbar{
-            height:30px;
-        }
-        .cat{
-            margin:0px;
-            padding-left:30px;
-        }
-        .cat ul li{ 
-            display: inline-block;
-            margin:0px;
-        }
-  `]
+  templateUrl: './sub-menu.html',
+  styleUrls:['./sub-menu.scss']
 })
 export class SubMenuComponent implements OnInit {
+    category;
 
-  constructor(private store:Store<{}>) { }
 
-  freshFood(){
-      this.store.dispatch({type: cat.SEARCH_CAT, payload:{category:'Fresh Food', code_number: "17889789"} });
-  }
+  constructor(private store:Store<{}>, private _ts:TaxanomyService) {
+      _ts.getCategory().subscribe((group)=>{
+       this.category = group.filter((cat)=> cat.category == "Frozen Food")
+        
+      });
+      
+   }
+   selectCategory(selected:string){
+       this._ts.getCategory().subscribe((group)=>{
+       this.category = group.filter((cat)=> cat.category == selected)
+        
+      });
+   }
+
   frozenFood(){
-      this.store.dispatch({type: cat.SEARCH_CAT, payload:{category: 'Frozen Food', code_number: "209887445"} });
+      this.store.dispatch({type: cat.SEARCH_CAT, payload:{category:'Frozen Food', code_number: "17889789"} });
+      this.selectCategory("Frozen Food");
+    }
+  dryFood(){
+      this.store.dispatch({type: cat.SEARCH_CAT, payload:{category: 'Dry Food', code_number: "209887445"} });
+      this.selectCategory("Dry Food");
   }
    beverages(){
-      this.store.dispatch({type: cat.SEARCH_CAT, payload:{category: 'Beverages', code_number: "367885423"} });
+      this.store.dispatch({type: cat.SEARCH_CAT, payload:{category: 'Baverages', code_number: "367885423"} });
+      this.selectCategory("Baverages");
   }
    drinks(){
       this.store.dispatch({type: cat.SEARCH_CAT, payload:{category: 'Drinks', code_number: "4564332459"} });
+      this.selectCategory("Drinks");
+  }
+  ingredients(){
+      this.store.dispatch({type: cat.SEARCH_CAT, payload:{category: 'Ingredients', code_number: "4564332459"} });
+      this.selectCategory("Ingredients");
+  }
+  bakery(){
+      this.store.dispatch({type: cat.SEARCH_CAT, payload:{category: 'Bakery', code_number: "4564332459"} });
+      this.selectCategory("Bakery");
   }
 
   ngOnInit() {

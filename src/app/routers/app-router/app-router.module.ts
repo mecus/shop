@@ -8,6 +8,8 @@ import { NewProductComponent } from '../../components/products/new-product/new-p
 import { ProductComponent } from '../../components/products/product/product.component';
 import { CategoryDisplayComponent } from '../../components/products/prod-category/category-display';
 import { CartComponent } from "../../components/check-out/cart.component";
+import { ProductViewComponent } from "app/components/products/product/product-view.component";
+import { TaxanomyComponent } from "app/components/taxanomy/taxanomy.component";
 
 
 
@@ -24,6 +26,8 @@ const routes = [
   {path: 'products', component: ProductComponent},
   {path: 'products/?', component: CategoryDisplayComponent },
   {path: 'basket', component: CartComponent},
+  {path: 'product', component:ProductViewComponent},
+  {path: 'taxanomy', component:TaxanomyComponent},
   root, fallBack
 ]
 

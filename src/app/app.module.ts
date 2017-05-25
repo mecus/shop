@@ -4,6 +4,11 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { MaterialModule } from './modules/material/material.module';
+//cloudinary module
+import { Ng2CloudinaryModule } from 'ng2-cloudinary';
+import { FileUploadModule } from 'ng2-file-upload';
+
+import { AuthenticationsModule } from "app/authentications/authentications.module";
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
@@ -12,6 +17,7 @@ import { firebaseConfig } from './firebase-configuration';
 // Import the ButtonsModule
 import { ButtonsModule } from '@progress/kendo-angular-buttons';
 
+//Store // Reducers // Effects
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { DBModule } from '@ngrx/db';
@@ -27,10 +33,12 @@ import { CartEffects } from "app/effects/cart-effect";
 //Needed Hammerjs to work with material Design module
 import 'hammerjs';
 
+//Custom Modules
 import { AppRouterModule } from './routers/app-router/app-router.module';
 import { CatModule } from './components/products/prod-category/category.module';
 import { CheckOutModule } from './components/check-out/check-out.module';
 
+//Component
 import { AppComponent } from './app.component';
 import { TopMenuComponent } from './components/menu/top-menu/top-menu.component';
 import { SubMenuComponent } from './components/menu/top-menu/sub-menu';
@@ -40,13 +48,21 @@ import { HomeComponent } from './components/home/home.component';
 import { NewProductComponent } from './components/products/new-product/new-product.component';
 import { ProductComponent } from './components/products/product/product.component';
 import { CatTableComponent } from './components/products/new-product/category-table';
+import { CustomersComponent } from './components/customers/customers.component';
+import { ProductViewComponent } from "./components/products/product/product-view.component";
+
+//Services
 import { ProductService } from "app/services/product.service";
+import { CartService } from 'app/services/cart.service';
+import { TaxanomyService } from 'app/services/taxanomy.service';
+import { TaxanomyComponent } from './components/taxanomy/taxanomy.component';
+import { NewCategoryComponent } from './components/taxanomy/new-category.component';
+import { NewDeptComponent } from "./components/taxanomy/new-dept.component";
 
 
 
 
-
-
+export const AppServices = [ProductService, CartService, TaxanomyService]
 
 
 
@@ -54,7 +70,9 @@ import { ProductService } from "app/services/product.service";
   declarations: [
     AppComponent, TopMenuComponent, SideMenuComponent, 
     FooterComponent, HomeComponent, NewProductComponent, 
-    ProductComponent, SubMenuComponent,CatTableComponent
+    ProductComponent, SubMenuComponent,CatTableComponent, 
+    CustomersComponent, ProductViewComponent, TaxanomyComponent,
+    NewCategoryComponent, NewDeptComponent
   ],
   imports: [
     BrowserModule, BrowserAnimationsModule,
@@ -71,10 +89,9 @@ import { ProductService } from "app/services/product.service";
 
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireDatabaseModule,AngularFireAuthModule,
-    ButtonsModule
-  
+    ButtonsModule, AuthenticationsModule
   ],
-  providers: [ProductService],
+  providers: AppServices,
   bootstrap: [AppComponent]
 })
 export class AppModule { }

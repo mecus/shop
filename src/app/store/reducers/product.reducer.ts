@@ -1,15 +1,15 @@
-import { State, Action } from '@ngrx/store';
+import { State, Action, ActionReducer } from '@ngrx/store';
 import { iProduct } from "app/models/product.model";
 import * as product from "../../store/actions/product.action";
 
 // import { InitialProduct } from '../app-store';
 
 
-export function products(state=[], action:Action){
+export const products:ActionReducer<any[]> = (state=[], action:Action)=>{
 
     switch(action.type){
         case product.LOAD_PRODUCT:{
-            return ;
+            return state;
         }
         
          case product.LOAD_PRODUCT_SUCCESS:{

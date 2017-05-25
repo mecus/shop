@@ -1,9 +1,6 @@
 
   <md-toolbar class="" color="primary">
-    <div class="container top-menu">
-      <span routerLink="/home"><h1>Shop</h1></span>
-      <span class="spacer"></span>
-      <button md-icon-button [mdMenuTriggerFor]="menu">
+    <button md-icon-button [mdMenuTriggerFor]="menu">
       <md-icon>menu</md-icon>
     </button>
     <md-menu #menu="mdMenu">
@@ -19,8 +16,46 @@
         <md-icon>notifications_off</md-icon>
         <span>Basket</span>
       </button>
+      <button routerLink="/taxanomy" md-menu-item>
+        <md-icon>dialpad</md-icon>
+        <span>Taxanomy</span>
+      </button>
+      <button (click)="authenticate()" md-menu-item>
+        <md-icon>notifications_off</md-icon>
+        <span>Login</span>
+      </button>
     </md-menu>
-    
+    <div class="container top-menu">
+      <span routerLink="/home"><h1>Shop</h1></span>
+      <span class="spacer"></span>
+      
+    <div class="tool-bar-top">
+      <div class="row tool-bar-wrapper">
+        <div class="sign-in col col-lg-4">Login</div>
+        <div class="basket col col-lg-4">
+          <md-icon>local_grocery_store</md-icon>
+          <span><cart-total></cart-total></span>
+        </div>
+        <div class="get-help col col-lg-4">Help</div>
+      </div>
+    </div>
+
+  <div class="search-form">
+    <div class="input-group">
+      <input type="text" class="form-control" placeholder="Search for...">
+      <span class="input-group-btn">
+        <button class="btn btn-secondary" type="button"><md-icon>search</md-icon></button>
+      </span>
+    </div>
   </div>
+
+  </div>
+    
 </md-toolbar>
+<div class="authentication" *ngIf="loginWindow">
+  <div class="login-provider container">
+      <p (click)="closeWindow()">x</p>
+    <login></login>
+  </div>
+</div>
 

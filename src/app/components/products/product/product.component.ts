@@ -10,7 +10,7 @@ import { iProduct } from '../../../models/product.model';
   
 })
 export class ProductComponent implements OnInit {
-  products:Observable<iProduct>;
+  products$:Observable<iProduct>;
   constructor(private store:Store<iProduct>) { 
     // this.products = this.store.select('productReducer');
   }
@@ -18,7 +18,7 @@ export class ProductComponent implements OnInit {
     this.store.dispatch({type:"REMOVE_PRODUCT", payload:20});
   }
   ngOnInit() {
-     this.products = this.store.select('products');
+     this.products$ = this.store.select('products');
   //  console.log(this.products);
     
   }

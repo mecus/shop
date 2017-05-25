@@ -1,8 +1,15 @@
 <div class="md-container">
   <md-spinner></md-spinner>
-  <button md-raised-button> Google Button</button>
-  <a md-mini-fab ><md-icon>check</md-icon></a>
+  <button md-raised-button (click)="login()"> Google Login</button>
+  <button md-raised-button (click)="logout()"> Google Logout</button>
+  <a md-mini-fab ><md-icon>clear</md-icon></a>
   <p>How it works
+
+  <!--<cl-image public-id="pc-ad_z3qzf6.jpg" cloud-name="dxxw6jfih"></cl-image>-->
+
+  <!--<cl-image public-id="pc-ad_z3qzf6.jpg" cloud-name="dxxw6jfih"></cl-image>-->
+  
+
 
 Progress components are built with two HTML elements, some CSS to set the width, and a few attributes.
 
@@ -16,10 +23,7 @@ Put that all together, and you have the following examples.</p>
     {{list | async}}
   </div>
   <div>
-    <button (click)="add()" md-raised-button> Increment</button>
-    <button (click)="reset()" md-raised-button> Reset</button>
    
-      <h3>{{counter | async}}</h3>
   </div>
 
   <h1>{{title}}</h1>

@@ -32,6 +32,8 @@ export class newproductfail implements Action {
 }
 
 
-export type Actions
-        = newproduct
-        | newproductsuccess;
+export type Action
+        = loadproductsuccess
+        | newproduct
+        | newproductsuccess
+        
