@@ -1,17 +1,13 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Route } from '@angular/router';
-import { CatModule } from '../../components/products/prod-category/category.module';
 
-import { HomeComponent } from '../../components/home/home.component';
-import { NewProductComponent } from '../../components/products/new-product/new-product.component';
-import { ProductComponent } from '../../components/products/product/product.component';
-import { CategoryDisplayComponent } from '../../components/products/prod-category/category-display';
-import { CartComponent } from "../../components/check-out/cart.component";
-import { ProductViewComponent } from "app/components/products/product/product-view.component";
-import { TaxanomyComponent } from "app/components/taxanomy/taxanomy.component";
+import { HomeComponent } from '../../container/home/home.component';
+import { CartComponent } from "../../container/check-out/cart.component";
 
 
+import * as products from '../../container/products/index';
+ 
 
 const root:Route = {
   path: '',
@@ -22,19 +18,18 @@ const fallBack: Route = {
 }
 const routes = [
   {path: 'home', component: HomeComponent},
-  {path: 'new-product', component:NewProductComponent},
-  {path: 'products', component: ProductComponent},
-  {path: 'products/?', component: CategoryDisplayComponent },
+  {path: 'products/?', component: products.ProductComponent},
+  // {path: 'products/?', component: products.CategoryDisplayComponent },
   {path: 'basket', component: CartComponent},
-  {path: 'product', component:ProductViewComponent},
-  {path: 'taxanomy', component:TaxanomyComponent},
+  {path: 'product', component:products.ProductViewComponent},
+  // {path: 'dashboard', component:DashboardComponent},
   root, fallBack
 ]
 
 @NgModule({
   imports: [
     CommonModule,
-    RouterModule.forRoot(routes, {useHash: true})
+    RouterModule.forRoot(routes)
   ],
   exports: [RouterModule],
   declarations: []

@@ -1,0 +1,43 @@
+.md-toolbar{
+    background-color: #fff !important;
+    color: #000 !important;
+    height: 120px;
+    /*margin: 0px !important;
+    padding: 0px !important;*/
+    
+}
+div#brand-link{
+    max-width: 100px;
+}
+.tool-bar-top{
+    background-color: red;
+    position: relative;
+    top: 0px;
+    float: right;
+    padding: 0px;
+    margin: 0px;
+}
+div.tool-bar-wrapper{
+    display: flex;
+}
+.sign-in, .basket, .get-help{
+    flex: 1;
+    padding: 3px 5px;
+}
+div.basket{
+    background-color: goldenrod;
+}
+
+.search-form{
+    position: relative;
+    float: right;
+    top: 40px;
+    padding: 0px;
+    margin: 0px;
+    
+}
+.form-control {
+    /*border-radius: 0; */
+    height: 40px;
+}
+

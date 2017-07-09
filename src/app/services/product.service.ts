@@ -8,17 +8,42 @@ import { iProduct } from "app/models/product.model";
 
 @Injectable()
 export class ProductService {
-  public products = [];
-  dataUrl = "app/shared/products-data.json";
+  resourceUrl;
+  dataResource;
+  adUrl;
 
-  constructor(private _af:AngularFireDatabase, private _http:Http) { }
 
-  createProduct(product){
-    return this._af.list('/products')
-      .push(product).then((res)=>{console.log(res)}).catch(error=>console.log(error));
+  constructor( private _http:Http) {
+    this.resourceUrl = "http://localhost:3000/api/v1/products";
+    this.dataResource = "http://localhost:3000/api/v1/storedata";
+    this.adUrl = "http://localhost:3000/api/v1/storeadvert";
+   }
+
+  getFireBaseProduct(){
+    let dbRef = firebase.database().ref('/products');
+      return dbRef.once('value').then((snapshot)=>{
+        return snapshot.val();
+      }).catch((err)=>{
+        console.log(err);
+      });
   }
-  getProducts():Observable<iProduct[]>{
-    return this._af.list('/products');
+  getStoreAd():Observable<any>{
+    return this._http.get(this.adUrl).map((advert)=>{
+      return advert.json();
+    }).catch(this.handleError);
+  }
 
+  getProducts():Observable<any>{
+    return this._http.get(this.dataResource).map((res)=>{
+     return res.json();
+    }).catch(this.handleError);
+    
+  }
+  handleError(err):Observable<any>{
+    if (err.status === 302 || err.status === "302"){
+      return err.json();
+    }else{
+      return Observable.throw(new Error(err.status));
+    }
   }
 }

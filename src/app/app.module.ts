@@ -24,9 +24,7 @@ import { DBModule } from '@ngrx/db';
 import { schema } from './db';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { Reducers } from './store/reducers';
-import { ProductEffects } from "app/effects/product-effect";
-import { CategoryEffects } from "app/effects/category-effect";
-import { CartEffects } from "app/effects/cart-effect";
+import { CartEffects } from "./store/effects/cart-effect";
 
 
 
@@ -35,54 +33,41 @@ import 'hammerjs';
 
 //Custom Modules
 import { AppRouterModule } from './routers/app-router/app-router.module';
-import { CatModule } from './components/products/prod-category/category.module';
-import { CheckOutModule } from './components/check-out/check-out.module';
+import { ProductModule } from './container/products/product.module';
+import { CheckOutModule } from './container/check-out/check-out.module';
 
 //Component
 import { AppComponent } from './app.component';
-import { TopMenuComponent } from './components/menu/top-menu/top-menu.component';
-import { SubMenuComponent } from './components/menu/top-menu/sub-menu';
-import { SideMenuComponent } from './components/menu/side-menu/side-menu.component';
-import { FooterComponent } from './components/menu/footer/footer.component';
-import { HomeComponent } from './components/home/home.component';
-import { NewProductComponent } from './components/products/new-product/new-product.component';
-import { ProductComponent } from './components/products/product/product.component';
-import { CatTableComponent } from './components/products/new-product/category-table';
-import { CustomersComponent } from './components/customers/customers.component';
-import { ProductViewComponent } from "./components/products/product/product-view.component";
+import { TopMenuComponent } from './container/menu/top-menu/top-menu.component';
+import { SubMenuComponent } from './container/menu/top-menu/sub-menu';
+import { HomeComponent } from './container/home/home.component';
+import { CustomersComponent } from './container/customers/customers.component';
+
 
 //Services
 import { ProductService } from "app/services/product.service";
 import { CartService } from 'app/services/cart.service';
-import { TaxanomyService } from 'app/services/taxanomy.service';
-import { TaxanomyComponent } from './components/taxanomy/taxanomy.component';
-import { NewCategoryComponent } from './components/taxanomy/new-category.component';
-import { NewDeptComponent } from "./components/taxanomy/new-dept.component";
 
 
 
 
-export const AppServices = [ProductService, CartService, TaxanomyService]
+
+export const AppServices = [ProductService, CartService]
 
 
 
 @NgModule({
   declarations: [
-    AppComponent, TopMenuComponent, SideMenuComponent, 
-    FooterComponent, HomeComponent, NewProductComponent, 
-    ProductComponent, SubMenuComponent,CatTableComponent, 
-    CustomersComponent, ProductViewComponent, TaxanomyComponent,
-    NewCategoryComponent, NewDeptComponent
+    AppComponent, TopMenuComponent, 
+    HomeComponent,SubMenuComponent, CustomersComponent
   ],
   imports: [
     BrowserModule, BrowserAnimationsModule,
     FormsModule,MaterialModule, ReactiveFormsModule,
-    HttpModule, AppRouterModule,CatModule, CheckOutModule,
+    HttpModule, AppRouterModule,ProductModule, CheckOutModule,
     StoreModule.provideStore(Reducers),
     StoreDevtoolsModule.instrumentOnlyWithExtension(),
 
-    EffectsModule.run(ProductEffects),
-    EffectsModule.run(CategoryEffects),
     EffectsModule.run(CartEffects),
 
     DBModule.provideDB(schema),

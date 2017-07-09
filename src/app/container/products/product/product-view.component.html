@@ -1,0 +1,79 @@
+ <div class="container">
+    <p><a (click)="back()" md-mini-fab ><md-icon>arrow_back</md-icon></a> {{selectedProduct.category}} > {{selectedProduct.name}}</p>
+    <div class="row">
+        <div class="col col-lg-9">
+        <div class="row">
+            <div class="col col-lg-5">
+            <img style="width:300px" [src]="selectedProduct.imageUrl">
+            </div>
+            <div class="col col-lg-7">
+            <div class="row">
+                <div class="col-7"><h1>{{selectedProduct.name}}</h1></div>
+                <div class="col-5"><p><strong>Product Code:</strong> {{selectedProduct.code}}</p></div>
+            </div>
+            <p>Price: {{selectedProduct.price | currency: 'GBP' :true}}</p>
+            <p>( {{selectedProduct.description.size}} )</p>
+            
+            <button (click)="addToCart()" md-raised-button > Add to Cart</button>
+            
+
+            <div class="product-details">
+                <br><br>
+                <div class="nutrition-table">
+                    <h1>Nutrition</h1>
+                    <div class="nutrient-container">
+                        <div class="energy">
+                            <h2>energy</h2>
+                            <p>{{selectedProduct.nutrition.energy}}</p>
+                        </div>
+                        <div class="fat">
+                            <h2>fat</h2>
+                            <p>{{selectedProduct.nutrition.fat}}</p>
+                        </div>
+                        <div class="saturated">
+                            <h2>saturates</h2>
+                            <p>{{selectedProduct.nutrition.saturates}}</p>
+                        </div>
+                         <div class="sugar">
+                            <h2>sugar</h2>
+                            <p>110</p>
+                        </div>
+                        <div class="salt">
+                            <h2>salt</h2>
+                            <p>{{selectedProduct.nutrition.salt}}</p>
+                        </div>
+                    </div>
+                    
+                </div>
+                
+                <div class="description-contianer">
+                    <div class="tab-wrapper">
+                        <div (click)="showDescription()" class="descr">Description</div>
+                        <div (click)="showReview()" class="revw">Review</div>
+                    </div>
+                    <div class="section-content">
+                        <div *ngIf="description" class="decriptions">
+                           
+                            <h1>Description</h1>
+                            <p>{{selectedProduct.description.detail}}</p>
+                            <p><strong>Origin:</strong> {{selectedProduct.description.origin}}</p>
+                        </div>
+                        <div *ngIf="review" class="reviews">
+                           
+                            <h1>product Reviews</h1>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+
+            </div>
+        </div>
+        
+        </div>
+        <div class="col col-lg-3">
+            <side-shop-cart></side-shop-cart>
+        </div>
+    </div>
+    
+</div>

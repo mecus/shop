@@ -1,0 +1,77 @@
+
+<!--Listing out the Category for query selection -->
+<div class="list-menu w3-card-4">
+    <div class="container">
+      <div class="row">
+        <div class="col-3 first-cat">
+          <ul *ngIf="category">
+            <li *ngFor="let cat of category">
+                <div class="list-group-item justify-content-between" (click)="showSubCat(cat)">
+                    {{cat.name}}
+                    <span class="badge badge-default badge-pill">
+                      <i style="font-size:14px;" class="fa fa-angle-right" aria-hidden="true"></i>
+                    </span>
+                </div>
+              </li>
+          </ul>
+        </div>
+        <div *ngIf="subCategory" class="col-3 second-cat">
+          <ul>
+              <li *ngFor="let subcat of subCategory">
+                <div class="list-group-item justify-content-between" (click)="displayProduct(subcat)">
+                    {{subcat.name}}
+                    <span class="badge badge-default badge-pill">
+                      <i style="font-size:14px;" class="fa fa-angle-right" aria-hidden="true"></i>
+                    </span>
+                </div>
+              </li>
+          </ul>
+        </div>
+        <div class="col-6">
+          <div class="advert">
+            <div *ngIf="advert">
+              <p>{{advert.title}}</p>
+              <p>{{advert.sub_title}}</p>
+              <img [src]=advert.photo_url style="width:40px;" alt="">
+            </div>
+          </div>
+        </div>
+        
+      </div><!--End of Row -->
+    </div><!--End of Container-->
+</div><!--End of List Menu Section-->
+
+<!--Main Page Content after category list-->
+<div class="container" *ngIf="products">
+  <div class="page-wrapper row">
+    <div class="main-content col col-lg-9">
+      <div class="row">
+        <div class="pd-item col col-xs-6 col-sm-6 col-lg-3" *ngFor="let product of products">
+          <md-card class="example-card product">
+            <div [style.min-height.px]="60">
+              <img *ngIf="product.imageUrl !== undefined; else load" (click)="viewProduct(product)" md-card-image  [src]="product.imageUrl">
+              <template #load>waiting..</template>
+            </div>
+            
+            <md-card-content>
+              <p id="size">({{product.description.size}})</p>
+              <p id="title">{{product.name}}</p>
+              <p id="price">{{product.price | currency: 'GBP': 'true'}}</p>
+            </md-card-content>
+            <md-card-actions>
+                  <button (click)="addToCart(product)"  md-raised-button >ADD</button>
+            </md-card-actions>
+            <div class="inCart-wrapper" *ngFor="let cart of carts | async">
+                <div *ngIf="cart.name == product.name">
+                  <p id="inCart">{{cart.qty}} in cart</p>
+                </div>
+            </div>
+          </md-card>
+        </div>
+      </div>
+    </div>
+    <div class="side-bar col col-lg-3">
+      <side-shop-cart></side-shop-cart>
+    </div>
+  </div>
+</div>
