@@ -5,6 +5,7 @@ import { ActivatedRoute, Router, Params } from '@angular/router';
 import { ProductService } from '../../../services/product.service';
 import { CartService } from '../../../services/cart.service';
 import { Store } from '@ngrx/store';
+import { StorageService } from "app/services/storage.service";
 
 
 import * as cart from '../../../store/actions/cart-action';
@@ -22,21 +23,23 @@ export class ProductComponent implements OnInit {
   department;
   advert;
 
-  carts;
+  carts$:Observable<any>;
   inCart:boolean = false;
   
 
-  constructor(private route:ActivatedRoute,
+  constructor(private route:ActivatedRoute, private storeService:StorageService,
   private _router:Router, private store:Store<any>, private productService:ProductService, private cartService:CartService) {
-    this.carts = cartService.getCart(); //cart pulled out from the database to indicate selection
-    // this.carts = this.store.select('cart') //Retrieving cart from the store
-    // console.log(this.carts);
+    cartService.getCart().subscribe((carts)=>{
+      this.carts$ = carts.filter(cart=>cart.postcode == this.storeService.retriveData('postcode'));
+    }); //cart pulled out from the database to indicate selection
+  
    }
 
 
    //creating a cart payload to be sent to the database
    private payLoad(product) {
       return {
+        postcode: this.storeService.retriveData('postcode'),
         name: product.name,
         product_id: product._id,
         price: product.price,

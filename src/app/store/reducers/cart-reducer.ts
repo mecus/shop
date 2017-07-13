@@ -5,7 +5,7 @@ import * as cart from '../actions/cart-action';
 export const InitialState = [];
 
 
-export const cartReducer= (state=InitialState, action:Action) => 
+export function cartReducer(state=InitialState, action:Action)
     {
         switch(action.type){
             case cart.ADD:{

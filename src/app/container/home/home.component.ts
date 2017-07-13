@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { Title, Meta } from '@angular/platform-browser';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
 import { ProductService } from "app/services/product.service";
 import * as firebase from 'firebase';
+import { AdItem } from '../../components/advert/ad-item';
 
 
 @Component({
@@ -11,12 +13,13 @@ import * as firebase from 'firebase';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
+  ads: AdItem[];
   list:Observable<{}>;
   counter:Observable<number>;
   title;
   imageUrl;
-  constructor(private store:Store<{}>, private PS:ProductService) {
-
+  constructor(private store:Store<{}>, private PS:ProductService, title:Title) {
+    title.setTitle('Welcome to our shop');
     this.list = this.store.select("reducer");
     this.counter = this.store.select('counter');
     // console.log(this.user);
@@ -37,8 +40,14 @@ export class HomeComponent implements OnInit {
 
 
   ngOnInit() {
-    // console.log(this.list);
+    this.ads = this.PS.getAds();
+    console.log(this.ads);
+    // console.log(window.location);
     // this.PS.getProducts().subscribe(res=> console.log(res));
+    this.PS.getNewAd().subscribe((res)=> {
+      this.ads = res;
+      console.log(res)
+    });
   }
 
 }

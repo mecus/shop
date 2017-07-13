@@ -1,8 +1,8 @@
 
 <div class="md-container">
   <md-spinner></md-spinner>
-  <button md-raised-button (click)="login()"> Google Login</button>
-  <button md-raised-button (click)="logout()"> Google Logout</button>
+  <button md-raised-button > Google Login</button>
+  <button md-raised-button > Google Logout</button>
   <a md-mini-fab ><md-icon>clear</md-icon></a>
   <p>How it works
 
@@ -23,8 +23,9 @@ Put that all together, and you have the following examples.</p>
   <div>
     {{list | async}}
   </div>
+
   <div>
-    <login></login>
+    <app-advert [ads]="ads"></app-advert>
   </div>
 
   <h1>{{title}}</h1>

@@ -1,0 +1,50 @@
+<div class="register-form ">
+    <h2>Registration is quick and easy</h2>
+    <p>Enter your postcode to see products and offers available to you.</p>
+    <div class="search-postcode">
+        <label for="postcode">Post Code</label>
+        <input [class.postError]="posterror" type="text" #postcode value={{setPostcode}}>
+        <button md-raised-button (click)="postCodeSearch(postcode.value)">Continue</button>
+        <p *ngIf="posterror" id="post-err">{{posterror}}</p>
+        
+    </div>
+    <div *ngIf="!searchResult" class="search-result">
+        <md-chip-list>
+            <md-chip color="accent" selected="true"><strong>Congratulations</strong> we deliver to you; {{setPostcode}}, <a routerLink="/products/?">Continue Shopping</a> </md-chip>
+        </md-chip-list>
+        
+    </div>
+    <br><br>
+    <form *ngIf="true" novalidate class="control-form" [formGroup]="newUser" (ngSubmit)="register(newUser.value)">
+        <p>
+            <md-input-container class="input-full-width">
+                <span mdPrefix><md-icon>email</md-icon> &nbsp;</span>
+                <input type="email" formControlName="email" mdInput placeholder="Enter your email">
+                <md-icon [hidden]="!newUser.dirty" mdSuffix>mode_edit</md-icon>
+            </md-input-container>
+            <md-input-container class="input-full-width">
+                <span mdPrefix><md-icon>lock_outline</md-icon> &nbsp;</span>
+              <input type="password" formControlName="password" mdInput placeholder="Enter password">
+              <md-icon [hidden]="!newUser.dirty" mdSuffix>mode_edit</md-icon>
+            </md-input-container>
+            <md-input-container class="input-full-width">
+                <span mdPrefix><md-icon>lock_outline</md-icon> &nbsp;</span>
+              <input type="password" formControlName="confirmpassword" mdInput placeholder="Confirm Password">
+              <md-icon [hidden]="!newUser.dirty" mdSuffix>mode_edit</md-icon>
+            </md-input-container>
+        </p>
+        <p style="color:red" *ngIf="errMsg">{{errMsg}}</p>
+        <md-checkbox>I've read and accepted the Terms & Conditions</md-checkbox>
+        <md-checkbox>I'm over 18 years old</md-checkbox>
+        <div class="submit-button">
+            <button [disabled]="!newUser.valid" md-raised-button type="submit">Register</button>
+        </div>
+        <!--<div>
+            <p>{{newUser.value | json}}</p>
+            <p>iSvalid: {{newUser.valid | json}}</p>
+            <p>Untouched: {{newUser.untouched | json}}</p>
+            <p>Pristine: {{newUser.pristine | json}}</p>
+            <p>Dirty: {{newUser.dirty | json}}</p>
+        </div>-->
+    </form>
+</div>

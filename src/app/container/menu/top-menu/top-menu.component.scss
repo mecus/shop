@@ -8,14 +8,23 @@
 }
 div#brand-link{
     max-width: 100px;
+    height: 100px;
+    padding: 20px 0;
+    margin-top: 10px;
+    a h1{
+        font-size: 45px;
+    }
 }
 .tool-bar-top{
-    background-color: red;
+    // width: 100%;
     position: relative;
     top: 0px;
     float: right;
     padding: 0px;
     margin: 0px;
+    // border-bottom: 1px solid lightgray;
+    // border-left: 1px solid lightgray;
+    // border-right: 1px solid lightgray;
 }
 div.tool-bar-wrapper{
     display: flex;
@@ -31,7 +40,7 @@ div.basket{
 .search-form{
     position: relative;
     float: right;
-    top: 40px;
+    top: 30px;
     padding: 0px;
     margin: 0px;
     

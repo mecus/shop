@@ -32,7 +32,7 @@
             <div *ngIf="advert">
               <p>{{advert.title}}</p>
               <p>{{advert.sub_title}}</p>
-              <img [src]=advert.photo_url style="width:40px;" alt="">
+              <img [src]=advert.photo_url style="width:80px;" alt="">
             </div>
           </div>
         </div>
@@ -50,7 +50,7 @@
           <md-card class="example-card product">
             <div [style.min-height.px]="60">
               <img *ngIf="product.imageUrl !== undefined; else load" (click)="viewProduct(product)" md-card-image  [src]="product.imageUrl">
-              <template #load>waiting..</template>
+              <ng-template #load>waiting..</ng-template>
             </div>
             
             <md-card-content>
@@ -59,9 +59,9 @@
               <p id="price">{{product.price | currency: 'GBP': 'true'}}</p>
             </md-card-content>
             <md-card-actions>
-                  <button (click)="addToCart(product)"  md-raised-button >ADD</button>
+                  <a role="button" (click)="addToCart(product)"  md-raised-button >ADD</a>
             </md-card-actions>
-            <div class="inCart-wrapper" *ngFor="let cart of carts | async">
+            <div class="inCart-wrapper" *ngFor="let cart of carts$">
                 <div *ngIf="cart.name == product.name">
                   <p id="inCart">{{cart.qty}} in cart</p>
                 </div>
@@ -71,6 +71,9 @@
       </div>
     </div>
     <div class="side-bar col col-lg-3">
+      <div class="cart-header">
+        <cart-total></cart-total>
+      </div>
       <side-shop-cart></side-shop-cart>
     </div>
   </div>

@@ -1,35 +1,56 @@
 import { Injectable } from '@angular/core'
 import { AngularFireAuth } from 'angularfire2/auth';
-import * as firebase from 'firebase';
+import { StorageService } from "app/services/storage.service";
+import * as firebase from 'firebase/app';
+import { Observable } from 'rxjs/Observable';
+import { Router } from '@angular/router';
+
+
 
 
 @Injectable()
 
 export class AuthService {
-
-    constructor(private Aauth: AngularFireAuth){}
+    user: Observable<firebase.User>;
+    constructor(public AF: AngularFireAuth, private storeService:StorageService, private _router:Router){
+        this.user = AF.authState;
+    }
 
     authChange(){
-        this.Aauth.authState.subscribe(state=>{
+        this.AF.authState.subscribe(state=>{
             console.log(state);
             
         })
     }
+    createUser(user){
+        if(user){
+       return this.AF.auth.createUserWithEmailAndPassword(user.email, user.password);
+        }
+    }
+    emailLogin(user){
+        if(user){
+            return this.AF.auth.signInWithEmailAndPassword(user.email, user.password);
+        }
+    }
     loginFacebook() {
-        this.Aauth.auth.signInWithPopup(new firebase.auth.FacebookAuthProvider())
+        this.AF.auth.signInWithPopup(new firebase.auth.FacebookAuthProvider())
         .then(res=>{console.log(res.user.providerData)})
         .catch(error=>{console.log(error)});
     }
 
     loginGoogle() {
-        this.Aauth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider())
+        this.AF.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider())
         .then(res=>{console.log(res)})
         .catch(error=>{console.log(error)});
     }
 
     logout() {
-        this.Aauth.auth.signOut()
-            .then(res=> console.log(res))
+        this.AF.auth.signOut()
+            .then((res)=> {
+                this.storeService.cleardata('user');
+                setTimeout(()=>{this._router.navigate(["/login"]);}, 500)
+                
+            })
             .catch(error=> console.log(error));
     }
 }

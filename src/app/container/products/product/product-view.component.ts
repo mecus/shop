@@ -6,6 +6,7 @@ import { Observable } from 'rxjs/Observable';
 import { iProduct } from '../../../models/product.model';
 import { ProductService } from "app/services/product.service";
 import { CartService } from '../../../services/cart.service';
+import { StorageService } from "app/services/storage.service";
 import * as cart from "app/store/actions/cart-action";
 
 @Component({
@@ -20,7 +21,7 @@ export class ProductViewComponent implements OnInit {
     review:boolean;
     constructor(private store:Store<iProduct>, private _router:Router,
     private route:ActivatedRoute, private productService:ProductService,
-    private location:Location, private cartService:CartService
+    private location:Location, private cartService:CartService, private storeService:StorageService
   ) { 
     
   }
@@ -31,6 +32,7 @@ export class ProductViewComponent implements OnInit {
    }
    private payLoad() {
       return {
+        postcode: this.storeService.retriveData('postcode'),
         name: this.selectedProduct.name,
         id: this.selectedProduct._id,
         price: this.selectedProduct.price,

@@ -7,6 +7,7 @@ import {MdButtonModule, MdCheckboxModule,MdToolbarModule,
 import {MdSelectModule} from '@angular/material';
 import {MdSidenavModule} from '@angular/material';
 import {MdDialogModule} from '@angular/material';
+import {MdChipsModule} from '@angular/material';
   
 
 @NgModule({
@@ -14,12 +15,12 @@ import {MdDialogModule} from '@angular/material';
     CommonModule,
      MdButtonModule, MdCheckboxModule,MdIconModule,MdMenuModule,
      MdToolbarModule, MdInputModule, MdCardModule, MdGridListModule,
-     MdSelectModule, MdSidenavModule, MdDialogModule
+     MdSelectModule, MdSidenavModule, MdDialogModule, MdChipsModule
   ],
   exports: [
     MdButtonModule, MdCheckboxModule,MdIconModule,MdMenuModule,
     MdToolbarModule, MdInputModule, MdCardModule, MdGridListModule,
-    MdSelectModule, MdSidenavModule, MdDialogModule
+    MdSelectModule, MdSidenavModule, MdDialogModule, MdChipsModule
   ],
   declarations: []
 })

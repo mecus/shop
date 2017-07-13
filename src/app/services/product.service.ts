@@ -4,6 +4,10 @@ import { Http } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import { iProduct } from "app/models/product.model";
 
+import { AdItem } from '../components/advert/ad-item';
+import { NewProdComponent } from '../components/advert/dynamic-components/newprod.component';
+import { NewCatComponent } from '../components/advert/dynamic-components/newcat.component';
+
 
 
 @Injectable()
@@ -45,5 +49,34 @@ export class ProductService {
     }else{
       return Observable.throw(new Error(err.status));
     }
+  }
+
+  getNewAd(){
+     return this._http.get(this.adUrl).map((res)=>{
+     let ad = res.json();
+     return ad.map((data)=>{
+       return new AdItem(NewProdComponent, data);
+     });
+    }).catch(this.handleError);
+  }
+
+  getAds() {
+    // return this._http.get(this.adUrl).map((res)=>{
+    //  let ad = res.json();
+    //  return ad.map((data)=>{
+    //    return new AdItem(NewProdComponent, data);
+    //  });
+    // }).catch(this.handleError);
+    return [
+      new AdItem(NewProdComponent, {title: 'Bombasto', snipet: 'Brave as they come'}),
+
+      new AdItem(NewCatComponent,   {headline: 'Hiring for several positions',
+                                        body: 'Submit your resume today!'}),
+
+      new AdItem(NewProdComponent, {title: 'Dr IQ', snipet: 'Smart as they come'}),
+
+      new AdItem(NewCatComponent,   {headline: 'Openings in all departments',
+                                        body: 'Apply today'}),
+    ];
   }
 }

@@ -1,0 +1,38 @@
+<div class="head-title">
+    <h1>Login or Register</h1>
+</div>
+<div class="login-form">
+    
+    <div class="signup-link">
+        <h2>New Customer</h2>
+        <hr>
+        <label for="">Post Code</label>
+        <input [class.postError]="posterror" #postcode required type="text">
+        <p *ngIf="posterror" id="post-err">{{posterror}}</p>
+        <p>By creating an account with our store, you will be able to move through the checkout process faster, store multiple shipping addresses, view and track your orders in your account and more.</p>
+        <a md-raised-button (click)="postCodeSearch(postcode.value)">Continue</a>
+    </div>
+    <div class="login-link">
+        <h2>Registered Customer</h2>
+        <hr>
+       
+        <form novalidate class="control-form" [formGroup]="user" (ngSubmit)="logIn(user.value)">
+            <p>
+                <md-input-container class="input-full-width">
+                <span mdPrefix><md-icon>email</md-icon> &nbsp;</span>
+                <input type="email" formControlName="email" mdInput placeholder="Email">
+                </md-input-container>
+                <md-input-container class="input-full-width">
+                <span mdPrefix><md-icon>lock_outline</md-icon> &nbsp;</span>
+                <input type="password" formControlName="password" mdInput placeholder="Password">
+                </md-input-container>
+            </p>
+            <p id="errorMsg" *ngIf="errMsg"> {{errMsg}}</p>
+            <div class="submit-button">
+                <a href="">Forgotten Password</a>
+                <button [disabled]="!user.valid" md-raised-button type="submit">Login</button>
+            </div>
+        </form>
+    </div>
+    
+</div>

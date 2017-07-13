@@ -1,0 +1,31 @@
+
+.register-form{
+    width: 500px;
+    margin: 0 auto;
+    margin-top: 20px;
+    margin-bottom: 100px;
+    .input-full-width{
+        width: 100%;
+    }
+    .submit-button{
+        position: relative;
+        float: right;
+    }
+}
+div.search-postcode{
+    .postError{
+        border: 1px solid brown;
+        
+    }
+}
+div.search-result{
+    margin-top: 20px;
+}
+p#post-err{
+    font-size: 11px;
+    color: brown;
+    padding: 0px;
+    margin: 0px;
+    margin-bottom: 10px;
+    margin-left: 80px;
+}

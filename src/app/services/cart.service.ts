@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
+import { LocalStorageService, SessionStorageService } from 'ng2-webstorage';
 import { Http } from '@angular/http';
 import * as firebase from 'firebase';
 import { iCart } from '../models/cart.model';
@@ -8,7 +9,7 @@ import { iCart } from '../models/cart.model';
 @Injectable()
 
 export class CartService {
-    constructor(private _af:AngularFireDatabase){}
+    constructor(private _af:AngularFireDatabase, private _LS:LocalStorageService){}
 
     createCart(cart):Observable<iCart>{
         return this._af.list('/carts')

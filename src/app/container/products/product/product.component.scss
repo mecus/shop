@@ -1,5 +1,7 @@
 
-
+* a{
+    text-decoration: none;
+}
 .product-tile{
     margin: 5px 0px;
 }
@@ -98,4 +100,7 @@
         height: 150px;
         // background-color: red;
     }
+}
+div.cart-header{
+    background-color: lightgreen;
 }

@@ -1,0 +1,17 @@
+ <div class="tool-bar-wrapper">
+  <div *ngIf="!authenticated" class="register" >
+    <a routerLink="/register">Register</a>
+  </div>
+  <div class="sign-in" >
+    <a *ngIf="!authenticated" routerLink="/login">Login</a>
+    <a *ngIf="authenticated" (click)="logOut()" >LogOut</a>
+  </div>
+  <div class="basket">
+    <md-icon>local_grocery_store</md-icon>
+    <span id="all-price"><p><cart-total></cart-total></p></span>
+  </div>
+  <div class="get-help">
+    <p>Help</p>
+    <md-icon>help</md-icon>
+    </div>
+</div>

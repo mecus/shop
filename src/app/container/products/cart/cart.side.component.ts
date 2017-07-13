@@ -4,9 +4,10 @@ import { iCart } from "../../../models/cart.model";
 import { Observable } from "rxjs/Observable";
 import * as cart from "../../../store/actions/cart-action";
 import { CartService } from '../../../services/cart.service';
+import { StorageService } from "app/services/storage.service";
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
-var firebase = window['firebase'];
+
 
 
 @Component({
@@ -14,7 +15,7 @@ var firebase = window['firebase'];
     template: `
        <div class="container jumbotron-clone" *ngIf="cart$">
             <p class="cart-head">Your Basket <md-icon>shopping_cart</md-icon></p>
-            <div *ngFor="let cat of cart$ | async">
+            <div *ngFor="let cat of cart$">
                 <div class="row cart-list">
                     <div class="col col-xs-6 col-lg-6">
                         <p>{{cat.name}}</p>
@@ -102,8 +103,11 @@ var firebase = window['firebase'];
 })
 export class SideCartComponent implements OnInit {
     cart$:Observable<any>;
-    constructor(private store:Store<iCart>, private cartService:CartService){
-       this.cart$ = cartService.getCart();
+    constructor(private storeService:StorageService , private store:Store<iCart>, private cartService:CartService){
+       
+       cartService.getCart().subscribe((carts)=>{
+         this.cart$ = carts.filter(cat=> cat.postcode == this.storeService.retriveData('postcode'));
+       })
     }
 
     removeItem(product){
