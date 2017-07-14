@@ -23,9 +23,9 @@ export class RegisterComponent implements OnInit {
   posterror;
   constructor(private storeService:StorageService , private _fb:FormBuilder, private authService:AuthService) {
     this.newUser = _fb.group({
-      email: ["", Validators.required],
-      password: ["", Validators.required],
-      confirmpassword: ["", Validators.required]
+      email: [null, Validators.required],
+      password: [null, Validators.required, Validators.minLength(8)],
+      confirmpassword: [null, Validators.required]
     }, {validator: passwordMather})
    }
    register(user){

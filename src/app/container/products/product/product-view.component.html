@@ -1,4 +1,4 @@
- <div class="container">
+ <div *ngIf="selectedProduct" class="container">
     <p><a (click)="back()" md-mini-fab ><md-icon>arrow_back</md-icon></a> {{selectedProduct.category}} > {{selectedProduct.name}}</p>
     <div class="row">
         <div class="col col-lg-9">
@@ -24,7 +24,7 @@
             <a role="button" (click)="addToCart()" md-raised-button > Add to Cart</a>
             
 
-            <div class="product-details">
+            <div *ngIf="selectedProduct" class="product-details">
                 <br><br>
                 <div class="nutrition-table">
                     <h1>Nutrition</h1>
@@ -56,7 +56,7 @@
                 <div class="description-contianer">
                     <div class="tab-wrapper">
                         <div (click)="showDescription()" class="descr">Description</div>
-                        <div (click)="showReview()" class="revw">Review</div>
+                        <div (click)="showReview()" class="revw">Reviews</div>
                     </div>
                     <div class="section-content">
                         <div *ngIf="description" class="decriptions">
@@ -68,6 +68,31 @@
                         <div *ngIf="review" class="reviews">
                            
                             <h1>product Reviews</h1>
+                            <md-checkbox (change)="showReviewForm($event)" >Please add your review to this product</md-checkbox>
+                            <span><p id="error-msg" *ngIf="userErr">{{userErr}}</p></span>
+                            <form *ngIf="showForm" class="example-form" [formGroup]="reviewForm" (ngSubmit)="addReviews(reviewForm.value)">
+                                <input hidden formControlName="user">
+                                <input hidden formControlName="productId" >
+                          
+                                <md-input-container>
+                                    <input formControlName="userName" mdInput placeholder="Your Name" value="">
+                                </md-input-container>
+                                <p>
+                                    <md-input-container class="example-full-width">
+                                        <textarea formControlName="comment" mdInput #comment maxlength="256" placeholder="Your Review"></textarea>
+                                        <md-hint align="start"><strong>Please tell us what you think about this product</strong> </md-hint>
+                                        <md-hint align="end">{{comment.value.length}} / 256</md-hint>
+                                    </md-input-container>
+                                </p>
+                                <div id="submit-btn">
+                                    <button type="submit" md-raised-button>Submit</button>
+                                </div>
+                                <span><p id="error-msg" *ngIf="errMsg">{{errMsg}}</p></span>
+                            </form>
+                            <div class="product-review">
+                                <app-reviews [Id]="selectedProduct._id"></app-reviews>
+                            </div>
+                            
                         </div>
                     </div>
                     

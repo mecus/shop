@@ -111,7 +111,26 @@ div.prod-left-image{
             border-radius: 0px 15px 0px 0px;
             border-color: lightgrey;
             padding: 20px;
-            
+            .example-form {
+                max-width: 400px;
+                #submit-btn{
+                    margin-top: 10px;
+                }
+            }
+
+            .example-full-width {
+                width: 100%;
+            }
         }
     }
+}
+div.product-review{
+    padding: 20px 10px;
+}
+p#error-msg{
+    margin: 0px;
+    padding: 0px;
+    color: brown;
+    font-size: 11px;
+    margin-top: 10px;
 }

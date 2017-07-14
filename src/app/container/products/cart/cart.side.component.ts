@@ -102,7 +102,7 @@ import 'rxjs/add/operator/catch';
     `]
 })
 export class SideCartComponent implements OnInit {
-    cart$:Observable<any>;
+    cart$:Observable<iCart>;
     constructor(private storeService:StorageService , private store:Store<iCart>, private cartService:CartService){
        
        cartService.getCart().subscribe((carts)=>{

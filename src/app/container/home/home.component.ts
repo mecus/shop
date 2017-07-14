@@ -5,6 +5,8 @@ import { Observable } from 'rxjs/Observable';
 import { ProductService } from "app/services/product.service";
 import * as firebase from 'firebase';
 import { AdItem } from '../../components/advert/ad-item';
+import { SearchService } from "app/services/search.service";
+
 
 
 @Component({
@@ -18,21 +20,19 @@ export class HomeComponent implements OnInit {
   counter:Observable<number>;
   title;
   imageUrl;
-  constructor(private store:Store<{}>, private PS:ProductService, title:Title) {
+  constructor(private searchService:SearchService, private PS:ProductService, title:Title) {
     title.setTitle('Welcome to our shop');
-    this.list = this.store.select("reducer");
-    this.counter = this.store.select('counter');
+    
     // console.log(this.user);
 
    }
-  
    
-   add(){
-     this.store.dispatch({type: 'ADD'});
-   }
-   reset(){
-     this.store.dispatch({type: 'RESET'});
-   }
+  //  add(){
+  //    this.store.dispatch({type: 'ADD'});
+  //  }
+  //  reset(){
+  //    this.store.dispatch({type: 'RESET'});
+  //  }
 
    onButtonClick() {
         this.title = 'Hello from Kendo UI!';
@@ -41,12 +41,12 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     this.ads = this.PS.getAds();
-    console.log(this.ads);
+    // console.log(this.ads);
     // console.log(window.location);
     // this.PS.getProducts().subscribe(res=> console.log(res));
     this.PS.getNewAd().subscribe((res)=> {
       this.ads = res;
-      console.log(res)
+      // console.log(res)
     });
   }
 

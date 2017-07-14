@@ -59,7 +59,7 @@
               <p id="price">{{product.price | currency: 'GBP': 'true'}}</p>
             </md-card-content>
             <md-card-actions>
-                  <a role="button" (click)="addToCart(product)"  md-raised-button >ADD</a>
+                <a  role="button" (click)="addToCart(product)"  md-raised-button >ADD</a>
             </md-card-actions>
             <div class="inCart-wrapper" *ngFor="let cart of carts$">
                 <div *ngIf="cart.name == product.name">

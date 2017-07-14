@@ -1,0 +1,35 @@
+div.search-result-list{
+    width: 210px;
+    // max-height: 200px;
+    position: absolute;
+    right: 0px;
+    top: 40px;
+    z-index: 100;
+    ul li {
+        padding: 0px;
+        margin: 0px;
+        padding: 8px;
+        border: none;
+        
+        border-bottom: 1px solid lightgrey;
+        transition: .2s;
+        span{
+            font-size: 11px;
+        }
+        &:hover{
+            padding-left: 12px;
+            color: goldenrod;
+            cursor: pointer;
+            background-color: lightgrey;
+        }
+    }
+    // overflow: scroll;
+    md-list{
+        padding: 0px !important;
+        margin: 0px !important;
+        md-list-item{
+            padding: 0px !important;
+            margin: 0px !important;
+        }
+    }
+}

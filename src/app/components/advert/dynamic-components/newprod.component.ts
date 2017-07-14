@@ -4,7 +4,7 @@ import { AdComponent }      from '../ad.component';
 
 @Component({
   template: `
-    <div class="prod-ad">
+    <div *ngIf="data" class="prod-ad">
       <h2>{{data.title}}</h2> 
       
       {{data.snipet}}

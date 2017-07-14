@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 
+
 @Component({
   selector: 'app-top-menu',
   templateUrl: './top-menu.component.html',
@@ -9,8 +10,8 @@ import { Router } from '@angular/router';
 })
 export class TopMenuComponent implements OnInit {
 
-  constructor(){}
-  
+  constructor(){}  
+
   ngOnInit() {
   }
 

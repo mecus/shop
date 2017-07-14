@@ -6,6 +6,7 @@ import { HttpModule } from '@angular/http';
 import { MaterialModule } from './modules/material/material.module';
 import { Ng2Webstorage } from 'ng2-webstorage';
 
+
 //cloudinary module
 import { Ng2CloudinaryModule } from 'ng2-cloudinary';
 import { FileUploadModule } from 'ng2-file-upload';
@@ -42,6 +43,11 @@ import { CheckOutModule } from './container/check-out/check-out.module';
 import { ProductService } from "app/services/product.service";
 import { CartService } from 'app/services/cart.service';
 import { StorageService } from "app/services/storage.service";
+import { SearchService } from "app/services/search.service";
+import { ReviewService } from "app/services/review.service";
+
+//Directives
+import { AdvertDirective } from './directives/advert.directive';
 
 //Component
 import { AppComponent } from './app.component';
@@ -52,18 +58,18 @@ import { CustomersComponent } from './container/customers/customers.component';
 import { BannerComponent } from './components/advert/banner.component';
 import { NewProdComponent } from './components/advert/dynamic-components/newprod.component';
 import { NewCatComponent } from './components/advert/dynamic-components/newcat.component';
-
-//Directives
-import { AdvertDirective } from './directives/advert.directive';
 import { FooterComponent } from './container/menu/footer/footer.component';
+import { ProductSearchComponent } from './components/product-search/product-search.component';
 
 
 
 @NgModule({
   declarations: [
     AppComponent, TopMenuComponent, 
-    HomeComponent,SubMenuComponent, CustomersComponent, AdvertDirective,
-    BannerComponent, NewProdComponent, NewCatComponent, FooterComponent
+    HomeComponent,SubMenuComponent, CustomersComponent,
+    AdvertDirective, BannerComponent, NewProdComponent, 
+    NewCatComponent, FooterComponent, ProductSearchComponent, 
+   
   ],
   imports: [
     BrowserModule.withServerTransition({appId: 'shop-front'}),
@@ -82,7 +88,10 @@ import { FooterComponent } from './container/menu/footer/footer.component';
     ButtonsModule, AuthenticationsModule,
     Ng2Webstorage
   ],
-  providers: [ProductService, CartService, StorageService],
+  providers: [
+    ProductService, CartService, StorageService, SearchService,
+    ReviewService
+    ],
   bootstrap: [AppComponent],
   entryComponents: [NewProdComponent, NewCatComponent]
 })
