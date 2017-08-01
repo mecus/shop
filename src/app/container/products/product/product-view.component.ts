@@ -1,4 +1,5 @@
 import { Component, OnInit, HostListener, AfterContentInit } from '@angular/core';
+import { trigger, state, style, stagger, transition, animate, keyframes, query } from '@angular/animations';
 import { Location } from '@angular/common';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
@@ -15,6 +16,23 @@ import { ReviewService } from "app/services/review.service";
   selector: 'app-product',
   templateUrl: './product-view.component.html',
   styleUrls: ['./product-view.component.scss'],
+
+  animations: [
+    trigger('IcomponentIn', [
+     
+      transition('* => *', [ 
+        query(':enter', style({opacity: 0}), {optional: true}),
+
+        query(':enter', stagger('300ms', [
+          animate('1s ease-in', keyframes([
+            style({opacity: 0, transform: 'translateY(-70px)', offset: 0}),
+            style({opacity: .5, transform: 'translateY(30px)', offset: 0.3}),
+            style({opacity: 1, transform: 'translateY(0)', offset: 1})
+          ]))
+        ]))
+      ]),
+    ])
+  ]
   
 })
 export class ProductViewComponent implements OnInit {
@@ -25,6 +43,8 @@ export class ProductViewComponent implements OnInit {
     showForm: boolean;
     errMsg;
     userErr;
+    cartErrorMsg?;
+    carts$:Observable<any>;
     constructor(private store:Store<iProduct>, private _router:Router,
     private route:ActivatedRoute, private productService:ProductService,
     private location:Location, private cartService:CartService, 
@@ -33,18 +53,28 @@ export class ProductViewComponent implements OnInit {
   ) { 
       this.reviewForm = _fb.group({
         'user': [null],
+        'productName': [null],
         'productId': [null],
         'userName': [null, Validators.required],
         'comment': [null, Validators.required]
-      })
+      });
+
+    cartService.getCart().subscribe((carts)=>{
+      this.carts$ = carts.filter(cart=>cart.postcode == this.storeService.retriveData('postcode'));
+    });
 
   }
   @HostListener('change', ['$event']) showReviewForm($event){
     if(!this.storeService.retriveData('user')){
-      this.userErr = "You must sign in before reviews";
+      this.userErr = "Please sign in to reviews this product";
       return;
     }
-    this.showForm = $event.checked;
+    if($event.checked == false){
+      this.showForm = false;
+      return;
+    }
+    this.showForm = true;
+    return;
   }
   addReviews(comment){
     if(!comment.comment){
@@ -52,11 +82,12 @@ export class ProductViewComponent implements OnInit {
       return;
     }
     if(!this.storeService.retriveData('user')){
-      this.errMsg = "You must sign in before reviews";
+      this.errMsg = "Please sign in to reviews this product";
       return;
     }
     let review = {
       'user': comment.user.uid,
+      'productName': comment.productName,
       'productId': comment.productId,
       'userName': comment.userName,
       'comment': comment.comment,
@@ -69,7 +100,22 @@ export class ProductViewComponent implements OnInit {
     });
     
   }
+  submitPostcode(value){
+    if((value == "" || value.length < 5)){
+      return;
+    }
+    this.storeService.storeData("postcode", value);
+    setTimeout(()=>{
+      this.cartErrorMsg = false;
+    }, 500);
+    
+  }
   addToCart(){
+      if(!this.storeService.retriveData('postcode')){
+        this.cartErrorMsg = "Please enter your postcode to make sure we deliver to you";
+        return;
+        // DA17 4GH
+      }
       this.cartService.createCart(this.payLoad());
       // this.store.dispatch({type: cart.ADD, payload: this.payLoad() })
    }
@@ -82,6 +128,9 @@ export class ProductViewComponent implements OnInit {
         imageUrl: this.selectedProduct.imageUrl,
         qty: 1
       }
+   }
+   redirectLogin(){
+     this._router.navigate(["/login"]);
    }
    back(){
      this.location.back();
@@ -97,10 +146,11 @@ export class ProductViewComponent implements OnInit {
    }
   ngOnInit() {
     this.route.params.forEach((param)=>{
-        this.productService.getProducts().subscribe((products)=>{
+        this.productService.getCachedData().subscribe((products)=>{
            this.selectedProduct = products.products.find(product=> product._id === param.id)
            
            this.reviewForm.patchValue({
+              'productName': this.selectedProduct.name,
               'productId': this.selectedProduct._id,
               'user': this.storeService.retriveData('user')
             });

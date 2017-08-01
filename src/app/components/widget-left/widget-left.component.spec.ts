@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SideAdComponent } from './side-ad.component';
+import { WidgetLeftComponent } from './widget-left.component';
 
-describe('SideAdComponent', () => {
-  let component: SideAdComponent;
-  let fixture: ComponentFixture<SideAdComponent>;
+describe('WidgetLeftComponent', () => {
+  let component: WidgetLeftComponent;
+  let fixture: ComponentFixture<WidgetLeftComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SideAdComponent ]
+      declarations: [ WidgetLeftComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(SideAdComponent);
+    fixture = TestBed.createComponent(WidgetLeftComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

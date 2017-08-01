@@ -1,3 +1,44 @@
+
+md-toolbar{
+    width: 100%;
+    display: none;
+    background-color: #fff;
+    md-toolbar{
+        width: 90%;
+        display: -webkit-box;
+        display: -moz-box;
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        display: flex;
+
+        // -webkit-flex-flow: row wrap;
+        align-content: space-between;
+        align-items: stretch;
+        margin: 0 auto;
+        // flex-direction: row-reverse;
+        .item1{
+            flex: 1;
+            margin: 0 auto;
+            h1{font-size: 30px;}
+        }
+        .item2{
+            flex: 1;
+            margin: 0 auto;
+            font-size: 14px;
+            width: 300px;
+        }
+        .item3{
+            flex: 1;
+            position: relative;
+            .notify{
+                position: relative;
+                float: right;
+                right: 10px;
+            }
+        
+        }
+    }
+}
 .sub-toolbar{
     display: flex;
     display: -webkit-flex;
@@ -15,17 +56,17 @@ nav{
     color: lightslategrey;
     height: 40px;
 }
-.navbar ul li a:hover{
-    background-color: #f5f5f5;
-    color: lightslategrey !important;
-    height: 40px;
-    cursor: pointer;
-}
+// .navbar ul li a:hover{
+//     background-color: #f5f5f5;
+//     color: lightslategrey !important;
+//     height: 40px;
+//     cursor: pointer;
+// }
 
 .active {
-    // background-color: #f5f5f5;
-    // height: 40px;
-    // color: #000 !important; 
+    background-color: #f5f5f5;
+    height: 40px;
+    color: #000 !important; 
 }
 .authentication{
     position: absolute;
@@ -44,4 +85,22 @@ nav{
     background-color: slategrey;
     
 }
-.authentication.login-provider p{color: #fff;}
+.how-to-do{
+    position: absolute;
+    margin: 0 auto;
+    z-index: 10;
+}
+
+nav ul li#how-to{
+    background-color: red !important;
+    a{color: #fff !important;}
+    &:hover{
+
+        a{color: #000 !important;}
+
+    }
+    
+}
+.howTo-video{
+    display: none;
+}

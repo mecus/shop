@@ -1,6 +1,25 @@
+//Progress Bar Section
+.example-h2 {
+  margin: 10px;
+}
+.progress-bar {
+    height: 1rem;
+    color: #fff;
+    background-color: transparent;
+}
+.example-section {
+  display: flex;
+  align-content: center;
+  align-items: center;
+  height: 5px;
+}
 
-.register-form{
-    width: 500px;
+.example-margin {
+  margin: 0 5px;
+}
+
+.register-container{
+    width: 700px;
     margin: 0 auto;
     margin-top: 20px;
     margin-bottom: 100px;
@@ -10,6 +29,11 @@
     .submit-button{
         position: relative;
         float: right;
+    }
+    .search-head{
+        margin: 0px;
+        padding: 0px;
+        padding: 10px 20px;
     }
 }
 div.search-postcode{
@@ -28,4 +52,34 @@ p#post-err{
     margin: 0px;
     margin-bottom: 10px;
     margin-left: 80px;
+}
+.input-full-width{
+    width: 100%;
+}
+.registration-form {
+  width: 700px;
+}
+
+.example-full-width {
+  width: 100%;
+}
+.contact-permit{
+    margin: 0px;
+    padding: 0px;
+    padding: 10px 20px;
+    margin-bottom: 20px;
+    h2{
+        margin: 0px;
+        font-size: 18px;
+        margin: 5px 0px;
+    }
+    p{
+        font-size: 12px;
+    }
+}
+.form-sec-1{
+    margin: 0px;
+    margin-bottom: 10px;
+    // background-color: lightgrey;
+    border-color: lightgrey !important;
 }

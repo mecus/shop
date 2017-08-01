@@ -1,0 +1,60 @@
+<secondary-navigation></secondary-navigation>
+<div class="container">
+    <!--<div>
+        <p>One application module is defined for each application. This module is named AppModule and implemented in file app.module.ts by convention. The application / root module is the main entry point and contains components, pipes and services which do not belong the subsequent feature modules and should be available application-wide.</p>
+    </div>-->
+    <div class="checkout-container">
+        
+        <div class="new-customer">
+            <h2>Checkout as guest or register</h2>
+            <hr>
+            <h3>Register for future convenience</h3>
+            <md-radio-group (change)="onChnage($event)">
+                <md-radio-button value="guest">Guest Checkout</md-radio-button>
+                <br>
+                <md-radio-button value="register">Register</md-radio-button>
+            </md-radio-group>
+        </div>
+        <!--<p>Selected: {{newcustomer}}</p>-->
+        <div class="old-customer">
+            <h2>Already a customer Login</h2>
+            
+            <div class="card">
+                <div class="card-block">
+                    
+                    <!--<h3>Already a customer</h3>-->
+                    <p>please login below</p>
+                    <form class="login-form" [formGroup]="loginForm" (ngSubmit)="userLogin(loginForm.value)">
+                        <p>
+                            <md-input-container class="login-full-width">
+                            <span mdPrefix><md-icon>email</md-icon> &nbsp;</span>
+                            <input formControlName="email" type="email"  mdInput placeholder="Email">
+                            </md-input-container>
+                            <md-input-container class="login-full-width">
+                            <span mdPrefix><md-icon>lock_outline</md-icon> &nbsp;</span>
+                            <input formControlName="password" type="password"  mdInput placeholder="Password">
+                            </md-input-container>
+                        </p>
+                        <button md-raised-button type="submit">Login</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="aside-bar jumbotron">
+            <checkout-progress></checkout-progress>
+            <!--<shippong-detail></shippong-detail>-->
+            <!--<side-shop-cart></side-shop-cart>-->
+        </div>
+   </div>
+</div>
+<div id="form-components" class="container card">
+    <div class="card-block">
+        <p>Form</p>
+        <div *ngIf="register">
+            <billing-address></billing-address>
+        </div>
+        <div *ngIf="guest">
+            <guest-checkout></guest-checkout>
+        </div> 
+    </div>
+</div>

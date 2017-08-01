@@ -1,3 +1,4 @@
+ <primary-navigation></primary-navigation>
  <div *ngIf="selectedProduct" class="container">
     <p><a (click)="back()" md-mini-fab ><md-icon>arrow_back</md-icon></a> {{selectedProduct.category}} > {{selectedProduct.name}}</p>
     <div class="row">
@@ -9,7 +10,7 @@
                 </div>
                 
                 <div class="left-side-ad">
-                    <prod-side-ad></prod-side-ad>
+                    <widget-left></widget-left>
                 </div>
             
             </div>
@@ -22,8 +23,18 @@
             <p>( {{selectedProduct.description.size}} )</p>
             
             <a role="button" (click)="addToCart()" md-raised-button > Add to Cart</a>
-            
-
+            <div class="inCart-wrapper" *ngFor="let cart of carts$">
+                <div *ngIf="cart.name == selectedProduct.name">
+                  <p id="inCart">{{cart.qty}} in cart</p>
+                </div>
+            </div>
+            <div *ngIf="cartErrorMsg">
+                <p>{{cartErrorMsg}}</p>
+                <md-input-container>
+                    <input #postcode type="text" mdInput name="postcode" placeholder="Enter Postcode">
+                </md-input-container>
+                <a (click)="submitPostcode(postcode.value)" md-raised-button>Submit</a>
+            </div>
             <div *ngIf="selectedProduct" class="product-details">
                 <br><br>
                 <div class="nutrition-table">
@@ -69,10 +80,11 @@
                            
                             <h1>product Reviews</h1>
                             <md-checkbox (change)="showReviewForm($event)" >Please add your review to this product</md-checkbox>
-                            <span><p id="error-msg" *ngIf="userErr">{{userErr}}</p></span>
+                            <span *ngIf="userErr"><p id="error-msg" >{{userErr}}</p> <small (click)="redirectLogin()" >Sign In here</small> </span>
                             <form *ngIf="showForm" class="example-form" [formGroup]="reviewForm" (ngSubmit)="addReviews(reviewForm.value)">
                                 <input hidden formControlName="user">
-                                <input hidden formControlName="productId" >
+                                <input hidden formControlName="productId">
+                                <input hidden formControlName="productName">
                           
                                 <md-input-container>
                                     <input formControlName="userName" mdInput placeholder="Your Name" value="">
@@ -87,7 +99,7 @@
                                 <div id="submit-btn">
                                     <button type="submit" md-raised-button>Submit</button>
                                 </div>
-                                <span><p id="error-msg" *ngIf="errMsg">{{errMsg}}</p></span>
+                                <span *ngIf="errMsg"><p id="error-msg" >{{errMsg}}</p> </span>
                             </form>
                             <div class="product-review">
                                 <app-reviews [Id]="selectedProduct._id"></app-reviews>
@@ -104,8 +116,10 @@
         
         </div>
         <div class="col col-lg-3">
-            <side-shop-cart></side-shop-cart>
+            <widget-right></widget-right>
         </div>
     </div>
     
 </div>
+
+<footer-menu></footer-menu>

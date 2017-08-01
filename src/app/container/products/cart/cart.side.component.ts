@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { trigger, state, style, stagger, transition, animate, keyframes, query } from '@angular/animations';
 import { Store } from '@ngrx/store';
 import { iCart } from "../../../models/cart.model";
 import { Observable } from "rxjs/Observable";
@@ -13,9 +14,9 @@ import 'rxjs/add/operator/catch';
 @Component({
     selector: 'side-shop-cart',
     template: `
-       <div class="container jumbotron-clone" *ngIf="cart$">
-            <p class="cart-head">Your Basket <md-icon>shopping_cart</md-icon></p>
-            <div *ngFor="let cat of cart$">
+       <div class="container jumbotron-clone" *ngIf="cart$" [@cartList]="cart$.length">
+            
+            <div *ngFor="let cat of cart$" class="colC">
                 <div class="row cart-list">
                     <div class="col col-xs-6 col-lg-6">
                         <p>{{cat.name}}</p>
@@ -54,13 +55,14 @@ import 'rxjs/add/operator/catch';
             padding:0px;
         }
         div.jumbotron-clone{ 
-            background-color: lightgrey;
+            
             margin: 0px;
             padding:0px;
             
         }
         div.cart-list{
             padding: 0px 5px;
+            background-color: lightgrey;
         }
         div.cart-list p{
             font-size: 11px;
@@ -99,13 +101,50 @@ import 'rxjs/add/operator/catch';
             padding: 5px;
             border-radius: 5px;
         }
-    `]
+    `],
+    animations: [
+        trigger('loadCart', [
+            transition('* => *', [
+                query('.colC', style({opacity:0, transform: 'translateX(-40px)'})),
+
+                query('.colC', stagger('500ms', [
+                    animate('500ms .5s ease-out', style({opacity:1, transform: 'translateX(0)'}))
+                ])),
+            ])
+        ]),
+        trigger('cartList', [
+            transition('* => *', [ 
+                query(':enter', style({opacity: 0}), {optional: true}),
+
+                query(':enter', stagger('300ms', [
+                    animate('.7s ease-in', keyframes([
+                        style({opacity: 0, transform: 'translateY(-70px)', offset: 0}),
+                        style({opacity: 0.5, transform: 'translateY(30px)', offset: 0.3}),
+                        style({opacity: 1, transform: 'translateY(0)', offset: 1})
+                    ]))
+                ]), {optional: true}),
+
+                query(':leave', stagger('300ms', [
+                    animate('.7s ease-in', keyframes([
+                        style({opacity: 1, transform: 'translateY(0)', offset: 0}),
+                        style({opacity: 0.7, transform: 'translateY(30px)', offset: 0.3}),
+                        style({opacity: 0.4, transform: 'translateX(-50px)', offset: 0.2}),
+                        style({opacity: 0, transform: 'translateX(200px)', offset: 1}),
+                        // style({opacity: 0, transform: 'translateY(-70px)', offset: 1})
+                    ]))
+                ]), {optional: true})
+            ])
+           
+        ])
+    ]
+
 })
 export class SideCartComponent implements OnInit {
     cart$:Observable<iCart>;
     constructor(private storeService:StorageService , private store:Store<iCart>, private cartService:CartService){
        
        cartService.getCart().subscribe((carts)=>{
+           console.log(carts);
          this.cart$ = carts.filter(cat=> cat.postcode == this.storeService.retriveData('postcode'));
        })
     }

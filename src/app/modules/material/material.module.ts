@@ -9,6 +9,10 @@ import {MdSidenavModule} from '@angular/material';
 import {MdDialogModule} from '@angular/material';
 import {MdChipsModule} from '@angular/material';
 import {MdListModule} from '@angular/material';
+import {MdTableModule} from '@angular/material';
+import {MdRadioModule} from '@angular/material';
+import {MdProgressBarModule} from '@angular/material';
+import {MdProgressSpinnerModule} from '@angular/material';
   
 
 @NgModule({
@@ -17,13 +21,15 @@ import {MdListModule} from '@angular/material';
      MdButtonModule, MdCheckboxModule,MdIconModule,MdMenuModule,
      MdToolbarModule, MdInputModule, MdCardModule, MdGridListModule,
      MdSelectModule, MdSidenavModule, MdDialogModule, MdChipsModule,
-     MdListModule
+     MdListModule, MdTableModule, MdRadioModule, MdProgressBarModule,
+     MdProgressSpinnerModule
   ],
   exports: [
     MdButtonModule, MdCheckboxModule,MdIconModule,MdMenuModule,
     MdToolbarModule, MdInputModule, MdCardModule, MdGridListModule,
     MdSelectModule, MdSidenavModule, MdDialogModule, MdChipsModule,
-    MdListModule
+    MdListModule, MdTableModule, MdRadioModule, MdProgressBarModule,
+    MdProgressSpinnerModule
   ],
   declarations: []
 })

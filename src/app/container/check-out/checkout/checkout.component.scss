@@ -1,0 +1,34 @@
+
+.checkout-container{
+    display: flex;
+    flex-direction: row;
+    .new-customer{
+        flex: 2;
+    }
+    .old-customer{
+        flex: 2;
+        margin: 0 20px;
+    }
+    .aside-bar{
+        flex: 1;
+        float: right;
+        padding: 0px;
+        margin-top: 40px;
+        padding: 20px 10px;
+    }
+}
+.login-full-width{
+    width: 100%;
+}
+
+#info-content{
+    margin-top: 20px;
+    border-top: 1px solid lightgrey;
+}
+div#form-components{
+    margin-top: 40px;
+    max-width: 700px;
+    border-top: 1px solid lightgrey;
+    margin: 0 auto;
+
+}

@@ -1,15 +1,72 @@
-
-<div class="md-container">
-  <md-spinner></md-spinner>
-  <button md-raised-button > Google Login</button>
+<primary-navigation></primary-navigation>
+<div class="header-content w3-card-2">
+  <div class="container">
+    <div class=" welcome-container">
+      <div class=" welcome-msg">
+        <h1>Welcome to Shop</h1>
+        <p>Shop here and we will deliver straigth to your door</p>
+        <p>Please enter your postcode to make sure we deliver to you</p>
+        <div class="request-postcode">  
+            <md-input-container>
+              <input #postcode type="text" mdInput name="postcode" required placeholder="Enter Postcode">
+            </md-input-container>
+            <a (click)="submitPostcode(postcode.value)" md-raised-button><md-progress-spinner *ngIf="searchingPostcode" class="example-margin"[color]="color"[mode]="mode"></md-progress-spinner> <span *ngIf="!searchingPostcode">Check</span></a>
+        </div>
+        
+        <p *ngIf="successMsg">{{successMsg}}</p>
+        <p *ngIf="emptyErr">{{emptyErr}}</p>
+        <div class="c-shopping">
+          <p>Want to look around first ?</p>
+          <a (click)="continueShop()" role="button" class="btn btn-success">Go Shopping <i class="fa fa-spin fa-spinner" aria-hidden="true"></i></a>
+        </div>
+        
+        <div class="customer-login">
+          <p>Already a Customer</p>
+          <a routerLink="/login"> <md-icon>vpn_key</md-icon> Login</a>
+        </div>
+      </div>
+      <div class=" welcome-slider">
+        <carousel>
+          <slide>
+            <img src="assets/170706_SummerDrinks-Wine_HP-Takeover.jpg" style="width:100%" alt="">
+            <div class="carousel-caption">
+              <h3>Our Product</h3>
+              <p>Making good food</p>
+            </div>
+          </slide>
+          <slide>
+            <img src="assets/170713_0706_PampersBigBet_Cat-Nav.jpg" style="width:100%" alt="">
+            <div class="carousel-caption">
+              <h3>For Goods</h3>
+              <p>Making good food</p>
+            </div>
+          </slide>
+        </carousel>
+        
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="grid-container">
+    <div class="grid-1">
+      <h3 hoverMenu >Progress components are built with two HTML elements, some CSS to set the width, and a few attributes.</h3>
+      </div>
+    <div class="grid-2">
+      <h3>Progress components are built with two HTML elements, some CSS to set the width, and a few attributes.</h3>
+      </div>
+    <div class="grid-3">
+      <h3>Progress components are built with two HTML elements, some CSS to set the width, and a few attributes.</h3>
+      </div>
+  </div>
+  
+  <button md-raised-button (click)="onButtonClick()" > Delete Cart</button>
   <button md-raised-button > Google Logout</button>
   <a md-mini-fab ><md-icon>clear</md-icon></a>
+
+
   <p>How it works
 
-  <!--<cl-image public-id="pc-ad_z3qzf6.jpg" cloud-name="dxxw6jfih"></cl-image>-->
-
-  <!--<cl-image public-id="pc-ad_z3qzf6.jpg" cloud-name="dxxw6jfih"></cl-image>-->
-  
 
 
 Progress components are built with two HTML elements, some CSS to set the width, and a few attributes.
@@ -20,7 +77,7 @@ Progress components are built with two HTML elements, some CSS to set the width,
     The .progress-bar also requires some role and aria attributes to make it accessible.
 
 Put that all together, and you have the following examples.</p>
-  <div>
+  <!--<div>
     {{list | async}}
   </div>
 
@@ -28,8 +85,24 @@ Put that all together, and you have the following examples.</p>
     <app-advert [ads]="ads"></app-advert>
   </div>
 
-  <h1>{{title}}</h1>
+  <h1>{{title}}</h1>-->
 
-  <button kendoButton (click)="onButtonClick()" [primary]="true">My Kendo UI Button</button>
+  <div class="btn-group" dropdown>
+  <button dropdownToggle type="button" class="btn btn-primary dropdown-toggle">
+    Button dropdown <span class="caret"></span>
+  </button>
+  <ul *dropdownMenu class="dropdown-menu" role="menu">
+    <li role="menuitem"><a class="dropdown-item" href="#">Action</a></li>
+    <li role="menuitem"><a class="dropdown-item" href="#">Another action</a></li>
+    <li role="menuitem"><a class="dropdown-item" href="#">Something else here</a></li>
+    <li class="divider dropdown-divider"></li>
+    <li role="menuitem"><a class="dropdown-item" href="#">Separated link</a>
+    </li>
+  </ul>
 </div>
 
+</div>
+
+
+
+<footer-menu></footer-menu>

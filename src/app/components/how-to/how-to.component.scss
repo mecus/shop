@@ -1,0 +1,49 @@
+.how-to-grid-container{
+    display: grid;
+    grid-gap: 10px;
+    grid-template-columns: repeat(4, 1fr);
+    // height: 300px;
+    background-color: red;
+    width: 100%;
+    .grid-list{
+        margin: 20px;
+        img{
+            width: 100%;
+            border: 2px solid #fff;
+        }
+        p{color: #fff; font-size: 12px;}
+        h2{color: #fff;}
+    }
+}
+.video-box{
+    // background-color: green;
+    position: relative;
+    height: 150px;
+    overflow: hidden;
+    .embed-responsive{
+        position: relative;
+        z-index: 0;
+    }
+
+    .video-cover{
+        position: absolute;
+        top: 0;
+        height: 100%;
+        width: 100%;
+        background-color: rgba(0,0,0, 0.6);
+        z-index: 1;
+        
+        .play-icon{
+            position: absolute;
+            top: 30%;
+            left: 40%;
+            margin: 0 auto;
+
+            md-icon{
+                margin: 0 auto;
+                font-size: 60px;
+                color: red;
+            }
+        }
+    }
+}

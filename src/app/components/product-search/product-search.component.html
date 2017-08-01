@@ -1,11 +1,16 @@
 <div class="input-group-2">
   <form [formGroup]="searchForm">
-    <input type="text" class="form-control" formControlName="search" placeholder="Search for...">
+    <!--<input type="text" class="form-control" formControlName="search" placeholder="Search for...">-->
     <!--<span class="input-group-btn">
       <button class="btn btn-secondary" type="button">
         <i class="fa fa-search" aria-hidden="true"></i>
         </button>
     </span>-->
+      <md-input-container class="example-full-width">
+        <span mdPrefix><i class="material-icons">search</i> &nbsp;</span>
+        <input type="text" mdInput formControlName="search" placeholder="Searching for..">
+        <md-icon *ngIf="searchForm.dirty" mdSuffix>mode_edit</md-icon>
+      </md-input-container>
   </form>
 </div>
 <div class="search-result-list">

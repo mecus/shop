@@ -1,4 +1,6 @@
-@import "~@progress/kendo-theme-default/scss/all";
+// @import "~@progress/kendo-theme-default/scss/all";
+@import "node_modules/bootstrap/scss/bootstrap";
+@import "./variables";
 @import "./w3c.css";
 body{
     // background-color: #f5f8fa;

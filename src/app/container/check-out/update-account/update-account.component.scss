@@ -1,0 +1,22 @@
+.container-grid{
+    display: flex;
+    
+    .form-grid{
+        flex: 3;
+    }
+    .aside-grid{
+        flex: 1;
+    }
+}
+div#delivery-address{
+    display: none;
+}
+div.jumbotron{
+    border-radius: 0px !important;
+}
+div#card{
+    border-radius: 4px 4px 0px 0px!important;
+}
+.continue-button{
+    margin: 50px 0px;
+}

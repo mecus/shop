@@ -1,9 +1,9 @@
  <div class="tool-bar-wrapper">
   <div *ngIf="!authenticated" class="register" >
-    <a routerLink="/register">Register</a>
+    <a routerLink="/register" (click)="clearMenu()">Register</a>
   </div>
   <div class="sign-in" >
-    <a *ngIf="!authenticated" routerLink="/login">Login</a>
+    <a *ngIf="!authenticated" (click)="clearMenu()" routerLink="/login">Login</a>
     <a *ngIf="authenticated" (click)="logOut()" >LogOut</a>
   </div>
   <div class="basket">

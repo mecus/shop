@@ -1,14 +1,17 @@
 
-  <div class="md-toolbar">
+<div id="top-screen" class="md-toolbar">
     <div class="container">
       <div class="row top-menu">
         <div class="branded col-lg-8">
           <div id="brand-link">
-            <a routerLink="/"><h1>Shop</h1></a>
+            <a (click)="goHome()" ><h1>Shop</h1></a>
           </div>
         </div>
         
         <div class="right-util col-lg-4"> 
+          <div *ngIf="triger" class="trigger">
+            <md-icon id="fashIcon"></md-icon>
+          </div>
           <div class="tool-bar-top"> <!-- add notify here -->
             <notify></notify>
           </div>

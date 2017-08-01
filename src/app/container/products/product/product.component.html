@@ -1,4 +1,4 @@
-
+<primary-navigation></primary-navigation>
 <!--Listing out the Category for query selection -->
 <div class="list-menu w3-card-4">
     <div class="container">
@@ -6,7 +6,7 @@
         <div class="col-3 first-cat">
           <ul *ngIf="category">
             <li *ngFor="let cat of category">
-                <div class="list-group-item justify-content-between" (click)="showSubCat(cat)">
+                <div class="cat-list list-group-item justify-content-between" (click)="showSubCat(cat, $event)">
                     {{cat.name}}
                     <span class="badge badge-default badge-pill">
                       <i style="font-size:14px;" class="fa fa-angle-right" aria-hidden="true"></i>
@@ -18,7 +18,7 @@
         <div *ngIf="subCategory" class="col-3 second-cat">
           <ul>
               <li *ngFor="let subcat of subCategory">
-                <div class="list-group-item justify-content-between" (click)="displayProduct(subcat)">
+                <div class="sub-list list-group-item justify-content-between" (click)="displayProduct(subcat, $event)">
                     {{subcat.name}}
                     <span class="badge badge-default badge-pill">
                       <i style="font-size:14px;" class="fa fa-angle-right" aria-hidden="true"></i>
@@ -30,9 +30,18 @@
         <div class="col-6">
           <div class="advert">
             <div *ngIf="advert">
-              <p>{{advert.title}}</p>
-              <p>{{advert.sub_title}}</p>
-              <img [src]=advert.photo_url style="width:80px;" alt="">
+              <!--<p></p>
+              <p></p>
+              <img [src]=advert.photo_url style="width:80px;" alt="">-->
+              <carousel>
+                <slide *ngFor="let ad of advert">
+                  <img [src]=ad.photo_url style="width:100%;" alt="First slide">
+                  <div class="carousel-caption">
+                    <h3>{{ad.title}}</h3>
+                    <p>{{ad.sub_title}}</p>
+                  </div>
+                </slide>
+              </carousel>
             </div>
           </div>
         </div>
@@ -43,7 +52,7 @@
 
 <!--Main Page Content after category list-->
 <div class="container" *ngIf="products">
-  <div class="page-wrapper row">
+  <div class="page-wrapper row" [@loadproduct]="products">
     <div class="main-content col col-lg-9">
       <div class="row">
         <div class="pd-item col col-xs-6 col-sm-6 col-lg-3" *ngFor="let product of products">
@@ -71,10 +80,17 @@
       </div>
     </div>
     <div class="side-bar col col-lg-3">
-      <div class="cart-header">
-        <cart-total></cart-total>
+      <widget-right></widget-right>
+      <div class="post-box">
+          <div *ngIf="cartErrorMsg">
+                <p>{{cartErrorMsg}}</p>
+                <md-input-container>
+                    <input #postcode type="text" mdInput name="postcode" placeholder="Enter Postcode">
+                </md-input-container>
+                <a (click)="submitPostcode(postcode.value)" md-raised-button>Submit</a>
+            </div>
       </div>
-      <side-shop-cart></side-shop-cart>
     </div>
   </div>
 </div>
+<footer-menu></footer-menu>

@@ -30,7 +30,7 @@ export class ProductSearchComponent implements OnInit {
   search(){
     this.searchProducts = this.searchForm.controls.search.valueChanges
     .debounceTime(300)
-    .switchMap(query=> this.searchService.searchProduct(query || "$"))
+    .switchMap(query=> this.searchService.getQueryProduct(query))
     .map(product=> product);
 
   }

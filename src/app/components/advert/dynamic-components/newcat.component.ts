@@ -5,9 +5,16 @@ import { AdComponent }      from '../ad.component';
 @Component({
   template: `
     <div class="cat-ad">
-      <h2>{{data.headline}}</h2> 
+      <div class="row">
+        <div class="col-lg-4">
+          <h2>{{data.headline}}</h2> 
+          {{data.body}}
+        </div>
+        <div class="col-lg-8">
+          <img [src]="data.photo_url">
+        </div>
+      </div>
       
-      {{data.body}}
     </div>
   `,
   styles: [`

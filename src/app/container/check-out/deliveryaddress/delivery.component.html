@@ -1,0 +1,72 @@
+<div class="delivery">
+    <h2>Delivery Information</h2>
+    <form class="delivery-form">
+        <!--<md-input-container class="example-full-width">
+            <input mdInput placeholder="Company" placeholder="company">
+        </md-input-container>-->
+
+        <table class="example-full-width" cellspacing="0">
+            <tr>
+                <td><md-input-container class="example-full-width">
+                <input mdInput placeholder="First name">
+                </md-input-container></td>
+                <td><md-input-container class="example-full-width">
+                <input mdInput placeholder="Last Name">
+                </md-input-container></td>
+            </tr>
+        </table>
+        <table class="example-full-width" cellspacing="0">
+            <tr>
+                <td><md-input-container class="example-full-width">
+                <input type="email" mdInput placeholder="Email">
+                </md-input-container></td>
+                <td><md-input-container class="example-full-width">
+                <input type="telephone" mdInput placeholder="Telephone">
+                </md-input-container></td>
+            </tr>
+        </table>
+
+        <p>
+            <md-input-container class="example-full-width">
+            <textarea mdInput placeholder="Address"></textarea>
+            </md-input-container>
+            <md-input-container class="example-full-width">
+            <textarea mdInput placeholder="Address 2"></textarea>
+            </md-input-container>
+        </p>
+
+        <table class="example-full-width" cellspacing="0"><tr>
+            <td><md-input-container class="example-full-width">
+            <input mdInput placeholder="City">
+            </md-input-container></td>
+            <td><md-input-container class="example-full-width">
+            <input mdInput placeholder="Country">
+            </md-input-container></td>
+            <td><md-input-container class="example-full-width">
+            <input mdInput #postalCode maxlength="5" placeholder="Postal Code" >
+            <!--<md-hint align="end">{{postalCode.value.length}} / 5</md-hint>-->
+            </md-input-container></td>
+        </tr></table>
+
+        <table class="example-full-width" cellspacing="0">
+            <tr>
+                <td><md-input-container class="example-full-width">
+                <input type="password" mdInput placeholder="Password">
+                </md-input-container></td>
+                <td><md-input-container class="example-full-width">
+                <input type="password" mdInput placeholder="Repeat Password">
+                </md-input-container></td>
+            </tr>
+        </table>
+        <!--<p>
+            <md-radio-group>
+                <md-radio-button value="1">Deliver to this Address</md-radio-button>
+                <br>
+                <md-radio-button value="2">Deliver to different address</md-radio-button>
+            </md-radio-group>
+        </p>-->
+        <div class="submit-btn">
+            <a md-raised-button routerLink=".">Submit</a>
+        </div>
+    </form>
+</div>

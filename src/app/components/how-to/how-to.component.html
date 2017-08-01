@@ -1,0 +1,35 @@
+
+<div class="how-to-grid-container">
+  <div class="grid-list" *ngFor="let video of youtube | async">
+    <p>Please enter your postcode to make sure we deliver to you</p>
+    <div class="video-box">
+      <div class="embed-responsive embed-responsive-16by9">
+        <iframe id="video" class="embed-responsive-item" [src]= "video.youtube_link+controls | youtube" frameborder="0" allowfullscreen></iframe>
+      </div>
+      <div class="video-cover">
+        <div (click)="viewYoutube(video)" class="align-middle play-icon">
+          <md-icon>play_circle_filled</md-icon>
+        </div>
+      </div>
+    </div>
+
+    <!--<img src="assets/170202_HowtoShop_Event-Link.jpg" alt="">-->
+    <h2>{{video.name}}</h2>
+  </div>
+  <!--<div class="grid-list">
+    <p>Please enter your postcode to make sure we deliver to you</p>
+    <img src="assets/170202_HowtoShop_Event-Link.jpg" alt="">
+    <h2>Cooking Banga Soup</h2>
+  </div>
+  <div class="grid-list">
+    <p>Please enter your postcode to make sure we deliver to you</p>
+    <img src="assets/170202_HowtoShop_Event-Link.jpg" alt="">
+    <h2>Make Egusi</h2>
+  </div>-->
+  <!--<div class="grid-list">
+    <p>Please enter your postcode to make sure we deliver to you</p>
+    <img src="assets/170202_HowtoShop_Event-Link.jpg" alt="">
+    <h2>Pepper Soup</h2>
+  </div>-->
+</div>
+

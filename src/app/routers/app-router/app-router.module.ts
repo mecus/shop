@@ -9,6 +9,8 @@ import { LoginComponent } from '../../authentications/login/sign-in.component';
 import { RegisterComponent } from '../../authentications/register/register.component';
 
 import * as products from '../../container/products/index';
+import { CheckoutComponent } from "app/container/check-out/checkout/checkout.component";
+import { UpdateAccountComponent } from "app/container/check-out/update-account/update-account.component";
 
 
 
@@ -27,6 +29,8 @@ const routes = [
   {path: 'basket', component: CartComponent},
   {path: 'product', component:products.ProductViewComponent},
   {path: 'advert', component:BannerComponent},
+  {path: 'checkout', component:CheckoutComponent},
+  {path: 'account_update', component: UpdateAccountComponent},
   fallBack
 ]
 

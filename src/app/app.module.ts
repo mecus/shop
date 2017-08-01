@@ -1,11 +1,16 @@
 import { BrowserModule } from '@angular/platform-browser';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { MaterialModule } from './modules/material/material.module';
 import { Ng2Webstorage } from 'ng2-webstorage';
+import { AppSharedModule } from "app/modules/shared-modules/app.shared.module";
 
+//Bootstrap Modules
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { CarouselModule } from 'ngx-bootstrap/carousel';
+import { AlertModule } from 'ngx-bootstrap/alert';
 
 //cloudinary module
 import { Ng2CloudinaryModule } from 'ng2-cloudinary';
@@ -26,7 +31,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { DBModule } from '@ngrx/db';
 import { schema } from './db';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { cartReducer } from './store/reducers/cart-reducer';
+import { appState } from './store/reducers/appState.reducer';
 // import { CartEffects } from "./store/effects/cart-effect";
 
 
@@ -45,30 +50,47 @@ import { CartService } from 'app/services/cart.service';
 import { StorageService } from "app/services/storage.service";
 import { SearchService } from "app/services/search.service";
 import { ReviewService } from "app/services/review.service";
+import { YoutubeService } from "app/services/youtube.service";
+import { WindowService } from "app/services/window.service";
+import { ClearHeighlightMenu } from "app/services/clearfunction.service";
+import { AddressSearchService } from "app/services/addresssearch.service";
 
 //Directives
 import { AdvertDirective } from './directives/advert.directive';
+// import { HoverMenuDirective } from './directives/hover-menu.directive';
+// import { SelectMenuDirective } from './directives/select-menu.directive';
+
+//Pipes
+// import { YoutubePipe } from './pipes/youtube.pipe';
 
 //Component
 import { AppComponent } from './app.component';
-import { TopMenuComponent } from './container/menu/top-menu/top-menu.component';
-import { SubMenuComponent } from './container/menu/top-menu/sub-menu';
+// import { TopMenuComponent } from './container/menu/top-menu/top-menu.component';
+// import { SubMenuComponent } from './container/menu/top-menu/sub-menu';
 import { HomeComponent } from './container/home/home.component';
 import { CustomersComponent } from './container/customers/customers.component';
 import { BannerComponent } from './components/advert/banner.component';
 import { NewProdComponent } from './components/advert/dynamic-components/newprod.component';
 import { NewCatComponent } from './components/advert/dynamic-components/newcat.component';
-import { FooterComponent } from './container/menu/footer/footer.component';
-import { ProductSearchComponent } from './components/product-search/product-search.component';
+// import { FooterComponent } from './container/menu/footer/footer.component';
+// import { ProductSearchComponent } from './components/product-search/product-search.component';
+// import { HowToComponent } from './components/how-to/how-to.component';
+// import { PrimaryNavigationComponent } from './container/menu/primary-navigation/primary-navigation.component';
 
 
+
+
+
+
+const BootstrapModules = [BsDropdownModule.forRoot(), AlertModule.forRoot(), CarouselModule.forRoot()]
 
 @NgModule({
   declarations: [
-    AppComponent, TopMenuComponent, 
-    HomeComponent,SubMenuComponent, CustomersComponent,
+    AppComponent, 
+    HomeComponent, CustomersComponent,
     AdvertDirective, BannerComponent, NewProdComponent, 
-    NewCatComponent, FooterComponent, ProductSearchComponent, 
+    NewCatComponent
+    
    
   ],
   imports: [
@@ -76,13 +98,12 @@ import { ProductSearchComponent } from './components/product-search/product-sear
     BrowserAnimationsModule,
     FormsModule,MaterialModule, ReactiveFormsModule,
     HttpModule, AppRouterModule,ProductModule, CheckOutModule,
-    StoreModule.provideStore(cartReducer),
+    StoreModule.provideStore(appState),
     StoreDevtoolsModule.instrumentOnlyWithExtension(),
-
+    BootstrapModules, AppSharedModule,
     // EffectsModule.run(CartEffects),
 
     DBModule.provideDB(schema),
-
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireDatabaseModule,AngularFireAuthModule,
     ButtonsModule, AuthenticationsModule,
@@ -90,7 +111,8 @@ import { ProductSearchComponent } from './components/product-search/product-sear
   ],
   providers: [
     ProductService, CartService, StorageService, SearchService,
-    ReviewService
+    ReviewService, YoutubeService, WindowService, ClearHeighlightMenu,
+    AddressSearchService
     ],
   bootstrap: [AppComponent],
   entryComponents: [NewProdComponent, NewCatComponent]

@@ -1,50 +1,137 @@
-<div class="register-form ">
-    <h2>Registration is quick and easy</h2>
-    <p>Enter your postcode to see products and offers available to you.</p>
-    <div class="search-postcode">
-        <label for="postcode">Post Code</label>
-        <input [class.postError]="posterror" type="text" #postcode value={{setPostcode}}>
-        <button md-raised-button (click)="postCodeSearch(postcode.value)">Continue</button>
-        <p *ngIf="posterror" id="post-err">{{posterror}}</p>
+<secondary-navigation></secondary-navigation>
+<div class="register-container ">
+    <div class="jumbotron search-head">
+        <h2>Registration is quick and easy</h2>
+        <p>Enter your postcode to see products and offers available to you.</p>
+        <div class="search-postcode">
+            <label for="postcode"><strong>Post Code: </strong></label>
+            <md-input-container class="example-full">
+                <input mdInput required placeholder="enter postcode" type="text" #postcode value={{setTempcode}}>
+            </md-input-container>
+            <a md-raised-button role="button" (click)="postCodeSearch(postcode.value)">Search</a>
+            <p *ngIf="posterror" id="post-err">{{posterror}}</p>
+            
+        </div>
+        <div *ngIf="progressOn" class="progress-bar">
+            <section class="example-section">
+            <md-progress-bar
+                class="example-margin"
+                [color]="accent"
+                [mode]="mode">
+            </md-progress-bar>
+            </section>
+        </div>
+    </div>
+
+    <div *ngIf="searchResult" class="search-result">
+        <alert type="success">
+            <strong>Congratulations!</strong> We can successfully deliver to your address <a class="alert-link">Continue with form below</a>.
+        </alert>
         
     </div>
-    <div *ngIf="!searchResult" class="search-result">
-        <md-chip-list>
-            <md-chip color="accent" selected="true"><strong>Congratulations</strong> we deliver to you; {{setPostcode}}, <a routerLink="/products/?">Continue Shopping</a> </md-chip>
-        </md-chip-list>
-        
+    <div *ngIf="searchResultErr" class="search-result">
+        <alert type="danger">
+            <strong>Sorry!</strong> We can not deliver to your address at this time!!.
+        </alert>
     </div>
     <br><br>
-    <form *ngIf="true" novalidate class="control-form" [formGroup]="newUser" (ngSubmit)="register(newUser.value)">
-        <p>
-            <md-input-container class="input-full-width">
-                <span mdPrefix><md-icon>email</md-icon> &nbsp;</span>
-                <input type="email" formControlName="email" mdInput placeholder="Enter your email">
-                <md-icon [hidden]="!newUser.dirty" mdSuffix>mode_edit</md-icon>
-            </md-input-container>
-            <md-input-container class="input-full-width">
-                <span mdPrefix><md-icon>lock_outline</md-icon> &nbsp;</span>
-              <input type="password" formControlName="password" mdInput placeholder="Enter password">
-              <md-icon [hidden]="!newUser.dirty" mdSuffix>mode_edit</md-icon>
-            </md-input-container>
-            <md-input-container class="input-full-width">
-                <span mdPrefix><md-icon>lock_outline</md-icon> &nbsp;</span>
-              <input type="password" formControlName="confirmpassword" mdInput placeholder="Confirm Password">
-              <md-icon [hidden]="!newUser.dirty" mdSuffix>mode_edit</md-icon>
-            </md-input-container>
-        </p>
-        <p style="color:red" *ngIf="errMsg">{{errMsg}}</p>
-        <md-checkbox>I've read and accepted the Terms & Conditions</md-checkbox>
-        <md-checkbox>I'm over 18 years old</md-checkbox>
-        <div class="submit-button">
-            <button [disabled]="!newUser.valid" md-raised-button type="submit">Register</button>
-        </div>
-        <!--<div>
-            <p>{{newUser.value | json}}</p>
-            <p>iSvalid: {{newUser.valid | json}}</p>
-            <p>Untouched: {{newUser.untouched | json}}</p>
-            <p>Pristine: {{newUser.pristine | json}}</p>
-            <p>Dirty: {{newUser.dirty | json}}</p>
-        </div>-->
-    </form>
+
+    <div class="request-form" *ngIf="searchResult">
+        
+        <form  novalidate class="registration-form" [formGroup]="newUser" (ngSubmit)="register(newUser.value)">
+            <div class="jumbotron form-sec-1">
+                <p>
+                    <md-select formControlName="title" placeholder="Select Title">
+                        <md-option *ngFor="let title of titles" [value]="title">
+                            {{ title }}
+                        </md-option>
+                    </md-select>
+                </p>
+                <table class="example-full-width" cellspacing="0">
+                    <tr>
+                        <td><md-input-container class="example-full-width">
+                        <input formControlName="first_name" mdInput placeholder="First name">
+                        </md-input-container></td>
+                        <td><md-input-container class="example-full-width">
+                        <input formControlName="last_name" mdInput placeholder="Last Name">
+                        </md-input-container></td>
+                    </tr>
+                </table>
+                <table class="example-full-width" cellspacing="0">
+                    <tr>
+                        <td><md-input-container class="example-full-width">
+                        <span mdPrefix><md-icon>email</md-icon> &nbsp;</span>
+                        <input formControlName="email" type="email" mdInput placeholder="Email">
+                        </md-input-container></td>
+                        <td><md-input-container class="example-full-width">
+                        <span mdPrefix><md-icon>contact_phone</md-icon> &nbsp;</span>
+                        <input formControlName="telephone" type="telephone" mdInput placeholder="Telephone">
+                        </md-input-container></td>
+                    </tr>
+                    <tr>
+                        <td><md-input-container class="example-full-width">
+                        <span mdPrefix><md-icon>lock_outline</md-icon> &nbsp;</span>
+                        <input formControlName="password" type="password" mdInput placeholder="Enter Password">
+                        </md-input-container></td>
+                        <td><md-input-container class="example-full-width">
+                        <span mdPrefix><md-icon>lock_outline</md-icon> &nbsp;</span>
+                        <input formControlName="confirmpassword" type="password" mdInput placeholder="Confirm Password">
+                        </md-input-container></td>
+                    </tr>
+                </table>
+            </div>
+            <p style="color:red" *ngIf="errMsg">{{errMsg}}</p>
+            <div class="more-info">
+                <div class="jumbotron" formGroupName="billing_address">
+                    <p>
+                        <md-input-container class="example-full-width">
+                        <textarea formControlName="address" mdInput placeholder="Address"></textarea>
+                        </md-input-container>
+                        <md-input-container class="example-full-width">
+                        <textarea formControlName="address2" mdInput placeholder="Address 2"></textarea>
+                        </md-input-container>
+                    </p>
+
+                    <table class="example-full-width" cellspacing="0"><tr>
+                        <td><md-input-container class="example-full-width">
+                        <input formControlName="city" mdInput placeholder="City">
+                        </md-input-container></td>
+                        <td><md-input-container class="example-full-width">
+                        <input formControlName="country" mdInput placeholder="Country">
+                        </md-input-container></td>
+                        <td><md-input-container class="example-full-width">
+                        <input formControlName="post_code" value={{setPostcode}} mdInput placeholder="Postal Code" >
+                        <!--<md-hint align="end">{{postalCode.value.length}} / 5</md-hint>-->
+                        </md-input-container></td>
+                    </tr></table>
+                </div>
+
+            </div>
+            
+            <div class="jumbotron contact-permit">
+                <h2>Contact Permission</h2>
+                <p>We'd love to send you money-off coupons, exclusive offers and the latest info from us by email, post, SMS, phone and other electronic means. We'll always treat your personal details with the utmost care and will never sell them to other companies for marketing purposes.</p>
+                <md-radio-group (change)="onChnage($event)">
+                    <md-radio-button value="yes">Yes please, I'd like to hear about offers and services.</md-radio-button>
+                    <br>
+                    <md-radio-button value="no">No thanks, I don't want to hear about offers and services.</md-radio-button>
+                </md-radio-group>
+                <input hidden formControlName="contact_permission" mdInput placeholder="Permission">
+            </div>
+
+            <md-checkbox formControlName="terms" >I've read and accepted the Terms & Conditions</md-checkbox>
+            <br>
+            <md-checkbox formControlName="age_limit">I'm over 18 years old</md-checkbox>
+            <div class="submit-button">
+                <button  md-raised-button type="submit">Register</button>
+            </div>
+            <!--<div>
+                <p>{{newUser.value | json}}</p>
+                <p>iSvalid: {{newUser.valid | json}}</p>
+                <p>Untouched: {{newUser.untouched | json}}</p>
+                <p>Pristine: {{newUser.pristine | json}}</p>
+                <p>Dirty: {{newUser.dirty | json}}</p>
+            </div>-->
+        </form>
+    </div>
 </div>
