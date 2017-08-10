@@ -11,6 +11,10 @@ import { RegisterComponent } from '../../authentications/register/register.compo
 import * as products from '../../container/products/index';
 import { CheckoutComponent } from "app/container/check-out/checkout/checkout.component";
 import { UpdateAccountComponent } from "app/container/check-out/update-account/update-account.component";
+import { PaymentMethodComponent } from "app/container/check-out/payment-method/payment-method.component";
+import { AccountSettingComponent } from "app/account/account-setting/account-setting.component";
+import { DeliveryMethodComponent } from "app/container/check-out/deliverymethod/deliverymethod.component";
+import { PaymentComponent } from "app/container/check-out/payment/payment.component";
 
 
 
@@ -31,6 +35,10 @@ const routes = [
   {path: 'advert', component:BannerComponent},
   {path: 'checkout', component:CheckoutComponent},
   {path: 'account_update', component: UpdateAccountComponent},
+  {path: 'account/account_setting', component: AccountSettingComponent},
+  {path: 'payment_method', component: PaymentMethodComponent},
+  {path: 'delivery_method', component:DeliveryMethodComponent},
+  {path: 'review_and_payment', component:PaymentComponent},
   fallBack
 ]
 

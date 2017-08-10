@@ -26,7 +26,7 @@ export class NotifyComponent implements OnInit {
       }else{
         this.authenticated = false;
       }
-        console.log(user)
+        // console.log(user)
     })
    }
   logOut(){

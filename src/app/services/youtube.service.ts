@@ -14,7 +14,7 @@ export class YoutubeService {
     private host:string = "http://localhost:3000/";
     youtubeVideoUrl;
     constructor(private _http:Http){
-        this.youtubeVideoUrl = this.host+"api/v1/youtube";
+        this.youtubeVideoUrl = this.host+"api/v1/stores/youtube";
     }
 
     getYoutubeVideos():Observable<any>{

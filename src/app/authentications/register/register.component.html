@@ -37,7 +37,7 @@
     <br><br>
 
     <div class="request-form" *ngIf="searchResult">
-        
+        <!-- *ngIf="searchResult" -->
         <form  novalidate class="registration-form" [formGroup]="newUser" (ngSubmit)="register(newUser.value)">
             <div class="jumbotron form-sec-1">
                 <p>
@@ -63,9 +63,16 @@
                         <span mdPrefix><md-icon>email</md-icon> &nbsp;</span>
                         <input formControlName="email" type="email" mdInput placeholder="Email">
                         </md-input-container></td>
-                        <td><md-input-container class="example-full-width">
+                    </tr>
+
+                    <tr formGroupName="telephone">
+                        <td><md-input-container  class="example-full-width">
                         <span mdPrefix><md-icon>contact_phone</md-icon> &nbsp;</span>
-                        <input formControlName="telephone" type="telephone" mdInput placeholder="Telephone">
+                        <input formControlName="home" type="hame" mdInput placeholder="Home telephone">
+                        </md-input-container></td>
+                        <td><md-input-container  class="example-full-width">
+                        <span mdPrefix><md-icon>phone_iphone</md-icon> &nbsp;</span>
+                        <input formControlName="mobile" type="mobile" mdInput placeholder="Mobile">
                         </md-input-container></td>
                     </tr>
                     <tr>
@@ -100,7 +107,7 @@
                         <input formControlName="country" mdInput placeholder="Country">
                         </md-input-container></td>
                         <td><md-input-container class="example-full-width">
-                        <input formControlName="post_code" value={{setPostcode}} mdInput placeholder="Postal Code" >
+                        <input formControlName="post_code" mdInput placeholder="Postal Code" >
                         <!--<md-hint align="end">{{postalCode.value.length}} / 5</md-hint>-->
                         </md-input-container></td>
                     </tr></table>

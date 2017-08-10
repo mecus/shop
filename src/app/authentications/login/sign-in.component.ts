@@ -7,7 +7,7 @@ import { User } from '../../models/user.model';
 import { Router } from '@angular/router';
 import * as firebase from 'firebase';
 import { StorageService } from "app/services/storage.service";
-import { CheckoutService } from "app/services/checkout.service";
+import { AccountService } from "app/services/account.service";
 
 
 
@@ -23,7 +23,7 @@ export class LoginComponent implements OnInit {
     posterror;
 
     constructor(private storeService:StorageService, private location:Location, 
-    private authService:AuthService, private checkoutService:CheckoutService,
+    private authService:AuthService, private accountService:AccountService,
     private _fb:FormBuilder, private _router:Router){
         this.user = this._fb.group({
             email: [null, Validators.required],
@@ -33,9 +33,11 @@ export class LoginComponent implements OnInit {
     logIn(user):void{
        this.authService.emailLogin(user).then((res)=>{
            this.storeService.storeData('user', res);
-           this.checkoutService.getAccount(res.email).subscribe((account)=>{
+           this.storeService.storeData('email', res.email);
+           //Note! Query account with the ac_no of the customer 
+           this.accountService.getAccount(res.email).subscribe((account)=>{
                this.storeService.storeData('postcode', account.billing_address.post_code);
-               this.storeService.storeData('email', res.email);
+               
            })
            this._router.navigate(['/']);
         // this.location.back();

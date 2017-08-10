@@ -1,0 +1,14 @@
+<!-- <primary-navigation></primary-navigation> -->
+<secondary-navigation></secondary-navigation>
+<div class="container d-flex flex-row justify-content-around">
+    <div class="p-2">
+        <pay-card [customerId]="userId"></pay-card>
+    </div>
+    <div class="p-2 card aside-check-cart">
+        <div class="card-block">
+            <checkout-cart></checkout-cart>
+            <a md-raised-button routerLink="/review_and_payment" >Review and Pay</a>
+        </div>
+    </div>
+</div>
+

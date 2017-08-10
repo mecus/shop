@@ -1,9 +1,13 @@
-<div class="checkout-progress">
-  <h1>Checkout Progress</h1>
-  <h4>Checkout Method</h4>
-  <h4>Billing Information</h4>
-  <h4>Shipping Information</h4>
-  <h4>Shipping Method</h4>
-  <h4>Payment Method</h4>
-  <h4>Order Review</h4>
+<div class="checkout-progress card">
+  <div class="card-block">
+     <h1>Checkout Progress</h1>
+     <ul>
+       <li *ngFor="let progress of progressList">
+         <div>
+           <span><md-icon>check_box</md-icon></span>
+           <span>{{progress}}</span>
+         </div>
+       </li>
+     </ul>
+  </div>
 </div>

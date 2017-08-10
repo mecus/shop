@@ -1,0 +1,23 @@
+<div>
+  <ul class="list-group">
+     <li class="list-group-item active">
+      Select Delivery Type
+    </li>
+    <li [style.opacity]="addOpacity" id="option" (click)="selectOption($event, opt)" *ngFor="let opt of options" class="list-group-item justify-content-between">
+      {{opt.option}}
+      <span class="badge badge-default badge-pill">{{opt.price | currency:'GBP': true}}</span>
+      
+    </li>
+    
+  </ul>
+</div>
+<div class="jumbotron">
+    <div class="d-flex">
+        <span><h2>Your Basket Total: </h2></span>
+        <span> <h2> {{ totalPrice | currency: 'GBP':true}}</h2> </span>
+    </div>
+    
+    <p>{{deliveryMeth.option}} : {{deliveryMeth.price | currency: 'GBP':true}}</p>
+    <h2>Ground Total: {{groundTotal | currency: 'GBP':true}}</h2>
+
+</div>

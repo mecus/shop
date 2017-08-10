@@ -1,17 +1,67 @@
- <div class="tool-bar-wrapper">
-  <div *ngIf="!authenticated" class="register" >
-    <a routerLink="/register" (click)="clearMenu()">Register</a>
-  </div>
-  <div class="sign-in" >
-    <a *ngIf="!authenticated" (click)="clearMenu()" routerLink="/login">Login</a>
-    <a *ngIf="authenticated" (click)="logOut()" >LogOut</a>
+ <div class="tool-bar-wrapper d-flex align-items-center flex-row-reverse">
+
+  <div class="get-help">
+    <p>Help</p>
+    <md-icon>help</md-icon>
   </div>
   <div class="basket">
     <md-icon>local_grocery_store</md-icon>
     <span id="all-price"><p><cart-total></cart-total></p></span>
   </div>
-  <div class="get-help">
-    <p>Help</p>
-    <md-icon>help</md-icon>
-    </div>
+  <div class="account">
+     <a *ngIf="!authenticated" (click)="clearMenu()" routerLink="/login">Login</a> 
+     <!-- <a *ngIf="authenticated" (click)="logOut()" >Your Account</a>  -->
+
+    <!-- <div *ngIf="authenticated" class="btn-group" dropdown>
+      <a dropdownToggle  class="btn">
+          <span>Your Account</span>  -->
+          <!-- <span> <md-icon>expand_more</md-icon> </span>  -->
+      <!-- </a>
+      <ul *dropdownMenu class="dropdown-menu" role="menu">
+        <li role="menuitem"><a class="dropdown-item" href="#">Your Vouchers</a></li>
+        <li role="menuitem"><a class="dropdown-item" routerLink="/account/account_setting">Account Setting</a></li>
+        <li role="menuitem"><a class="dropdown-item" href="#">Your Preference</a></li>
+        <li class="divider dropdown-divider"></li>
+        <li *ngIf="authenticated" role="menuitem"><a class="dropdown-item" (click)="logOut()">logOut</a>
+        </li>
+      </ul>
+    </div> -->
+
+    <a *ngIf="authenticated" [mdMenuTriggerFor]="menu">
+     <span>Account</span>
+       <!-- <span> <md-icon>expand_more</md-icon> </span> -->
+    </a>
+    <md-menu #menu="mdMenu" [overlapTrigger]="false"  yPosition="below" xPosition="before">
+      <button md-menu-item>
+        <md-icon>dialpad</md-icon>
+        <span>Your Vouchers</span>
+      </button>
+      <button routerLink="/account/account_setting" md-menu-item >
+        <md-icon>settings</md-icon>
+        <span>Account Setting</span>
+      </button>
+      <button md-menu-item>
+        <md-icon>notifications_off</md-icon>
+        <span>Your Preference</span>
+      </button>
+      <button (click)="logOut()" md-menu-item>
+        <md-icon>power_settings_new</md-icon>
+        <span>LogOut</span>
+      </button>
+    </md-menu>
+
+
+  </div>
+  <div *ngIf="!authenticated" class="register" >
+    <a routerLink="/register" (click)="clearMenu()">Register</a>
+  </div>
+  <div *ngIf="authenticated" class="orders">
+    <a href="">Orders</a>
+  </div>
+  <div *ngIf="authenticated" class="favourites">
+    <a href="">Favourites</a>
+  </div>
+  <div *ngIf="authenticated" class="shopping-list">
+    <a href="">Shopping_List</a>
+  </div>
 </div>

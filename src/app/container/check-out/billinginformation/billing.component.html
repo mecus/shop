@@ -4,6 +4,7 @@
         <!--<md-input-container class="example-full-width">
             <input mdInput placeholder="Company" placeholder="company">
         </md-input-container>-->
+        <p>{{errorMsg}}</p>
         <p>
             <md-select formControlName="title" placeholder="Select Title">
                 <md-option *ngFor="let title of titles" [value]="title">
@@ -27,9 +28,18 @@
                 <td><md-input-container class="example-full-width">
                 <input formControlName="email" type="email" mdInput placeholder="Email">
                 </md-input-container></td>
+                
+            </tr>
+            <tr formGroupName="telephone">
+                
+                <!-- <td><md-input-container class="example-full-width">
+                <input formControlName="home" type="telephone" mdInput placeholder="Home telephone">
+                </md-input-container></td> -->
                 <td><md-input-container class="example-full-width">
-                <input formControlName="telephone" type="telephone" mdInput placeholder="Telephone">
+                <input formControlName="mobile" type="telephone" mdInput placeholder="Telephone">
                 </md-input-container></td>
+                
+
             </tr>
         </table>
         <table class="example-full-width" cellspacing="0">
@@ -45,10 +55,10 @@
         <div class="jumbotron" formGroupName="billing_address">
             <p>
                 <md-input-container class="example-full-width">
-                <textarea formControlName="address" mdInput placeholder="Address"></textarea>
+                <input formControlName="address" mdInput placeholder="Address Line 1">
                 </md-input-container>
                 <md-input-container class="example-full-width">
-                <textarea formControlName="address2" mdInput placeholder="Address 2"></textarea>
+                <input formControlName="address2" mdInput placeholder="Address Line 2">
                 </md-input-container>
             </p>
 
@@ -66,19 +76,19 @@
             </tr></table>
         </div>
         
-        <md-input-container class="example-full-width">
+        <!-- <md-input-container class="example-full-width">
             <input formControlName="selected_address" mdInput placeholder="selected Address">
-        </md-input-container>
+        </md-input-container> -->
 
-       <p>
+       <!-- <p>
             <md-radio-group (change)="onChange($event)">
                 <md-radio-button value="Deliver to this Address">Deliver to this Address</md-radio-button>
                 <br>
                 <md-radio-button value="Deliver to different address">Deliver to different address</md-radio-button>
             </md-radio-group>
-        </p>
+        </p> -->
 
-        <div *ngIf="differentAddress" formGroupName="delivery_address">
+        <!-- <div *ngIf="differentAddress" formGroupName="delivery_address">
             <h2>Add Delivery Address</h2>
             <md-input-container class="example-full-width">
                 <input formControlName="full_name" mdInput placeholder="Fullname">
@@ -104,7 +114,7 @@
                 </md-input-container></td>
             </tr></table>
 
-        </div>
+        </div> -->
         <div class="jumbotron contact-permit">
             <h2>Contact Permission</h2>
             <p>We'd love to send you money-off coupons, exclusive offers and the latest info from us by email, post, SMS, phone and other electronic means. We'll always treat your personal details with the utmost care and will never sell them to other companies for marketing purposes.</p>

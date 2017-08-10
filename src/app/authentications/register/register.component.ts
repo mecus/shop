@@ -4,7 +4,7 @@ import { AuthService } from '../authentication.service';
 import { StorageService } from "app/services/storage.service";
 import { Router } from '@angular/router';
 import { AddressSearchService } from "app/services/addresssearch.service";
-import { CheckoutService } from "app/services/checkout.service";
+import { AccountService } from "app/services/account.service";
 
 
 function passwordMather(c:AbstractControl){
@@ -33,7 +33,7 @@ export class RegisterComponent implements OnInit {
 
   constructor(private storeService:StorageService, private _router:Router, private _fb:FormBuilder, 
   private authService:AuthService, private addressService:AddressSearchService,
-  private checkoutService:CheckoutService) {
+  private accountService:AccountService) {
     
     this.newUser = _fb.group({
       title: [null, Validators.required],
@@ -42,13 +42,16 @@ export class RegisterComponent implements OnInit {
       confirmpassword: [null, Validators.required],
       first_name: [null, Validators.required],
       last_name: [null, Validators.required],
-      telephone: [null, Validators.required],
+      telephone: _fb.group({
+        home: null,
+        mobile: null
+      }),
       billing_address: _fb.group({
           address: null,
           address2: null,
           post_code: null,
           city: null,
-          country: null
+          country: "United Kingdom"
       }),
       terms: null,
       age_limit: null,
@@ -66,30 +69,26 @@ export class RegisterComponent implements OnInit {
       email: customer.email,
       password: customer.password
     }
-    let billingTo = {
+    let address = {
+        account_id: "",
+        address_type: "Billing",
+        full_name: customer.first_name+" "+customer.last_name,
         address: customer.billing_address.address,
         address2: customer.billing_address.address2,
         post_code: customer.billing_address.post_code,
         city: customer.billing_address.city,
         country: customer.billing_address.country
     }
-     let deliveryTo = {
-          full_name: null,
-          address: null,
-          address2: null,
-          post_code: null,
-          city: null,
-          country: null
 
-      }
-    let registration = {
+    let account = {
       title: customer.title,
       email: customer.email,
       first_name: customer.first_name,
       last_name: customer.last_name,
-      telephone: customer.telephone,
-      billing_address: billingTo,
-      delivery_address: deliveryTo,
+      telephone: {
+        home: customer.telephone.home,
+        mobile: customer.telephone.mobile
+      },
       terms: customer.terms,
       age_limit: customer.age_limit,
       uid: ""
@@ -98,9 +97,10 @@ export class RegisterComponent implements OnInit {
     // console.log(user);
     if(user.email){
        this.authService.createUser(user).then((ruser)=>{
-        registration.uid = ruser.uid;
+        account.uid = ruser.uid;
        this.storeService.storeData('user', ruser);
-       this.checkoutService.createAccount(registration);
+       this.storeService.storeData('email', ruser.email);
+       this.accountService.createAccount(account, address);
        this._router.navigate(["/"]);
      }).catch((err)=>{
        this.errMsg = err.message;
@@ -144,7 +144,12 @@ export class RegisterComponent implements OnInit {
     }else{
     this.setTempcode = this.storeService.retriveData('tempcode');
     }
-   
+    
+    this.newUser.patchValue({
+      billing_address: {
+        post_code: this.storeService.retriveData('postcode')
+      }
+    })
   }
 
 }

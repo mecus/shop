@@ -35,7 +35,9 @@
                             <input formControlName="password" type="password"  mdInput placeholder="Password">
                             </md-input-container>
                         </p>
+                        <p id="errMsg">{{loginErrMsg}}</p>
                         <button md-raised-button type="submit">Login</button>
+                        
                     </form>
                 </div>
             </div>
@@ -47,14 +49,13 @@
         </div>
    </div>
 </div>
-<div id="form-components" class="container card">
+<div id="form-components" class="container" >
     <div class="card-block">
-        <p>Form</p>
         <div *ngIf="register">
             <billing-address></billing-address>
         </div>
-        <div *ngIf="guest">
+        <!-- <div *ngIf="guest">
             <guest-checkout></guest-checkout>
-        </div> 
+        </div>  -->
     </div>
 </div>

@@ -1,0 +1,85 @@
+<secondary-navigation></secondary-navigation>
+<div class="delivery-container container d-flex flex-row justify-content-center">
+    
+    <div class="delivery card">
+        <div class="card-header">
+            <h2>Delivery Information</h2>
+        </div>
+        <div class="card-block">
+              
+            <form *ngIf="!toggles" [formGroup]="deliveryForm" (ngSubmit)="deliveryAddress(deliveryForm.value)" class="delivery-form">
+                <address-search (address)="addressFound($event)" ></address-search>
+                <div class="d-flex flex-row justify-content-between jumbotron">
+                    <p>Use my billing address as delivery address</p>
+                    <md-checkbox></md-checkbox>
+                </div>
+                <!-- <md-input-container class="example-full-width">
+                    <input mdInput placeholder="Company" placeholder="company">
+                </md-input-container> -->
+                <p>{{errorMsg}}</p>
+                <table class="example-full-width" cellspacing="0">
+                    <tr>
+                        <td><md-input-container class="example-full-width">
+                        <input formControlName="full_name" mdInput placeholder="Full name">
+                        </md-input-container></td>
+                    </tr>
+                </table>
+
+                <p>
+                    <md-input-container class="example-full-width">
+                    <input formControlName="address" mdInput placeholder="Address Line 1">
+                    </md-input-container>
+                    <md-input-container class="example-full-width">
+                    <input formControlName="address2" mdInput placeholder="Address Line 2">
+                    </md-input-container>
+                </p>
+
+                <table class="example-full-width" cellspacing="0"><tr>
+                    <td><md-input-container class="example-full-width">
+                    <input formControlName="city" mdInput placeholder="City">
+                    </md-input-container></td>
+                    <td><md-input-container class="example-full-width">
+                    <input formControlName="country" mdInput placeholder="Country">
+                    </md-input-container></td>
+                    <td><md-input-container class="example-full-width">
+                    <input formControlName="post_code" mdInput   placeholder="Postal Code" >
+                    <!--<md-hint align="end">{{postalCode.value.length}} / 5</md-hint>-->
+                    </md-input-container></td>
+                </tr></table>
+                <!--<p>
+                    <md-radio-group>
+                        <md-radio-button value="1">Deliver to this Address</md-radio-button>
+                        <br>
+                        <md-radio-button value="2">Deliver to different address</md-radio-button>
+                    </md-radio-group>
+                </p>-->
+                <div class="submit-btn">
+                    <button md-raised-button  type="submit">Submit</button>
+                    <a (click)="editAddress()" style="background-color: red;" md-raised-button >Cancel</a>
+                </div>
+            </form>
+            <div *ngIf="toggles" class="jumbotron your-address">
+                <md-list>
+                    <h1 md-subheader>Your Delivery Address</h1>
+                    <md-list-item >
+                        <md-icon style="font-size:50px; margin-right:20px" md-list-icon>home</md-icon>
+                        <h4 md-line>{{selectAddress.full_name}}</h4>
+                        <p md-line> {{selectAddress.address}} </p>
+                        <p md-line> {{selectAddress.address2}} </p>
+                        <p md-line> {{selectAddress.city}} </p>
+                        <p md-line> {{selectAddress.post_code}} </p>
+                        <p md-line> {{selectAddress.country}} </p>
+                    </md-list-item>
+                  
+                </md-list>
+                <a (click)="editAddress()" style="width:100%; margin-top: 50px;" md-raised-button >Edit Delivery Address</a>
+            </div>
+         </div>
+    </div>
+    <div class="aside-comp">
+        <delivery-options></delivery-options>
+        
+        <a (click)="goToPaymentMethod()" style="width:100%; background-color: #ffc900;" [disabled]="!certify" md-raised-button >Continue to payment method</a>
+        <!-- <p>{{certify}}</p> -->
+    </div>
+</div>

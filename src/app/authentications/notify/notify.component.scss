@@ -1,24 +1,68 @@
 
 div.tool-bar-wrapper{
-    display: flex;
-    height: 35px;
-    line-height: 35px;
+    height: 40px;
+    line-height: 40px;
 }
-.register, .sign-in, .basket, .get-help{
-    flex: 1;
+.register, .basket, .get-help, .orders, .favourites, .shopping-list{
+    // flex: 1;
     padding: 0 10px;
+    a{
+        text-decoration: none;
+        color: #000;
+    }
+}
+.orders, .favourites, .shopping-list{
+    background-color: lightgrey;
+    margin-right: 2px;
+    a{color: #000;}
+}
+.account{
+    background-color: lightseagreen;
+    height: 40px;
+    padding: 0px;
+    margin: 0px;
+    padding: 0 10px;
+    color: #fff;
+    border: none;
+    // .btn-group a{
+    //     position: relative;
+    //     border: none;
+    //     border-radius: 0px;
+    //     margin: 0px;
+    //     background-color: transparent;
+    //     // color: #000;
+    //     .dropdown-menu{
+    //         position: relative;
+    //         z-index: 1000;
+    //     }
+    //     md-icon{
+
+    //     }
+    // }
+    a{
+        // padding: 5px;
+        text-decoration: none;
+        color: #000;
+        font-size: 14px;
+        font-weight: bold;
+        span{
+            color: #fff;
+            padding: 5px;
+            // margin-right: 5px;
+        }
+    }
 }
 .register{
-    background-color: lightslategrey;
+    background-color: lightgrey;
     margin-left: 0px;
     color: #fff;
     font-size: 12px;
 }
-.sign-in{
-    border-bottom: 1px solid lightgray;
-    border-left: 1px solid lightgray;
-    font-size: 12px;
-}
+// .account{
+//     border-bottom: 1px solid lightgray;
+//     border-left: 1px solid lightgray;
+//     font-size: 12px;
+// }
 .get-help{
     display: flex;
     background-color: goldenrod;

@@ -1,0 +1,15 @@
+<div class="address-search jumbotron">
+    <p>Enter your post code below and search for address</p>
+    <div class="d-flex flex-row">
+        <input #postCode style="width: 250px; margin-right: 20px;" class="form-control" type="" placeholder="Post Code">
+        <span><a md-raised-button (click)="getAddress(postCode.value)">Search Address</a></span>
+    </div>
+    <p>{{emptyErr}}</p>
+</div>
+<div *ngIf="addresses" class="result">
+    <ul class="list-group">
+        <li *ngFor="let address of addresses" class="list-group-item">
+            <span (click)="sendAddess(address)" >{{address}}</span>
+        </li>
+    </ul>
+</div>

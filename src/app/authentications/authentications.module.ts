@@ -7,6 +7,7 @@ import { MaterialModule } from "app/modules/material/material.module";
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRouterModule } from '../routers/app-router/app-router.module';
 import { AlertModule } from 'ngx-bootstrap/alert';
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 
 
 import { AuthService } from './authentication.service';
@@ -22,7 +23,7 @@ import { AppSharedModule } from "app/modules/shared-modules/app.shared.module";
   imports: [
     CommonModule, AngularFireModule, AngularFireDatabaseModule, AppRouterModule,
     AngularFireAuthModule, MaterialModule, FormsModule, ReactiveFormsModule,
-    AppSharedModule, AlertModule.forRoot()
+    AppSharedModule, AlertModule.forRoot(), BsDropdownModule.forRoot()
   ],
   exports: [LoginComponent],
 

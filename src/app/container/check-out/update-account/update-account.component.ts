@@ -1,6 +1,6 @@
 import { Component, OnInit, HostListener } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
-import { CheckoutService } from "app/services/checkout.service";
+import { AccountService } from "app/services/account.service";
 import { StorageService } from "app/services/storage.service";
 import { WindowService } from "app/services/window.service";
 
@@ -12,14 +12,18 @@ import { WindowService } from "app/services/window.service";
 export class UpdateAccountComponent implements OnInit {
   showDeliveryAddress;
   updateForm: FormGroup;
-  constructor(private _fb:FormBuilder, private checkoutService:CheckoutService,
+  constructor(private _fb:FormBuilder, private accountService:AccountService,
   private storeService:StorageService, private windowService:WindowService) {
     this.updateForm = _fb.group({
+      id: null,
       title: null,
       first_name: null,
       last_name: null,
       email: null,
-      telephone: null,
+      telephone: _fb.group({
+          home: null,
+          mobile: null
+      }),
       billing_address: _fb.group({
           address: null,
           address2: null,
@@ -38,17 +42,27 @@ export class UpdateAccountComponent implements OnInit {
 
     })
    }
+  
+  //Saving the update in the database
    updateAccount(update){
-     console.log(update);
+    //  console.log(update.id);
+    this.accountService.updateAccount(update, update.id)
+      .subscribe((response)=>{
+        console.log(response);
+      })
    }
    accountBroughtForward(){
-     this.checkoutService.getAccount(this.storeService.retriveData('email')).subscribe((account)=>{
+     this.accountService.getAccount(this.storeService.retriveData('email')).subscribe((account)=>{
        this.updateForm.patchValue({
+        id: account._id,
         title: account.title,
         first_name: account.first_name,
         last_name: account.last_name,
         email: account.email,
-        telephone: account.telephone,
+        telephone: {
+            home: account.telephone.home,
+            mobile: account.telephone.mobile
+        },
         billing_address:{
             address: account.billing_address.address,
             address2: account.billing_address.address2,

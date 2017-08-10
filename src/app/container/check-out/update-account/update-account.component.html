@@ -5,7 +5,7 @@
     <div class="form-grid">
       <form [formGroup]="updateForm" (ngSubmit)="updateAccount(updateForm.value)">
         
-      
+      <input hidden type="text" formControlName="id">
       <div id="card" class="card">
         <div class="card-header">
           <div class="row">
@@ -20,36 +20,43 @@
         </div>
         <div class="card-block">
            <div class="form-group row">
-              <label for="example-text-input" class="col-2 col-form-label">Title</label>
-              <div class="col-10">
+              <label for="example-text-input" class="col-3 col-form-label">Title</label>
+              <div class="col-9">
                 <input class="form-control" type="text" formControlName="title" value="Mr" id="example-text-input">
               </div>
             </div>
             <div class="form-group row">
-              <label for="example-firstname-input" class="col-2 col-form-label">First Name</label>
-              <div class="col-10">
+              <label for="example-firstname-input" class="col-3 col-form-label">First Name</label>
+              <div class="col-9">
                 <input class="form-control" type="text" formControlName="first_name" value="How do I shoot web" id="example-search-input">
               </div>
             </div>
             <div class="form-group row">
-              <label for="example-lastname-input" class="col-2 col-form-label">Last Name</label>
-              <div class="col-10">
+              <label for="example-lastname-input" class="col-3 col-form-label">Last Name</label>
+              <div class="col-9">
                 <input class="form-control" type="text" formControlName="last_name" value="bootstrap@example.com" id="example-email-input">
               </div>
             </div>
             <div class="form-group row">
-              <label for="example-email-input" class="col-2 col-form-label">Email</label>
-              <div class="col-10">
+              <label for="example-email-input" class="col-3 col-form-label">Email</label>
+              <div class="col-9">
                 <input class="form-control" type="email" formControlName="email" value="https://getbootstrap.com" id="example-url-input">
               </div>
             </div>
-            <div class="form-group row">
-              <label for="example-tel-input" class="col-2 col-form-label">Telephone</label>
-              <div class="col-10">
-                <input class="form-control" type="tel" formControlName="telephone" value="1-(555)-555-5555" id="example-tel-input">
+            <div formGroupName="telephone">
+              <div class="form-group row">
+                <label for="example-tel-input" class="col-3 col-form-label">Home telephone</label>
+                <div class="col-9">
+                  <input class="form-control" type="tel" formControlName="home"  id="example-tel-input">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="example-tel-input" class="col-3 col-form-label">Mobile phone</label>
+                <div class="col-9">
+                  <input class="form-control" type="tel" formControlName="mobile" id="example-tel-input">
+                </div>
               </div>
             </div>
-          
         </div>
       </div>
      
@@ -89,7 +96,7 @@
       </div>
       
       <div>
-          <md-checkbox (change)="onChanges($event)">Edit Delivery Address</md-checkbox>
+          <md-checkbox (change)="onChanges($event)">Edit / Add Delivery Address</md-checkbox>
       </div>
 
       <div id="delivery-address" class="card" formGroupName="delivery_address">
@@ -143,7 +150,7 @@
     </div>
   </div>
   <div class="continue-button">
-    <a md-raised-button >Continue</a>
+    <a md-raised-button>Continue</a>
   </div>
   
 </div>

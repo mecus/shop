@@ -7,23 +7,29 @@ import { CheckoutComponent } from './checkout/checkout.component';
 import { AppSharedModule } from "app/modules/shared-modules/app.shared.module";
 import { BillingInfoComponent } from "app/container/check-out/billinginformation/billinginfo.component";
 import { GuestCheckoutComponent } from "app/container/check-out/guestcheckout/guestcheckout.component";
-import { CheckoutService } from "app/services/checkout.service";
 import { UpdateAccountComponent } from './update-account/update-account.component';
 import { ProgressComponent } from './progress/progress.component';
+import { PaymentMethodComponent } from './payment-method/payment-method.component';
+import { PaymentService } from "app/services/payment.service";
+import { DeliveryMethodComponent } from "app/container/check-out/deliverymethod/deliverymethod.component";
+import { TempOrderService } from "app/services/temp-order.service";
+import { PaymentComponent } from './payment/payment.component';
+import { AppRouterModule } from "app/routers/app-router/app-router.module";
 
 
 
 @NgModule({
   imports: [
     CommonModule, MaterialModule, AppSharedModule, BrowserAnimationsModule,
-    FormsModule, ReactiveFormsModule
+    FormsModule, ReactiveFormsModule, AppRouterModule
   ],
   declarations: [
-    CheckoutComponent, BillingInfoComponent, 
-    GuestCheckoutComponent, UpdateAccountComponent, ProgressComponent
+    CheckoutComponent, BillingInfoComponent, DeliveryMethodComponent,
+    GuestCheckoutComponent, UpdateAccountComponent, ProgressComponent, PaymentMethodComponent, 
+    PaymentComponent
   ],
   exports: [],
-  providers: [CheckoutService]
+  providers: [PaymentService, TempOrderService]
 
 })
 export class CheckOutModule {}

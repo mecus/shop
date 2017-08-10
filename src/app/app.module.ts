@@ -43,6 +43,7 @@ import 'hammerjs';
 import { AppRouterModule } from './routers/app-router/app-router.module';
 import { ProductModule } from './container/products/product.module';
 import { CheckOutModule } from './container/check-out/check-out.module';
+import { AccountModule } from "app/account/account.module";
 
 //Services
 import { ProductService } from "app/services/product.service";
@@ -54,6 +55,7 @@ import { YoutubeService } from "app/services/youtube.service";
 import { WindowService } from "app/services/window.service";
 import { ClearHeighlightMenu } from "app/services/clearfunction.service";
 import { AddressSearchService } from "app/services/addresssearch.service";
+import { AccountService } from "app/services/account.service";
 
 //Directives
 import { AdvertDirective } from './directives/advert.directive';
@@ -72,6 +74,8 @@ import { CustomersComponent } from './container/customers/customers.component';
 import { BannerComponent } from './components/advert/banner.component';
 import { NewProdComponent } from './components/advert/dynamic-components/newprod.component';
 import { NewCatComponent } from './components/advert/dynamic-components/newcat.component';
+
+
 // import { FooterComponent } from './container/menu/footer/footer.component';
 // import { ProductSearchComponent } from './components/product-search/product-search.component';
 // import { HowToComponent } from './components/how-to/how-to.component';
@@ -107,12 +111,12 @@ const BootstrapModules = [BsDropdownModule.forRoot(), AlertModule.forRoot(), Car
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireDatabaseModule,AngularFireAuthModule,
     ButtonsModule, AuthenticationsModule,
-    Ng2Webstorage
+    Ng2Webstorage, AccountModule
   ],
   providers: [
     ProductService, CartService, StorageService, SearchService,
     ReviewService, YoutubeService, WindowService, ClearHeighlightMenu,
-    AddressSearchService
+    AddressSearchService, AccountService
     ],
   bootstrap: [AppComponent],
   entryComponents: [NewProdComponent, NewCatComponent]

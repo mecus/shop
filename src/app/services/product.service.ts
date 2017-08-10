@@ -29,10 +29,10 @@ export class ProductService {
 
 
   constructor( private _http:Http) {
-    this.resourceUrl = this.host+"api/v1/products";
-    this.dataResource = this.host+"api/v1/storedata";
-    this.adUrl = this.host+"api/v1/storeadvert";
-    this.queryProductUrl = this.host+"api/v1/products/query/?";
+    this.resourceUrl = this.host+"api/v1/stores/products";
+    this.dataResource = this.host+"api/v1/stores/storedata";
+    this.adUrl = this.host+"api/v1/stores/storeadvert";
+    this.queryProductUrl = this.host+"api/v1/stores/products/query/?";
     this.storeData$ = new ReplaySubject(1);
     this.storeDeptAd$ = new ReplaySubject(1);
    }

@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { trigger, state, style, stagger, transition, animate, keyframes, query } from '@angular/animations';
 import { AuthService } from "app/authentications/authentication.service";
-import { CheckoutService } from "app/services/checkout.service";
+import { AccountService } from "app/services/account.service";
 import { StorageService } from "app/services/storage.service";
 
 @Component({
@@ -15,9 +15,11 @@ import { StorageService } from "app/services/storage.service";
 export class CheckoutComponent implements OnInit, OnDestroy {
     register:boolean;
     guest:boolean;
+    showCard:boolean = false;
+    loginErrMsg;
     loginForm: FormGroup;
     constructor(private _fb:FormBuilder, private authService:AuthService,
-    private checkoutService:CheckoutService, private _router:Router,
+    private accountService:AccountService, private _router:Router,
     private storeService:StorageService){
         this.loginForm = _fb.group({
             email: "",
@@ -29,11 +31,13 @@ export class CheckoutComponent implements OnInit, OnDestroy {
         if($event.value == "register"){
             this.guest = false;
             this.register = true;
+            this.showCard = true;
             return;
         }
         if($event.value == "guest"){
             this.register = false;
             this.guest = true;
+            this.showCard = true;
             return;
         }
         
@@ -43,17 +47,27 @@ export class CheckoutComponent implements OnInit, OnDestroy {
         if(!user.email && !user.password){
             return;
         }
+
         this.authService.emailLogin(user).then((res)=>{
-            console.log(res);
-        this.storeService.storeData('email', user.email);
-        this._router.navigate(["/account_update"]);
-        }).catch(err=>console.log(err));
+           this.storeService.storeData('user', res);
+           this.storeService.storeData('email', res.email);
+           this.accountService.getAccount(res.email).subscribe((account)=>{
+               this.accountService.getAddress(account._id).subscribe((addresses)=>{
+                    this.storeService.storeData('postcode', addresses[0].post_code);
+                    this._router.navigate(["/delivery_method"]);
+               });
+           });
+     
+        },(err)=>{
+            console.log(err)
+            this.loginErrMsg = err.message;
+        })
     }
 
     ngOnInit(){
        this.authService.authState().subscribe((state)=>{
-           if(state.uid){
-            this._router.navigate(["/account_update"]);
+           if(state){
+            this._router.navigate(["/delivery_method"]);
            }
        })
     }

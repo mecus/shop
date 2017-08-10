@@ -31,6 +31,7 @@ export class CartTotalComponent implements OnInit {
     }
     reducePrice(sum, num){
         return sum + num;
+        
     }
     ngOnInit(){
         

@@ -4,7 +4,7 @@ import { trigger, state, style, stagger, transition, animate, keyframes, query }
 import { Router } from '@angular/router';
 import { iCustomer } from 'app/models/customer.model';
 import { AuthService } from "app/authentications/authentication.service";
-import { CheckoutService } from "app/services/checkout.service";
+import { AccountService } from "app/services/account.service";
 
 @Component({
   selector: 'guest-checkout',
@@ -18,13 +18,16 @@ export class GuestCheckoutComponent implements OnInit {
     differentAddress:boolean;
     titles = ["Mr", "Mrs", "Miss", "Rev."];
     constructor(private _fb:FormBuilder, private _router:Router,
-    private authService:AuthService, private checkoutService:CheckoutService){
+    private authService:AuthService, private accountService:AccountService){
          this.BForm = _fb.group({
-            title: "",
+            title: null,
             first_name: [null, Validators.required],
             last_name: null,
             email: null,
-            telephone: null,
+            telephone: _fb.group({
+                home: null,
+                mobile: null
+            }),
             billing_address: _fb.group({
                 address: null,
                 address2: null,
@@ -96,7 +99,10 @@ export class GuestCheckoutComponent implements OnInit {
             email: customer.email,
             first_name: customer.first_name,
             last_name: customer.last_name,
-            telephone: customer.telephone,
+            telephone: {
+                home: customer.telephone.home,
+                mobile: customer.telephone.mobile
+            },
             billing_address: billingTo,
             terms: customer.terms,
             age_limit: customer.age_limit,
@@ -105,7 +111,7 @@ export class GuestCheckoutComponent implements OnInit {
             selected_address: customer.selected_address,
             delivery_address: deliveryTo
         }
-        // this.checkoutService.createAccount(registration);
+        this.accountService.createAccount(registration);
         console.log(registration);
         this._router.navigate(["/checkout"]);
     }

@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { WidgetRightComponent } from "app/components/widget-right/widget-right.component";
@@ -20,25 +21,34 @@ import { SecondaryNavigationComponent } from '../../container/menu/secondary-nav
 import { HoverMenuDirective } from "app/directives/hover-menu.directive";
 import { SelectMenuDirective } from "app/directives/select-menu.directive";
 import { FooterComponent } from "app/container/menu/footer/footer.component";
+import { CardComponent } from '../../container/check-out/card/card.component';
+import { AddressSearchComponent } from '../../container/check-out/address-search/address-search.component';
+import { DeliveryOptionsComponent } from '../../container/check-out/delivery-options/delivery-options.component';
+import { CheckoutCartComponent } from '../../container/check-out/checkout-cart/checkout-cart.component';
 
 @NgModule({
-    imports: [CommonModule, MaterialModule, BrowserAnimationsModule,
-    AppRouterModule, FormsModule, ReactiveFormsModule],
+    imports: [
+        CommonModule, MaterialModule, BrowserAnimationsModule,
+        AppRouterModule, FormsModule, ReactiveFormsModule, BsDropdownModule.forRoot()
+    ],
     exports: [
         WidgetRightComponent, WidgetLeftComponent, 
         ShippingDetailComponent, SideCartComponent, 
         CartTotalComponent, PrimaryNavigationComponent,
         SubMenuComponent, TopMenuComponent, ProductSearchComponent,
         HowToComponent, NotifyComponent, YoutubePipe, SecondaryNavigationComponent,
-        HoverMenuDirective, SelectMenuDirective, FooterComponent
+        HoverMenuDirective, SelectMenuDirective, FooterComponent, CardComponent,
+        AddressSearchComponent, DeliveryOptionsComponent, CheckoutCartComponent
     ],
     declarations: [
-        WidgetRightComponent, WidgetLeftComponent, 
+        WidgetRightComponent, WidgetLeftComponent,
         ShippingDetailComponent, SideCartComponent, 
         CartTotalComponent, PrimaryNavigationComponent,
         SubMenuComponent, TopMenuComponent, ProductSearchComponent,
         HowToComponent, NotifyComponent, YoutubePipe, SecondaryNavigationComponent,
-        HoverMenuDirective, SelectMenuDirective, FooterComponent
+        HoverMenuDirective, SelectMenuDirective, FooterComponent, CardComponent,
+        AddressSearchComponent, DeliveryOptionsComponent, CheckoutCartComponent
+        
     ]
 })
 
