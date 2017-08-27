@@ -43,12 +43,14 @@ export class BillingInfoComponent implements OnInit {
             password: null,
             passwordrepeat: null,
             contact_permission: null,
+            address_type: null
            
         })
     }
     createCustomer(customer):void{
         if(!customer.email && !customer.first_name){
             this.errorMsg = "Please fill all required fields";
+            this._router.navigate(["/payment_method"]);
             return;
         }
         let user = {
@@ -56,10 +58,15 @@ export class BillingInfoComponent implements OnInit {
             password: customer.password
 
         }
-
+        let accountUser = {
+            name: customer.first_name+" "+customer.last_name,
+            email: customer.email,
+            status: "unknown",
+            createdAt: Date.now()
+        }
         let address = {
             account_id: "",
-            account_type: "Billing",
+            address_type: "Billing",
             full_name: customer.first_name+" "+customer.last_name,
             address: customer.billing_address.address,
             address2: customer.billing_address.address2,
@@ -91,8 +98,9 @@ export class BillingInfoComponent implements OnInit {
                     this.storeService.storeData('postcode', customer.billing_address.post_code);
                     this.storeService.storeData('email', customer.email);
                     this.accountService.createAccount(account, address);
+                    this.authService.createUserAccount(res.uid, accountUser);
                     setTimeout(()=>{
-                        this._router.navigate(["/delivery_method"]);
+                        this._router.navigate(["/payment_method"]);
                     }, 500)
                 }).catch((error)=>{
                     console.log(error);

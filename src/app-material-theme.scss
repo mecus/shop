@@ -1,13 +1,18 @@
 @import '~@angular/material/theming';
 @include mat-core();
 
+
 // Define the default theme (same as the example above).
-$shop-app-primary: mat-palette($mat-indigo);
-$shop-app-accent:  mat-palette($mat-pink, A200, A100, A400);
-$shop-app-theme:   mat-light-theme($shop-app-primary, $shop-app-accent);
+$primary: mat-palette($mat-teal, 600);
+$accent:  mat-palette($mat-light-green);
+$warm: mat-palette($mat-teal, 800);
+$theme:   mat-light-theme($primary, $accent, $warm);
+$dark-theme:   mat-dark-theme($primary, $accent, $warm);
 
 // Include the default theme styles.
-@include angular-material-theme($shop-app-theme);
+@include angular-material-theme($theme);
+
+
 
 
 // Define an alternate dark theme.

@@ -10,7 +10,7 @@
             <md-input-container>
               <input #postcode type="text" mdInput name="postcode" required placeholder="Enter Postcode">
             </md-input-container>
-            <a (click)="submitPostcode(postcode.value)" md-raised-button><md-progress-spinner *ngIf="searchingPostcode" class="example-margin"[color]="color"[mode]="mode"></md-progress-spinner> <span *ngIf="!searchingPostcode">Check</span></a>
+            <a (click)="submitPostcode(postcode.value)" color= "primary" md-raised-button><md-progress-spinner *ngIf="searchingPostcode" class="example-margin"[color]="color"[mode]="mode"></md-progress-spinner> <span *ngIf="!searchingPostcode">Check</span></a>
         </div>
         
         <p *ngIf="successMsg">{{successMsg}}</p>
@@ -60,7 +60,7 @@
       </div>
   </div>
   
-  <button md-raised-button (click)="onButtonClick()" > Delete Cart</button>
+  <button md-raised-button (click)="onButtonClick()" > Create Client</button>
   <button md-raised-button > Google Logout</button>
   <a md-mini-fab ><md-icon>clear</md-icon></a>
 

@@ -13,8 +13,8 @@ export class SearchService {
     productUrl;
     queryProductUrl;
     constructor(private _http:Http, private storageService:LocalStorageService){
-        this.productUrl = this.host+"api/v1/productsonly";
-        this.queryProductUrl = this.host+"api/v1/products/query/?";
+        this.productUrl = this.host+"api/v1/stores/productsonly";
+        this.queryProductUrl = this.host+"api/v1/stores/products/query/?";
     }
 
     searchProduct(query){

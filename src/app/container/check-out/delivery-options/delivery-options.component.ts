@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, OnChanges } from '@angular/core';
 import { TempOrderService } from "app/services/temp-order.service";
 import { AuthService } from "app/authentications/authentication.service";
 import { StorageService } from "app/services/storage.service";
@@ -9,7 +9,7 @@ import { CartService } from "app/services/cart.service";
   templateUrl: './delivery-options.component.html',
   styleUrls: ['./delivery-options.component.scss']
 })
-export class DeliveryOptionsComponent implements OnInit {
+export class DeliveryOptionsComponent implements OnInit, OnChanges {
   totalPrice;
   groundTotal;
   deliveryCost;
@@ -21,6 +21,7 @@ export class DeliveryOptionsComponent implements OnInit {
     {option: "Royal Mail Next day delivery", price: 4.90},
     {option: "Royal Mail Same days delivery", price: 5.90}
   ];
+  @Input() notification;
   constructor(private tempOrderService:TempOrderService,
     private authService:AuthService, private storeService:StorageService, private cartService:CartService) { }
 
@@ -28,7 +29,15 @@ export class DeliveryOptionsComponent implements OnInit {
     this.checkForAddress();
     this.deliveryMeth = this.options[3];
   }
+  ngOnChanges(notification){
+    if(this.notification == true){
+      this.addOpacity = "1";
+    }
+    // this.checkForAddress();
+    console.log(this.notification);
+  }
   selectOption(event, opt){
+    this. getCatTotal(opt.price);
     let deliveryOption = {
       delivery_option:{
         method: opt.option,
@@ -51,8 +60,11 @@ export class DeliveryOptionsComponent implements OnInit {
     this.deliveryMeth = opt;
     this.groundTotal = Number(opt.price) + Number(this.totalPrice);
     let total = {
-      ground_total: this.groundTotal.toFixed(2)
+      ground_total: (Number(opt.price) + Number(this.totalPrice)).toFixed(2)
     }
+    // console.log(Number(opt.price));
+    // console.log(Number(this.totalPrice));
+    // console.log(total);
     this.authService.authState().subscribe((state)=>{
           if(state){
           this.tempOrderService.updateTempOrder(state.uid, deliveryOption, total);
@@ -69,7 +81,7 @@ export class DeliveryOptionsComponent implements OnInit {
         .map(cart=>cart.qty * Number(cart.price));
         this.totalPrice = total.reduce(this.reducePrice, 0).toFixed(2);
         this.groundTotal= Number(this.totalPrice) + Number(option);
-        // console.log(this.groundTotal);
+        console.log(this.totalPrice);
    
         });
     }
@@ -82,10 +94,11 @@ export class DeliveryOptionsComponent implements OnInit {
         this.tempOrderService.getTempOrder(user.uid).subscribe((address)=>{
           if(!address.delivery_address){
 
-            this.addOpacity = "0.2";
+            this.addOpacity = "1";
           }
           if(address.delivery_option){
-            let sum = address.delivery_option.price;
+            this.addOpacity = "1";
+            let sum = Number(address.delivery_option.price);
             this.getCatTotal(sum);
           }
         })

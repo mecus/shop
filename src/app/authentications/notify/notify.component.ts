@@ -32,6 +32,7 @@ export class NotifyComponent implements OnInit {
   logOut(){
     this.storeService.cleardata('postcode');
     this.storeService.cleardata('email');
+    this.storeService.cleardata('user');
     this.authService.logout();
   }
   clearMenu(){

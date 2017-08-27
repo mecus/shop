@@ -65,7 +65,19 @@ export class HomeComponent implements OnInit {
     
   }
    onButtonClick() {
-     this.authService.authState();
+     this.authService.authState().subscribe((user)=>{
+       let u = {email: user.email, password: user.uid};
+       this.authService.clientRegistration(u)
+        .subscribe((res)=>{
+          console.log(res);
+          if(res){
+            this.authService.getClientToken(u).subscribe((token)=>{
+              console.log(token);
+            });
+          }
+        });
+     });
+    //  this.authService.authState();
     // this.cartService.removeBatchCart("SE14 5AA");
     //  this.PS.getQueryProduct(q).subscribe((products)=>{
     //    console.log(products);
@@ -75,7 +87,10 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     this.ads = this.PS.getAds();
-    
+    this.addressService.getMyIp().subscribe((data)=>{
+      this.storeService.storeData('ip', data.ip);
+    })
+    // this.PS.getGQLdept();
     // console.log(this.ads);
     // console.log(window.location);
     // this.PS.getProducts().subscribe(res=> console.log(res));

@@ -1,4 +1,57 @@
 <secondary-navigation></secondary-navigation>
-<div class="container">
-  <h1>Payment Component</h1>
+<div *ngIf="order" class="container main-container">
+  
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="card">
+        <div class="card-block">
+          <h3 class="card-title">Order no: {{order.order_no}}</h3>
+          <p class="card-text">Name: {{order.customer_name}}</p>
+          <p class="card-text">Amount: {{order.amount}}</p>
+          <p class="card-text">Delivery Method: {{order.delivery_method}}</p>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="address" class="col-sm-6">
+      <div class="card">
+        <div class="card-block">
+          <h3 class="card-title">Deliver To:</h3>
+          <h3 class="card-text" >{{address.full_name}}</h3>
+          <p class="card-text">{{address.address}}</p>
+          <p class="card-text">{{address.country}}</p>
+          <p class="card-text">{{address.post_code}}</p>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="card text-center">
+    <div class="card-header">
+      Finish your order now
+    </div>
+    <div class="card-block">
+      <h4 class="card-title">Special title treatment</h4>
+      <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+      <a (click)="finishOrder(order.amount, order.customer_no, order.order_no)" md-raised-button >Finish Order</a>
+    </div>
+    <div class="card-footer text-muted">
+      your order will be dispatched within 24hrs after full payment is recieved!
+    </div>
+  </div>
+</div>
+<div class="payment-completed container jumbotron">
+  <h1>Your Order Status: <small>{{status}}</small></h1>
+  <small>{{acceptedMsg}}</small>
+  <small>{{declineMsg}}</small>
+  <p *ngIf="processMsg">{{processMsg}}</p>
+  <a *ngIf="acceptedMsg" md-raised-button routerLink="/">Close page</a>
+  <a *ngIf="declineMsg" md-raised-button routerLink="/payment_method">Try again</a>
+</div>
+
+<div *ngIf="grayPage" class="pageProcessCover">
+    <div class="center-point">
+        <md-spinner></md-spinner>
+    </div>
 </div>

@@ -7,12 +7,16 @@ import { AppRouterModule } from 'app/routers/app-router/app-router.module';
 import { AppSharedModule } from "app/modules/shared-modules/app.shared.module";
 import { AccountInfoEditComponent } from './components/account-info-edit/account-info-edit.component';
 import { AccountAddressEditComponent } from './components/account-address-edit/account-address-edit.component';
+import { OrdersComponent } from './orders/orders.component';
 
 @NgModule({
   imports: [
     CommonModule, AppRouterModule, MaterialModule,
     AppSharedModule, FormsModule, ReactiveFormsModule
   ],
-  declarations: [AccountSettingComponent, AccountInfoEditComponent, AccountAddressEditComponent]
+  declarations: [
+    AccountSettingComponent, AccountInfoEditComponent, 
+    AccountAddressEditComponent, OrdersComponent
+  ]
 })
 export class AccountModule { }

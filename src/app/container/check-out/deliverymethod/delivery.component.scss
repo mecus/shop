@@ -20,3 +20,20 @@
 .example-full-width {
   width: 100%;
 }
+
+.pageProcessCover{
+  position: fixed;
+  width: 100%;
+  top: 0px;
+  background-color: #fff;
+  opacity: 0.4;
+  height: 100vh;
+  z-index: 100;
+  margin: 0 auto;
+  .center-point{
+      position: absolute;
+      top: 45%;
+      left: 45%;
+      margin: 0 auto;
+  }
+}

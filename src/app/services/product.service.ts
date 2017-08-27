@@ -26,9 +26,11 @@ export class ProductService {
   storeData$;
   storeDeptAd$;
   queryProductUrl;
+  graphql;
 
 
   constructor( private _http:Http) {
+    this.graphql = this.host+"graphql?";
     this.resourceUrl = this.host+"api/v1/stores/products";
     this.dataResource = this.host+"api/v1/stores/storedata";
     this.adUrl = this.host+"api/v1/stores/storeadvert";
@@ -127,5 +129,20 @@ export class ProductService {
       )
     }
     return this.storeDeptAd$;
+  }
+
+  //Graphql Endpoints
+  getGQLdept(){
+    let options = new RequestOptions({headers: new Headers({'Content-Type': 'application/json', 'Accept': 'q=0.8;application/json;q=0.9'})}); 
+    let params: URLSearchParams = new URLSearchParams();
+    // params.set('id', '');
+    let query = {
+     
+    }
+    this._http.get(this.graphql+query, options).map((res)=>{
+      console.log(res);
+    },((err)=>{
+      console.log(err);
+    })).subscribe();
   }
 }

@@ -3,7 +3,7 @@ import { Location } from '@angular/common';
 import { Observable } from 'rxjs/Observable';
 import { AuthService } from '../authentication.service';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
-import { User } from '../../models/user.model';
+// import { User } from 'app/models/user.model';
 import { Router } from '@angular/router';
 import * as firebase from 'firebase';
 import { StorageService } from "app/services/storage.service";
@@ -36,8 +36,9 @@ export class LoginComponent implements OnInit {
            this.storeService.storeData('email', res.email);
            //Note! Query account with the ac_no of the customer 
            this.accountService.getAccount(res.email).subscribe((account)=>{
-               this.storeService.storeData('postcode', account.billing_address.post_code);
-               
+               this.accountService.getAddress(account._id).subscribe((addresses)=>{
+                this.storeService.storeData('postcode', addresses[0].post_code);
+               }) 
            })
            this._router.navigate(['/']);
         // this.location.back();

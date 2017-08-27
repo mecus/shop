@@ -4,6 +4,7 @@ import { Observable } from "rxjs/Observable";
 import { StorageService } from "app/services/storage.service";
 import { TempOrderService } from "app/services/temp-order.service";
 import { AuthService } from "app/authentications/authentication.service";
+import { WindowService } from "app/services/window.service";
 
 @Component({
   selector: 'checkout-cart',
@@ -15,27 +16,27 @@ export class CheckoutCartComponent implements OnInit {
   totalBask=null;
   delivery=null;
   constructor(private cartService:CartService, private storeService:StorageService,
-  private tempOrderService:TempOrderService, private authService:AuthService) {
+  private tempOrderService:TempOrderService, private authService:AuthService,
+  private windowService:WindowService) {
     cartService.getCart().subscribe((carts)=>{
         this.cart$ = carts.filter(cat=> cat.postcode == this.storeService.retriveData('postcode'));
       })
    }
 
-   getProgresOrder(){
+  getProgresOrder(){
      this.authService.authState().subscribe((user)=>{
        this.tempOrderService.getTempOrder(user.uid).subscribe((ord)=>{
-         if(ord){
+        if(ord){
           this.totalBask = Number(ord.ground_total);
           this.delivery = ord.delivery_option.method;
-         }
-        
+        } 
       })
-
-     })
-     
-   }
+    })
+  }
   ngOnInit() {
-    this.getProgresOrder();
+    this.windowService.getWindowObject().setTimeout(()=> {
+      this.getProgresOrder();
+    }, 1000);
   }
 
 }

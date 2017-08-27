@@ -28,10 +28,18 @@ export class AddressSearchService {
     }
 
     handleError(err):Observable<any>{
-    if (err.status === 404 || err.status === "404"){
-      return err.json();
-    }else{
-      return Observable.throw(new Error(err.status));
+        if (err.status === 404 || err.status === "404"){
+        return err.json();
+        }else{
+        return Observable.throw(new Error(err.status));
+        }
     }
-  }
+    getMyIp(){
+        return this._http.get("https://api.ipify.org?format=json")
+            .map((ip)=>{
+                return ip.json();
+            },
+            (err)=>console.log(err));
+    }
+
 }

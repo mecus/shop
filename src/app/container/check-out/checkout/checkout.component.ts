@@ -5,6 +5,7 @@ import { trigger, state, style, stagger, transition, animate, keyframes, query }
 import { AuthService } from "app/authentications/authentication.service";
 import { AccountService } from "app/services/account.service";
 import { StorageService } from "app/services/storage.service";
+import { WindowService } from "app/services/window.service";
 
 @Component({
   selector: 'app-checkout',
@@ -20,7 +21,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
     loginForm: FormGroup;
     constructor(private _fb:FormBuilder, private authService:AuthService,
     private accountService:AccountService, private _router:Router,
-    private storeService:StorageService){
+    private storeService:StorageService, private windowService:WindowService){
         this.loginForm = _fb.group({
             email: "",
             password: ""
@@ -54,7 +55,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
            this.accountService.getAccount(res.email).subscribe((account)=>{
                this.accountService.getAddress(account._id).subscribe((addresses)=>{
                     this.storeService.storeData('postcode', addresses[0].post_code);
-                    this._router.navigate(["/delivery_method"]);
+                    this._router.navigate(["/payment_method"]);
                });
            });
      
@@ -65,11 +66,23 @@ export class CheckoutComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit(){
+        if(!this.storeService.retriveData('token')){
+            this.storeService.getPaymentToken();
+        }
        this.authService.authState().subscribe((state)=>{
            if(state){
-            this._router.navigate(["/delivery_method"]);
+            
+            if(!this.storeService.retriveData('token')){
+                this.storeService.getPaymentToken();
+                this.windowService.getWindowObject().setTimeout(()=> {
+                    this._router.navigate(["/payment_method"]);
+                }, 1000);
+              }else{
+                this._router.navigate(["/payment_method"]);
+              } 
            }
        })
+       
     }
     ngOnDestroy(){
         

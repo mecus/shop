@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit, Input } from '@angular/core';
+import { Component, OnInit, AfterViewInit, Input, EventEmitter, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { AccountService } from 'app/services/account.service';
@@ -14,24 +14,19 @@ import { WindowService } from "app/services/window.service";
 })
 export class CardComponent implements OnInit, AfterViewInit {
   document;
+  cardform;
   card;
   cardType;
   creditCard;
   fieldErrorMsg;
   @Input() customerId:string;
+  @Output() returnResult:EventEmitter<any> = new EventEmitter<any>();
   constructor(private accountService:AccountService, 
     private storeService:StorageService, private _fb:FormBuilder,
     public paymentService:PaymentService, private windowService:WindowService) {
       this.document = this.windowService.getDocumentRef();
-     }
-    
-  getPaymentToken(){
-    this.paymentService.getClientToken().subscribe((token)=>{
-      console.log(token.clientToken);
-      this.storeService.storeData('token', token.clientToken);
-    })
   }
-  
+    
   
   showNewCardForm(){
       let cardform = this.windowService.getDocumentRef().querySelector('#cardForm');
@@ -48,33 +43,36 @@ export class CardComponent implements OnInit, AfterViewInit {
   }
  
   ngOnInit() {
+    // this.checkForCardPresent();
     this.braintreeHostedPage();
-    this.checkForCardPresent();
+    
   }
-  ngAfterViewInit(){}
+  
+  ngAfterViewInit(){
+    
+  }
 
-   checkForCardPresent(){
-    this.accountService.getAccount(this.storeService.retriveData('user')['email'])
-    .subscribe((account)=>{
-       this.paymentService.fetchCard(account.ac_no).subscribe((cards)=>{
-        let cardform = this.windowService.getDocumentRef().querySelector('#cardForm');
-        this.card = cards.maskedNumber;
-        this.cardType = cards.cardType;
-        if(cards){
-          cardform.style.display = "none";
-        }else{
-          cardform.style.display = "block";
-        }
-        // console.log(cards);
-      });
-    })
-  }
+  // checkForCardPresent(){
+  //   this.accountService.getAccount(this.storeService.retriveData('user')['email'])
+  //   .subscribe((account)=>{
+  //      this.paymentService.fetchCard(account.ac_no).subscribe((cards)=>{
+  //       this.card = cards.maskedNumber;
+  //       this.cardType = cards.cardType;
+  //       if(cards){
+  //         this.cardform.style.display = "block";
+  //       }else{
+  //         this.cardform.style.display = "block";
+  //       }
+  //       // console.log(cards);
+  //     });
+  //   })
+  // }
 
   braintreeHostedPage(){
       let form = this.windowService.getDocumentRef().querySelector('#my-sample-form');
       let submit = this.windowService.getDocumentRef().querySelector('input[type="submit"]');
-      let cardform = this.windowService.getDocumentRef().querySelector('#cardForm');
-      let proceed = this.windowService.getDocumentRef().querySelector('#continue-payment');
+      // let cardform = this.windowService.getDocumentRef().querySelector('#cardForm');
+      // let proceed = this.windowService.getDocumentRef().querySelector('#continue-payment');
    
 
       this.windowService.getWindowObject().braintree.client.create({
@@ -143,8 +141,12 @@ export class CardComponent implements OnInit, AfterViewInit {
               
               // cardform.style.display = "none";
               // proceed.style.display = "block";
-              this.paymentService.createTransaction(payload.nonce, this.customerId);
-              this.checkForCardPresent();
+              this.paymentService.createPaymentMethod(payload.nonce, this.customerId, "card")
+                .subscribe((res)=>{
+                  this.returnResult.emit(res);
+                  // console.log(res);
+                });
+              // this.checkForCardPresent();
 
             });
           }, false);

@@ -15,6 +15,9 @@ import { DeliveryMethodComponent } from "app/container/check-out/deliverymethod/
 import { TempOrderService } from "app/services/temp-order.service";
 import { PaymentComponent } from './payment/payment.component';
 import { AppRouterModule } from "app/routers/app-router/app-router.module";
+import { OrderService } from "app/services/order.service";
+import { PaypalComponent } from './paypal/paypal.component';
+import { OrderComponent } from './order/order.component';
 
 
 
@@ -26,10 +29,10 @@ import { AppRouterModule } from "app/routers/app-router/app-router.module";
   declarations: [
     CheckoutComponent, BillingInfoComponent, DeliveryMethodComponent,
     GuestCheckoutComponent, UpdateAccountComponent, ProgressComponent, PaymentMethodComponent, 
-    PaymentComponent
+    PaymentComponent, PaypalComponent, OrderComponent
   ],
   exports: [],
-  providers: [PaymentService, TempOrderService]
+  providers: [PaymentService, TempOrderService, OrderService]
 
 })
 export class CheckOutModule {}

@@ -3,6 +3,7 @@ import { Observable } from 'rxjs/Observable';
 import { WindowService } from 'app/services/window.service';
 import { StorageService } from 'app/services/storage.service';
 import { AccountService } from 'app/services/account.service';
+import * as _ from 'lodash';
 
 @Component({
   selector: 'app-account-setting',
@@ -32,7 +33,7 @@ export class AccountSettingComponent implements OnInit, OnChanges {
       this.userAccount = account;
       this.customerID = account.ac_no;
       this.accountService.getAddress(account._id).subscribe((addresses)=>{
-        this.userAddress = addresses[0];
+        this.userAddress = _.last(_.filter(addresses, {"address_type":"billing"}));
       });
     });
   }

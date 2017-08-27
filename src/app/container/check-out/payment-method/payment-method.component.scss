@@ -23,3 +23,34 @@ table tr td{
 div.aside-check-cart{
     width: 100%;
 }
+.pageProcessCover{
+    position: fixed;
+    width: 100%;
+    top: 0px;
+    background-color: #fff;
+    opacity: 0.4;
+    height: 100vh;
+    z-index: 100;
+    margin: 0 auto;
+    .center-point{
+        position: absolute;
+        top: 45%;
+        left: 45%;
+        margin: 0 auto;
+    }
+}
+#card-fetch{
+    margin: 0 auto;
+    width: 600px;
+    margin-top: 40px;
+}
+div.check-box{
+    margin-top: 10px;
+}
+div#pay-card{
+    display: none;
+}
+div.proceed-button{
+    position: relative;
+    float: right;
+}

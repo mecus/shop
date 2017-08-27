@@ -24,6 +24,7 @@ export class RegisterComponent implements OnInit {
   setPostcode;
   searchResult;
   searchResultErr;
+  searchNotFound;
   posterror;
   setTempcode;
   progressOn:boolean = false;
@@ -64,7 +65,7 @@ export class RegisterComponent implements OnInit {
        contact_permission: $event.value
      });
    }
-   register(customer){
+  register(customer){
     let user = {
       email: customer.email,
       password: customer.password
@@ -124,15 +125,26 @@ export class RegisterComponent implements OnInit {
           this.storeService.cleardata('tempcode');
           setTimeout(()=>{
             this.progressOn = false;
+            this.searchNotFound = false;
+            this.searchResultErr = false;
             this.searchResult = true;
-          }, 200); 
+          }, 1000); 
         }else{
+          this.progressOn = false;
+          this.searchResult = false;
+          this.searchNotFound = false;
           this.searchResultErr = true;
+          return;
         }
+      },(err)=>{
+        console.log(err.message);
+        this.progressOn = false;
+        this.searchResult = false;
+        this.searchResultErr = false;
+        this.searchNotFound = true;
       });
-     }
-     
-   }
+     }  
+  }
 
   ngOnInit() {
     this.setPostcode = this.storeService.retriveData('postcode');

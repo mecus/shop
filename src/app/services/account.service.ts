@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Http, URLSearchParams, RequestOptions, RequestOptionsArgs, Headers, Response } from '@angular/http';
+import { Http, URLSearchParams, RequestOptions, 
+    RequestOptionsArgs, Headers, Response, } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
@@ -96,6 +97,7 @@ export class AccountService {
         }).subscribe();
     }
     getAddress(id){
+        //find address with account id
         return this._http.get(this.addressApi+id).map((addresses)=>{
             return addresses.json();
         }).catch((error):any=>{console.log(error)});
@@ -113,6 +115,7 @@ export class AccountService {
         })
     }
     deleteAddress(id){
+        //Delete Address with Address _id
         return this._http.delete(this.addressApi+id).map((res)=>{
             return res.json();
         }).catch((error):any=>{console.log(error)});

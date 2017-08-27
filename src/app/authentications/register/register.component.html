@@ -34,6 +34,11 @@
             <strong>Sorry!</strong> We can not deliver to your address at this time!!.
         </alert>
     </div>
+    <div *ngIf="searchNotFound" class="search-result">
+        <alert type="danger">
+            <strong>Sorry!</strong> Your address was not found!!.
+        </alert>
+    </div>
     <br><br>
 
     <div class="request-form" *ngIf="searchResult">

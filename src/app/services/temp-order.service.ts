@@ -29,14 +29,22 @@ export class TempOrderService {
             if(error) console.log(error); return;
         });
     }
-    updateTempOrder(key, order, total?){
+    updateTempOrder(key, order?, total?){
         let dbRef = this._AF_db.object('/tempOrder/'+key);
-        dbRef.update(order).then((res)=>{console.log(res); return res}, (err)=>console.log(err));
-        dbRef.update(total).then((res)=>{console.log(res); return res}, (err)=>console.log(err));
+        if(order){
+            dbRef.update(order).then((res)=>{console.log(res); return res}, (err)=>console.log(err));
+        }
+        if(total){
+            dbRef.update(total).then((res)=>{console.log(res); return res}, (err)=>console.log(err));
+        }
+        
     }
     deleteTemOrder(key){
        let dbRef = this._AF_db.object('/tempOrder/'+key);
-       return dbRef.remove().then((res)=>console.log(res),(err)=>console.log(err));
+       return dbRef.remove().then((res)=>{
+           console.log(res);
+           return res;
+        },(err)=>console.log(err));
     }
 
 }

@@ -6,14 +6,17 @@
     <div class="checkout-container">
         
         <div class="new-customer">
-            <h2>Checkout as guest or register</h2>
+            <h2>Checkout for new customer</h2>
             <hr>
             <h3>Register for future convenience</h3>
-            <md-radio-group (change)="onChnage($event)">
+            <!-- <app-paypal></app-paypal> -->
+            <!-- <md-radio-group (change)="onChnage($event)">
                 <md-radio-button value="guest">Guest Checkout</md-radio-button>
                 <br>
                 <md-radio-button value="register">Register</md-radio-button>
-            </md-radio-group>
+            </md-radio-group> -->
+           <p>We accept number of payment card and also accept payment with paypal account.</p>
+           <small>In the next step you will have the option to choose payment method of your choice..</small>
         </div>
         <!--<p>Selected: {{newcustomer}}</p>-->
         <div class="old-customer">
@@ -51,9 +54,10 @@
 </div>
 <div id="form-components" class="container" >
     <div class="card-block">
-        <div *ngIf="register">
+        <billing-address></billing-address>
+        <!-- <div *ngIf="register">
             <billing-address></billing-address>
-        </div>
+        </div> -->
         <!-- <div *ngIf="guest">
             <guest-checkout></guest-checkout>
         </div>  -->

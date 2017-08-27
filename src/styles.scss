@@ -1,11 +1,29 @@
 // @import "~@progress/kendo-theme-default/scss/all";
 @import "node_modules/bootstrap/scss/bootstrap";
+@import 'assets/stylesheets/app-theme';
 @import "./variables";
 @import "./w3c.css";
+
+// $primary-color-dark:   #00796B;
+// $primary-color:        #009688;
+// $primary-color-light:  #B2DFDB;
+// $primary-color-text:   #FFFFFF;
+// $accent-color:         #009688;
+// $primary-text-color:   #212121;
+// $secondary-text-color: #757575;
+// $divider-color:        #BDBDBD;
+
+// font-family: 'Dosis', sans-serif;
+// font-family: 'Anton', sans-serif;
+// font-family: 'Lobster', cursive;
+// font-family: 'Saira Extra Condensed', sans-serif;
+
+
 body{
     // background-color: #f5f8fa;
     margin: 0px;
     padding: 0px;
+    font-family: $open-sans-light !important;
     .md-container{
         width: 800px;
         margin: 0 auto;
@@ -19,6 +37,9 @@ body{
 ----------------------------------------------------------- */
 body{
     // font-family: Helvetica, Arial, sans-serif;
+}
+button {
+    // background-color: $primary-color-light !important;
 }
 h1, h2, h3, h4, h5, h6 { font-weight: bold }
 

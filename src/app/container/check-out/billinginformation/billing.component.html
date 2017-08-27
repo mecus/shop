@@ -55,11 +55,11 @@
         <div class="jumbotron" formGroupName="billing_address">
             <p>
                 <md-input-container class="example-full-width">
-                <input formControlName="address" mdInput placeholder="Address Line 1">
+                <input formControlName="address" mdInput placeholder="Address">
                 </md-input-container>
-                <md-input-container class="example-full-width">
-                <input formControlName="address2" mdInput placeholder="Address Line 2">
-                </md-input-container>
+                <!-- <md-input-container class="example-full-width"> -->
+                <input hidden formControlName="address2" mdInput placeholder="Address Line 2">
+                <!-- </md-input-container> -->
             </p>
 
             <table class="example-full-width" cellspacing="0"><tr>

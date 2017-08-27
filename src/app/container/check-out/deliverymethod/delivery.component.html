@@ -6,13 +6,14 @@
             <h2>Delivery Information</h2>
         </div>
         <div class="card-block">
+                
               
             <form *ngIf="!toggles" [formGroup]="deliveryForm" (ngSubmit)="deliveryAddress(deliveryForm.value)" class="delivery-form">
-                <address-search (address)="addressFound($event)" ></address-search>
                 <div class="d-flex flex-row justify-content-between jumbotron">
                     <p>Use my billing address as delivery address</p>
-                    <md-checkbox></md-checkbox>
+                    <md-checkbox #check (click)="useAsdevivery(check.value)" value="useSameAddress" ></md-checkbox>
                 </div>
+                <address-search (address)="addressFound($event)" ></address-search>
                 <!-- <md-input-container class="example-full-width">
                     <input mdInput placeholder="Company" placeholder="company">
                 </md-input-container> -->
@@ -54,7 +55,7 @@
                     </md-radio-group>
                 </p>-->
                 <div class="submit-btn">
-                    <button md-raised-button  type="submit">Submit</button>
+                    <button md-raised-button id="submit-btn"  type="submit">Submit</button>
                     <a (click)="editAddress()" style="background-color: red;" md-raised-button >Cancel</a>
                 </div>
             </form>
@@ -77,9 +78,15 @@
          </div>
     </div>
     <div class="aside-comp">
-        <delivery-options></delivery-options>
-        
-        <a (click)="goToPaymentMethod()" style="width:100%; background-color: #ffc900;" [disabled]="!certify" md-raised-button >Continue to payment method</a>
+        <delivery-options [notification]="notify" ></delivery-options>
+        <small>{{trueMsg}}</small>
+        <button  (click)="goToOrder()" style="width:100%; background-color: #ffc900;" [disabled]="!notify" md-raised-button >Continue to place order</button>
         <!-- <p>{{certify}}</p> -->
+    </div>
+</div>
+
+<div *ngIf="grayPage" class="pageProcessCover">
+    <div class="center-point">
+        <md-spinner></md-spinner>
     </div>
 </div>

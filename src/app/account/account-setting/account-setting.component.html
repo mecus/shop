@@ -1,5 +1,5 @@
 <primary-navigation></primary-navigation>
-<div class="container">
+<div *ngIf="userAccount" class="container">
   <span><h2>Account Setting</h2></span>
   <div *ngIf="updatedNotify" class="alert alert-success" role="alert">
     <strong>{{updatedNotify}}</strong>
@@ -12,7 +12,7 @@
       <div class="card-block">
         <div *ngIf="!showPersonalInfo">
           <div class="block-title" >
-             <h3><strong>Account Id:</strong> {{userAccount.ac_no}}</h3> 
+             <h3><strong>Account no:</strong> <strong *ngIf="userAccount.ac_no">{{userAccount.ac_no}}</strong></h3>
           </div>
           
           <h2><strong>{{userAccount.title}}</strong> <span>{{userAccount.first_name}}</span> <span>{{userAccount.last_name}}</span></h2>
@@ -24,7 +24,7 @@
         
          <div class="d-flex p-2">
            <a id="button" md-raised-button>Change Password</a>
-           <a (click)="pInfoEditForm(userAccount.email)" role="button" md-raised-button>Edit Personal Details</a>
+           <a (click)="pInfoEditForm(userAccount.email)" role="button" md-raised-button> <md-icon>mode_edit</md-icon> Personal Details</a>
          </div>
          <div *ngIf="pInfoEdit" class="edit-p-info">
             <account-edit (notify)="onInfoUpdate($event)" [acId]="accountIDE"></account-edit> 
@@ -42,8 +42,8 @@
     </div>
    
   </div>
-   <div class="card address-component">
-     <h1><small><a (click)="addressEditForm(userAccount._id)" md-raised-button type="">Edit</a></small> {{userAddress.address_type}} Address</h1>
+   <div *ngIf="userAddress" class="card address-component">
+     <h1><small><a (click)="addressEditForm(userAccount._id)" md-raised-button> <md-icon>mode_edit</md-icon> edit </a></small> <strong *ngIf="userAddress.address_type">{{userAddress.address_type}}</strong> Address</h1>
      <div class="ac-address-container">
      
         <div *ngIf="addressEdit" class="ac-address-form">
@@ -51,23 +51,23 @@
         </div>  
       <div [class.card]="datacard" class="ac-address-data">
           <div class="address">
-            <h2>Address:</h2>
+            <!-- <h2>Address:</h2> -->
             <h3>{{userAddress.address}}</h3>
           </div>
           <div class="address">
-            <h2>Address2:</h2>
+            <!-- <h2>Address2:</h2> -->
              <h3>{{userAddress.address2}}</h3>
           </div>
           <div class="address">
-            <h2>City:</h2>
+            <!-- <h2>City:</h2> -->
             <h3> {{userAddress.city}}</h3>
           </div>
           <div class="address">
-            <h2>Post Code:</h2>
+            <!-- <h2>Post Code:</h2> -->
             <h3>{{userAddress.post_code}}</h3>
           </div>
           <div class="address">
-            <h2>Country:</h2>
+            <!-- <h2>Country:</h2> -->
             <h3> {{userAddress.country}}</h3>
           </div>
       </div>

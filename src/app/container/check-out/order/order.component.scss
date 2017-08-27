@@ -1,0 +1,41 @@
+.card-form{
+    width: 100%;
+    margin: 0 auto;
+    margin-top: 20px;
+}
+div.example-form{
+    width: 100% !important;
+}
+md-input-container{
+    width: 100% !important;
+}
+div.example-full-width{
+    width: 100% !important;
+   
+}
+ input{
+    width: 100% !important;
+}
+table tr td{
+    width: 300px;
+    
+}
+div.aside-check-cart{
+    width: 100%;
+}
+.pageProcessCover{
+    position: fixed;
+    width: 100%;
+    top: 0px;
+    background-color: #fff;
+    opacity: 0.4;
+    height: 100vh;
+    z-index: 100;
+    margin: 0 auto;
+    .center-point{
+        position: absolute;
+        top: 45%;
+        left: 45%;
+        margin: 0 auto;
+    }
+}

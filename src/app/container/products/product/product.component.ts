@@ -7,7 +7,7 @@ import { ProductService } from '../../../services/product.service';
 import { CartService } from '../../../services/cart.service';
 import { Store } from '@ngrx/store';
 import { StorageService } from "app/services/storage.service";
-
+import * as _ from 'lodash';
 
 import * as cart from '../../../store/actions/cart-action';
 import { WindowService } from "app/services/window.service";
@@ -114,9 +114,11 @@ export class ProductComponent implements OnInit {
   ngOnInit() {
     //Retrieving Products from the database
       this.route.params.forEach((param)=>{
-        this.store.dispatch({type: "ACTIVE", payload: param});
+        // this.store.dispatch({type: "ACTIVE", payload: param});
         this.productService.getCachedData().subscribe((data)=>{
           this.products = data.products.filter((product)=> product.department_id === param['dept_id']);
+          let ld = _.take(this.products, 2);
+          console.log(ld);
           this.category  = data.category.filter((cat)=>cat.department_id == param['dept_id']);
           this.subCategory = data.subcategory.filter((subcat)=> subcat.category_id == param['cat_id']);
           if(param['cat_id']){

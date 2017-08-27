@@ -1,0 +1,13 @@
+
+$font-sans-bold: 'Open Sans Bold', sans-serif;
+$open-sans-light: 'Open Sans Light';
+$open-sans-regular: 'Open Sans Regular';
+$open-sans-extra-bold: 'Open Sans ExtraBold';
+$open-sans-semi-bold: 'Open Sans SemiBold';
+
+
+@font-face {font-family: 'Open Sans Bold';src: url('assets/fonts/opensans_bold_macroman/OpenSans-Bold-webfont.woff')format('woff');}
+@font-face {font-family: 'Open Sans Light';src: url('assets/fonts/opensans_light_macroman/OpenSans-Light-webfont.woff')format('woff');}
+@font-face {font-family: 'Open Sans Regular';src: url('assets/fonts/opensans_regular_macroman/OpenSans-Regular-webfont.woff')format('woff');}
+@font-face {font-family: 'Open Sans ExtraBold';src: url('assets/fonts/opensans_extrabold_macroman/OpenSans-Extrabold-webfont.woff')format('woff');}
+@font-face {font-family: 'Open Sans SemiBold';src: url('assets/fonts/opensans_semibold_macroman/OpenSans-Semibold-webfont.woff')format('woff');}

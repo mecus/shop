@@ -15,6 +15,8 @@ import { PaymentMethodComponent } from "app/container/check-out/payment-method/p
 import { AccountSettingComponent } from "app/account/account-setting/account-setting.component";
 import { DeliveryMethodComponent } from "app/container/check-out/deliverymethod/deliverymethod.component";
 import { PaymentComponent } from "app/container/check-out/payment/payment.component";
+import { OrderComponent } from "app/container/check-out/order/order.component";
+import { OrdersComponent } from "app/account/orders/orders.component";
 
 
 
@@ -39,6 +41,8 @@ const routes = [
   {path: 'payment_method', component: PaymentMethodComponent},
   {path: 'delivery_method', component:DeliveryMethodComponent},
   {path: 'review_and_payment', component:PaymentComponent},
+  {path: 'place_order', component:OrderComponent},
+  {path: 'your_orders', component:OrdersComponent},
   fallBack
 ]
 
