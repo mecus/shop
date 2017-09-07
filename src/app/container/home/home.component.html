@@ -3,80 +3,110 @@
   <div class="container">
     <div class=" welcome-container">
       <div class=" welcome-msg">
-        <h1>Welcome to Shop</h1>
-        <p>Shop here and we will deliver straigth to your door</p>
-        <p>Please enter your postcode to make sure we deliver to you</p>
+        <h1>Welcome to uRGy</h1>
+        <p><strong>
+          Shop here and we will deliver straigth to your door.
+          <small>Please enter your postcode to make sure we deliver to you</small>
+        </strong></p>
+        
         <div class="request-postcode">  
             <md-input-container>
               <input #postcode type="text" mdInput name="postcode" required placeholder="Enter Postcode">
             </md-input-container>
-            <a (click)="submitPostcode(postcode.value)" color= "primary" md-raised-button><md-progress-spinner *ngIf="searchingPostcode" class="example-margin"[color]="color"[mode]="mode"></md-progress-spinner> <span *ngIf="!searchingPostcode">Check</span></a>
+            <a (click)="submitPostcode(postcode.value)" color= "primary" md-raised-button> <span>Check <i *ngIf="searchingPostcode" class="fa fa-spin fa-spinner" aria-hidden="true"></i></span></a>
+            <!-- <md-progress-spinner *ngIf="searchingPostcode" class="example-margin"[color]="color"[mode]="mode"></md-progress-spinner> -->
         </div>
         
         <p *ngIf="successMsg">{{successMsg}}</p>
         <p *ngIf="emptyErr">{{emptyErr}}</p>
         <div class="c-shopping">
           <p>Want to look around first ?</p>
-          <a (click)="continueShop()" role="button" class="btn btn-success">Go Shopping <i class="fa fa-spin fa-spinner" aria-hidden="true"></i></a>
+          <a (click)="continueShop()" role="button" class="btn btn-success">Go Shopping </a>
         </div>
         
         <div class="customer-login">
           <p>Already a Customer</p>
-          <a routerLink="/login"> <md-icon>vpn_key</md-icon> Login</a>
+          <a routerLink="/login">  Login here</a>
+          <!-- <md-icon>vpn_key</md-icon> -->
         </div>
       </div>
-      <div class=" welcome-slider">
+      <div *ngIf="ads" class=" welcome-slider">
         <carousel>
-          <slide>
-            <img src="assets/170706_SummerDrinks-Wine_HP-Takeover.jpg" style="width:100%" alt="">
-            <div class="carousel-caption">
+          <slide *ngFor="let ad of ads">
+            <img [src]=ad.photo_url style="width:100%" alt="">
+            <!-- {{ad._id}} -->
+            <!-- <div class="carousel-caption">
               <h3>Our Product</h3>
               <p>Making good food</p>
-            </div>
+            </div> -->
           </slide>
-          <slide>
+          <!-- <slide>
             <img src="assets/170713_0706_PampersBigBet_Cat-Nav.jpg" style="width:100%" alt="">
             <div class="carousel-caption">
               <h3>For Goods</h3>
               <p>Making good food</p>
             </div>
-          </slide>
+          </slide> -->
         </carousel>
         
       </div>
     </div>
   </div>
 </div>
-<div class="container">
-  <div class="grid-container">
-    <div class="grid-1">
-      <h3 hoverMenu >Progress components are built with two HTML elements, some CSS to set the width, and a few attributes.</h3>
+
+<div class="container page-rule">
+  <div class="grid-container d-flex flex-row justify-content-between">
+    <div class="grid-1 p-2">
+        <h1>Shopping Assistance</h1>
+        <div class="grid-set-1 d-flex flex-row align-self-stretch">
+          <div class="p-1">
+            <md-icon>transfer_within_a_station</md-icon>
+          </div>
+          <div class="p-2">
+              <p>Progress components are built with two HTML elements, some CSS to set the width, and a few attributes.</p>
+          </div>
+        </div>
+        <a md-raised-button>See more</a>
+    </div>
+    <div class="grid-2 p-2">
+      <h1>Homble Delivery</h1>
+      <div class="grid-set-2 d-flex flex-row align-self-stretch">
+        <div class="p-1">
+          <md-icon>airport_shuttle</md-icon>
+        </div>
+        <div class="p-2">
+            <p>Progress components are built with two HTML elements, some CSS to set the width, and a few attributes.</p>
+        </div>
       </div>
-    <div class="grid-2">
-      <h3>Progress components are built with two HTML elements, some CSS to set the width, and a few attributes.</h3>
-      </div>
-    <div class="grid-3">
-      <h3>Progress components are built with two HTML elements, some CSS to set the width, and a few attributes.</h3>
-      </div>
+      <a md-raised-button>See more</a>
+      
+    </div>
+    <div class="grid-3 p-2">
+        <h1>Quick Credit Plan</h1>
+        <div class="grid-set-3 d-flex flex-row align-self-stretch">
+          <div class="p-1">
+            <md-icon>today</md-icon>
+          </div>
+          <div class="p-2">
+              <p>Progress components are built with two HTML elements, some CSS to set the width, and a few attributes.</p>
+          </div>
+        </div>
+        <a md-raised-button>See more</a>
+    </div>
   </div>
   
-  <button md-raised-button (click)="onButtonClick()" > Create Client</button>
+  <!-- <button md-raised-button (click)="onButtonClick()" > Create Client</button>
   <button md-raised-button > Google Logout</button>
-  <a md-mini-fab ><md-icon>clear</md-icon></a>
+  <a md-mini-fab ><md-icon>clear</md-icon></a> -->
 
-
-  <p>How it works
-
-
-
-Progress components are built with two HTML elements, some CSS to set the width, and a few attributes.
-
-    We use the .progress as a wrapper to indicate the max value of the progress bar.
-    We use the inner .progress-bar to indicate the progress so far.
-    The .progress-bar requires an inline style, utility class, or custom CSS to set their width.
-    The .progress-bar also requires some role and aria attributes to make it accessible.
-
-Put that all together, and you have the following examples.</p>
+  <div class="d-flex flex-row justify-content-between hero-ad-container">
+    <div class="p-2">
+      <img src="assets/foodadvert-1.jpeg" alt="">
+    </div>
+    <div class="p-2">
+        <img src="assets/foodadvert-2.jpeg" alt="">
+    </div>
+  </div>
   <!--<div>
     {{list | async}}
   </div>
@@ -87,22 +117,8 @@ Put that all together, and you have the following examples.</p>
 
   <h1>{{title}}</h1>-->
 
-  <div class="btn-group" dropdown>
-  <button dropdownToggle type="button" class="btn btn-primary dropdown-toggle">
-    Button dropdown <span class="caret"></span>
-  </button>
-  <ul *dropdownMenu class="dropdown-menu" role="menu">
-    <li role="menuitem"><a class="dropdown-item" href="#">Action</a></li>
-    <li role="menuitem"><a class="dropdown-item" href="#">Another action</a></li>
-    <li role="menuitem"><a class="dropdown-item" href="#">Something else here</a></li>
-    <li class="divider dropdown-divider"></li>
-    <li role="menuitem"><a class="dropdown-item" href="#">Separated link</a>
-    </li>
-  </ul>
-</div>
-
 </div>
 
 
 
-<footer-menu></footer-menu>
+<!-- <footer-menu></footer-menu> -->

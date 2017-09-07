@@ -1,10 +1,10 @@
 import { Component, OnInit, HostListener } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators, AbstractControl } from '@angular/forms';
 import { AuthService } from '../authentication.service';
-import { StorageService } from "app/services/storage.service";
+import { StorageService } from "../../services/storage.service";
 import { Router } from '@angular/router';
-import { AddressSearchService } from "app/services/addresssearch.service";
-import { AccountService } from "app/services/account.service";
+import { AddressSearchService } from "../../services/addresssearch.service";
+import { AccountService } from "../../services/account.service";
 
 
 function passwordMather(c:AbstractControl){
@@ -15,8 +15,8 @@ function passwordMather(c:AbstractControl){
 
 @Component({
   selector: 'app-register',
-  templateUrl: './register.component.html',
-  styleUrls: ['./register.component.scss']
+  templateUrl: 'register.component.html',
+  styleUrls: ['register.component.scss']
 })
 export class RegisterComponent implements OnInit {
   newUser: FormGroup;
@@ -28,7 +28,7 @@ export class RegisterComponent implements OnInit {
   posterror;
   setTempcode;
   progressOn:boolean = false;
-  titles = ["Mr", "Mrs", "Miss", "Rev."];
+  titles;
   color = 'Accent';
   mode = 'indeterminate';
 
@@ -58,7 +58,12 @@ export class RegisterComponent implements OnInit {
       age_limit: null,
       contact_permission: null,
     }, {validator: passwordMather})
-   }
+
+  this.getTitle();
+  }
+  getTitle(){
+    this.titles = this.accountService.getTitle();
+  }
    @HostListener('change', ['$event']) onChnage($event){
      $event.preventDefault;
      this.newUser.patchValue({
@@ -72,7 +77,7 @@ export class RegisterComponent implements OnInit {
     }
     let address = {
         account_id: "",
-        address_type: "Billing",
+        address_type: "billing",
         full_name: customer.first_name+" "+customer.last_name,
         address: customer.billing_address.address,
         address2: customer.billing_address.address2,

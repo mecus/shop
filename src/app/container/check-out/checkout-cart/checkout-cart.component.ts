@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { CartService } from 'app/services/cart.service';
+import { CartService } from '../../../services/cart.service';
 import { Observable } from "rxjs/Observable";
-import { StorageService } from "app/services/storage.service";
-import { TempOrderService } from "app/services/temp-order.service";
-import { AuthService } from "app/authentications/authentication.service";
-import { WindowService } from "app/services/window.service";
+import { StorageService } from "../../../services/storage.service";
+import { TempOrderService } from "../../../services/temp-order.service";
+import { AuthService } from "../../../authentications/authentication.service";
+import { WindowService } from "../../../services/window.service";
 
 @Component({
   selector: 'checkout-cart',

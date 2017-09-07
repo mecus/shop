@@ -1,10 +1,12 @@
 {
     "files.exclude": {
         "**/.js": true,
+        "**/**/*.js": true,
         "/src/**/*.js": true,
-        "/src/**/*.js": true,
+        "/src/**/**/*.js": true,
         "**/.spec.ts": true,
         "**/.js.map": true,
+        "**/**/**/*.js.map": true,
         "**/.git": true,
         "**/.svn": true,
         "**/.hg": true,

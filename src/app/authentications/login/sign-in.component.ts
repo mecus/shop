@@ -6,8 +6,8 @@ import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms'
 // import { User } from 'app/models/user.model';
 import { Router } from '@angular/router';
 import * as firebase from 'firebase';
-import { StorageService } from "app/services/storage.service";
-import { AccountService } from "app/services/account.service";
+import { StorageService } from "../../services/storage.service";
+import { AccountService } from "../../services/account.service";
 
 
 
@@ -21,6 +21,7 @@ export class LoginComponent implements OnInit {
     user:FormGroup;
     errMsg;
     posterror;
+    toggForm;
 
     constructor(private storeService:StorageService, private location:Location, 
     private authService:AuthService, private accountService:AccountService,
@@ -62,13 +63,8 @@ export class LoginComponent implements OnInit {
         }
        
     }
-    facebooklogin(){
-        this.authService.loginFacebook();
-        this.authService.authState();
-    }
-    googlelogin(){
-        this.authService.loginGoogle();
-        this.authService.authState();
+    passwordRequest(){
+        this.toggForm = true;
     }
     signOut():void{
         this.authService.logout();

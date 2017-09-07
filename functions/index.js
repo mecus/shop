@@ -23,7 +23,7 @@ app.get('/*', (req, res)=>{
     // res.set('Cache-Control', 'public, max-age=3000, s-maxage=600');
     return res.sendFile(path.join(__dirname, '../dist/index.html'));
 })
-app.get('/cache', (req, res)=>{
+app.get('/dev', (req, res)=>{
     res.set('Cache-Control', 'public, max-age=3000, s-maxage=600');
     return res.sendFile(path.join(__dirname, '../dist/index.html'));
 })

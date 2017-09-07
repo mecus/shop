@@ -6,6 +6,8 @@
 /out-tsc
 /src/app/firebase-configuration.ts
 .vscode
+**/**/*.js
+**/**/*.js.map
 
 # dependencies
 /node_modules

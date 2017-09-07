@@ -3,19 +3,18 @@ import { trigger, state, style, stagger, transition, animate, keyframes, query }
 import { Location } from '@angular/common';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
-import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
 import { iProduct } from '../../../models/product.model';
-import { ProductService } from "app/services/product.service";
+import { ProductService } from "../../../services/product.service";
 import { CartService } from '../../../services/cart.service';
-import { StorageService } from "app/services/storage.service";
-import * as cart from "app/store/actions/cart-action";
-import { ReviewService } from "app/services/review.service";
+import { StorageService } from "../../../services/storage.service";
+
+import { ReviewService } from "../../../services/review.service";
 
 @Component({
   selector: 'app-product',
-  templateUrl: './product-view.component.html',
-  styleUrls: ['./product-view.component.scss'],
+  templateUrl: 'product-view.component.html',
+  styleUrls: ['product-view.component.scss'],
 
   animations: [
     trigger('IcomponentIn', [
@@ -45,7 +44,7 @@ export class ProductViewComponent implements OnInit {
     userErr;
     cartErrorMsg?;
     carts$:Observable<any>;
-    constructor(private store:Store<iProduct>, private _router:Router,
+    constructor(private _router:Router,
     private route:ActivatedRoute, private productService:ProductService,
     private location:Location, private cartService:CartService, 
     private storeService:StorageService, private _fb:FormBuilder,

@@ -2,32 +2,36 @@
 <!--Listing out the Category for query selection -->
 <div class="list-menu w3-card-4">
     <div class="container">
-      <div class="row">
-        <div class="col-3 first-cat">
-          <ul *ngIf="category">
-            <li *ngFor="let cat of category">
-                <div class="cat-list list-group-item justify-content-between" (click)="showSubCat(cat, $event)">
-                    {{cat.name}}
-                    <span class="badge badge-default badge-pill">
-                      <i style="font-size:14px;" class="fa fa-angle-right" aria-hidden="true"></i>
-                    </span>
-                </div>
-              </li>
-          </ul>
+      <div class="d-flex flex-row list-menu-container">
+        <div class="p-2 category-container-half">
+          <div class="category-inner d-flex flex-row">
+            <div class="p-2 first-cat">
+                <ul *ngIf="category">
+                  <li *ngFor="let cat of category">
+                      <div class="cat-list" (click)="showSubCat(cat, $event)">
+                          {{cat.name}}
+                          <span class="arrow-icon">
+                            <i style="font-size:14px;" class="fa fa-angle-right" aria-hidden="true"></i>
+                          </span>
+                      </div>
+                    </li>
+                </ul>
+              </div>
+              <div *ngIf="subCategory" class="p-2 second-cat">
+                <ul>
+                    <li *ngFor="let subcat of subCategory">
+                      <div class="sub-list" (click)="displayProduct(subcat, $event)">
+                          {{subcat.name}}
+                          <span class="arrow-icon">
+                            <i style="font-size:14px;" class="fa fa-angle-right" aria-hidden="true"></i>
+                          </span>
+                      </div>
+                    </li>
+                </ul>
+              </div>
+            </div>
         </div>
-        <div *ngIf="subCategory" class="col-3 second-cat">
-          <ul>
-              <li *ngFor="let subcat of subCategory">
-                <div class="sub-list list-group-item justify-content-between" (click)="displayProduct(subcat, $event)">
-                    {{subcat.name}}
-                    <span class="badge badge-default badge-pill">
-                      <i style="font-size:14px;" class="fa fa-angle-right" aria-hidden="true"></i>
-                    </span>
-                </div>
-              </li>
-          </ul>
-        </div>
-        <div class="col-6">
+        <div class="p-2 advert-container-half">
           <div class="advert">
             <div *ngIf="advert">
               <!--<p></p>
@@ -51,7 +55,7 @@
 </div><!--End of List Menu Section-->
 
 <!--Main Page Content after category list-->
-<div class="container" *ngIf="products">
+<!-- <div class="container" *ngIf="products">
   <div class="page-wrapper row" [@loadproduct]="products">
     <div class="main-content col col-lg-9">
       <div class="row">
@@ -81,8 +85,8 @@
     </div>
     <div class="side-bar col col-lg-3">
       <widget-right></widget-right>
-      <div class="post-box">
-          <div *ngIf="cartErrorMsg">
+      <div class="post-box card" *ngIf="cartErrorMsg">
+          <div class="card-body" >
                 <p>{{cartErrorMsg}}</p>
                 <md-input-container>
                     <input #postcode type="text" mdInput name="postcode" placeholder="Enter Postcode">
@@ -92,5 +96,50 @@
       </div>
     </div>
   </div>
+</div> -->
+<!-- <footer-menu></footer-menu> -->
+
+<div class="container page-rule" [@loadproduct]="products" *ngIf="products">
+  <div class="product-container d-flex flex-row" >
+      <div class="product-content p-2">
+        <div class="product-list d-flex align-content-stretch flex-row flex-wrap">
+          <div class="product-item p-2" *ngFor="let product of products">
+              <md-card class="example-card product">
+                <div [style.min-height.px]="60">
+                  <img *ngIf="product.imageUrl !== undefined; else load" (click)="viewProduct(product)" md-card-image  [src]="product.imageUrl">
+                  <ng-template #load>waiting..</ng-template>
+                </div>
+                
+                <md-card-content>
+                  <h1 id="title">{{product.name}}</h1>
+                  <p id="size">( {{product.description.size}} )</p>
+                  <p id="price">{{product.price | currency: 'GBP': 'true'}}</p>
+                </md-card-content>
+                <md-card-actions>
+                    <a  role="button" color="primary" (click)="addToCart(product)"  md-raised-button >Add</a>
+                </md-card-actions>
+                <div class="inCart-wrapper" *ngFor="let cart of carts$">
+                    <div class="inCart-select" *ngIf="cart.name == product.name">
+                      <p id="inCart">{{cart.qty}} in cart</p>
+                    </div>
+                </div>
+              </md-card>
+          </div>
+        </div>
+      </div>
+      <div class="side-widget p-2">
+          <widget-right></widget-right>
+          <div class="post-box card" *ngIf="cartErrorMsg">
+              <div class="card-body" >
+                    <p>{{cartErrorMsg}}</p>
+                    <md-input-container>
+                        <input #postcode type="text" mdInput name="postcode" placeholder="Your Postcode">
+                    </md-input-container>
+                    <a (click)="submitPostcode(postcode.value)" md-raised-button>Check</a>
+                </div>
+          </div>
+      </div>
+    </div>
 </div>
-<footer-menu></footer-menu>
+
+

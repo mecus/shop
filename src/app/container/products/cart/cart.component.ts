@@ -1,10 +1,9 @@
 import { Component } from '@angular/core';
-import { Store } from '@ngrx/store';
 import { Router } from '@angular/router';
 import { iCart } from "../../../models/cart.model";
 import { Observable } from "rxjs/Observable";
 import { CartService } from '../../../services/cart.service';
-import { StorageService } from "app/services/storage.service";
+import { StorageService } from "../../../services/storage.service";
 import { Location } from '@angular/common';
 
 

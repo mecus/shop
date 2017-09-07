@@ -1,125 +1,131 @@
  <primary-navigation></primary-navigation>
- <div *ngIf="selectedProduct" class="container">
-    <p><a (click)="back()" md-mini-fab ><md-icon>arrow_back</md-icon></a> {{selectedProduct.category}} > {{selectedProduct.name}}</p>
-    <div class="row">
-        <div class="col col-lg-9">
-        <div class="row">
-            <div class="col col-lg-5">
-                <div class="prod-left-image">
-                    <img style="width:300px" [src]="selectedProduct.imageUrl">
-                </div>
-                
-                <div class="left-side-ad">
-                    <widget-left></widget-left>
-                </div>
-            
-            </div>
-            <div class="col col-lg-7">
-            <div class="row">
-                <div class="col-7"><h1>{{selectedProduct.name}}</h1></div>
-                <div class="col-5"><p><strong>Product Code:</strong> {{selectedProduct.code}}</p></div>
-            </div>
-            <p>Price: {{selectedProduct.price | currency: 'GBP' :true}}</p>
-            <p>( {{selectedProduct.description.size}} )</p>
-            
-            <a role="button" (click)="addToCart()" md-raised-button > Add to Cart</a>
-            <div class="inCart-wrapper" *ngFor="let cart of carts$">
-                <div *ngIf="cart.name == selectedProduct.name">
-                  <p id="inCart">{{cart.qty}} in cart</p>
-                </div>
-            </div>
-            <div *ngIf="cartErrorMsg">
-                <p>{{cartErrorMsg}}</p>
-                <md-input-container>
-                    <input #postcode type="text" mdInput name="postcode" placeholder="Enter Postcode">
-                </md-input-container>
-                <a (click)="submitPostcode(postcode.value)" md-raised-button>Submit</a>
-            </div>
-            <div *ngIf="selectedProduct" class="product-details">
-                <br><br>
-                <div class="nutrition-table">
-                    <h1>Nutrition</h1>
-                    <div class="nutrient-container">
-                        <div class="energy">
-                            <h2>energy</h2>
-                            <p>{{selectedProduct.nutrition.energy}}</p>
+ <div class="main-container page-rule">  
+    <div *ngIf="selectedProduct" class="container">
+        <p><a (click)="back()" md-mini-fab ><md-icon>arrow_back</md-icon></a> {{selectedProduct.category}} > {{selectedProduct.name}}</p>
+        <div class="d-flex flex-row flex-container">
+            <div class="p-2 flex-left-content">
+                <div class="d-flex flex-row flex-left-content-inner">
+                    <div class="p-2 right-image-widget">
+                        <div class="prod-left-image">
+                            <img [src]="selectedProduct.imageUrl">
                         </div>
-                        <div class="fat">
-                            <h2>fat</h2>
-                            <p>{{selectedProduct.nutrition.fat}}</p>
+                        
+                        <div class="left-side-ad">
+                            <widget-left></widget-left>
                         </div>
-                        <div class="saturated">
-                            <h2>saturates</h2>
-                            <p>{{selectedProduct.nutrition.saturates}}</p>
-                        </div>
-                         <div class="sugar">
-                            <h2>sugar</h2>
-                            <p>110</p>
-                        </div>
-                        <div class="salt">
-                            <h2>salt</h2>
-                            <p>{{selectedProduct.nutrition.salt}}</p>
-                        </div>
-                    </div>
                     
-                </div>
-                
-                <div class="description-contianer">
-                    <div class="tab-wrapper">
-                        <div (click)="showDescription()" class="descr">Description</div>
-                        <div (click)="showReview()" class="revw">Reviews</div>
                     </div>
-                    <div class="section-content">
-                        <div *ngIf="description" class="decriptions">
-                           
-                            <h1>Description</h1>
-                            <p>{{selectedProduct.description.detail}}</p>
-                            <p><strong>Origin:</strong> {{selectedProduct.description.origin}}</p>
+                    <div class="p-2 center-content">
+                        <div class="d-flex flex-row">
+                            <div class="p-2 title"><h1>{{selectedProduct.name}}</h1></div>
+                            <div class="p-2 code"><p><strong>Product Code:</strong> {{selectedProduct.code}}</p></div>
                         </div>
-                        <div *ngIf="review" class="reviews">
-                           
-                            <h1>product Reviews</h1>
-                            <md-checkbox (change)="showReviewForm($event)" >Please add your review to this product</md-checkbox>
-                            <span *ngIf="userErr"><p id="error-msg" >{{userErr}}</p> <small (click)="redirectLogin()" >Sign In here</small> </span>
-                            <form *ngIf="showForm" class="example-form" [formGroup]="reviewForm" (ngSubmit)="addReviews(reviewForm.value)">
-                                <input hidden formControlName="user">
-                                <input hidden formControlName="productId">
-                                <input hidden formControlName="productName">
-                          
-                                <md-input-container>
-                                    <input formControlName="userName" mdInput placeholder="Your Name" value="">
-                                </md-input-container>
-                                <p>
-                                    <md-input-container class="example-full-width">
-                                        <textarea formControlName="comment" mdInput #comment maxlength="256" placeholder="Your Review"></textarea>
-                                        <md-hint align="start"><strong>Please tell us what you think about this product</strong> </md-hint>
-                                        <md-hint align="end">{{comment.value.length}} / 256</md-hint>
-                                    </md-input-container>
+                        <h1 id="price">Price: {{selectedProduct.price | currency: 'GBP' :true}}</h1>
+                        <p>( {{selectedProduct.description.size}} )</p>
+                        
+                        <a role="button" (click)="addToCart()" md-raised-button > Add to Cart</a>
+                        <div class="inCart-wrapper" *ngFor="let cart of carts$">
+                            <div *ngIf="cart.name == selectedProduct.name">
+                                <!-- <p id="inCart">{{cart.qty}} in cart</p> -->
+                                <p id="inCart" class="p-2">
+                                    <span>{{cart.qty}} in</span>
+                                    <md-icon>shopping_cart</md-icon>
                                 </p>
-                                <div id="submit-btn">
-                                    <button type="submit" md-raised-button>Submit</button>
+
+                            </div>
+                        </div>
+                        <div id="post-code-msg" *ngIf="cartErrorMsg">
+                            <p>{{cartErrorMsg}}</p>
+                            <md-input-container>
+                                <input #postcode type="text" mdInput name="postcode" placeholder="Your Postcode">
+                            </md-input-container>
+                            <a (click)="submitPostcode(postcode.value)" md-raised-button>Check</a>
+                        </div>
+                    <div *ngIf="selectedProduct" class="product-details">
+                        <br><br>
+                        <div class="nutrition-table">
+                            <h1>Nutrition</h1>
+                            <div class="nutrient-container">
+                                <div class="energy">
+                                    <h2>energy</h2>
+                                    <p>{{selectedProduct.nutrition.energy}}</p>
                                 </div>
-                                <span *ngIf="errMsg"><p id="error-msg" >{{errMsg}}</p> </span>
-                            </form>
-                            <div class="product-review">
-                                <app-reviews [Id]="selectedProduct._id"></app-reviews>
+                                <div class="fat">
+                                    <h2>fat</h2>
+                                    <p>{{selectedProduct.nutrition.fat}}</p>
+                                </div>
+                                <div class="saturated">
+                                    <h2>saturates</h2>
+                                    <p>{{selectedProduct.nutrition.saturates}}</p>
+                                </div>
+                                <div class="sugar">
+                                    <h2>sugar</h2>
+                                    <p>110</p>
+                                </div>
+                                <div class="salt">
+                                    <h2>salt</h2>
+                                    <p>{{selectedProduct.nutrition.salt}}</p>
+                                </div>
+                            </div>
+                            
+                        </div>
+                        
+                        <div class="description-contianer">
+                            <div class="tab-wrapper">
+                                <div (click)="showDescription()" class="descr">Description</div>
+                                <div (click)="showReview()" class="revw">Reviews</div>
+                            </div>
+                            <div class="section-content">
+                                <div *ngIf="description" class="decriptions">
+                                
+                                    <h1>Description</h1>
+                                    <p>{{selectedProduct.description.detail}}</p>
+                                    <p><strong>Origin:</strong> {{selectedProduct.description.origin}}</p>
+                                </div>
+                                <div *ngIf="review" class="reviews">
+                                
+                                    <h1>product Reviews</h1>
+                                    <md-checkbox (change)="showReviewForm($event)" >Please add your review to this product</md-checkbox>
+                                    <span *ngIf="userErr"><p id="error-msg" >{{userErr}}</p> <small (click)="redirectLogin()" >Sign In here</small> </span>
+                                    <form *ngIf="showForm" class="example-form" [formGroup]="reviewForm" (ngSubmit)="addReviews(reviewForm.value)">
+                                        <input hidden formControlName="user">
+                                        <input hidden formControlName="productId">
+                                        <input hidden formControlName="productName">
+                                
+                                        <md-input-container>
+                                            <input formControlName="userName" mdInput placeholder="Nickname" value="">
+                                        </md-input-container>
+                                        <p>
+                                            <md-input-container class="example-full-width">
+                                                <textarea formControlName="comment" mdInput #comment maxlength="256" placeholder="Your Review"></textarea>
+                                                <md-hint align="start"><strong>Please tell us what you think about this product</strong> </md-hint>
+                                                <md-hint align="end">{{comment.value.length}} / 256</md-hint>
+                                            </md-input-container>
+                                        </p>
+                                        <div id="submit-btn">
+                                            <button type="submit" md-raised-button>Submit</button>
+                                        </div>
+                                        <span *ngIf="errMsg"><p id="error-msg" >{{errMsg}}</p> </span>
+                                    </form>
+                                    <div class="product-review">
+                                        <app-reviews [Id]="selectedProduct._id"></app-reviews>
+                                    </div>
+                                    
+                                </div>
                             </div>
                             
                         </div>
                     </div>
-                    
-                </div>
-            </div>
 
+                    </div>
+                </div>
+            
+            </div>
+            <div class="p-2 flex-right-widget">
+                <widget-right></widget-right>
             </div>
         </div>
         
-        </div>
-        <div class="col col-lg-3">
-            <widget-right></widget-right>
-        </div>
     </div>
-    
 </div>
-
-<footer-menu></footer-menu>
+<!-- <footer-menu></footer-menu> -->

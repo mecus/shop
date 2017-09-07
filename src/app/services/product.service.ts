@@ -3,23 +3,23 @@ import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/databa
 import { Http, URLSearchParams, RequestOptions, Headers } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import { ReplaySubject } from 'rxjs/ReplaySubject';
+import * as Rx from 'rxjs';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/merge';
 import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/operator/share';
 
-import { iProduct } from "app/models/product.model";
+import { iProduct } from "../models/product.model";
 
-import { AdItem } from '../components/advert/ad-item';
-import { NewProdComponent } from '../components/advert/dynamic-components/newprod.component';
-import { NewCatComponent } from '../components/advert/dynamic-components/newcat.component';
-
+// import { AdItem } from '../components/advert/ad-item';
+// import { NewProdComponent } from '../components/advert/dynamic-components/newprod.component';
+// import { NewCatComponent } from '../components/advert/dynamic-components/newcat.component';
 
 
 @Injectable()
 export class ProductService {
-  host:string = "http://localhost:3000/";
+  host:string = "https://urgyshop.herokuapp.com/";
   resourceUrl;
   dataResource;
   adUrl;
@@ -79,26 +79,26 @@ export class ProductService {
      return this._http.get(this.adUrl).map((res)=>{
      let ad = res.json().filter(ads=>ads.tag == "alpha");
      return ad.map((data)=>{
-       return new AdItem(NewProdComponent, data);
+       return  data;
      });
     }).catch(this.handleError);
   }
 
-  getAds() {
-    // used for getSoreAd() supplements
-    // need to be removed later
-    return [
-      new AdItem(NewProdComponent, {title: 'Bombasto', snipet: 'Brave as they come'}),
+  // getAds() {
+  //   // used for getSoreAd() supplements
+  //   // need to be removed later
+  //   return [
+  //     new AdItem(NewProdComponent, {title: 'Bombasto', snipet: 'Brave as they come'}),
 
-      new AdItem(NewCatComponent,   {headline: 'Hiring for several positions',
-                                        body: 'Submit your resume today!'}),
+  //     new AdItem(NewCatComponent,   {headline: 'Hiring for several positions',
+  //                                       body: 'Submit your resume today!'}),
 
-      new AdItem(NewProdComponent, {title: 'Dr IQ', snipet: 'Smart as they come'}),
+  //     new AdItem(NewProdComponent, {title: 'Dr IQ', snipet: 'Smart as they come'}),
 
-      new AdItem(NewCatComponent,   {headline: 'Openings in all departments',
-                                        body: 'Apply today'}),
-    ];
-  }
+  //     new AdItem(NewCatComponent,   {headline: 'Openings in all departments',
+  //                                       body: 'Apply today'}),
+  //   ];
+  // }
 
   //Caching data functions
   getCachedData(forceRefresh?:boolean){
@@ -144,5 +144,19 @@ export class ProductService {
     },((err)=>{
       console.log(err);
     })).subscribe();
+  }
+  // Product Brand List
+  getBrands():Observable<any>{
+    let brands:Array<any>  = [
+      {name: "Africa's Finest", contained_product: 56},
+      {name: "Baldwins", contained_product: 500},
+      {name: "Baron", contained_product: 86},
+      {name: "Carib", contained_product: 100},
+      {name: "Pa Benjamine", contained_product: 46},
+      {name: "Tropicana", contained_product: 70},
+      {name: "Nrich", contained_product: 67}
+    ];
+    let newBrand = Rx.Observable.from([brands]);
+    return newBrand;
   }
 }

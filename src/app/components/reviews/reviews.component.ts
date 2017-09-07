@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, OnChanges } from '@angular/core';
-import { ReviewService } from "app/services/review.service";
+import { ReviewService } from "../../services/review.service";
 import { Observable } from 'rxjs/Observable';
 
 @Component({

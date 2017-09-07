@@ -1,11 +1,11 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { AddressSearchService } from "app/services/addresssearch.service";
-import { StorageService } from "app/services/storage.service";
+import { AddressSearchService } from "../../../services/addresssearch.service";
+import { StorageService } from "../../../services/storage.service";
 
 @Component({
   selector: 'address-search',
-  templateUrl: './address-search.component.html',
-  styleUrls: ['./address-search.component.scss']
+  templateUrl: 'address-search.component.html',
+  styleUrls: ['address-search.component.scss']
 })
 export class AddressSearchComponent implements OnInit {
   addresses;

@@ -12,8 +12,8 @@ import 'rxjs/add/operator/merge';
 
 export class AddressSearchService {
     addressApiUrl: string;
-    api_key: "T29bpEjr5UOyVnS7I8ldKA9589";
-    api2 = "3JasqYbLr0y3NTHqObVR0Q9596";
+    api_key: "DxmP580gzk6EvexZoA58fQ9969";
+    api2 = "PvAxpJFmDU6x3g0da1i1nw9969";
     constructor(private _http:Http){
         this.addressApiUrl = "https://api.getAddress.io/find/";
     }
@@ -21,7 +21,7 @@ export class AddressSearchService {
     findAddres(postcode:string):Observable<any>{
         let options = new RequestOptions({headers: new Headers({'Content-Type': 'application/json', 'Accept': 'q=0.8;application/json;q=0.9'})}); 
         let params: URLSearchParams = new URLSearchParams();
-            params.set("api-key", "T29bpEjr5UOyVnS7I8ldKA9589");
+            params.set("api-key", "DxmP580gzk6EvexZoA58fQ9969");
         return this._http.get(this.addressApiUrl+postcode+"?"+params).map((address)=>{
             return address.json();
         }).catch(this.handleError);
@@ -30,8 +30,14 @@ export class AddressSearchService {
     handleError(err):Observable<any>{
         if (err.status === 404 || err.status === "404"){
         return err.json();
+        }else if(err.status == 400 || 404){
+            console.log(`
+            Status: 400
+            Error: ${err}
+            `)
+            
         }else{
-        return Observable.throw(new Error(err.status));
+            return Observable.throw(new Error(err.status));
         }
     }
     getMyIp(){

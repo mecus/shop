@@ -11,7 +11,7 @@ import 'rxjs/add/operator/share';
 @Injectable()
 
 export class YoutubeService {
-    private host:string = "http://localhost:3000/";
+    host: string = "https://urgyshop.herokuapp.com/";
     youtubeVideoUrl;
     constructor(private _http:Http){
         this.youtubeVideoUrl = this.host+"api/v1/stores/youtube";

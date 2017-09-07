@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { WindowService } from "app/services/window.service";
+import { WindowService } from "./window.service";
 
 @Injectable()
 

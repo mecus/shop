@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
-import { WindowService } from "app/services/window.service";
-import { ClearHeighlightMenu } from "app/services/clearfunction.service";
-import { StorageService } from "app/services/storage.service";
-import { AuthService } from "app/authentications/authentication.service";
-import { CartService } from 'app/services/cart.service';
+import { WindowService } from "../../../services/window.service";
+import { ClearHeighlightMenu } from "../../../services/clearfunction.service";
+import { StorageService } from "../../../services/storage.service";
+import { AuthService } from "../../../authentications/authentication.service";
+import { CartService } from '../../../services/cart.service';
 
 
 @Component({
@@ -70,7 +70,7 @@ export class TopMenuComponent implements OnInit {
     })
       
     
-    let dom = document.getElementById('top-screen');
+    let dom = document.getElementById('md-toolbar');
     
     this.window.addEventListener('scroll', (e)=>{
       let yPos = this.window.pageYOffset;
@@ -86,6 +86,115 @@ export class TopMenuComponent implements OnInit {
     //   // alert("Screemmmm");
     //   this.window.document.body.scrollTop = 400;
     // }
-  }
+  
+  //Start Particlr js
+  
+  // this.window.particlesJS("md-toolbar", {
+  //   "particles": {
+  //     "number": {
+  //       "value": 88,
+  //       "density": {
+  //         "enable": true,
+  //         "value_area": 700
+  //       }
+  //     },
+  //     "color": {
+  //       "value": ["#aa73ff", "#f8c210", "#83d238", "#33b1f8"]
+  //     },
+  //     "shape": {
+  //       "type": "circle",
+  //       "stroke": {
+  //         "width": 0,
+  //         "color": "#000000"
+  //       },
+  //       "polygon": {
+  //         "nb_sides": 15
+  //       }
+  //     },
+  //     "opacity": {
+  //       "value": 0.5,
+  //       "random": false,
+  //       "anim": {
+  //         "enable": false,
+  //         "speed": 1.5,
+  //         "opacity_min": 0.15,
+  //         "sync": false
+  //       }
+  //     },
+  //     "size": {
+  //       "value": 2.5,
+  //       "random": false,
+  //       "anim": {
+  //         "enable": true,
+  //         "speed": 2,
+  //         "size_min": 0.15,
+  //         "sync": false
+  //       }
+  //     },
+  //     "line_linked": {
+  //       "enable": true,
+  //       "distance": 110,
+  //       "color": "#33b1f8",
+  //       "opacity": 0.25,
+  //       "width": 1
+  //     },
+  //     "move": {
+  //       "enable": true,
+  //       "speed": 1.6,
+  //       "direction": "none",
+  //       "random": false,
+  //       "straight": false,
+  //       "out_mode": "out",
+  //       "bounce": false,
+  //       "attract": {
+  //         "enable": false,
+  //         "rotateX": 600,
+  //         "rotateY": 1200
+  //       }
+  //     }
+  //   },
+  //   "interactivity": {
+  //     "detect_on": "canvas",
+  //     "events": {
+  //       "onhover": {
+  //         "enable": false,
+  //         "mode": "repulse"
+  //       },
+  //       "onclick": {
+  //         "enable": false,
+  //         "mode": "push"
+  //       },
+  //       "resize": true
+  //     },
+  //     "modes": {
+  //       "grab": {
+  //         "distance": 400,
+  //         "line_linked": {
+  //           "opacity": 1
+  //         }
+  //       },
+  //       "bubble": {
+  //         "distance": 400,
+  //         "size": 40,
+  //         "duration": 2,
+  //         "opacity": 8,
+  //         "speed": 3
+  //       },
+  //       "repulse": {
+  //         "distance": 200,
+  //         "duration": 0.4
+  //       },
+  //       "push": {
+  //         "particles_nb": 4
+  //       },
+  //       "remove": {
+  //         "particles_nb": 2
+  //       }
+  //     }
+  //   },
+  //   "retina_detect": true
+  // });
 
+  }
 }
+

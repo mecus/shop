@@ -1,6 +1,6 @@
 <secondary-navigation></secondary-navigation>
 <div class="register-container ">
-    <div class="jumbotron search-head">
+    <div class="jumbotron card search-head">
         <h2>Registration is quick and easy</h2>
         <p>Enter your postcode to see products and offers available to you.</p>
         <div class="search-postcode">
@@ -14,37 +14,37 @@
         </div>
         <div *ngIf="progressOn" class="progress-bar">
             <section class="example-section">
-            <md-progress-bar
-                class="example-margin"
-                [color]="accent"
-                [mode]="mode">
-            </md-progress-bar>
+                <md-progress-bar
+                    class="example-margin"
+                    [color]="accent"
+                    [mode]="mode">
+                </md-progress-bar>
             </section>
         </div>
     </div>
 
     <div *ngIf="searchResult" class="search-result">
-        <alert type="success">
+        <div class="alert alert-success success" role="alert">
             <strong>Congratulations!</strong> We can successfully deliver to your address <a class="alert-link">Continue with form below</a>.
-        </alert>
+        </div>
         
     </div>
     <div *ngIf="searchResultErr" class="search-result">
-        <alert type="danger">
+        <div class="alert alert-info" role="alert">
             <strong>Sorry!</strong> We can not deliver to your address at this time!!.
-        </alert>
+        </div>
     </div>
     <div *ngIf="searchNotFound" class="search-result">
-        <alert type="danger">
+        <div class="danger alert alert-danger" role="alert">
             <strong>Sorry!</strong> Your address was not found!!.
-        </alert>
+        </div>
     </div>
     <br><br>
 
-    <div class="request-form" *ngIf="searchResult">
+    <div class="request-form " *ngIf="searchResult">
         <!-- *ngIf="searchResult" -->
         <form  novalidate class="registration-form" [formGroup]="newUser" (ngSubmit)="register(newUser.value)">
-            <div class="jumbotron form-sec-1">
+            <div class="jumbotron card form-sec-1">
                 <p>
                     <md-select formControlName="title" placeholder="Select Title">
                         <md-option *ngFor="let title of titles" [value]="title">
@@ -93,14 +93,14 @@
                 </table>
             </div>
             <p style="color:red" *ngIf="errMsg">{{errMsg}}</p>
-            <div class="more-info">
-                <div class="jumbotron" formGroupName="billing_address">
+            <div class="">
+                <div class="jumbotron more-info card" formGroupName="billing_address">
                     <p>
                         <md-input-container class="example-full-width">
-                        <textarea formControlName="address" mdInput placeholder="Address"></textarea>
+                        <input formControlName="address" mdInput placeholder="Address">
                         </md-input-container>
                         <md-input-container class="example-full-width">
-                        <textarea formControlName="address2" mdInput placeholder="Address 2"></textarea>
+                        <input formControlName="address2" mdInput placeholder="Address 2">
                         </md-input-container>
                     </p>
 
@@ -120,7 +120,7 @@
 
             </div>
             
-            <div class="jumbotron contact-permit">
+            <div class="jumbotron card contact-permit">
                 <h2>Contact Permission</h2>
                 <p>We'd love to send you money-off coupons, exclusive offers and the latest info from us by email, post, SMS, phone and other electronic means. We'll always treat your personal details with the utmost care and will never sell them to other companies for marketing purposes.</p>
                 <md-radio-group (change)="onChnage($event)">

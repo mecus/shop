@@ -1,16 +1,16 @@
 import { Component, OnInit, HostListener } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { trigger, state, style, stagger, transition, animate, keyframes, query } from '@angular/animations';
-import { iCustomer } from 'app/models/customer.model';
+import { iCustomer } from '../../../models/customer.model';
 import { Router } from '@angular/router';
-import { AccountService } from "app/services/account.service";
-import { AuthService } from "app/authentications/authentication.service";
-import { StorageService } from "app/services/storage.service";
+import { AccountService } from "../../../services/account.service";
+import { AuthService } from "../../../authentications/authentication.service";
+import { StorageService } from "../../../services/storage.service";
 
 @Component({
   selector: 'billing-address',
-  templateUrl: './billing.component.html',
-  styleUrls: ['./billing.component.scss']
+  templateUrl: 'billing.component.html',
+  styleUrls: ['billing.component.scss']
 })
 
 export class BillingInfoComponent implements OnInit {
@@ -18,7 +18,7 @@ export class BillingInfoComponent implements OnInit {
     sameAddress:boolean;
     differentAddress:boolean;
     errorMsg;
-    titles = ["Mr", "Mrs", "Miss", "Rev."];
+    titles;
     constructor(private _fb:FormBuilder, private _router:Router,
     private accountService:AccountService, private authService:AuthService,
     private storeService:StorageService){
@@ -46,11 +46,15 @@ export class BillingInfoComponent implements OnInit {
             address_type: null
            
         })
+    this.getTitle();
+    }
+    getTitle(){
+        this.titles = this.accountService.getTitle();
     }
     createCustomer(customer):void{
         if(!customer.email && !customer.first_name){
             this.errorMsg = "Please fill all required fields";
-            this._router.navigate(["/payment_method"]);
+            // this._router.navigate(["/payment_method"]);
             return;
         }
         let user = {

@@ -1,12 +1,12 @@
 import { Component, OnInit, Input, OnChanges, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators} from '@angular/forms';
-import { AccountService } from "app/services/account.service";
+import { AccountService } from "../../../services/account.service";
 import { Router } from '@angular/router';
 
 @Component({
   selector: 'account-edit',
-  templateUrl: './account-edit.component.html',
-  styleUrls: ['./account-edit.component.scss']
+  templateUrl: 'account-edit.component.html',
+  styleUrls: ['account-edit.component.scss']
 })
 export class AccountInfoEditComponent implements OnInit, OnChanges {
   @Input() acId;

@@ -1,8 +1,8 @@
 import { Component, OnInit, HostListener } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
-import { AccountService } from "app/services/account.service";
-import { StorageService } from "app/services/storage.service";
-import { WindowService } from "app/services/window.service";
+import { AccountService } from "../../../services/account.service";
+import { StorageService } from "../../../services/storage.service";
+import { WindowService } from "../../../services/window.service";
 
 @Component({
   selector: 'app-update-account',

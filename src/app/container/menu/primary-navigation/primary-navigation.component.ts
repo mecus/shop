@@ -2,10 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'primary-navigation',
-  template: `
-    <app-top-menu></app-top-menu>
-    <sub-menu></sub-menu>
-  `
+  templateUrl: 'primary-navigation.component.html'
 
 })
 export class PrimaryNavigationComponent implements OnInit {

@@ -12,13 +12,17 @@ import 'rxjs/add/operator/merge';
 
 
 export class AccountService {
+    host: string = "https://urgyshop.herokuapp.com/";
     urlApi;
     patchApi;
     addressApi; 
     constructor(private _http:Http){
-        this.urlApi = "http://localhost:3000/api/v1/customers/account/";
-        this.patchApi = "http://localhost:3000/api/v1/customers/account/";
-        this.addressApi = "http://localhost:3000/api/v1/customers/address/"
+        this.urlApi = this.host+"api/v1/customers/account/";
+        this.patchApi = this.host+"api/v1/customers/account/";
+        this.addressApi = this.host+"api/v1/customers/address/";
+    }
+    getTitle(){
+        return ["Mr", "Mrs", "Miss", "Rev."];
     }
 
     getAccount(id):Observable<any>{

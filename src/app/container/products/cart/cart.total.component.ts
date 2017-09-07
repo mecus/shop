@@ -2,16 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { iCart } from "../../../models/cart.model";
 import { Observable } from "rxjs/Observable";
 import { CartService } from '../../../services/cart.service';
-import { StorageService } from "app/services/storage.service";
+import { StorageService } from "../../../services/storage.service";
 
 @Component({
     selector: 'cart-total',
-    template: `
-    
-            <span>{{totalPrice | currency: "GBP" :true}}</span>
-           
-    `,
-    styles: ['']
+    templateUrl: 'carts/cart.total.component.html'
 })
 export class CartTotalComponent implements OnInit {
     cart$:Observable<iCart>;

@@ -2,9 +2,9 @@ import { Component, OnInit, HostListener } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { trigger, state, style, stagger, transition, animate, keyframes, query } from '@angular/animations';
 import { Router } from '@angular/router';
-import { iCustomer } from 'app/models/customer.model';
-import { AuthService } from "app/authentications/authentication.service";
-import { AccountService } from "app/services/account.service";
+import { iCustomer } from '../../../models/customer.model';
+import { AuthService } from "../../../authentications/authentication.service";
+import { AccountService } from "../../../services/account.service";
 
 @Component({
   selector: 'guest-checkout',

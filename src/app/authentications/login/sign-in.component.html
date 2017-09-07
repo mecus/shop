@@ -16,8 +16,11 @@
     <div class="login-link">
         <h2>Registered Customer</h2>
         <hr>
+        <div *ngIf="toggForm" class="forgott-password">
+            <forgot-password></forgot-password>
+        </div>
        
-        <form novalidate class="control-form" [formGroup]="user" (ngSubmit)="logIn(user.value)">
+        <form *ngIf="!toggForm" novalidate class="control-form" [formGroup]="user" (ngSubmit)="logIn(user.value)">
             <p>
                 <md-input-container class="input-full-width">
                 <span mdPrefix><md-icon>email</md-icon> &nbsp;</span>
@@ -30,10 +33,12 @@
             </p>
             <p id="errorMsg" *ngIf="errMsg"> {{errMsg}}</p>
             <div class="submit-button">
-                <a href="">Forgotten Password</a>
+                <a (click)="passwordRequest()">Forgotten Password</a>
                 <button [disabled]="!user.valid" md-raised-button type="submit">Login</button>
             </div>
         </form>
+        
+        
     </div>
     
 </div>

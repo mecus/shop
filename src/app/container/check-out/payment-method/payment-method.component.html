@@ -1,47 +1,49 @@
 <!-- <primary-navigation></primary-navigation> -->
 <secondary-navigation></secondary-navigation>
-<div class="container">
-    <div  class="card-fetch d-flex flex-row">
-        <div id="card-fetch" class="p-2 check-box card">
-            <div class="card-header">
-                <h1>Payment Method</h1>
-                <div *ngIf="paymentMethod" class="proceed-button">
-                    <a md-raised-button (click)="goToDeliveryMethod()" >Proceed to delivery method</a> 
+<div class="page-rule">
+    <div class="container">
+        <div  class="card-fetch d-flex flex-row">
+            <div id="card-fetch" class="p-2 check-box card">
+                <div class="card-header">
+                    <h1>Payment Method</h1>
+                    <div *ngIf="paymentMethod" class="proceed-button">
+                        <a md-raised-button (click)="goToDeliveryMethod()" >Proceed to delivery method</a> 
+                    </div>
                 </div>
+                <p *ngIf="notice"> <small>{{notice}}</small> </p>
+                <small style="color:lightgreen">{{paymentAdded}}</small>
+                <small *ngIf="!card && !paypal">you do not have payment method in your account.. pls add payment method now</small>
+                <md-radio-group (change)="selectedMethod($event)"> 
+                        <md-radio-button *ngIf="card" value="card">
+                                <md-list>
+                                    <md-list-item>
+                                        <md-icon md-list-icon>credit_card</md-icon>
+                                        <h4 md-line>{{card.cardType}}</h4>
+                                        <p md-line> {{card.maskedNumber}} </p>
+                                    </md-list-item>
+                                </md-list>
+                        </md-radio-button>
+                    
+                        <md-radio-button *ngIf="paypal" value="paypal">Pay with paypal account.. {{paypal.email}}</md-radio-button>
+                </md-radio-group>
             </div>
-            <p *ngIf="notic"> <small>{{notic}}</small> </p>
-            <small style="color:lightgreen">{{paymentAdded}}</small>
-            <small *ngIf="!card && !paypal">you do not have payment method in your account.. pls add payment method now</small>
-            <md-radio-group (change)="selectedMethod($event)"> 
-                    <md-radio-button *ngIf="card" value="card">
-                            <md-list>
-                                <md-list-item>
-                                    <md-icon md-list-icon>credit_card</md-icon>
-                                    <h4 md-line>{{card.cardType}}</h4>
-                                    <p md-line> {{card.maskedNumber}} </p>
-                                </md-list-item>
-                            </md-list>
-                    </md-radio-button>
-                
-                    <md-radio-button *ngIf="paypal" value="paypal">Pay with paypal account.. {{paypal.email}}</md-radio-button>
-            </md-radio-group>
         </div>
     </div>
-</div>
-<div class="container d-flex flex-row justify-content-center">
-    <div class="p-2">
-        <app-paypal (returnResult)="paymentMethodResult($event)"></app-paypal>
+    <div class="container d-flex flex-row justify-content-center">
+        <div class="p-2">
+            <app-paypal (returnResult)="paymentMethodResult($event)"></app-paypal>
+        </div>
+        <div class="p-2">
+            <a (click)="showCardForm()" md-raised-button><md-icon>credit_card</md-icon> Checkout with card</a>
+        </div>
     </div>
-    <div class="p-2">
-        <a (click)="showCardForm()" md-raised-button><md-icon>credit_card</md-icon> Checkout with card</a>
+    <div id="pay-card">
+        <pay-card (returnResult)="paymentMethodResult($event)" [customerId]="userId"></pay-card>
     </div>
-</div>
-<div id="pay-card">
-    <pay-card (returnResult)="paymentMethodResult($event)" [customerId]="userId"></pay-card>
-</div>
 
-<div *ngIf="grayPage" class="pageProcessCover">
-    <div class="center-point">
-        <md-spinner></md-spinner>
+    <div *ngIf="grayPage" class="pageProcessCover">
+        <div class="center-point">
+            <md-spinner></md-spinner>
+        </div>
     </div>
 </div>

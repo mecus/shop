@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { YoutubeService } from "app/services/youtube.service";
+import { YoutubeService } from "../../services/youtube.service";
 
 
 

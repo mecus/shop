@@ -1,10 +1,10 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { AccountService } from 'app/services/account.service';
-import { StorageService } from 'app/services/storage.service';
+import { AccountService } from '../../../services/account.service';
+import { StorageService } from '../../../services/storage.service';
 import { Observable } from 'rxjs/Observable';
-import { PaymentService } from "app/services/payment.service";
-import { WindowService } from "app/services/window.service";
-import { AuthService } from "app/authentications/authentication.service";
+import { PaymentService } from "../../../services/payment.service";
+import { WindowService } from "../../../services/window.service";
+import { AuthService } from "../../../authentications/authentication.service";
 
 
 @Component({

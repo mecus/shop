@@ -1,11 +1,13 @@
 import { Component, OnInit, Input, OnChanges, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators} from '@angular/forms';
-import { AccountService } from "app/services/account.service";
+import { AccountService } from "../../../services/account.service";
+
+
 
 @Component({
   selector: 'account-address-edit',
-  templateUrl: './account-address-edit.component.html',
-  styleUrls: ['./account-address-edit.component.scss']
+  templateUrl: 'account-address-edit.component.html',
+  styleUrls: ['account-address-edit.component.scss']
 })
 export class AccountAddressEditComponent implements OnInit, OnChanges {
   @Input() acId;
@@ -41,7 +43,7 @@ export class AccountAddressEditComponent implements OnInit, OnChanges {
   ngOnChanges(acId){
     this.accountService.getAddress(this.acId).subscribe((address)=>{
       // console.log(account);
-      let res = address[0];
+      let res = address.filter((adres)=> adres.address_type == 'billing')[0];
       this.addForm.patchValue({
         id: res._id,
         address: res.address,

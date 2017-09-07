@@ -1,0 +1,113 @@
+div.jumbotron-clone{ 
+    margin: 0px;
+    padding:0px;
+    max-height: 200px;
+    overflow: scroll;
+    border: 1px solid lightgrey;
+    
+}
+div.line-hero-inner .p-2{
+    padding: 0px;
+    margin: 0px;
+}
+div.cart-list{
+
+}
+div.cart-list .p-2{
+    padding: 0px !important;
+    margin: 0px !important;
+    padding: 0px 5px !important;
+    background-color: #ffffff;
+    margin-bottom: 2px !important;
+}
+div.cart-list p{
+    margin: 0px;
+    padding: 0px;
+    font-size: 11px;
+}
+div.cart-list .p-2 p{
+    margin: 0px;
+    padding: 0px;
+}
+div.img-hero{
+    flex: 1;
+    padding: 0px !important;
+    padding: 5px !important;
+    margin: 4px;
+}
+div.line-hero{
+    flex: 3;
+
+}
+div.img-hero img{
+    margin: 0px;
+    padding: 0px;
+    width: 40px;
+    height: 40px;
+    padding: 4px !important;
+}
+div.line-hero-inner .p-2{
+    margin: 0px;
+    padding: 0px;
+}
+div.line-hero-inner md-icon{
+    font-size: 16px;
+}
+
+div.qty-control{
+    margin: 0px;
+    padding: 0px;
+}
+div.qty-control p-2{
+    margin: 0px;
+    padding: 0px;
+}
+div.qty-control .inc{
+
+    border-radius: 3px;
+    margin: 2px !important;
+    color: #00897B;
+}
+div.qty-control md-icon{
+    
+}
+div.qty-control .dec{
+
+    border-radius: 3px;
+    margin: 2px !important;
+    color: #00897B;
+}
+div.delet-but md-icon{
+    color: red;
+}
+div.more-cart, .less-cart{
+    // small{
+    //     position: relative;
+    //     padding: 0px;
+    //     margin: 0px;
+    //     font-size: 6px;
+
+    // }
+    background-color: #009688;
+    margin: 0 auto;
+    text-align: center;
+    md-icon{
+        position: relative;
+        margin: 0 auto;
+        padding: 0px;
+        align-content: center;
+        color: #ffffff;
+        
+    }
+    &:hover{
+        cursor: pointer;
+        background-color: #B2DFDB;
+        // color: #ffffff;
+        md-icon{
+            color: gray;
+        }
+    }
+}
+div.less-cart{
+    display: none;
+}

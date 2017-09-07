@@ -2,11 +2,11 @@ import { Injectable } from '@angular/core'
 import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { Http, Response, RequestOptions, Headers } from '@angular/http';
-import { StorageService } from "app/services/storage.service";
+import { StorageService } from "../services/storage.service";
 import * as firebase from 'firebase/app';
 import { Observable } from 'rxjs/Observable';
 import { Router } from '@angular/router';
-import { UserType } from 'app/models/user.model';
+import { UserType } from '../models/user.model';
 
 @Injectable()
 

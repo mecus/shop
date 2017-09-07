@@ -1,4 +1,19 @@
 <primary-navigation></primary-navigation>
-<div class="container jumbotron">
-    <h1>Order Component</h1>
+<div class="page-content">
+    <div class="container order-container">     
+        <div class="card order-view">
+            <div class="card-header">
+                <h1>Your Orders</h1>
+            </div>
+            <div class="card-body">
+                <p>You can view all order placed in the last 12 months</p>
+                <div *ngFor="let order of (orders$ | async)">
+                    <span>{{order.customer_name}}</span>
+                    <span>{{order.amount | currency:'GBP':true}}</span>
+                    <span>{{order.order_no}}</span>
+                    <span>{{order.createdAt | date}}</span>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

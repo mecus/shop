@@ -1,8 +1,8 @@
 import { Component, OnInit, Input, OnChanges } from '@angular/core';
-import { TempOrderService } from "app/services/temp-order.service";
-import { AuthService } from "app/authentications/authentication.service";
-import { StorageService } from "app/services/storage.service";
-import { CartService } from "app/services/cart.service";
+import { TempOrderService } from "../../../services/temp-order.service";
+import { AuthService } from "../../../authentications/authentication.service";
+import { StorageService } from "../../../services/storage.service";
+import { CartService } from "../../../services/cart.service";
 
 @Component({
   selector: 'delivery-options',

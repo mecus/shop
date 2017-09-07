@@ -9,13 +9,14 @@ import 'rxjs/add/operator/merge';
 @Injectable()
 
 export class PaymentService {
+    host: string = "https://urgyshop.herokuapp.com/";
     url:string;
     cardUrl: string;
     transactionUrl: string;
     constructor(private _http:Http){
-       this.url = "http://localhost:3000/api/payment/checkout";
-       this.cardUrl = "http://localhost:3000/api/payment/customer/";
-       this.transactionUrl = "http://localhost:3000/api/payment/transaction";
+       this.url = this.host+"api/payment/checkout";
+       this.cardUrl = this.host+"api/payment/customer/";
+       this.transactionUrl = this.host+"api/payment/transaction";
     }
 
     public getClientToken():Observable<any>{

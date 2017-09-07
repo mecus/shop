@@ -5,12 +5,11 @@ import { Observable } from "rxjs/Observable";
 import { ActivatedRoute, Router, Params } from '@angular/router';
 import { ProductService } from '../../../services/product.service';
 import { CartService } from '../../../services/cart.service';
-import { Store } from '@ngrx/store';
-import { StorageService } from "app/services/storage.service";
+import { StorageService } from "../../../services/storage.service";
 import * as _ from 'lodash';
 
-import * as cart from '../../../store/actions/cart-action';
-import { WindowService } from "app/services/window.service";
+
+import { WindowService } from "../../../services/window.service";
 
 @Component({
   selector: 'shop-products',
@@ -46,7 +45,7 @@ export class ProductComponent implements OnInit {
   document;
 
   constructor(private route:ActivatedRoute, private storeService:StorageService,
-  private _router:Router, private store:Store<any>, private productService:ProductService, 
+  private _router:Router, private productService:ProductService, 
   private cartService:CartService, private windowRef:WindowService) {
     this.document = this.windowRef.getDocumentRef();
     cartService.getCart().subscribe((carts)=>{
@@ -102,7 +101,7 @@ export class ProductComponent implements OnInit {
       let subL = this.document.getElementsByClassName('sub-list');
       for (i = 0; i < subL.length; i++) {
           // tab[i].className = tab[i].className.replace("active", "");
-          subL[i].style.backgroundColor = "transparent";
+          subL[i].style.backgroundColor = "#ffffff";
           subL[i].style.color = "#000"; 
       }
     event.target.style.backgroundColor = "#000";
@@ -145,7 +144,7 @@ export class ProductComponent implements OnInit {
       let catL = this.document.getElementsByClassName('cat-list');
       for (i = 0; i < catL.length; i++) {
           // tab[i].className = tab[i].className.replace("active", "");
-          catL[i].style.backgroundColor = "transparent";
+          catL[i].style.backgroundColor = "#ffffff";
           catL[i].style.color = "#000"; 
       }
   }

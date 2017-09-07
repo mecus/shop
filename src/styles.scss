@@ -1,6 +1,6 @@
 // @import "~@progress/kendo-theme-default/scss/all";
 @import "node_modules/bootstrap/scss/bootstrap";
-@import 'assets/stylesheets/app-theme';
+@import './assets/stylesheets/app-theme';
 @import "./variables";
 @import "./w3c.css";
 
@@ -24,12 +24,7 @@ body{
     margin: 0px;
     padding: 0px;
     font-family: $open-sans-light !important;
-    .md-container{
-        width: 800px;
-        margin: 0 auto;
-        padding: 10px 20px;
-
-    }
+    background-color: #ebeff1;
 }
 
 /* Typography

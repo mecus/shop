@@ -1,0 +1,24 @@
+<div class="shopping-container w3-card-4">
+    <div class="shp-header d-flex flex-row justify-content-between">
+        <span><md-icon>shopping_cart</md-icon></span>
+        <h1>Your Shopping</h1>
+        <a routerLink="/basket">full</a>
+    </div>
+    <div class="shopping-total d-flex flex-row justify-content-between">
+        <h2 id="shop-total">Shopping Total: </h2>
+        <h2><strong><cart-total></cart-total></strong></h2>
+    </div>
+    <div class="your-post d-flex flex-row justify-content-between">
+        <p><strong>Your Postcode: </strong> </p>
+        <p>{{postCode}}</p>
+    </div>
+
+    <div class="min-order">
+        <p>£40 minimum order for delivery</p>
+    </div>
+
+    <div class="check-button">
+        <button role="button" md-raised-button routerLink="/checkout">CHECK OUT</button>
+    </div>
+
+</div>

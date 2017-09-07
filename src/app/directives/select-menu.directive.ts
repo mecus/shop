@@ -1,5 +1,5 @@
 import { Directive, HostBinding, HostListener } from '@angular/core';
-import { WindowService } from "app/services/window.service";
+import { WindowService } from "../services/window.service";
 import { Router, ActivatedRoute, Params } from '@angular/router';
 
 //This Directives is Not been used yet

@@ -1,44 +1,53 @@
-
-md-toolbar{
-    width: 100%;
+// Styling the sticky menu
+.sticky-menu-container{
     display: none;
-    background-color: #fff;
+    background-color: #ffffff;
+    width: 100%;
     md-toolbar{
-        width: 90%;
-        display: -webkit-box;
-        display: -moz-box;
-        display: -ms-flexbox;
-        display: -webkit-flex;
-        display: flex;
-
-        // -webkit-flex-flow: row wrap;
-        align-content: space-between;
-        align-items: stretch;
-        margin: 0 auto;
-        // flex-direction: row-reverse;
-        .item1{
-            flex: 1;
+        width: 100%;
+        // display: none;
+        padding: 0px !important;
+        margin: 0px !important;
+        background-color: #fff;
+        md-toolbar{
+            // width: 90%;
+            display: -webkit-box;
+            display: -moz-box;
+            display: -ms-flexbox;
+            display: -webkit-flex;
+            display: flex;
+    
+            // -webkit-flex-flow: row wrap;
+            // align-content: space-between;
+            align-items: stretch;
             margin: 0 auto;
-            h1{font-size: 30px;}
-        }
-        .item2{
-            flex: 1;
-            margin: 0 auto;
-            font-size: 14px;
-            width: 300px;
-        }
-        .item3{
-            flex: 1;
-            position: relative;
-            .notify{
-                position: relative;
-                float: right;
-                right: 10px;
+            // flex-direction: row-reverse;
+            .item1{
+                flex: 1;
+                margin: 0 auto;
+                h1{font-size: 30px;}
+                margin-left: 20px;
             }
-        
+            .item2{
+                flex: 1;
+                margin: 0 auto;
+                font-size: 14px;
+                width: 300px;
+            }
+            .item3{
+                flex: 1;
+                position: relative;
+                .notify{
+                    position: relative;
+                    float: right;
+                    // right: 10px;
+                }
+            
+            }
         }
     }
 }
+
 .sub-toolbar{
     display: flex;
     display: -webkit-flex;
@@ -46,61 +55,102 @@ md-toolbar{
     background-color:#000;
     line-height: 40px;
     color:#fff;
+    .side-menu-btn{
+        md-icon{
+            color: #00796B;
+            font-weight: bold;
+            
+        }
+    }
+    border-radius: 4px;
+    transition: .5s;
+    &:hover{
+        .side-menu-btn{
+            md-icon{
+                color: red;
+                font-weight: bold;
+                
+            }
+        }
+        border-radius: 10px;
+
+    }
 }
-nav{
-    height: 40px;
-    background-color: #000;
-    
-}
-.navbar ul li a{
-    color: lightslategrey;
-    height: 40px;
-}
-// .navbar ul li a:hover{
-//     background-color: #f5f5f5;
-//     color: lightslategrey !important;
-//     height: 40px;
-//     cursor: pointer;
-// }
+
 
 .active {
     background-color: #f5f5f5;
     height: 40px;
     color: #000 !important; 
 }
-.authentication{
-    position: absolute;
-    top: 0px;
-    width: 100%;
-    height: 100vh;
-    background: rgba(0, 0, 0, 0.4);
-    z-index: 10000;
+
+//Custom and main navigation
+.nav-menu{
+    background-color: #000000;
+    height: 40px;
+    .nav-content{
+        padding: 0px;
+        .nav-item a{
+            color: lightslategrey;
+            height: 40px;
+            font-family: Dosis, sans-serif;
+            font-weight: normal;
+            font-size: 1.1em;
+        }
+        #how-to{
+            background-color: #00796B !important;
+            a{color: #fff !important;}
+            &:hover{
+        
+                a{color: #000 !important;}
+        
+            }
+        }
+    }
 }
-.authentication.login-provider{
-    position: absolute;
-    top: 30%;
-    left: 50%;
-    width: 500px;
-    margin-left: -250px;
-    background-color: slategrey;
-    
-}
+//How to pop page control
 .how-to-do{
     position: absolute;
     margin: 0 auto;
     z-index: 10;
 }
 
-nav ul li#how-to{
-    background-color: red !important;
-    a{color: #fff !important;}
-    &:hover{
-
-        a{color: #000 !important;}
-
-    }
-    
-}
 .howTo-video{
     display: none;
+}
+//Displaying Brands
+.brand-list{
+    position: absolute;
+    display: none;
+    width: 100%;
+    height: 200px;
+    background-color: #f5f5f5;
+    transition: height 1s;
+    z-index: 10;
+
+}
+div.brands{
+    #brand-item{
+        background-color: #ffffff;
+        margin-right: 4px;
+        margin-top: 4px;
+        text-align: center;
+        p, small{
+            padding: 0px;
+            margin: 0px;
+        }
+        &:hover{
+            text-decoration: underline;
+            color: #00796B;
+            cursor: pointer;
+        }
+    }
+    #brand-item:first-child{
+        // background-color: #00796B;
+    }
+    #brand-item:last-child{
+        margin-right: 0px;
+        // background-color: red;
+    }
+    
 }

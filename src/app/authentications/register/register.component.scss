@@ -20,6 +20,7 @@
 
 .register-container{
     width: 700px;
+    min-height: 500px;
     margin: 0 auto;
     margin-top: 20px;
     margin-bottom: 100px;
@@ -31,6 +32,7 @@
         float: right;
     }
     .search-head{
+        background-color: #ffffff;
         margin: 0px;
         padding: 0px;
         padding: 10px 20px;
@@ -75,11 +77,15 @@ p#post-err{
     }
     p{
         font-size: 12px;
+        color: lightslategrey;
     }
 }
 .form-sec-1{
     margin: 0px;
     margin-bottom: 10px;
-    // background-color: lightgrey;
-    border-color: lightgrey !important;
+    background-color: #ffffff;;
+    // border-color: lightgrey !important;
+}
+.more-info{
+    background-color: #ffffff;
 }

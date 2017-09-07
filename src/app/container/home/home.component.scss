@@ -1,6 +1,7 @@
 
 .header-content{
     margin-bottom: 50px;
+    background-color: #fff;
     .welcome-container{
         display: grid;
         grid-gap: 20px;
@@ -14,12 +15,18 @@
                 margin: 0px;
             }
             h1{
-                font-family: 'Dosis', sans-serif;
+                font-family: 'Saira', sans-serif;
                 font-size: 28px;
                 font-weight: 400;
+                border-bottom: 2px dotted grey;
             }
             .request-postcode{
-                input{width: 100%;}
+                input{
+                    // border-left: 2px solid #009688;
+                    // padding-left: 5px;
+                    // width: 100%;
+                   
+                }
                 display: flex;
                 a:hover{
                     text-decoration: none;
@@ -31,12 +38,18 @@
                     height: 40px;
                     padding: 0px;
                     padding: 0px 10px;
+                    margin-top: 8px;
                     text-decoration: none;
                 }
             }
             .customer-login{
                 margin-top: 20px;
-                p{font-size: 14px; font-weight: bold;}
+                p{font-size: 14px; font-weight: bold; border-bottom: 1px dotted lightgray;}
+                a{
+                    font-family: Dosis, sans-serif;
+                    font-size: 12px;
+                    letter-spacing: 2px;
+                }
             }
             .c-shopping{
                 p{padding-left: 4px; font-size: 14px;}
@@ -49,15 +62,44 @@
 }
 
 .grid-container{
-    display: grid;
-    grid-gap: 20px;
-    grid-template-columns: repeat(5, 1fr);
-
-    .grid-3{
-        grid-column: auto / span 3;
+    // .p-2{
+    //     height: 200px;
+    //     background-color: red;
+    // }
+    .p-2{
+        padding: 20px;
     }
     
 }
+.grid-container>*{
+    // height: 200px;
+    
+    background-color: #fff;
+    margin: 4px;
+    md-icon{
+        font-size: 5em;
+    }
+}
+.hero-ad-container>* {
+    // height: 400px;
+    background-color: #fff;
+    width: 100%;
+    margin: 4px;
+    img{
+        width: 100%;
+    }
+}
+.grid-set-1, .grid-set-2, .grid-set-3{
+    .p-2{
+        flex: 2 ;
+        width: 100%;
+    }
+    .p-1{
+        flex: 1;
+        width: 100%;
+    }
+}
+
 md-progress-spinner{
     position: absolute;
     top: 0px;

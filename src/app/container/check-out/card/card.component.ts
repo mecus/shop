@@ -1,16 +1,16 @@
 import { Component, OnInit, AfterViewInit, Input, EventEmitter, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
-import { AccountService } from 'app/services/account.service';
-import { StorageService } from 'app/services/storage.service';
+import { AccountService } from '../../../services/account.service';
+import { StorageService } from '../../../services/storage.service';
 import { Observable } from 'rxjs/Observable';
-import { PaymentService } from "app/services/payment.service";
-import { WindowService } from "app/services/window.service";
+import { PaymentService } from "../../../services/payment.service";
+import { WindowService } from "../../../services/window.service";
 
 @Component({
   selector: 'pay-card',
-  templateUrl: './card.component.html',
-  styleUrls: ['./card.component.scss']
+  templateUrl: 'card.component.html',
+  styleUrls: ['card.component.scss']
 })
 export class CardComponent implements OnInit, AfterViewInit {
   document;

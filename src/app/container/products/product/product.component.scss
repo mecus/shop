@@ -1,3 +1,91 @@
+div.product-container{
+    //Product list styling
+    .product-content{
+        // margin-right: 40px;
+        padding: 0px !important;
+        // background-color: green;
+        flex: 7;
+        .product-list{
+            .product-item{
+                margin: 0px !important;
+                padding: 0px !important;
+                
+                .product{
+                    position: relative;
+                    width: 165px;
+                    height: 330px;
+                    margin-bottom: 10px;
+                    img{padding: 20px;}
+        
+                    md-card-actions{
+                        margin: 0 auto;
+                        text-align: center;
+                        padding: 0px;
+                    }
+                    p{
+                        text-align: center;
+                        font-size: 12px;
+                        padding: 0px;
+                        margin: 0px;
+                    }
+                    h1#title{
+                        font-family: 'Saira', sans-serif;
+                        font-weight: 200;
+                        font-size: 14px;
+                        text-align: center;
+                        margin: 0px;
+                        padding: 0px;
+                        margin-bottom: 4px;
+                    }
+                    p#price{
+                        font-family: 'Open Sans Bold', sans-serif;
+                        font-size: 18px;
+                        font-weight: bold
+                    }
+                    
+                    md-card-actions{
+                        a{
+                            font-family: 'Open Sans Regular', sans-serif;
+                            color: #ffffff;
+                        }
+                    }
+                    .inCart-wrapper{
+                        position: absolute;
+                        
+                        .inCart-select{
+                            text-align: center;
+                            margin: 0 auto;
+                            margin-left: 15px;
+                            width: 100%;
+                            transition: 2s;
+                            p#inCart{
+                                // text-align: center;
+                                transition: 3s;
+                                margin: 5px;
+                                padding: 0px 5px;
+                                width:100%;
+                                background-color: #FF9100;
+                                border-radius: 2px;
+                            }
+                        }
+                        
+                    }
+                }
+            }
+        }
+    }
+    // Side Widget displaying Cart items and Others
+    .side-widget{
+        // background-color: red;
+        padding: 0px !important;
+        flex: 2;
+    }
+}
+md-grid-list{
+    margin: 0px !important;
+    padding: 0px !important;
+}
+
 
 * a{
     text-decoration: none;
@@ -5,6 +93,32 @@
 .product-tile{
     margin: 5px 0px;
 }
+
+//Category and Advert Ssection
+.list-menu-container{
+    padding: 0px !important;
+    margin: 0px !important;
+    .category-container-half, .advert-container-half{
+        flex: 1;
+        padding: 0px !important;
+        margin: 0px !important;
+    }
+    .category-container-half{
+        .category-inner{
+            .first-cat{
+                width: 100%;
+            }
+            .second-cat{
+                width: 100%;
+            }
+        }
+        
+    }
+    .advert-container-half{
+        
+    }
+}
+
 .list-menu{height: 200px;background-color: #f5f5f5;margin-bottom: 10px;padding: 0px;}
 .first-cat, .second-cat{padding: 0px !important;float: left;margin-top: 1px;}
 .list-group-item{
@@ -19,7 +133,32 @@
 }
 .first-cat ul{
     padding: 0px !important;
+    
 }
+// Cat and sub cat styling
+div.cat-list{
+    border-left: 1px solid lighten(lightgray, 10);
+}
+div.cat-list, .sub-list{
+    position: relative;
+    background-color: #ffffff;
+    padding: 0 5px;
+    // margin-bottom: 2px;
+    font-size: 13px;
+    border-right: 1px solid lighten(lightgray, 10);
+    border-bottom: 1px solid lighten(lightgray, 10);
+    
+    &:hover{
+        color: lightslategrey !important;
+        background-color: rgba(0,0,0, 0.9);
+        border-radius: 0px 4px 4px 0px;
+    }
+    .arrow-icon{
+        position: relative;
+        float: right;
+    }
+}
+
 .first-cat ul li, .second-cat ul li{
     /*padding-left: 5px !important;*/
     /*border-bottom: 1px solid lightgray;
@@ -88,6 +227,13 @@
     margin: 0px;
     padding: 0px;
     padding: 2px;
+}
+.post-box p{
+    font-size: 12px;
+    font-family: 'Dosis', sans-serif;
+    margin: 0px;
+    padding: 0px;
+    color: #FF9100;
 }
 
 //Categories and Advert Styling

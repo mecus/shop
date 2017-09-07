@@ -14,9 +14,12 @@
   </form>
 </div>
 <div class="search-result-list">
+    <!-- <div *ngIf="searchProducts" class="remove-list">
+        <md-icon (click)="closeResult()">close</md-icon>
+    </div> -->
     <ul *ngIf="searchProducts" class="list-group">
       <li *ngFor="let result of searchProducts | async" class="list-group-item justify-content-between">
-        <span><a (click)="findResult(result)">{{result.name}}</a></span>
+        <span><a (click)="findResult(result)" (click)="closeResult()">{{result.name}}</a></span>
         <!--<span class="badge badge-default badge-pill">14</span>-->
       </li>
     </ul>

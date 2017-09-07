@@ -9,6 +9,7 @@
   "exclude": [
     "server.ts",
     "test.ts",
-    "**/*.spec.ts"
+    "**/*.spec.ts",
+    "functions/node_modules"
   ]
 }

@@ -2,15 +2,15 @@ import { Component, OnInit, HostListener, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { trigger, state, style, stagger, transition, animate, keyframes, query } from '@angular/animations';
-import { AuthService } from "app/authentications/authentication.service";
-import { AccountService } from "app/services/account.service";
-import { StorageService } from "app/services/storage.service";
-import { WindowService } from "app/services/window.service";
+import { AuthService } from "../../../authentications/authentication.service";
+import { AccountService } from "../../../services/account.service";
+import { StorageService } from "../../../services/storage.service";
+import { WindowService } from "../../../services/window.service";
 
 @Component({
   selector: 'app-checkout',
-  templateUrl: './checkout.component.html',
-  styleUrls: ['./checkout.component.scss']
+  templateUrl: 'checkout.component.html',
+  styleUrls: ['checkout.component.scss']
 })
 
 export class CheckoutComponent implements OnInit, OnDestroy {
@@ -46,7 +46,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
     userLogin(user){
         console.log(user)
         if(!user.email && !user.password){
-            return;
+            return this.loginErrMsg = "fields must not be empty!";
         }
 
         this.authService.emailLogin(user).then((res)=>{

@@ -3,13 +3,13 @@ import { Observable } from 'rxjs/Observable';
 import { CartService } from '../../services/cart.service';
 import * as firebase from 'firebase';
 import { AuthService } from '../authentication.service';
-import { StorageService } from "app/services/storage.service";
-import { ClearHeighlightMenu } from "app/services/clearfunction.service";
+import { StorageService } from "../../services/storage.service";
+import { ClearHeighlightMenu } from "../../services/clearfunction.service";
 
 @Component({
   selector: 'notify',
-  templateUrl: './notify.component.html',
-  styleUrls: ['./notify.component.scss']
+  templateUrl: 'notify.component.html',
+  styleUrls: ['notify.component.scss']
 })
 export class NotifyComponent implements OnInit {
   totalPrice:Observable<number>;

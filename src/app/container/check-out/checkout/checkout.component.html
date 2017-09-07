@@ -1,4 +1,4 @@
-<secondary-navigation></secondary-navigation>
+<check-out-menu></check-out-menu>
 <div class="container">
     <!--<div>
         <p>One application module is defined for each application. This module is named AppModule and implemented in file app.module.ts by convention. The application / root module is the main entry point and contains components, pipes and services which do not belong the subsequent feature modules and should be available application-wide.</p>
@@ -6,27 +6,31 @@
     <div class="checkout-container">
         
         <div class="new-customer">
-            <h2>Checkout for new customer</h2>
-            <hr>
-            <h3>Register for future convenience</h3>
-            <!-- <app-paypal></app-paypal> -->
-            <!-- <md-radio-group (change)="onChnage($event)">
-                <md-radio-button value="guest">Guest Checkout</md-radio-button>
-                <br>
-                <md-radio-button value="register">Register</md-radio-button>
-            </md-radio-group> -->
-           <p>We accept number of payment card and also accept payment with paypal account.</p>
-           <small>In the next step you will have the option to choose payment method of your choice..</small>
+            <h2>New customer</h2>
+            <div class="card">
+                <div class="card-body">
+                    <h3>Register for future convenience</h3>
+                    <!-- <app-paypal></app-paypal> -->
+                    <!-- <md-radio-group (change)="onChnage($event)">
+                        <md-radio-button value="guest">Guest Checkout</md-radio-button>
+                        <br>
+                        <md-radio-button value="register">Register</md-radio-button>
+                    </md-radio-group> -->
+                   <p>We accept number of payment card and also accept payment with paypal account.</p>
+                   <small>In the next step you will have the option to choose payment method of your choice..</small>
+                </div>
+            </div>
+            
         </div>
         <!--<p>Selected: {{newcustomer}}</p>-->
         <div class="old-customer">
             <h2>Already a customer Login</h2>
             
             <div class="card">
-                <div class="card-block">
+                <div class="card-body">
                     
                     <!--<h3>Already a customer</h3>-->
-                    <p>please login below</p>
+                    <!-- <p>please login below</p> -->
                     <form class="login-form" [formGroup]="loginForm" (ngSubmit)="userLogin(loginForm.value)">
                         <p>
                             <md-input-container class="login-full-width">
@@ -53,8 +57,11 @@
    </div>
 </div>
 <div id="form-components" class="container" >
-    <div class="card-block">
-        <billing-address></billing-address>
+    <div class="card">
+        <div class="card-body">
+            <billing-address></billing-address>
+        </div>
+        
         <!-- <div *ngIf="register">
             <billing-address></billing-address>
         </div> -->

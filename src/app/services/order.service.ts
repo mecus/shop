@@ -12,7 +12,7 @@ import 'rxjs/add/operator/share';
 @Injectable()
 
 export class OrderService {
-    host:string = "http://localhost:3000/";
+    host: string = "https://urgyshop.herokuapp.com/";
     itemUrl: string = "items/";
     url;
     options:RequestOptions;

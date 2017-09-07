@@ -1,12 +1,12 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
-import { AuthService } from "app/authentications/authentication.service";
-import { TempOrderService } from "app/services/temp-order.service";
-import { OrderService } from "app/services/order.service";
-import { AccountService } from 'app/services/account.service';
-import { StorageService } from 'app/services/storage.service';
-import { PaymentService } from "app/services/payment.service";
-import { WindowService } from "app/services/window.service";
-import { CartService } from "app/services/cart.service";
+import { AuthService } from "../../../authentications/authentication.service";
+import { TempOrderService } from "../../../services/temp-order.service";
+import { OrderService } from "../../../services/order.service";
+import { AccountService } from '../../../services/account.service';
+import { StorageService } from '../../../services/storage.service';
+import { PaymentService } from "../../../services/payment.service";
+import { WindowService } from "../../../services/window.service";
+import { CartService } from "../../../services/cart.service";
 import * as _ from 'lodash';
 
 @Component({

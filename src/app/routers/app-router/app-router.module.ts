@@ -4,20 +4,20 @@ import { RouterModule, Route } from '@angular/router';
 
 import { HomeComponent } from '../../container/home/home.component';
 import { CartComponent } from "../../container/products/cart/cart.component";
-import { BannerComponent } from "../../components/advert/banner.component";
+// import { BannerComponent } from "../../components/advert/banner.component";
 import { LoginComponent } from '../../authentications/login/sign-in.component';
 import { RegisterComponent } from '../../authentications/register/register.component';
 
 import * as products from '../../container/products/index';
-import { CheckoutComponent } from "app/container/check-out/checkout/checkout.component";
-import { UpdateAccountComponent } from "app/container/check-out/update-account/update-account.component";
-import { PaymentMethodComponent } from "app/container/check-out/payment-method/payment-method.component";
-import { AccountSettingComponent } from "app/account/account-setting/account-setting.component";
-import { DeliveryMethodComponent } from "app/container/check-out/deliverymethod/deliverymethod.component";
-import { PaymentComponent } from "app/container/check-out/payment/payment.component";
-import { OrderComponent } from "app/container/check-out/order/order.component";
-import { OrdersComponent } from "app/account/orders/orders.component";
-
+import { CheckoutComponent } from "../../container/check-out/checkout/checkout.component";
+import { UpdateAccountComponent } from "../../container/check-out/update-account/update-account.component";
+import { PaymentMethodComponent } from "../../container/check-out/payment-method/payment-method.component";
+import { AccountSettingComponent } from "../../account/account-setting/account-setting.component";
+import { DeliveryMethodComponent } from "../../container/check-out/deliverymethod/deliverymethod.component";
+import { PaymentComponent } from "../../container/check-out/payment/payment.component";
+import { OrderComponent } from "../../container/check-out/order/order.component";
+import { OrdersComponent } from "../../account/orders/orders.component";
+import { ResetPassword } from "../../components/reset-password/reset/reset-password.component";
 
 
 const root:Route = {
@@ -34,7 +34,6 @@ const routes = [
   {path: 'register', component: RegisterComponent},
   {path: 'basket', component: CartComponent},
   {path: 'product', component:products.ProductViewComponent},
-  {path: 'advert', component:BannerComponent},
   {path: 'checkout', component:CheckoutComponent},
   {path: 'account_update', component: UpdateAccountComponent},
   {path: 'account/account_setting', component: AccountSettingComponent},
@@ -43,6 +42,8 @@ const routes = [
   {path: 'review_and_payment', component:PaymentComponent},
   {path: 'place_order', component:OrderComponent},
   {path: 'your_orders', component:OrdersComponent},
+  {path: 'reset_password', component: ResetPassword},
+  
   fallBack
 ]
 

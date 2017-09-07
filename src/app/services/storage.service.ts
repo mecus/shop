@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { LocalStorageService, SessionStorageService } from 'ng2-webstorage';
-import { PaymentService } from "app/services/payment.service";
+import { PaymentService } from "./payment.service";
 
 
 @Injectable()

@@ -1,14 +1,14 @@
 import { Component, OnInit, OnChanges } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { WindowService } from 'app/services/window.service';
-import { StorageService } from 'app/services/storage.service';
-import { AccountService } from 'app/services/account.service';
+import { WindowService } from '../../services/window.service';
+import { StorageService } from '../../services/storage.service';
+import { AccountService } from '../../services/account.service';
 import * as _ from 'lodash';
 
 @Component({
   selector: 'app-account-setting',
-  templateUrl: './account-setting.component.html',
-  styleUrls: ['./account-setting.component.scss']
+  templateUrl: 'account-setting.component.html',
+  styleUrls: ['account-setting.component.scss']
 })
 export class AccountSettingComponent implements OnInit, OnChanges {
   userAccount;

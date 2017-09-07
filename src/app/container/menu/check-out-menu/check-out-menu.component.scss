@@ -1,0 +1,31 @@
+.nav-container{
+    background-color: #ffffff;
+
+    md-toolbar{
+        position: relative;
+        background-color: #ffffff;
+
+        .nav-inner-container{
+            position: relative;
+            width: 100%;
+            float: right;
+            div:nth-child(3){
+                // background-color: red;
+                border: 1px solid #00796B;
+                padding: 5px;
+            }
+            .check-progress{
+                span{
+                    margin: 0px 5px;
+                }
+            }
+            .store{
+                padding: 10px;
+                img{
+                    width: 35px;
+                    padding: 5px;
+                }
+            }
+        }
+    }
+}

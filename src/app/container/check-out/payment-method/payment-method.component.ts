@@ -1,16 +1,16 @@
 import { Component, OnInit, AfterViewInit, HostListener } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
-import { AccountService } from 'app/services/account.service';
-import { StorageService } from 'app/services/storage.service';
+import { AccountService } from '../../../services/account.service';
+import { StorageService } from '../../../services/storage.service';
 import { Observable } from 'rxjs/Observable';
-import { PaymentService } from "app/services/payment.service";
-import { WindowService } from "app/services/window.service";
-import { AuthService } from "app/authentications/authentication.service";
-import { TempOrderService } from "app/services/temp-order.service";
-import { OrderService } from "app/services/order.service";
-import { CartService } from "app/services/cart.service";
-import { TempOrder, tempOtype } from "app/models/tempOrder.model";
+import { PaymentService } from "../../../services/payment.service";
+import { WindowService } from "../../../services/window.service";
+import { AuthService } from "../../../authentications/authentication.service";
+import { TempOrderService } from "../../../services/temp-order.service";
+import { OrderService } from "../../../services/order.service";
+import { CartService } from "../../../services/cart.service";
+import { TempOrder, tempOtype } from "../../../models/tempOrder.model";
 import * as _ from 'lodash';
 
 @Component({

@@ -9,12 +9,12 @@ import { LocalStorageService, SessionStorageService } from 'ng2-webstorage';
 @Injectable()
 
 export class SearchService {
-    host:string = "http://localhost:3000/";
+    host: string = "https://urgyshop.herokuapp.com/";
     productUrl;
     queryProductUrl;
     constructor(private _http:Http, private storageService:LocalStorageService){
         this.productUrl = this.host+"api/v1/stores/productsonly";
-        this.queryProductUrl = this.host+"api/v1/stores/products/query/?";
+        this.queryProductUrl = "http://localhost:3000/api/v1/stores/products/query/?";
     }
 
     searchProduct(query){
@@ -25,18 +25,13 @@ export class SearchService {
     }
 
     getQueryProduct(query){
-        if(query){
-            let options = new RequestOptions({headers: new Headers({'Content-Type': 'application/json', 'Accept': 'q=0.8;application/json;q=0.9'})}); 
-            let params: URLSearchParams = new URLSearchParams();
-            params.set("name", query);
-            return this._http.get(this.queryProductUrl+params, options).map((product)=>{
-                return product.json();
-            }).catch(this.handleError);
-        }else{ 
-            return [{}];
-        }
+        let options = new RequestOptions({headers: new Headers({'Content-Type': 'application/json', 'Accept': 'q=0.8;application/json;q=0.9'})}); 
+        let params: URLSearchParams = new URLSearchParams();
+        params.set("name", query);
         
-  }
+        return this._http.get(this.queryProductUrl+params, options);
+        
+    }
 
   handleError(err):Observable<any>{
     if (err.status === 302 || err.status === "302"){
