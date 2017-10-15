@@ -3,7 +3,9 @@ import { Observable } from 'rxjs/Observable';
 import { WindowService } from '../../services/window.service';
 import { StorageService } from '../../services/storage.service';
 import { AccountService } from '../../services/account.service';
+import { PaymentService } from '../../services/payment.service';
 import * as _ from 'lodash';
+
 
 @Component({
   selector: 'app-account-setting',
@@ -13,6 +15,7 @@ import * as _ from 'lodash';
 export class AccountSettingComponent implements OnInit, OnChanges {
   userAccount;
   userAddress;
+  deliveryAddress;
   pInfoEdit;
   addressEdit;
   datacard:boolean = false;
@@ -22,25 +25,30 @@ export class AccountSettingComponent implements OnInit, OnChanges {
   updatedNotify;
   addNewCard: boolean = false;
   customerID;
+  card;paypal;
   constructor(private accountService:AccountService, 
-    private storeService:StorageService, private windowService:WindowService) {
+    private storeService:StorageService, private windowService:WindowService,
+    private paymentService:PaymentService) {
     
     this.getAccount();
   }
   getAccount(){
-    this.accountService.getAccount(this.storeService.retriveData('user')['email']).subscribe((account)=>{
-      // console.log(account);
-      this.userAccount = account;
-      this.customerID = account.ac_no;
-      this.accountService.getAddress(account._id).subscribe((addresses)=>{
-        this.userAddress = _.last(_.filter(addresses, {"address_type":"billing"}));
-      });
+    this.accountService.getAccount(this.storeService.retriveData('email')).subscribe((account)=>{
+      console.log(account);
+      if(account){
+        this.getPaymentMethod(account);
+        this.userAccount = account;
+        this.customerID = account.ac_no;
+        this.accountService.getAddress(account._id).subscribe((addresses)=>{
+          this.userAddress = _.last(_.filter(addresses, {"address_type":"billing"}));
+          this.deliveryAddress = _.last(_.filter(addresses, {"address_type":"delivery"}));
+          console.log(this.deliveryAddress);
+        });
+      }
     });
   }
   addCardDetail(){
-    this.addNewCard = true;
-    let donE = this.windowService.getDocumentRef().querySelector('#cardButton');
-    donE.style.display = "none";
+    this.addNewCard = (this.addNewCard == false? true : false);
   }
   pInfoEditForm(email){
     if(!this.pInfoEdit){
@@ -84,10 +92,21 @@ export class AccountSettingComponent implements OnInit, OnChanges {
     setTimeout(()=>{this.updatedNotify = false;},500);
     
   }
+  getPaymentMethod(account){
+      this.paymentService.fetchCard(account.ac_no).subscribe((pmethod)=>{
+        // console.log(pmethod);
+      this.card = _.last(pmethod.card);
+      this.paypal = _.last(_.take(pmethod.paypal));
+      let ld = _.last(_.take(pmethod.paypal));
+      // console.log(ld);
+    });
+
+  }
   ngOnInit() {
   }
   ngOnChanges(){
 
   }
+
 
 }

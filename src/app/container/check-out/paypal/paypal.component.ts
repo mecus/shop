@@ -9,8 +9,8 @@ import { AuthService } from "../../../authentications/authentication.service";
 
 @Component({
   selector: 'app-paypal',
-  templateUrl: './paypal.component.html',
-  styleUrls: ['./paypal.component.scss']
+  templateUrl: 'paypal.component.html',
+  styleUrls: ['paypal.component.scss']
 })
 export class PaypalComponent implements OnInit {
   @Output() returnResult:EventEmitter<any> = new EventEmitter<any>();

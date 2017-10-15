@@ -1,24 +1,29 @@
-<primary-navigation></primary-navigation>
-<div class="header-content w3-card-2">
+<div class="main-menu">
+    <primary-navigation></primary-navigation>
+</div>
+<div class="mobile-menu">
+    <mobile-menu></mobile-menu>
+</div>
+<div class="header-content mobile-margin-top w3-card-2">
   <div class="container">
-    <div class=" welcome-container">
-      <div class=" welcome-msg">
+    <div class="d-flex flex-wrap flex-row justify-content-between welcome-container">
+      <div class="p-2 welcome-msg">
         <h1>Welcome to uRGy</h1>
         <p><strong>
           Shop here and we will deliver straigth to your door.
           <small>Please enter your postcode to make sure we deliver to you</small>
         </strong></p>
-        
-        <div class="request-postcode">  
+        <post-code [requestPost]="openPostInput"></post-code>
+        <a color="primary" md-raised-button (click)="openPostBox()">Check your postcode</a>
+        <!-- <div class="request-postcode">  
             <md-input-container>
               <input #postcode type="text" mdInput name="postcode" required placeholder="Enter Postcode">
             </md-input-container>
             <a (click)="submitPostcode(postcode.value)" color= "primary" md-raised-button> <span>Check <i *ngIf="searchingPostcode" class="fa fa-spin fa-spinner" aria-hidden="true"></i></span></a>
-            <!-- <md-progress-spinner *ngIf="searchingPostcode" class="example-margin"[color]="color"[mode]="mode"></md-progress-spinner> -->
         </div>
         
-        <p *ngIf="successMsg">{{successMsg}}</p>
-        <p *ngIf="emptyErr">{{emptyErr}}</p>
+        <p id="succMsg" *ngIf="successMsg">{{successMsg}}</p>
+        <p id="errMsg" *ngIf="emptyErr">{{emptyErr}}</p> -->
         <div class="c-shopping">
           <p>Want to look around first ?</p>
           <a (click)="continueShop()" role="button" class="btn btn-success">Go Shopping </a>
@@ -30,32 +35,29 @@
           <!-- <md-icon>vpn_key</md-icon> -->
         </div>
       </div>
-      <div *ngIf="ads" class=" welcome-slider">
-        <carousel>
-          <slide *ngFor="let ad of ads">
-            <img [src]=ad.photo_url style="width:100%" alt="">
-            <!-- {{ad._id}} -->
-            <!-- <div class="carousel-caption">
-              <h3>Our Product</h3>
-              <p>Making good food</p>
-            </div> -->
-          </slide>
-          <!-- <slide>
-            <img src="assets/170713_0706_PampersBigBet_Cat-Nav.jpg" style="width:100%" alt="">
-            <div class="carousel-caption">
-              <h3>For Goods</h3>
-              <p>Making good food</p>
-            </div>
-          </slide> -->
-        </carousel>
-        
+      <div  class="p-2 welcome-slider">
+        <div *ngIf="ads">
+            <img class="home-slide-image" [src]=ads.photo_url alt="">
+          <!-- <carousel>
+            <slide *ngFor="let ad of ads">
+              <img class="home-slide-image" [src]=ad.photo_url alt="">
+              {{ad._id}}
+              <div class="carousel-caption">
+                <h3>Our Product</h3>
+                <p>Making good food</p>
+              </div>
+            </slide>
+           
+          </carousel> -->
+        </div>
       </div>
     </div>
   </div>
 </div>
-
+<!-- <confirm-alert></confirm-alert> -->
+<!-- <my-lib></my-lib> -->
 <div class="container page-rule">
-  <div class="grid-container d-flex flex-row justify-content-between">
+  <div class="grid-container d-flex flex-wrap flex-row justify-content-between">
     <div class="grid-1 p-2">
         <h1>Shopping Assistance</h1>
         <div class="grid-set-1 d-flex flex-row align-self-stretch">
@@ -63,35 +65,36 @@
             <md-icon>transfer_within_a_station</md-icon>
           </div>
           <div class="p-2">
-              <p>Progress components are built with two HTML elements, some CSS to set the width, and a few attributes.</p>
+              <p>Our friendly drivers are on hand at your doorstep to answer any questions you might have</p>
           </div>
         </div>
-        <a md-raised-button>See more</a>
+        <a md-raised-button>more</a>
     </div>
     <div class="grid-2 p-2">
-      <h1>Homble Delivery</h1>
+      <h1>Home Delivery</h1>
       <div class="grid-set-2 d-flex flex-row align-self-stretch">
         <div class="p-1">
           <md-icon>airport_shuttle</md-icon>
         </div>
         <div class="p-2">
-            <p>Progress components are built with two HTML elements, some CSS to set the width, and a few attributes.</p>
+            <p>Buy uRGy groceries online for delivery straight to your door where ever you leave in the UK.</p>
         </div>
       </div>
-      <a md-raised-button>See more</a>
+      <a md-raised-button>read more</a>
       
     </div>
     <div class="grid-3 p-2">
-        <h1>Quick Credit Plan</h1>
+        <h1>Cooking Video</h1>
         <div class="grid-set-3 d-flex flex-row align-self-stretch">
-          <div class="p-1">
-            <md-icon>today</md-icon>
+          <div class="p-1 icon-container">
+            <md-icon class="icon-main">personal_video</md-icon>
+            <div class="icon-cover"></div>
           </div>
           <div class="p-2">
-              <p>Progress components are built with two HTML elements, some CSS to set the width, and a few attributes.</p>
+              <p>We make some cooking videos on how to make differnt kind of food including their condiments and provision to order them on the fly.. check it out</p>
           </div>
         </div>
-        <a md-raised-button>See more</a>
+        <a routerLink="/instruction_video" md-raised-button>Watch</a>
     </div>
   </div>
   
@@ -107,18 +110,6 @@
         <img src="assets/foodadvert-2.jpeg" alt="">
     </div>
   </div>
-  <!--<div>
-    {{list | async}}
-  </div>
 
-  <div>
-    <app-advert [ads]="ads"></app-advert>
-  </div>
-
-  <h1>{{title}}</h1>-->
 
 </div>
-
-
-
-<!-- <footer-menu></footer-menu> -->

@@ -1,0 +1,169 @@
+.product-offer-container{
+    min-height: 500px;
+
+    .p-2{
+        padding: 0px !important;
+        margin: 0px !important;
+    }
+    .product-offer{
+        flex: 7;
+        margin-top: 20px !important;
+        .top-offer{
+            background-color: red;
+            width: 150px;
+            height: 60px;
+            h1{
+                font-family: 'Dosis', sans-serif;
+                font-weight: 200;
+                line-height: 60px;
+                text-align: center;
+                color: #ffffff;
+            }
+        }
+        .offer-baner{
+            width: 500px;
+            img{
+                width: 100%;
+            }
+        }
+        .product-list{
+            .carosel-image{
+                width: 495px;
+                margin-right: 3px;
+                margin-bottom: 1px;
+                img{
+                    width: 100%;
+                }
+            }
+            .product-item{
+                margin: 0px !important;
+                padding: 0px !important;
+                
+                .product{
+                    position: relative;
+                    width: 165px;
+                    height: 330px;
+                    margin-bottom: 1px;
+                    margin-right: 1px;
+                    img{padding: 20px;}
+        
+                    md-card-actions{
+                        margin: 0 auto;
+                        text-align: center;
+                        padding: 0px;
+                    }
+                    md-card-content{
+                        // height: 70px;
+                    }
+                    p{
+                        text-align: center;
+                        font-size: 12px;
+                        padding: 0px;
+                        margin: 0px;
+                    }
+                    h1#title{
+                        font-family: 'Saira', sans-serif;
+                        font-weight: 200;
+                        font-size: 14px;
+                        text-align: center;
+                        margin: 0px;
+                        padding: 0px;
+                        margin-bottom: 4px;
+                    }
+                    p#price{
+                        font-family: 'Open Sans Bold', sans-serif;
+                        font-size: 18px;
+                        font-weight: bold
+                    }
+                    
+                    md-card-actions{
+                        a{
+                            font-family: 'Open Sans Regular', sans-serif;
+                            color: #ffffff;
+                        }
+                    }
+                    .inCart-wrapper{
+                        position: absolute;
+                        
+                        .inCart-select{
+                            text-align: center;
+                            margin: 0 auto;
+                            margin-left: 15px;
+                            width: 100%;
+                            transition: 2s;
+                            p#inCart{
+                                // text-align: center;
+                                transition: 3s;
+                                margin: 5px;
+                                padding: 0px 5px;
+                                width:100%;
+                                background-color: #FF9100;
+                                border-radius: 2px;
+                            }
+                        }
+                        
+                    }
+                    overflow: hidden;
+                    .shop-offer{
+                        position: absolute;
+                        left: -30px;
+                        top:10px;
+                        float: left;
+                        background-color: red;
+                        width: 100px;
+                        margin: 0px;
+                        padding: 0px;
+                        -webkit-transform: rotateZ(-50deg);
+                        transform: rotateZ(-50deg);
+                        
+
+                        p{
+                            color: #ffffff;
+                            font-size: 14px;
+                            background-color: red;
+                            margin: 0px;
+                            padding: 0px;
+                            width: 100%;
+                        }
+                    }
+                }
+            }
+        }
+        .pagination{
+            // display: block;
+            min-width: 300px;
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 0px;
+            margin-top: 20px;
+            background-color: #ffffff;
+            // height: 30px;
+            .pg-pagination /deep/ .ngx-pagination .current {
+                // background: #00796B;
+                background: transparent;
+                color: #00796B;
+            }
+            pagination-controls{
+                height: 30px;
+                text-align: center;
+                padding: 0px;
+                margin: 0px;
+                padding: 1px;
+               
+            }
+            
+        }
+    }
+    .right-widget{
+        flex: 2;
+        margin-top: 20px !important;
+        // padding-left: 10px !important;
+        .post-box p{
+            font-size: 12px;
+            font-family: 'Dosis', sans-serif;
+            margin: 0px;
+            padding: 0px;
+            color: #FF9100;
+        }
+    }
+}

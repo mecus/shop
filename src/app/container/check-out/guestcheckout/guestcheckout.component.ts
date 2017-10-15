@@ -8,8 +8,8 @@ import { AccountService } from "../../../services/account.service";
 
 @Component({
   selector: 'guest-checkout',
-  templateUrl: './guest.component.html',
-  styleUrls: ['./guest.component.scss']
+  templateUrl: 'guest.component.html',
+  styleUrls: ['guest.component.scss']
 })
 
 export class GuestCheckoutComponent implements OnInit {

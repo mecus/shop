@@ -9,14 +9,29 @@
             position: relative;
             width: 100%;
             float: right;
+            .brand a h1{
+                font-size: 38px;
+                font-family: 'Dosis', sans-serif;
+                font-weight: bold;
+                color: #00796B;
+            }
             div:nth-child(3){
                 // background-color: red;
                 border: 1px solid #00796B;
                 padding: 5px;
             }
             .check-progress{
+                md-icon{
+                    padding: 0px !important;
+                    margin: 0px !important;
+                    // margin-top: 50px !important;
+                }
                 span{
                     margin: 0px 5px;
+                    font-size: 16px;
+                    font-family: 'Open Sans Regular', sans-serif;
+                    color: #B2DFDB;
+                    
                 }
             }
             .store{

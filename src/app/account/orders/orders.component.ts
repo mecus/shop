@@ -19,6 +19,19 @@ export class OrdersComponent implements OnInit {
     constructor(
         private orderService:OrderService, private accountService:AccountService,
         private authService:AuthService){}
+    step = 0;
+    
+    setStep(index: number) {
+    this.step = index;
+    }
+
+    nextStep() {
+    this.step++;
+    }
+
+    prevStep() {
+    this.step--;
+    }
     
     getOrder(){
        this.orders$ = this.authService.authState().switchMap((user)=>{

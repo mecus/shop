@@ -4,6 +4,31 @@
     md-list-item{
         border-bottom: 1px solid lightgrey;
     }
+    .pagination{
+        // display: block;
+        min-width: 300px;
+        max-width: 400px;
+        margin: 0 auto;
+        padding: 0px;
+        margin-top: 20px;
+        background-color: #ffffff;
+        // height: 30px;
+        .pg-pagination /deep/ .ngx-pagination .current {
+            // background: #00796B;
+            background: transparent;
+            color: #00796B;
+        }
+        pagination-controls{
+            height: 30px;
+            text-align: center;
+            padding: 0px;
+            margin: 0px;
+            padding: 1px;
+            font-size: 12px;
+           
+        }
+        
+    }
 }
 span#post-date{
     font-size: 12px;

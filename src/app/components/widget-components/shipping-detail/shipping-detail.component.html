@@ -1,8 +1,12 @@
-<div class="shopping-container w3-card-4">
+<div *ngIf="checkMsg" class="d-flex justify-content-between check-notice w3-card-2">
+    <span><p >{{checkMsg}}</p></span> 
+    <span><md-icon>error_outline</md-icon> </span>
+</div>
+<div class="shopping-container w3-card-2">
     <div class="shp-header d-flex flex-row justify-content-between">
         <span><md-icon>shopping_cart</md-icon></span>
         <h1>Your Shopping</h1>
-        <a routerLink="/basket">full</a>
+        <a routerLink="/basket">View</a>
     </div>
     <div class="shopping-total d-flex flex-row justify-content-between">
         <h2 id="shop-total">Shopping Total: </h2>
@@ -18,7 +22,7 @@
     </div>
 
     <div class="check-button">
-        <button role="button" md-raised-button routerLink="/checkout">CHECK OUT</button>
+        <a role="button" md-raised-button (click)="checkOut()">CHECK OUT</a>
     </div>
 
 </div>

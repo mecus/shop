@@ -81,9 +81,12 @@ export class SideCartComponent implements OnInit {
         this.cartService.incrementCart(this.payLoad(product));
     //  this.store.dispatch({type: cart.INCREMENT, payload: this.payLoad(product)})
     }
-    decrement(product){
-        if(product.qty < 1){
-           this.cartService.removeCart(this.payLoad(product));
+    decrement(product, e){
+        if(product.qty == 1){
+            e.target.innerHTML = "pan_tool";
+            e.target.style.color = "lightsteelblue";
+            return;
+        //    this.cartService.removeCart(this.payLoad(product));
         }else{
             this.cartService.decrementCart(this.payLoad(product));
         }

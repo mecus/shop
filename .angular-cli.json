@@ -28,6 +28,33 @@
         "dev": "environments/environment.ts",
         "prod": "environments/environment.prod.ts"
       }
+    },
+    {
+      "platform": "server",
+      "name": "ssr-build",
+      "root": "src",
+      "outDir": "functions/dist-ssr",
+      "assets": [
+        "assets",
+        "favicon.ico"
+      ],
+      "index": "index.html",
+      "main": "main-ssr.ts",
+      "test": "test.ts",
+      "tsconfig": "tsconfig.app-ssr.json",
+      "testTsconfig": "tsconfig.spec.json",
+      "prefix": "app",
+      "styles": [
+        "styles.scss",
+        "app-material-theme.scss"
+      ],
+      "scripts": [],
+      "environmentSource": "environments/environment.ts",
+      "environments": {
+        "dev": "environments/environment.ts",
+        "prod": "environments/environment.prod.ts"
+      }
+      
     }
   ],
   "e2e": {

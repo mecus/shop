@@ -1,6 +1,6 @@
 <div class="billing">
     <h2>Billing Information</h2>
-    <form class="billing-form" [formGroup]="BForm" (ngSubmit)="createCustomer(BForm.value)">
+    <form novalidate class="billing-form" [formGroup]="BForm" (ngSubmit)="createCustomer(BForm.value)">
         <!--<md-input-container class="example-full-width">
             <input mdInput placeholder="Company" placeholder="company">
         </md-input-container>-->

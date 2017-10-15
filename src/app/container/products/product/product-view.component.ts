@@ -8,8 +8,9 @@ import { iProduct } from '../../../models/product.model';
 import { ProductService } from "../../../services/product.service";
 import { CartService } from '../../../services/cart.service';
 import { StorageService } from "../../../services/storage.service";
-
 import { ReviewService } from "../../../services/review.service";
+
+import * as _ from 'lodash';
 
 @Component({
   selector: 'app-product',
@@ -44,6 +45,7 @@ export class ProductViewComponent implements OnInit {
     userErr;
     cartErrorMsg?;
     carts$:Observable<any>;
+    reconmendProduct$;
     constructor(private _router:Router,
     private route:ActivatedRoute, private productService:ProductService,
     private location:Location, private cartService:CartService, 
@@ -143,6 +145,9 @@ export class ProductViewComponent implements OnInit {
       this.description = false;
   
    }
+  reconmendFunction(reconmend){
+    this._router.navigate(["/product", {id:reconmend._id, product: reconmend.name}]);
+  }
   ngOnInit() {
     this.route.params.forEach((param)=>{
         this.productService.getCachedData().subscribe((products)=>{
@@ -154,6 +159,14 @@ export class ProductViewComponent implements OnInit {
               'user': this.storeService.retriveData('user')
             });
         })
-    })
+    });
+    setTimeout(()=>{
+       this.productService.getCachedData()
+        .subscribe((product)=> {
+          this.reconmendProduct$ = _.takeRight(product.products, 4);
+          console.log(this.reconmendProduct$);
+        });
+        
+    }, 300)
   }
 }

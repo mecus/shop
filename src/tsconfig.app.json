@@ -7,9 +7,9 @@
     "types": []
   },
   "exclude": [
-    "server.ts",
+    "main-ssr.ts",
     "test.ts",
     "**/*.spec.ts",
-    "functions/node_modules"
+    "./functions/node_modules"
   ]
 }

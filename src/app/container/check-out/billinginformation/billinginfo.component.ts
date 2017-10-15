@@ -19,6 +19,7 @@ export class BillingInfoComponent implements OnInit {
     differentAddress:boolean;
     errorMsg;
     titles;
+
     constructor(private _fb:FormBuilder, private _router:Router,
     private accountService:AccountService, private authService:AuthService,
     private storeService:StorageService){
@@ -54,7 +55,7 @@ export class BillingInfoComponent implements OnInit {
     createCustomer(customer):void{
         if(!customer.email && !customer.first_name){
             this.errorMsg = "Please fill all required fields";
-            // this._router.navigate(["/payment_method"]);
+            this._router.navigate(["/payment_method"]);
             return;
         }
         let user = {
@@ -103,6 +104,8 @@ export class BillingInfoComponent implements OnInit {
                     this.storeService.storeData('email', customer.email);
                     this.accountService.createAccount(account, address);
                     this.authService.createUserAccount(res.uid, accountUser);
+
+                    
                     setTimeout(()=>{
                         this._router.navigate(["/payment_method"]);
                     }, 500)

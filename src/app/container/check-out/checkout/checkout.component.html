@@ -1,72 +1,87 @@
 <check-out-menu></check-out-menu>
-<div class="container">
-    <!--<div>
-        <p>One application module is defined for each application. This module is named AppModule and implemented in file app.module.ts by convention. The application / root module is the main entry point and contains components, pipes and services which do not belong the subsequent feature modules and should be available application-wide.</p>
-    </div>-->
-    <div class="checkout-container">
-        
-        <div class="new-customer">
-            <h2>New customer</h2>
-            <div class="card">
-                <div class="card-body">
-                    <h3>Register for future convenience</h3>
-                    <!-- <app-paypal></app-paypal> -->
-                    <!-- <md-radio-group (change)="onChnage($event)">
-                        <md-radio-button value="guest">Guest Checkout</md-radio-button>
-                        <br>
-                        <md-radio-button value="register">Register</md-radio-button>
-                    </md-radio-group> -->
-                   <p>We accept number of payment card and also accept payment with paypal account.</p>
-                   <small>In the next step you will have the option to choose payment method of your choice..</small>
-                </div>
-            </div>
-            
-        </div>
-        <!--<p>Selected: {{newcustomer}}</p>-->
-        <div class="old-customer">
-            <h2>Already a customer Login</h2>
-            
-            <div class="card">
-                <div class="card-body">
-                    
-                    <!--<h3>Already a customer</h3>-->
-                    <!-- <p>please login below</p> -->
-                    <form class="login-form" [formGroup]="loginForm" (ngSubmit)="userLogin(loginForm.value)">
-                        <p>
-                            <md-input-container class="login-full-width">
-                            <span mdPrefix><md-icon>email</md-icon> &nbsp;</span>
-                            <input formControlName="email" type="email"  mdInput placeholder="Email">
-                            </md-input-container>
-                            <md-input-container class="login-full-width">
-                            <span mdPrefix><md-icon>lock_outline</md-icon> &nbsp;</span>
-                            <input formControlName="password" type="password"  mdInput placeholder="Password">
-                            </md-input-container>
-                        </p>
-                        <p id="errMsg">{{loginErrMsg}}</p>
-                        <button md-raised-button type="submit">Login</button>
+<div class="container main-container page-rule">
+
+    <div class="d-flex flex-row justify-content-between checkout-container">
+        <div class="p-2 d-flex flex-column log-reg">
+            <div class="p-2 d-flex">
+                <div class="p-2 new-customer">
+                        <h2>New customer</h2>
+                        <div class="card">
+                            <div class="card-body">
+                                <h3>Register for future convenience</h3>
+                                <!-- <app-paypal></app-paypal> -->
+                                <!-- <md-radio-group (change)="onChnage($event)">
+                                    <md-radio-button value="guest">Guest Checkout</md-radio-button>
+                                    <br>
+                                    <md-radio-button value="register">Register</md-radio-button>
+                                </md-radio-group> -->
+                            <p>We accept number of payment card and also accept payment with paypal account.</p>
+                            <small>In the next step you will have the option to choose payment method of your choice..</small>
+                            <div class="check-continue">
+                                    <md-checkbox (change)="checkContinue($event)">
+                                            Check box to continue!
+                                    </md-checkbox>
+                            </div>
+                            
+                            </div>
+                        </div>
                         
-                    </form>
+                    </div>
+                    <!--<p>Selected: {{newcustomer}}</p>-->
+                    <div class="p-2 old-customer">
+                        <h2>Already a customer</h2>
+                        
+                        <div class="card">
+                            <div class="card-body">
+                                
+                                <!--<h3>Already a customer</h3>-->
+                                <p>please login below</p>
+                                <form novalidate class="login-form" [formGroup]="loginForm" (ngSubmit)="userLogin(loginForm.value)">
+                                    <p>
+                                        <md-input-container class="login-full-width">
+                                        <span mdPrefix><md-icon>email</md-icon> &nbsp;</span>
+                                        <input formControlName="email" type="email"  mdInput placeholder="Email">
+                                        </md-input-container>
+                                        <md-input-container class="login-full-width">
+                                        <span mdPrefix><md-icon>lock_outline</md-icon> &nbsp;</span>
+                                        <input formControlName="password" type="password"  mdInput placeholder="Password">
+                                        </md-input-container>
+                                    </p>
+                                    <p id="errMsg">{{loginErrMsg}}</p>
+                                    <button md-raised-button type="submit">Login</button>
+                                    
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+            <div class="p-2" *ngIf="register" id="form-components">
+                <div class="card">
+                    <div class="card-body">
+                        <billing-address></billing-address>
+                    </div>
+                    
+                    <!-- <div *ngIf="register">
+                        <billing-address></billing-address>
+                    </div> -->
+                    <!-- <div *ngIf="guest">
+                        <guest-checkout></guest-checkout>
+                    </div>  -->
+                </div>
+             </div>
+            
+        </div>
+
+        <div class="p-2 aside-bar">
+            <!-- <checkout-progress></checkout-progress> -->
+            <div class="cart-head">
+                <shippong-detail></shippong-detail>
+                <div class="cart-btn-cover">
+                    <p>Thanks for shopping with us</p>
                 </div>
             </div>
-        </div>
-        <div class="aside-bar jumbotron">
-            <checkout-progress></checkout-progress>
-            <!--<shippong-detail></shippong-detail>-->
-            <!--<side-shop-cart></side-shop-cart>-->
+            <side-shop-cart></side-shop-cart>
         </div>
    </div>
-</div>
-<div id="form-components" class="container" >
-    <div class="card">
-        <div class="card-body">
-            <billing-address></billing-address>
-        </div>
-        
-        <!-- <div *ngIf="register">
-            <billing-address></billing-address>
-        </div> -->
-        <!-- <div *ngIf="guest">
-            <guest-checkout></guest-checkout>
-        </div>  -->
-    </div>
+
 </div>

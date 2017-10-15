@@ -1,15 +1,16 @@
 div.head-title{
     margin: 0 auto;
-    width: 800px;
+    max-width: 800px;
     padding: 0px;
     margin-top: 20px;
     padding-left: 20px;
 }
 .login-form{
     display: flex;
+    flex-wrap: wrap;
     margin: 0 auto;
     width: 800px;
-    min-height: 400px;
+    min-height: 500px;
     .signup-link{
         margin-top: 0px;
         flex: 1;
@@ -19,7 +20,7 @@ div.head-title{
             font-size: 12px;
         }
         .postError{
-            border: 1px solid brown;
+            border-left: 3px solid brown;
            
         }
     }

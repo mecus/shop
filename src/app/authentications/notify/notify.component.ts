@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import { CartService } from '../../services/cart.service';
 import * as firebase from 'firebase';
@@ -14,10 +15,38 @@ import { ClearHeighlightMenu } from "../../services/clearfunction.service";
 export class NotifyComponent implements OnInit {
   totalPrice:Observable<number>;
   authenticated:boolean = false;
+  dropDown:boolean = false;
+  sum;
+  limitMsg:string;
+
   constructor(private cartService:CartService, private authService:AuthService, 
-  private storeService:StorageService, private clearHeighlightMenu:ClearHeighlightMenu) {
+  private storeService:StorageService, private clearHeighlightMenu:ClearHeighlightMenu,
+  private _router:Router) {
     this.authChange();
     
+   }
+   goCheckOut(){
+    this.cartService.cartTotal().subscribe((carts)=>{
+      let total = carts.filter(cart=> cart.postcode == this.storeService.retriveData('postcode'))
+      .map(cart=>cart.qty * Number(cart.price));
+       this.sum = total.reduce((sum, num)=>{return sum + num}, 0).toFixed(2);
+      
+      });
+      if(this.sum > 40){
+        this._router.navigate(["/checkout"]);
+       }else{
+        this.limitMsg = "You need to spend £40 or more";
+      }
+    // this._router.navigate(["/checkout"]);
+   }
+   cartOption(){
+    //  let domE = document.getElementById("cart-option");
+     this.dropDown = (this.dropDown == false? true : false);
+    //  if(this.dropDown == true){
+    //   domE.style.marginTop = "80px";
+    //  }else{
+    //   domE.style.marginTop = "-40px";
+    //  }
    }
    authChange(){
     firebase.auth().onAuthStateChanged((user)=>{

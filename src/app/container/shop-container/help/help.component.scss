@@ -1,0 +1,21 @@
+.page-container{
+    min-height: 500px;
+    background-color: #ffffff;
+    .page-inner{
+        position: relative;
+        margin: 0 auto;
+        h1{
+            padding: 10px 0px;
+        }
+        .xpandable-panel{
+            max-width: 600px;
+            p{
+                font-size: 12px;
+            }
+        }
+        md-card{
+            margin-top: 40px !important;
+            max-width: 600px;
+        }
+    }
+}

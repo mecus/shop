@@ -6,8 +6,8 @@ import { CartService } from "../../../services/cart.service";
 
 @Component({
   selector: 'delivery-options',
-  templateUrl: './delivery-options.component.html',
-  styleUrls: ['./delivery-options.component.scss']
+  templateUrl: 'delivery-options.component.html',
+  styleUrls: ['delivery-options.component.scss']
 })
 export class DeliveryOptionsComponent implements OnInit, OnChanges {
   totalPrice;

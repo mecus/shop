@@ -1,13 +1,22 @@
 div.checkout-progress{
-    h4{
-        // text-decoration: line-through;
-        padding: 0px;
-        margin: 0px;
-        margin: 10px 0px;
-        font-size: 18px;
-    }
+    // h4{
+    //     // text-decoration: line-through;
+    //     padding: 0px;
+    //     margin: 0px;
+    //     margin: 10px 0px;
+    //     font-size: 18px;
+    // }
     ul, li {
         margin: 0px;
         padding: 0px;
+    }
+    .check-content{
+        .progress{
+            span p{
+                font-size: 14px;
+                // margin: 5px;
+            }
+        }
+        
     }
 }

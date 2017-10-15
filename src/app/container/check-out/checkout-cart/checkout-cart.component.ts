@@ -8,8 +8,8 @@ import { WindowService } from "../../../services/window.service";
 
 @Component({
   selector: 'checkout-cart',
-  templateUrl: './checkout-cart.component.html',
-  styleUrls: ['./checkout-cart.component.scss']
+  templateUrl: 'checkout-cart.component.html',
+  styleUrls: ['checkout-cart.component.scss']
 })
 export class CheckoutCartComponent implements OnInit {
   cart$: Observable<any>;

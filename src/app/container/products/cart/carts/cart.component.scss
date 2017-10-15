@@ -1,0 +1,98 @@
+.cart-container{
+    min-height: 500px;
+    // background-color: #ffffff;
+    .cart-item-container{
+        margin-top: 30px;
+        .cart-left-side{
+            flex: 4;
+            width: 100%;
+            .cart-item{
+                background-color: #ffffff;
+                // margin-top: 10px;
+                // height: 200px;
+                border-bottom: 1px solid lightgray;
+                .qty-total{
+                    .minus-icon{
+                        margin: 0px;
+                        padding: 0px;
+                        md-icon{
+                            background-color: lightgray;
+                            border-radius: 50%;
+                            padding: 5px;
+                            font-size: 14px;
+                            font-weight: bold;
+                            &:hover{cursor: pointer;color: red;}
+                        }
+                    }
+                    .add-icon{
+                        @extend .minus-icon;
+                    }
+                }
+                .p-2{
+                    // border: 1px solid lightgrey;
+                    // width: 100%;
+                }
+                .total{
+                    margin-left: 20px;
+                    h2, p{font-weight: 400;}
+                }
+                img{
+                    width: 100px;
+                    border-right: 1px dotted lightgray;
+                    padding-right: 10px;
+                }
+                h1{
+                    margin-top: 20px;
+                    font-family: 'Dosis', sans-serif;
+                    font-weight: 400;
+                    font-size: 16px;
+                    text-align: center;
+                }
+                h2{
+                    margin: 0px;
+                    padding: 0px;
+                    margin-top: 20px;
+                    font-family: 'Dosis', sans-serif;
+                    font-weight: 100;
+                    font-size: 16px;
+                    text-align: center;
+                }
+                p{
+                    margin: 0px;
+                    padding: 0px;
+                    font-family: 'Dosis', sans-serif;
+                    font-weight: 100;
+                    text-align: center;
+                }
+                .delete md-icon{
+                    color: gray;
+                    font-size: 22px;
+                    &:hover{cursor: pointer;color: red;}
+                }
+            }
+        }   
+
+        .total-calc{
+            flex: 2;
+            // margin-top: 10px;
+            width: 100%;
+            a{
+                width: 100%;
+            }
+            .cart-ad{
+                height: 200px;
+                background-color: lightsteelblue;
+                h1{
+                    text-align: center;
+                    padding-top: 20px;
+                }
+            }
+            .net-total{
+                margin: 10px 0px;
+                padding: 20px;
+                background-color: #ffffff;
+                
+            }
+        }
+    }
+}

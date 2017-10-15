@@ -6,8 +6,19 @@
     .order-container{
         .order-view{
             margin-top: 20px;
-            max-width: 600px;
+            max-width: 700px;
+
+            .xpandable-panel{
+                p{margin-left: 20px;}
+                span{
+                    margin: 0 20px;
+                }
+                md-icon{
+                    color: #009688;
+                }
+            }
         }
     }
 }
+
 

@@ -1,0 +1,76 @@
+<!-- <primary-navigation></primary-navigation> -->
+<div class="main-menu">
+    <primary-navigation></primary-navigation>
+</div>
+<div class="mobile-menu">
+    <mobile-menu></mobile-menu>
+</div>
+<div class="page-container mobile-margin-top page-rule">
+  <div class="container main-content d-flex justify-content-start">
+      <div class="p-2 video-content">
+          <div *ngIf="instructVideo" class="embed-responsive embed-responsive-16by9">
+              <iframe id="video" class="embed-responsive-item" [src]= "instructVideo | youtube" frameborder="0" allowfullscreen></iframe>
+          </div>
+          <div *ngIf="videoD" class="d-flex justify-content-start card-6">
+            <h1 class="p-2" >{{videoD.name}}</h1>
+            <span class="p-2 ml-auto">
+              <span>{{videoCounter}} views</span>
+                <span >Like</span>
+                <span>Dislike</span>
+                <span >Share</span>
+            </span>
+            
+            
+          </div>
+          <div *ngIf="videoD" class="ingridents">
+              <div class="d-flex justify-content-between header">
+                <div class="p-2">
+                    <h2>List of Ingridents needed</h2>
+                </div>
+                <div class="p-2">
+                  <a md-raised-button>Add all to cart</a>
+                </div>
+              </div>
+              
+              <div *ngFor="let item of ingridents" class="d-flex justify-content-start list-items ">
+                <div class="p-2 item-1">
+                  <img [src]="item.image" alt="prod-image">
+                </div>
+                <div class="p-2 item-2">
+                  <h1>{{item.name}}</h1>
+                  <strong><p>Price: {{item.price | currency: 'GBP': true}}</p></strong>
+                  <p>Size: {{item.size}}</p>
+                </div>
+                <div class="p-2 ml-auto item-3">
+                  <button class="btn btn-success">Add</button>
+                </div>
+              </div>
+
+          </div>
+      </div>
+
+    <div *ngIf="youtube" class="p-2 video-menu">
+      <div *ngFor="let video of youtube">
+        <div class="d-flex video-list">
+          <div class="p-2 video">
+              <div class="video-inner embed-responsive embed-responsive-16by9">
+                  {{video.youtube_link}}
+                  <iframe id="video" class="embed-responsive-item" [src]= "video.youtube_link | youtube" frameborder="0" allowfullscreen></iframe>
+              </div>
+              <div (click)="getInstruction(video)" class="video-cover"></div>
+              <!-- <img style="width:150px;" src="assets/170202_HowtoShop_Event-Link.jpg" alt="Photo of a Shiba Inu"> -->
+          </div>
+          <div class="p-2 descpt">
+              <strong><p (click)="getInstruction(video)" id="name">{{video.name}}</p></strong>
+              <p id="author">Author: Jane Doe</p>
+              <p id="views">Views: {{videoCounter}}</p>
+          </div>
+        </div>
+      </div>
+        <div class="cart-widget">
+            <widget-right></widget-right>
+        </div>
+    </div>
+    
+  </div>
+</div>

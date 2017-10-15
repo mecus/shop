@@ -6,8 +6,8 @@ import { WindowService } from "../../../services/window.service";
 
 @Component({
   selector: 'app-update-account',
-  templateUrl: './update-account.component.html',
-  styleUrls: ['./update-account.component.scss']
+  templateUrl: 'update-account.component.html',
+  styleUrls: ['update-account.component.scss']
 })
 export class UpdateAccountComponent implements OnInit {
   showDeliveryAddress;

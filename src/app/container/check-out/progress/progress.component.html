@@ -1,13 +1,13 @@
-<div class="checkout-progress card">
-  <div class="card-body">
+<div class="checkout-progress">
+  <div class="check-content">
      <h1>Checkout Progress</h1>
-     <ul>
-       <li *ngFor="let progress of progressList">
-         <div>
+     
+       <div class="" *ngFor="let progress of progressList">
+         <div class="progress">
            <span><md-icon>check_box</md-icon></span>
-           <span>{{progress}}</span>
+           <span id="text"><p>{{progress}}</p></span>
          </div>
-       </li>
-     </ul>
+        </div>
+   
   </div>
 </div>

@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+// import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { WidgetRightComponent } from "../../components/widget-right/widget-right.component";
@@ -28,11 +28,15 @@ import { CheckoutCartComponent } from '../../container/check-out/checkout-cart/c
 import { ForgorttenPassword } from "../../components/reset-password/forgotten/forgotten-password";
 import { ChangePassword } from "../../components/reset-password/change/change-password";
 import { CheckOutMenuComponent } from '../../container/menu/check-out-menu/check-out-menu.component';
+import { DeliveryDisplayComponent } from "../../components/widget-components/delivery-option-display/delivery-option.component";
+import { SponsorProductComponent } from '../../components/widget-components/sponsor-product/sponsor-product.component';
+import { MobileMenuComponent } from '../../container/menu/mobile-menu/mobile-menu.component';
+import { PaypalComponent } from '../../container/check-out/paypal/paypal.component';
 
 @NgModule({
     imports: [
         CommonModule, MaterialModule, BrowserAnimationsModule,
-        AppRouterModule, FormsModule, ReactiveFormsModule, BsDropdownModule.forRoot()
+        AppRouterModule, FormsModule, ReactiveFormsModule
     ],
     exports: [
         WidgetRightComponent, WidgetLeftComponent, 
@@ -42,7 +46,9 @@ import { CheckOutMenuComponent } from '../../container/menu/check-out-menu/check
         HowToComponent, NotifyComponent, YoutubePipe, SecondaryNavigationComponent,
         HoverMenuDirective, SelectMenuDirective, FooterComponent, CardComponent,
         AddressSearchComponent, DeliveryOptionsComponent, CheckoutCartComponent,
-        ForgorttenPassword, ChangePassword, CheckOutMenuComponent
+        ForgorttenPassword, ChangePassword, CheckOutMenuComponent, DeliveryDisplayComponent,
+        SponsorProductComponent, MobileMenuComponent,
+        PaypalComponent
     ],
     declarations: [
         WidgetRightComponent, WidgetLeftComponent,
@@ -52,7 +58,9 @@ import { CheckOutMenuComponent } from '../../container/menu/check-out-menu/check
         HowToComponent, NotifyComponent, YoutubePipe, SecondaryNavigationComponent,
         HoverMenuDirective, SelectMenuDirective, FooterComponent, CardComponent,
         AddressSearchComponent, DeliveryOptionsComponent, CheckoutCartComponent,
-        ForgorttenPassword, ChangePassword, CheckOutMenuComponent
+        ForgorttenPassword, ChangePassword, CheckOutMenuComponent, DeliveryDisplayComponent,
+        SponsorProductComponent, MobileMenuComponent,
+        PaypalComponent
         
     ]
 })

@@ -1,5 +1,13 @@
-<secondary-navigation></secondary-navigation>
-<div class="register-container ">
+<div class="main-menu">
+    <primary-navigation></primary-navigation>
+  </div>
+  <div class="mobile-menu">
+    <mobile-menu></mobile-menu> 
+</div>
+<div class="mobile-margin-top">
+
+</div>
+<div class="register-container page-rule">
     <div class="jumbotron card search-head">
         <h2>Registration is quick and easy</h2>
         <p>Enter your postcode to see products and offers available to you.</p>
@@ -12,15 +20,8 @@
             <p *ngIf="posterror" id="post-err">{{posterror}}</p>
             
         </div>
-        <div *ngIf="progressOn" class="progress-bar">
-            <section class="example-section">
-                <md-progress-bar
-                    class="example-margin"
-                    [color]="accent"
-                    [mode]="mode">
-                </md-progress-bar>
-            </section>
-        </div>
+        <md-progress-bar *ngIf="progressOn" [color]="accent" mode="indeterminate"></md-progress-bar>
+
     </div>
 
     <div *ngIf="searchResult" class="search-result">

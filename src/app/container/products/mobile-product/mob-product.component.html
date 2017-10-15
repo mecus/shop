@@ -1,0 +1,26 @@
+<div class="main-menu">
+    <primary-navigation></primary-navigation>
+</div>
+<div class="mobile-menu">
+    <mobile-menu></mobile-menu> 
+</div>
+<div class="page-container">
+
+    <div class="d-flex flex-column justify-content-between mob-product-wrapper">
+        <div class="p-2 d-flex product" *ngFor="let product of products$">
+            <div class="p-2 d-flex flex-column p-image">
+                <img [src]="product.imageUrl" alt="product-image">
+                <div id="inCart">
+                    <p>1 in Cart</p>
+                </div>
+            </div>
+            <div class="p-2 p-caption">
+                <h1>{{product.name}}</h1>
+                <p id="price"><strong>Price: </strong> {{product.price | currency:"GBP":true}}</p>
+                <p>Size: {{product.size}}</p>
+                <a md-raised-button>Add</a>
+            </div>
+            <div class="offer"><p>Offer</p></div>
+        </div>
+    </div>
+</div>

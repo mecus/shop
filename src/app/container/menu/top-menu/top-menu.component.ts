@@ -10,13 +10,14 @@ import { CartService } from '../../../services/cart.service';
 
 @Component({
   selector: 'app-top-menu',
-  templateUrl: './top-menu.component.html',
-  styleUrls: ['./top-menu.component.scss']
+  templateUrl: 'top-menu.component.html',
+  styleUrls: ['top-menu.component.scss']
 })
 export class TopMenuComponent implements OnInit {
   window;
   document;
   triger:boolean = false;
+  cta:boolean = false;
   constructor(
     private windowRef:WindowService, 
     private _location:Location, 
@@ -28,6 +29,9 @@ export class TopMenuComponent implements OnInit {
     {
     this.window = this.windowRef.getWindowObject();
     this.document = this.windowRef.getDocumentRef();
+  }
+  openCta(){
+    this.cta = (this.cta == false? true : false);
   }
   goHome(){
     this.clearHeighlightMenu.clearMenu();
@@ -52,11 +56,11 @@ export class TopMenuComponent implements OnInit {
   }
   flashIcon(){
     let flash = this.document.getElementById('fashIcon');
-    flash.innerHTML = `wb_sunny`;
-    flash.style.color = "red";
+    flash.innerHTML = `wb_sunny` || null;
+    flash.style.color = "red" || null;
 
     setTimeout(()=>{
-        flash.style.color = "lightgreen";
+        flash.style.color = "lightgreen" || null;
         // flash.innerHTML = `wb_sunny`;
       }, 1000)
   }

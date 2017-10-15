@@ -4,7 +4,8 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/merge';
-import { LocalStorageService, SessionStorageService } from 'ng2-webstorage';
+// import { StorageService } from './storage.service';
+// import { LocalStorageService, SessionStorageService } from 'ng2-webstorage';
 
 @Injectable()
 
@@ -12,9 +13,9 @@ export class SearchService {
     host: string = "https://urgyshop.herokuapp.com/";
     productUrl;
     queryProductUrl;
-    constructor(private _http:Http, private storageService:LocalStorageService){
+    constructor(private _http:Http){
         this.productUrl = this.host+"api/v1/stores/productsonly";
-        this.queryProductUrl = "http://localhost:3000/api/v1/stores/products/query/?";
+        this.queryProductUrl = this.host+"api/v1/stores/products/query/?";
     }
 
     searchProduct(query){

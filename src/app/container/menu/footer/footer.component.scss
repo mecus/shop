@@ -48,7 +48,7 @@ div.social{
 
 div.footer-container{
     height: 250px;
-    background-color: #212121;
+    background-color: #263238; // #212121;
     color: #000;
 }
 div.p-2{
@@ -73,9 +73,35 @@ div.p-2{
         }
     }
 }
+div.acceptance-card{
+    // width: 300px;
+    span img{
+        width: 100%;
+        opacity: 0.8;
+    }
+    .left-card{
+        width: 250px;
+    }
+    .ml-auto img{
+        width: 100px;
+        .visa img{
+            width: 50px;
+            opacity: 0.5;
+        }
+    }
+}
 .lower-footer{
-    height: 40px;
+    height: 60px;
     width: 100%;
+    margin-bottom: 0px !important;
+    padding-bottom: 0px !important;
     background-color: #100F0F;
     color: rgba(252, 252, 252, 0.8);
+    a{
+        color: #FF9100;
+        opacity: 0.5;
+        &:hover{
+            color: #f15a23;
+        }
+    }
 }

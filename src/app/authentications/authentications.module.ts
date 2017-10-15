@@ -6,7 +6,7 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 import { MaterialModule } from "../modules/material/material.module";
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRouterModule } from '../routers/app-router/app-router.module';
-import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+// import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 
 
 import { AuthService } from './authentication.service';
@@ -23,7 +23,7 @@ import { ResetPassword } from "../components/reset-password/reset/reset-password
   imports: [
     CommonModule, AngularFireModule, AngularFireDatabaseModule, AppRouterModule,
     AngularFireAuthModule, MaterialModule, FormsModule, ReactiveFormsModule,
-    AppSharedModule, BsDropdownModule.forRoot()
+    AppSharedModule
   ],
   exports: [LoginComponent],
 

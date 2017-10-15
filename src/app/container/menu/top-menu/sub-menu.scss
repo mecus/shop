@@ -1,8 +1,10 @@
 // Styling the sticky menu
 .sticky-menu-container{
     display: none;
+    // margin-top: - 62px;
     background-color: #ffffff;
     width: 100%;
+    transition: 0.2s;
     md-toolbar{
         width: 100%;
         // display: none;
@@ -25,7 +27,12 @@
             .item1{
                 flex: 1;
                 margin: 0 auto;
-                h1{font-size: 30px;}
+                h1{
+                    font-size: 38px;
+                    font-family: 'Dosis', sans-serif;
+                    font-weight: bold;
+                    color: #00796B;
+                }
                 margin-left: 20px;
             }
             .item2{
@@ -40,6 +47,8 @@
                 .notify{
                     position: relative;
                     float: right;
+                    font-size: 14px;
+                    font-family: 'Open Sans Regular', sans-serif;
                     // right: 10px;
                 }
             
@@ -52,7 +61,7 @@
     display: flex;
     display: -webkit-flex;
     height: 40px;
-    background-color:#000;
+    background-color: #000000;
     line-height: 40px;
     color:#fff;
     .side-menu-btn{
@@ -67,7 +76,7 @@
     &:hover{
         .side-menu-btn{
             md-icon{
-                color: red;
+                color: #f15a23;
                 font-weight: bold;
                 
             }
@@ -86,7 +95,7 @@
 
 //Custom and main navigation
 .nav-menu{
-    background-color: #000000;
+    background-color: rgba(0, 0, 0, 1);
     height: 40px;
     .nav-content{
         padding: 0px;
@@ -96,27 +105,51 @@
             font-family: Dosis, sans-serif;
             font-weight: normal;
             font-size: 1.1em;
+            &:hover{
+                cursor: pointer;
+                // color: #ffffff !important;
+            }
         }
         #how-to{
             background-color: #00796B !important;
-            a{color: #fff !important;}
+            a{
+                color: #fff !important;
+                font-weight: bold;
+                i{
+                    padding-left: 5px;
+                }
+            }
             &:hover{
-        
+                cursor: pointer;
                 a{color: #000 !important;}
         
+            }
+        }
+        #best-offer{
+            background-color: red;
+            a{
+                background-color: red;
+                color: #ffffff;
+                line-height: 40px;
+                height: 40px;
+                padding: 0 10px;
+                font-family: 'Open Sans Regular', sans-serif;
             }
         }
     }
 }
 //How to pop page control
-.how-to-do{
-    position: absolute;
-    margin: 0 auto;
-    z-index: 10;
-}
-
 .howTo-video{
     display: none;
+    background-color: #00796B;
+    min-height: 200px;
+    width: 100%;
+    position: absolute;
+    margin: 0 auto;
+    z-index: 100;
+    .how-to-do{
+        
+    }
 }
 //Displaying Brands
 .brand-list{

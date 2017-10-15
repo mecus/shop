@@ -1,25 +1,33 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { LocalStorageService, SessionStorageService } from 'ng2-webstorage';
 import { PaymentService } from "./payment.service";
 
+
+const storageService = function (){
+    return window.localStorage;
+}
 
 @Injectable()
 
 export class StorageService {
 
-    constructor(private storageService:LocalStorageService,
-        private paymentService:PaymentService){
+    constructor(private paymentService:PaymentService){
 
     }
     storeData(key:string,  data){
-        this.storageService.store(key, data);
+        if(typeof data === "object"){
+            storageService().setItem(key, JSON.stringify(data));
+            return;
+        }else{
+            storageService().setItem(key, data);
+            return;
+        }
     }
-    retriveData(key:string):Observable<any>{
-        return this.storageService.retrieve(key);
+    retriveData(key:string){
+        return storageService().getItem(key);  
     }
     cleardata(key:string){
-        this.storageService.clear(key)
+        storageService().removeItem(key);
     }
 
     getPaymentToken(){

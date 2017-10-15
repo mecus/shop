@@ -19,6 +19,7 @@
     </div> -->
     <ul *ngIf="searchProducts" class="list-group">
       <li *ngFor="let result of searchProducts | async" class="list-group-item justify-content-between">
+        <img [src]="result.imageUrl" style="width: 30px;" alt="search-photo">
         <span><a (click)="findResult(result)" (click)="closeResult()">{{result.name}}</a></span>
         <!--<span class="badge badge-default badge-pill">14</span>-->
       </li>

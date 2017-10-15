@@ -27,16 +27,21 @@ export class ProductService {
   storeDeptAd$;
   queryProductUrl;
   graphql;
+  departmentItem$;
+  departmentUrl: string;
 
 
   constructor( private _http:Http) {
     this.graphql = this.host+"graphql?";
+    this.departmentUrl = this.host+"api/v1/stores/departments";
     this.resourceUrl = this.host+"api/v1/stores/products";
     this.dataResource = this.host+"api/v1/stores/storedata";
     this.adUrl = this.host+"api/v1/stores/storeadvert";
     this.queryProductUrl = this.host+"api/v1/stores/products/query/?";
+
     this.storeData$ = new ReplaySubject(1);
     this.storeDeptAd$ = new ReplaySubject(1);
+    this.departmentItem$ = new ReplaySubject(1);
    }
 
   getFireBaseProduct(){
@@ -55,6 +60,7 @@ export class ProductService {
 
   getProducts():Observable<any>{
     return this._http.get(this.dataResource).map((res)=>{
+    // console.log(res.json());
      return res.json();
     }).catch(this.handleError);
     
@@ -83,24 +89,25 @@ export class ProductService {
      });
     }).catch(this.handleError);
   }
-
-  // getAds() {
-  //   // used for getSoreAd() supplements
-  //   // need to be removed later
-  //   return [
-  //     new AdItem(NewProdComponent, {title: 'Bombasto', snipet: 'Brave as they come'}),
-
-  //     new AdItem(NewCatComponent,   {headline: 'Hiring for several positions',
-  //                                       body: 'Submit your resume today!'}),
-
-  //     new AdItem(NewProdComponent, {title: 'Dr IQ', snipet: 'Smart as they come'}),
-
-  //     new AdItem(NewCatComponent,   {headline: 'Openings in all departments',
-  //                                       body: 'Apply today'}),
-  //   ];
-  // }
-
+  
   //Caching data functions
+  getDepartmentMenu(){
+    if(!this.departmentItem$.observers.length){
+      console.log('Start Fatching Dept');
+      this._http.get(this.departmentUrl).map(data=> data.json())
+      .subscribe(
+        dept=>this.departmentItem$.next(dept),
+        error=>{
+          if(error){
+            this.departmentItem$.error(error);
+            this.departmentItem$ = new ReplaySubject(1);
+          }
+        }
+      );
+      console.log('End Fatching Dept');
+    }
+    return this.departmentItem$;
+  }
   getCachedData(forceRefresh?:boolean){
     if(!this.storeData$.observers.length || forceRefresh){
       console.log("Http Request Service for Products");

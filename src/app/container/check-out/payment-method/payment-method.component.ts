@@ -12,11 +12,12 @@ import { OrderService } from "../../../services/order.service";
 import { CartService } from "../../../services/cart.service";
 import { TempOrder, tempOtype } from "../../../models/tempOrder.model";
 import * as _ from 'lodash';
+import { ProgressService } from '../../../services/checkout-progress.service';
 
 @Component({
   selector: 'app-payment-method',
-  templateUrl: './payment-method.component.html',
-  styleUrls: ['./payment-method.component.scss']
+  templateUrl: 'payment-method.component.html',
+  styleUrls: ['payment-method.component.scss']
 })
 export class PaymentMethodComponent implements OnInit, AfterViewInit {
   document;
@@ -33,7 +34,7 @@ export class PaymentMethodComponent implements OnInit, AfterViewInit {
   constructor(private accountService:AccountService, private authService:AuthService, 
     private storeService:StorageService, private _fb:FormBuilder, private _router:Router,
     private paymentService:PaymentService, private windowService:WindowService, private cartService:CartService,
-    private tempOrderService:TempOrderService, private orderService:OrderService) {
+    private tempOrderService:TempOrderService, private orderService:OrderService, private progressService: ProgressService) {
       this.document = this.windowService.getDocumentRef();
       this.temporder = {
         userid: null,
@@ -96,8 +97,10 @@ export class PaymentMethodComponent implements OnInit, AfterViewInit {
     
   }
   goToDeliveryMethod(){
+    let paymethod = {name: 'payment'}
     if(this.paymentMethod == true){
       this._router.navigate(["/delivery_method"]);
+      this.progressService.setProgress(paymethod);
     }else{
       this.notice = "Please select payment method to proceed"
     }

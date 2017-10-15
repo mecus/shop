@@ -1,145 +1,208 @@
-<primary-navigation></primary-navigation>
-<!--Listing out the Category for query selection -->
-<div class="list-menu w3-card-4">
-    <div class="container">
-      <div class="d-flex flex-row list-menu-container">
-        <div class="p-2 category-container-half">
-          <div class="category-inner d-flex flex-row">
-            <div class="p-2 first-cat">
-                <ul *ngIf="category">
-                  <li *ngFor="let cat of category">
-                      <div class="cat-list" (click)="showSubCat(cat, $event)">
-                          {{cat.name}}
-                          <span class="arrow-icon">
-                            <i style="font-size:14px;" class="fa fa-angle-right" aria-hidden="true"></i>
-                          </span>
-                      </div>
-                    </li>
-                </ul>
-              </div>
-              <div *ngIf="subCategory" class="p-2 second-cat">
-                <ul>
-                    <li *ngFor="let subcat of subCategory">
-                      <div class="sub-list" (click)="displayProduct(subcat, $event)">
-                          {{subcat.name}}
-                          <span class="arrow-icon">
-                            <i style="font-size:14px;" class="fa fa-angle-right" aria-hidden="true"></i>
-                          </span>
-                      </div>
-                    </li>
-                </ul>
-              </div>
-            </div>
-        </div>
-        <div class="p-2 advert-container-half">
-          <div class="advert">
-            <div *ngIf="advert">
-              <!--<p></p>
-              <p></p>
-              <img [src]=advert.photo_url style="width:80px;" alt="">-->
-              <carousel>
-                <slide *ngFor="let ad of advert">
-                  <img [src]=ad.photo_url style="width:100%;" alt="First slide">
-                  <div class="carousel-caption">
-                    <h3>{{ad.title}}</h3>
-                    <p>{{ad.sub_title}}</p>
-                  </div>
-                </slide>
-              </carousel>
-            </div>
-          </div>
-        </div>
-        
-      </div><!--End of Row -->
-    </div><!--End of Container-->
-</div><!--End of List Menu Section-->
-
-<!--Main Page Content after category list-->
-<!-- <div class="container" *ngIf="products">
-  <div class="page-wrapper row" [@loadproduct]="products">
-    <div class="main-content col col-lg-9">
-      <div class="row">
-        <div class="pd-item col col-xs-6 col-sm-6 col-lg-3" *ngFor="let product of products">
-          <md-card class="example-card product">
-            <div [style.min-height.px]="60">
-              <img *ngIf="product.imageUrl !== undefined; else load" (click)="viewProduct(product)" md-card-image  [src]="product.imageUrl">
-              <ng-template #load>waiting..</ng-template>
-            </div>
-            
-            <md-card-content>
-              <p id="size">({{product.description.size}})</p>
-              <p id="title">{{product.name}}</p>
-              <p id="price">{{product.price | currency: 'GBP': 'true'}}</p>
-            </md-card-content>
-            <md-card-actions>
-                <a  role="button" (click)="addToCart(product)"  md-raised-button >ADD</a>
-            </md-card-actions>
-            <div class="inCart-wrapper" *ngFor="let cart of carts$">
-                <div *ngIf="cart.name == product.name">
-                  <p id="inCart">{{cart.qty}} in cart</p>
-                </div>
-            </div>
-          </md-card>
-        </div>
-      </div>
-    </div>
-    <div class="side-bar col col-lg-3">
-      <widget-right></widget-right>
-      <div class="post-box card" *ngIf="cartErrorMsg">
-          <div class="card-body" >
-                <p>{{cartErrorMsg}}</p>
-                <md-input-container>
-                    <input #postcode type="text" mdInput name="postcode" placeholder="Enter Postcode">
-                </md-input-container>
-                <a (click)="submitPostcode(postcode.value)" md-raised-button>Submit</a>
-            </div>
-      </div>
-    </div>
-  </div>
-</div> -->
-<!-- <footer-menu></footer-menu> -->
-
-<div class="container page-rule" [@loadproduct]="products" *ngIf="products">
-  <div class="product-container d-flex flex-row" >
-      <div class="product-content p-2">
-        <div class="product-list d-flex align-content-stretch flex-row flex-wrap">
-          <div class="product-item p-2" *ngFor="let product of products">
-              <md-card class="example-card product">
-                <div [style.min-height.px]="60">
-                  <img *ngIf="product.imageUrl !== undefined; else load" (click)="viewProduct(product)" md-card-image  [src]="product.imageUrl">
-                  <ng-template #load>waiting..</ng-template>
-                </div>
-                
-                <md-card-content>
-                  <h1 id="title">{{product.name}}</h1>
-                  <p id="size">( {{product.description.size}} )</p>
-                  <p id="price">{{product.price | currency: 'GBP': 'true'}}</p>
-                </md-card-content>
-                <md-card-actions>
-                    <a  role="button" color="primary" (click)="addToCart(product)"  md-raised-button >Add</a>
-                </md-card-actions>
-                <div class="inCart-wrapper" *ngFor="let cart of carts$">
-                    <div class="inCart-select" *ngIf="cart.name == product.name">
-                      <p id="inCart">{{cart.qty}} in cart</p>
-                    </div>
-                </div>
-              </md-card>
-          </div>
-        </div>
-      </div>
-      <div class="side-widget p-2">
-          <widget-right></widget-right>
-          <div class="post-box card" *ngIf="cartErrorMsg">
-              <div class="card-body" >
-                    <p>{{cartErrorMsg}}</p>
-                    <md-input-container>
-                        <input #postcode type="text" mdInput name="postcode" placeholder="Your Postcode">
-                    </md-input-container>
-                    <a (click)="submitPostcode(postcode.value)" md-raised-button>Check</a>
-                </div>
-          </div>
-      </div>
-    </div>
+<div class="main-menu">
+    <primary-navigation></primary-navigation>
 </div>
+<div class="mobile-menu">
+    <mobile-menu></mobile-menu>
+</div>
+<!--Listing out the Category for query selection -->
+<div class="main-container page-rule">
+  <div class="list-menu w3-card-2">
+      <div class="container">
+        <div class="d-flex flex-row list-menu-container">
+          <div class="p-2 category-container-half">
+            <div class="category-inner d-flex flex-row">
+              <div class="p-2 first-cat">
+                  <ul *ngIf="category">
+                    <li *ngFor="let cat of category">
+                        <div class="cat-list" (click)="showSubCat(cat, $event)">
+                            {{cat.name}}
+                            <span class="arrow-icon">
+                              <i class="fa fa-angle-right" aria-hidden="true"></i>
+                            </span>
+                        </div>
+                      </li>
+                  </ul>
+                </div>
+                <div *ngIf="subCategory && subCategory.length" class="p-2 horizotal"></div>
+                <div *ngIf="subCategory" class="p-2 second-cat">
+                  <ul>
+                      <li *ngFor="let subcat of subCategory">
+                        <div class="sub-list" (click)="displayProduct(subcat, $event)">
+                            {{subcat.name}}
+                            <span class="arrow-icon">
+                              <i  class="fa fa-angle-right" aria-hidden="true"></i>
+                            </span>
+                        </div>
+                      </li>
+                  </ul>
+                </div>
+              </div>
+          </div>
+          <div class="p-2 advert-container-half">
+            <div class="advert">
+              <div *ngIf="advert">
+                  <img [src]=advert.photo_url style="width:100%;" alt="First slide">
+                <!--<p></p>
+                <p></p>
+                <img [src]=advert.photo_url style="width:80px;" alt="">-->
+                <!-- <carousel>
+                  <slide *ngFor="let ad of advert">
+                    <img [src]=ad.photo_url style="width:100%;" alt="First slide">
+                    <div class="carousel-caption">
+                      <h3>{{ad.title}}</h3>
+                      <p>{{ad.sub_title}}</p>
+                    </div>
+                  </slide>
+                </carousel> -->
+              </div>
+            </div>
+          </div>
+          
+        </div><!--End of Row -->
+      </div><!--End of Container-->
+  </div><!--End of List Menu Section-->
 
+  <!--Main Page Content after category list-->
+  <!-- <div class="container" *ngIf="products">
+    <div class="page-wrapper row" [@loadproduct]="products">
+      <div class="main-content col col-lg-9">
+        <div class="row">
+          <div class="pd-item col col-xs-6 col-sm-6 col-lg-3" *ngFor="let product of products">
+            <md-card class="example-card product">
+              <div [style.min-height.px]="60">
+                <img *ngIf="product.imageUrl !== undefined; else load" (click)="viewProduct(product)" md-card-image  [src]="product.imageUrl">
+                <ng-template #load>waiting..</ng-template>
+              </div>
+              
+              <md-card-content>
+                <p id="size">({{product.description.size}})</p>
+                <p id="title">{{product.name}}</p>
+                <p id="price">{{product.price | currency: 'GBP': 'true'}}</p>
+              </md-card-content>
+              <md-card-actions>
+                  <a  role="button" (click)="addToCart(product)"  md-raised-button >ADD</a>
+              </md-card-actions>
+              <div class="inCart-wrapper" *ngFor="let cart of carts$">
+                  <div *ngIf="cart.name == product.name">
+                    <p id="inCart">{{cart.qty}} in cart</p>
+                  </div>
+              </div>
+            </md-card>
+          </div>
+        </div>
+      </div>
+      <div class="side-bar col col-lg-3">
+        <widget-right></widget-right>
+        <div class="post-box card" *ngIf="cartErrorMsg">
+            <div class="card-body" >
+                  <p>{{cartErrorMsg}}</p>
+                  <md-input-container>
+                      <input #postcode type="text" mdInput name="postcode" placeholder="Enter Postcode">
+                  </md-input-container>
+                  <a (click)="submitPostcode(postcode.value)" md-raised-button>Submit</a>
+              </div>
+        </div>
+      </div>
+    </div>
+  </div> -->
+  <!-- <footer-menu></footer-menu> -->
 
+  <div class="container"  *ngIf="products">
+    <div class="product-container d-flex flex-row" >
+        <div class="product-content p-2">
+          <div class="sorting d-flex justify-content-between">
+            <div class="p-2">
+                <p><strong>{{groupName}}</strong></p>
+            </div>
+            <!-- <div class="pagination-top p-2">
+                <md-paginator [length]="products.length"
+                              [pageSize]="pageSize"
+                              [pageSizeOptions]="pageSizeOptions"
+                              (page)="pageEvent = $event">
+                </md-paginator>
+              </div> -->
+            <div class="p-2 d-flex flex-row" id="sort-input">
+                <select  class="form-control p-2" #sorted  placeholder="sorting">
+                  <option *ngFor="let sort of sorting" [value]="sort">
+
+                    {{sort}}
+                  </option>
+                </select>
+                <span><button (click)="sortProduct(sorted.value)" class="btn btn-primary">Go</button></span>
+            </div>
+          </div>
+          <div [@loadproduct]="products" class="product-list d-flex align-content-stretch flex-row flex-wrap">
+            <div class="product-item p-2" *ngFor="let product of products | paginate: {itemsPerPage: pageSize, currentPage: page}">
+                <md-card class="example-card product">
+                  <div *ngIf="product.offer == 'yes'" class="shop-offer"><p>Offer</p></div>
+                  <div [style.min-height.px]="60">
+                    <img *ngIf="product.imageUrl !== undefined; else load" (click)="viewProduct(product)" md-card-image  [src]="product.imageUrl">
+                    <ng-template #load>waiting..</ng-template>
+                  </div>
+                  
+                  <md-card-content>
+                   
+                    <h1 id="title">{{product.name}}</h1>
+                    <p id="size">( {{product.description.size}} )</p>
+                    <p id="price">{{product.price | currency: 'GBP': 'true'}}</p>
+                  </md-card-content>
+                  <md-card-actions>
+                      <a role="button" color="primary" (click)="addToCart(product)"  md-raised-button >Add</a>
+                  </md-card-actions>
+                  <div class="inCart-wrapper" *ngFor="let cart of carts$">
+                      <div class="inCart-select" *ngIf="cart.name == product.name">
+                        <p id="inCart">{{cart.qty}} in cart</p>
+                      </div>
+                  </div>
+                </md-card>
+            </div>
+          </div>
+          <!-- Implementing pagination -->
+          <div class="pagination">
+            <pagination-controls (pageChange)="page = $event" class="pg-pagination"></pagination-controls>
+          </div>
+          
+          <!-- <div class="pagination">
+            <md-paginator [length]="products.length"
+                          [pageSize]="pageSize"
+                          [pageSizeOptions]="pageSizeOptions"
+                          (page)="pageEvent = $event">
+            </md-paginator>
+          </div> -->
+          <!-- <div *ngIf="pageEvent">
+              <h5>Page Change Event Properties</h5>
+              <div>List length: {{pageEvent.length}}</div>
+              <div>Page size: {{pageEvent.pageSize}}</div>
+              <div>Page index: {{pageEvent.pageIndex}}</div>
+          </div> -->
+          <!-- Pagination ends -->
+          <!-- Start Explore department -->
+          <div id="explore-dept" class="card">
+            <div class="card-body">
+              <h1>Browse Department</h1>
+              <div class="d-flex flex-row justify-content-start">
+                <div *ngFor="let catX of category" class="p-2">
+                  {{catX.name}}
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- End Explore department -->
+        </div>
+        <div class="side-widget p-2">
+          <div class="side-innner">
+              <widget-right></widget-right>
+              <div class="post-box card" *ngIf="cartErrorMsg">
+                  <div class="card-body" >
+                        <p>{{cartErrorMsg}}</p>
+                        <md-input-container>
+                            <input #postcode type="text" mdInput name="postcode" placeholder="Your Postcode">
+                        </md-input-container>
+                        <a (click)="submitPostcode(postcode.value)" md-raised-button>Check</a>
+                    </div>
+              </div>
+          </div>         
+        </div>
+      </div>
+  </div>
+</div>

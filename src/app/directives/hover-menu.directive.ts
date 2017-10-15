@@ -6,12 +6,12 @@ import { Directive, HostBinding, HostListener, Input } from '@angular/core';
 export class HoverMenuDirective {
   @Input() active;
   @HostBinding('style.backgroundColor') backgroundColor: string = "transparent";
-  @HostBinding('style.color') textColor: string = "#000";
+  @HostBinding('style.color') textColor: string = "#ffffff";
   constructor() { }
 
   @HostListener('mouseenter') mouseover(eventData:Event){
     this.backgroundColor = "#f5f5f5";
-    this.textColor = "#000";
+    // this.textColor = "#ffffff";
   }
   @HostListener('mouseleave') mouseleave(eventData:Event){
     this.backgroundColor = "transparent";

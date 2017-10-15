@@ -18,6 +18,14 @@ import { PaymentComponent } from "../../container/check-out/payment/payment.comp
 import { OrderComponent } from "../../container/check-out/order/order.component";
 import { OrdersComponent } from "../../account/orders/orders.component";
 import { ResetPassword } from "../../components/reset-password/reset/reset-password.component";
+import { HelpComponent } from "../../container/shop-container/help/help.component";
+import { TermsComponent } from '../../container/shop-container/terms/terms.component';
+import { CookiePrivacyComponent } from '../../container/shop-container/cookie-privacy/cookie-privacy.component';
+import { SiteMapComponent } from '../../container/shop-container/site-map/site-map.component';
+import { ShoppingListComponent } from '../../account/shopping-list/shopping-list.component';
+import { VideoInstructionComponent } from '../../container/shop-container/video-instruction/video-instruction.component';
+import { ProductOfferComponent } from '../../container/products/product-offer/product-offer.component';
+import { BrandProductComponent } from '../../container/products/brands/brand-product.component';
 
 
 const root:Route = {
@@ -30,6 +38,7 @@ const fallBack: Route = {
 const routes = [
   {path: '', component: HomeComponent},
   {path: 'products/?', component: products.ProductComponent},
+  {path: 'mob_products', component: products.MobileProductComponent},
   {path: 'login', component: LoginComponent },
   {path: 'register', component: RegisterComponent},
   {path: 'basket', component: CartComponent},
@@ -43,6 +52,14 @@ const routes = [
   {path: 'place_order', component:OrderComponent},
   {path: 'your_orders', component:OrdersComponent},
   {path: 'reset_password', component: ResetPassword},
+  {path: 'get_help', component: HelpComponent},
+  {path: 'terms_conditions', component: TermsComponent},
+  {path: 'cookie_privacy', component: CookiePrivacyComponent},
+  {path: 'site_map', component: SiteMapComponent},
+  {path: 'shopping_list', component: ShoppingListComponent},
+  {path: 'instruction_video', component: VideoInstructionComponent},
+  {path: 'products/offer', component: ProductOfferComponent},
+  {path: 'products/brands', component: BrandProductComponent},
   
   fallBack
 ]

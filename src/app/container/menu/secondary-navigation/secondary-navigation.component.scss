@@ -1,7 +1,14 @@
 .nav-container{
-    background-color: #ffffff;
+    background-color: #00796B;
 
     md-toolbar{
-        background-color: #ffffff;
+        background-color: #00796B;
+        a h1{
+            font-family: 'Dosis', sans-serif;
+            font-size: 36px;
+            color: #ffffff;
+            font-weight: bold;
+            
+        }
     }
 }

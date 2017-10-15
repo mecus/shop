@@ -1,0 +1,80 @@
+<div class="main-menu">
+    <primary-navigation></primary-navigation>
+</div>
+<div class="mobile-menu">
+    <mobile-menu></mobile-menu>
+</div>
+<div class="container product-offer-container page-rule">
+
+    <div class="d-flex flex-wrap flex-row justify-content-between">
+        <div class="p-2 product-offer">
+            <div class="top-offer">
+                <h1>Clearance</h1>
+            </div>
+            <div class="offer-baner">
+                <!-- <carousel>
+                    <slide *ngFor="let ad of offerad$">
+                        <img [src]=ad.photo_url alt="First slide">
+                    
+                    </slide>
+                </carousel> -->
+            </div>
+            <div class="product-list d-flex align-content-stretch flex-row flex-wrap">
+                <md-card class="carosel-image">
+                    <img [src]=offerad$.photo_url alt="First slide">
+                    <!-- <carousel>
+                        <slide *ngFor="let ad of offerad$">
+                            <img [src]=ad.photo_url alt="First slide">
+                            <div class="carousel-caption">
+                            <h3>{{ad.title}}</h3>
+                            <p>{{ad.sub_title}}</p>
+                            </div>
+                        </slide>
+                    </carousel> -->
+                </md-card>
+                <div class="product-item p-2" *ngFor="let product of products | paginate: {itemsPerPage:pageSize, currentPage: page}">
+                    
+                    <md-card class="example-card product">
+                        <div *ngIf="product.offer == 'yes'" class="shop-offer"><p>Offer</p></div>
+                        <div [style.min-height.px]="60">
+                        <img (click)="viewProduct(product)" md-card-image  [src]="product.imageUrl">
+
+                        </div>
+                        
+                        <md-card-content>
+                        <h1 id="title">{{product.name}}</h1>
+                        <p id="size">( {{product.description.size}} )</p>
+                        <p id="price">{{product.price | currency: 'GBP': 'true'}}</p>
+                        </md-card-content>
+                        <md-card-actions>
+                            <a role="button" color="accent" (click)="addToCart(product)"  md-raised-button >Add</a>
+                        </md-card-actions>
+                        <div class="inCart-wrapper" *ngFor="let cart of carts$">
+                            <div class="inCart-select" *ngIf="cart.name == product.name">
+                            <p id="inCart">{{cart.qty}} in cart</p>
+                            </div>
+                        </div>
+                    </md-card>
+                </div>
+            </div>
+             <!-- Implementing pagination -->
+             <div class="pagination">
+                <pagination-controls (pageChange)="page = $event" class="pg-pagination"></pagination-controls>
+              </div>
+            <!-- Pagination ends -->
+        </div>
+        <div class="p-2 right-widget">
+            <widget-right></widget-right>
+            <div class="post-box card" *ngIf="cartErrorMsg">
+                <div class="card-body" >
+                        <p>{{cartErrorMsg}}</p>
+                        <md-input-container>
+                            <input #postcode type="text" mdInput name="postcode" placeholder="Your Postcode">
+                        </md-input-container>
+                        <a (click)="submitPostcode(postcode.value)" md-raised-button>Check</a>
+                    </div>
+            </div>
+        </div>
+    </div>
+    
+</div>

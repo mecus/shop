@@ -1,38 +1,89 @@
-
-.checkout-container{
-    display: flex;
-    flex-direction: row;
-    .new-customer{
-        flex: 2;
+.main-container{
+    min-height: 500px;
+    .checkout-container{
+        // display: flex;
+        // flex-direction: row;
+        .log-reg{
+            flex: 6;
+            .new-customer{
+                flex: 1;
+                h2{
+                    font-family: 'Open Sans Regular', sans-serif;
+                    font-size: 18px;
+                    margin: 0px;
+                    padding: 0px;
+                    padding-left: 2px;
+                    padding-bottom: 10px;
+                }
+                .card{
+                    .card-body{
+                        .check-continue{
+                            margin-top: 20px;
+                            md-checkbox{
+                                margin-right: 10px;
+                            }
+                        }
+                    }
+                }
+            }
+            .old-customer{
+                flex: 1;
+                // margin: 0 20px;
+                h2{
+                    font-family: 'Open Sans Regular', sans-serif;
+                    font-size: 18px;
+                    margin: 0px;
+                    padding: 0px;
+                    padding-left: 2px;
+                    padding-bottom: 10px;
+                }
+            }
+        }
+        .aside-bar{
+            flex: 2;
+            // float: right;
+            // padding: 0px;
+            margin-top: 40px;
+            // padding: 20px 10px;
+            // background-color: #ffffff;
+            .cart-head{
+                position: relative;
+                .cart-btn-cover{
+                    position: absolute;
+                    background-color: red;
+                    height: 38px;
+                    bottom: 0px;
+                    width: 100%;
+                    z-index: 1000;
+                    p{
+                        margin: 0 auto;
+                        line-height: 38px;
+                        text-align: center;
+                        color: #ffffff;
+                        font-family: 'Dosis', sans-serif;
+                        font-size: 16px;
+                    }
+                }
+            }
+        }
     }
-    .old-customer{
-        flex: 2;
-        margin: 0 20px;
+    .login-full-width{
+        width: 100%;
     }
-    .aside-bar{
-        flex: 1;
-        float: right;
-        padding: 0px;
-        margin-top: 40px;
-        padding: 20px 10px;
+    p#errMsg{
+        font-size: 12px;
+        color: red;
     }
-}
-.login-full-width{
-    width: 100%;
-}
-p#errMsg{
-    font-size: 12px;
-    color: red;
-}
 
-#info-content{
-    margin-top: 20px;
-    border-top: 1px solid lightgrey;
-}
-div#form-components{
-    margin-top: 0px;
-    // max-width: 70%;
-    // border-top: 1px solid lightgrey;
-    // margin: 0 auto;
+    #info-content{
+        margin-top: 20px;
+        border-top: 1px solid lightgrey;
+    }
+    div#form-components{
+        margin-top: 0px;
+        // max-width: 70%;
+        // border-top: 1px solid lightgrey;
+        // margin: 0 auto;
 
+    }
 }

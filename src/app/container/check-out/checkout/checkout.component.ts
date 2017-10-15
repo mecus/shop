@@ -6,6 +6,7 @@ import { AuthService } from "../../../authentications/authentication.service";
 import { AccountService } from "../../../services/account.service";
 import { StorageService } from "../../../services/storage.service";
 import { WindowService } from "../../../services/window.service";
+import { ProgressService } from '../../../services/checkout-progress.service';
 
 @Component({
   selector: 'app-checkout',
@@ -15,34 +16,31 @@ import { WindowService } from "../../../services/window.service";
 
 export class CheckoutComponent implements OnInit, OnDestroy {
     register:boolean;
-    guest:boolean;
-    showCard:boolean = false;
     loginErrMsg;
     loginForm: FormGroup;
+    checkOutProg;
     constructor(private _fb:FormBuilder, private authService:AuthService,
     private accountService:AccountService, private _router:Router,
-    private storeService:StorageService, private windowService:WindowService){
+    private storeService:StorageService, private windowService:WindowService,
+    private progressService:ProgressService){
         this.loginForm = _fb.group({
             email: "",
             password: ""
         })
     }
-    @HostListener('change', ['$event']) onChnage($event){
-        $event.preventDefault;
-        if($event.value == "register"){
-            this.guest = false;
-            this.register = true;
-            this.showCard = true;
-            return;
+    checkContinue(e){
+        let bill = {name: "billing"}
+        this.register = e.checked;
+        if(e.checked == true){
+            setTimeout(()=>{
+                window.scrollTo(0, 420);
+            }, 100);
+            // this.progressService.setProgress(bill);
+            // this._router.navigate(["/payment_method"]);
+            
         }
-        if($event.value == "guest"){
-            this.register = false;
-            this.guest = true;
-            this.showCard = true;
-            return;
-        }
-        
     }
+
     userLogin(user){
         console.log(user)
         if(!user.email && !user.password){
@@ -71,7 +69,8 @@ export class CheckoutComponent implements OnInit, OnDestroy {
         }
        this.authService.authState().subscribe((state)=>{
            if(state){
-            
+            let bill = {name: "billing"}
+            this.progressService.setProgress(bill);
             if(!this.storeService.retriveData('token')){
                 this.storeService.getPaymentToken();
                 this.windowService.getWindowObject().setTimeout(()=> {

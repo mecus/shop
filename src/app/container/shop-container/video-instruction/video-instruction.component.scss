@@ -1,0 +1,100 @@
+.page-container{
+    min-height: 500px;
+    background-color: #ffffff;
+    .main-content{
+
+        .video-menu{
+            flex: 2;
+            // max-width: 400px;
+            // float: right;
+            .video-list{
+                .descpt{
+                    position: relative;
+                    flex: 3;
+                    p{
+                        margin: 0px;
+                        padding: 0px;
+                        font-family: 'Open Sans Regular', sans-serif;
+                        font-size: 12px;
+                    }
+                    p#author{
+                        font-size: 11px;
+                    }
+                    p#views{
+                        font-size: 11px;
+                        font-family: 'Open Sans Light', sans-serif;
+                    }
+                }
+                .video{
+                    position: relative;
+                    flex: 1;
+                    // width: 150px;
+                    .video-inner{
+                        // position: absolute;
+                        // top: 0px;
+                        margin: 0px;
+                        padding: 0px;
+                        height: 80px;
+                        width: 120px;
+                    }
+                    .video-cover{
+                        position: absolute;
+                        top: 7px;
+                        margin: 0px;
+                        padding: 0px;
+                        height: 80px;
+                        width: 120px;
+                        background-color: #000;
+                        z-index: 100;
+                        opacity: 0.7;
+                    }
+                }
+            }
+            .cart-widget{
+                margin-top: 20px;
+            }
+        }
+        .video-content{
+            flex: 5;
+            // min-width: 600px;
+            .card-6{
+                border-bottom: 1px solid lightgray;
+                h1{
+                    font-family: 'Open Sans Regular', sans-serif;
+                    font-size: 16px;
+                    margin-top: 20px;
+                }
+                span{
+                    margin-top: 18px;
+                }
+            }
+            #video{
+                // border: 20px solid #00796B;
+            }
+            .ingridents{
+                .list-items{
+                    .item-1{
+                        img{
+                            width: 50px;
+                            border-radius: 50%;
+                        }
+                    }
+                    .item-2{
+                        h1{
+                            margin: 0px;
+                            padding: 0px;
+                            font-family: 'Open Sans Regular', sans-serif;
+                            font-size: 14px;
+                        }
+                        p{
+                            margin: 0px;
+                            padding: 0px;
+                            font-size: 11px;
+                            font-family: 'Open Sans Light', sans-serif;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

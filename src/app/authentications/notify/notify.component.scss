@@ -9,12 +9,16 @@ div.tool-bar-wrapper{
     a{
         text-decoration: none;
         color: #000;
+
     }
 }
 .orders, .favourites, .shopping-list{
     background-color: lightgrey;
     margin-right: 2px;
-    a{color: #000;}
+    a{
+        color: #000;
+        font-family: 'Open Sans Regular', sans-serif;
+    }
 }
 .account{
     background-color: #00796B;
@@ -43,8 +47,8 @@ div.tool-bar-wrapper{
         // padding: 5px;
         text-decoration: none;
         color: #000;
-        font-size: 14px;
-        font-weight: bold;
+        // font-size: 14px;
+        font-family: 'Open Sans Regular', sans-serif;
         span{
             color: #fff;
             padding: 5px;
@@ -65,8 +69,11 @@ div.tool-bar-wrapper{
 // }
 .get-help{
     display: flex;
-    background-color: goldenrod;
-    p{ padding: 0px; margin: 0px; margin-right: 2px;}
+    background-color: #FF9100;
+    p{ 
+        padding: 0px; margin: 0px; margin-right: 2px;
+        font-family: 'Open Sans Regular', sans-serif;
+    }
     md-icon{
         font-size: 18px;
         padding: 0px;
@@ -77,6 +84,7 @@ div.basket{
     display: flex;
     background-color: black;
     color: #fff;
+    height: 40px;
     md-icon{
         font-size: 16px;
         padding: 0px;
@@ -87,6 +95,50 @@ div.basket{
         margin: 0px;
         font-size: 12px;
         color: #fff;
+    }
+    .d-flex{
+        margin: 0px !important;
+        padding: 0px !important;
+        .p-2{
+            margin: 0px !important;
+            padding: 0px !important; 
+        }
+    }
+}
+#cart-option{
+    position: absolute;
+    top: 40px;
+    right: 0px;
+    background-color: #000000;
+    color: #ffffff;
+    width: 200px;
+    transition: 2s;
+    // height: 100%;
+    // padding: 10px;
+    z-index: 1000;
+    // margin-top: -100px;
+    a{
+        font-size: 12px;
+        padding: 0px;
+        margin: 0px;
+    }
+    md-icon{
+        padding: 0px !important;
+        margin: 0px !important;
+        font-size: 10px !important;
+    }
+    p{
+        background-color: red;
+        width: 200px;
+        font-family: 'Open San Light', sans-serif;
+        font-size: 12px;
+        margin: 0 auto;
+        padding: 10px 10px;
+        color: #ffffff;
+    }
+    .p-2{
+        margin: 0px;
+        padding: 0px;
     }
 }
 

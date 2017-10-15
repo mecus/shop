@@ -5,7 +5,8 @@ import {
   MdIconModule, MdMenuModule, MdInputModule, MdCardModule,
   MdGridListModule, MdSelectModule, MdSidenavModule,
   MdDialogModule, MdChipsModule, MdListModule, MdTableModule,
-  MdRadioModule, MdProgressBarModule, MdProgressSpinnerModule
+  MdRadioModule, MdProgressBarModule, MdProgressSpinnerModule,
+  MdPaginatorModule, MdExpansionModule, MdDatepickerModule
 } from '@angular/material';
 
   
@@ -17,14 +18,16 @@ import {
     MdToolbarModule, MdInputModule, MdCardModule, MdGridListModule,
     MdSelectModule, MdSidenavModule, MdDialogModule, MdChipsModule,
     MdListModule, MdTableModule, MdRadioModule, MdProgressBarModule,
-    MdProgressSpinnerModule
+    MdProgressSpinnerModule, MdPaginatorModule, MdExpansionModule,
+    MdDatepickerModule
   ],
   exports: [
     MdButtonModule, MdCheckboxModule,MdIconModule,MdMenuModule,
     MdToolbarModule, MdInputModule, MdCardModule, MdGridListModule,
     MdSelectModule, MdSidenavModule, MdDialogModule, MdChipsModule,
     MdListModule, MdTableModule, MdRadioModule, MdProgressBarModule,
-    MdProgressSpinnerModule
+    MdProgressSpinnerModule, MdPaginatorModule, MdExpansionModule,
+    MdDatepickerModule
   ],
   declarations: []
 })

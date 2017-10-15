@@ -3,8 +3,8 @@ import { Router } from '@angular/router';
 
 @Component({
   selector: 'secondary-navigation',
-  templateUrl: './secondary-navigation.component.html',
-  styleUrls: ['./secondary-navigation.component.scss']
+  templateUrl: 'secondary-navigation.component.html',
+  styleUrls: ['secondary-navigation.component.scss']
 })
 export class SecondaryNavigationComponent implements OnInit {
 

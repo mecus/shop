@@ -1,78 +1,174 @@
-<primary-navigation></primary-navigation>
-<div *ngIf="userAccount" class="container page-rule">
-  <span><h2>Account Setting</h2></span>
-  <div *ngIf="updatedNotify" class="alert alert-success" role="alert">
-    <strong>{{updatedNotify}}</strong>
-  </div>
-  <div class="setting-container d-flex flex-row">
-    <div class="card">
-      <div class="card-header">
-        <h1>Personal Information</h1>
-      </div>
-      <div class="card-body">
-        <div *ngIf="!showPersonalInfo">
-          <div class="block-title" >
-             <h3><strong>Account no:</strong> <strong *ngIf="userAccount.ac_no">{{userAccount.ac_no}}</strong></h3>
+<div class="main-menu">
+  <primary-navigation></primary-navigation>
+</div>
+<div class="mobile-menu">
+  <mobile-menu></mobile-menu> 
+</div>
+<div class="page-container page-rule">
+  <div *ngIf="userAccount" class="container ">
+    <span><h2>Account Setting</h2></span>
+    <div *ngIf="updatedNotify" class="alert alert-success" role="alert">
+      <strong>{{updatedNotify}}</strong>
+    </div>
+    <div class="setting-container d-flex flex-row">
+      <div class="card">
+        <div class="card-header">
+            <h2><strong>{{userAccount.title}}</strong> <span>{{userAccount.first_name}}</span> <span>{{userAccount.last_name}}</span></h2>
+        </div>
+        <div class="card-body">
+          <div *ngIf="!showPersonalInfo">
+            <div class="block-title" >
+              <h2><strong>Account no:</strong> <strong *ngIf="userAccount.ac_no">{{userAccount?.ac_no}}</strong></h2>
+            </div>
+            
+            <!-- <h2><strong>{{userAccount.title}}</strong> <span>{{userAccount.first_name}}</span> <span>{{userAccount.last_name}}</span></h2> -->
+          
+            <h3>Email: {{userAccount.email}}</h3>
+            <h3>Home Telephone: 0{{userAccount.telephone.home}}</h3>
+            <h3>Mobile: 0{{userAccount.telephone.mobile}}</h3>
           </div>
           
-          <h2><strong>{{userAccount.title}}</strong> <span>{{userAccount.first_name}}</span> <span>{{userAccount.last_name}}</span></h2>
-        
-          <h3>Email: {{userAccount.email}}</h3>
-          <h3>Home Telephone: {{userAccount.telephone.home}}</h3>
-          <h3>Mobile: {{userAccount.telephone.mobile}}</h3>
+          <div class="d-flex p-2">
+            <a id="button" md-raised-button>Change Password <md-icon>keyboard_arrow_down</md-icon></a>
+            <a (click)="pInfoEditForm(userAccount.email)" role="button" md-raised-button> <md-icon>mode_edit</md-icon> Personal Details <md-icon *ngIf="pInfoEdit">keyboard_arrow_up</md-icon> <md-icon *ngIf="!pInfoEdit">keyboard_arrow_down</md-icon></a>
+          </div>
+          <div *ngIf="pInfoEdit" class="edit-p-info">
+              <account-edit (notify)="onInfoUpdate($event)" [acId]="accountIDE"></account-edit> 
+          </div>
         </div>
+      </div>
+      <div class="card p-card-info jumbotron2">
+        <h1>Payment Methods</h1>
         
-         <div class="d-flex p-2">
-           <a id="button" md-raised-button>Change Password</a>
-           <a (click)="pInfoEditForm(userAccount.email)" role="button" md-raised-button> <md-icon>mode_edit</md-icon> Personal Details</a>
-         </div>
-         <div *ngIf="pInfoEdit" class="edit-p-info">
-            <account-edit (notify)="onInfoUpdate($event)" [acId]="accountIDE"></account-edit> 
-         </div>
-      </div>
-    </div>
-    <div class="card p-card-info jumbotron2">
-      <h1>Payment Information</h1>
-      <a md-raised-button id="cardButton" (click)="addCardDetail()" >Add New Card</a>
-       <div *ngIf="!addNewCard" class="cc-card">
-        <img src="assets/card.png" alt="">
-      </div> 
-     
-       <pay-card *ngIf="addNewCard" [customerId]="customerID"></pay-card>
+        <div *ngIf="card || paypal" class="list-group">
+            <a *ngIf="card && card.cardType" class="list-group-item list-group-item-action flex-column align-items-start">
+              <div  class="d-flex w-100 justify-content-between">
+                <h5 class="mb-1">{{card.cardType}}</h5>
+                <small class="text-muted">{{card.maskedNumber}}</small>
+              </div>
+            </a>
+            <a *ngIf="paypal" class="list-group-item list-group-item-action flex-column align-items-start">
+              <div  class="d-flex w-100 justify-content-between">
+                <h5 class="mb-1">Paypal</h5>
+                <small class="text-muted">{{paypal.email}}</small>
+              </div>
+            </a>
+          </div>
+          <div *ngIf="!(card || paypal)">
+            <p>You have no payment method link to your account. please add one..</p>
+          </div>
 
-    </div>
-   
-  </div>
-   <div *ngIf="userAddress" class="card address-component">
-     <h1><small><a (click)="addressEditForm(userAccount._id)" md-raised-button> <md-icon>mode_edit</md-icon> edit </a></small> <strong *ngIf="userAddress.address_type">{{userAddress.address_type}}</strong> Address</h1>
-     <div class="ac-address-container">
-     
-        <div *ngIf="addressEdit" class="ac-address-form">
-          <account-address-edit (notify)="onAddressUpdate($event)" [acId]="accountID"></account-address-edit>
-        </div>  
-      <div [class.card]="datacard" class="ac-address-data">
-          <div class="address">
-            <!-- <h2>Address:</h2> -->
-            <h3>{{userAddress.address}}</h3>
+        <div class="d-flex justify-content-between">
+          <div class="p-2">
+              <app-paypal (returnResult)="paymentMethodResult($event)"></app-paypal>
+              <!-- <a md-raised-button id="paypalButton" (click)="addPaypal()" >Add Paypal Account</a> -->
           </div>
-          <div class="address">
-            <!-- <h2>Address2:</h2> -->
-             <h3>{{userAddress.address2}}</h3>
+          <div class="p-2">
+              <a md-raised-button id="cardButton" (click)="addCardDetail()" >Add New Card <md-icon *ngIf="!addNewCard">keyboard_arrow_down</md-icon> <md-icon *ngIf="addNewCard">keyboard_arrow_up</md-icon></a>
           </div>
-          <div class="address">
-            <!-- <h2>City:</h2> -->
-            <h3> {{userAddress.city}}</h3>
-          </div>
-          <div class="address">
-            <!-- <h2>Post Code:</h2> -->
-            <h3>{{userAddress.post_code}}</h3>
-          </div>
-          <div class="address">
-            <!-- <h2>Country:</h2> -->
-            <h3> {{userAddress.country}}</h3>
-          </div>
+          
+        </div>
+
+        <pay-card *ngIf="addNewCard" [customerId]="customerID"></pay-card>
+
       </div>
+    
     </div>
-   </div>
-  
+
+    <div class="xpandable-panel">
+        <md-expansion-panel>
+            <md-expansion-panel-header>
+                <md-panel-title>
+                Billing Address
+                </md-panel-title>
+                <md-panel-description>
+                <span>Please expand the tab to view or edit your address</span>
+                <span></span>
+                
+                </md-panel-description>
+            </md-expansion-panel-header>
+            <p *ngIf="!userAddress">There is no billing address present in your account</p>
+            <div *ngIf="userAddress" class="card address-component">
+                <h1><small><a (click)="addressEditForm(userAccount._id)" md-raised-button> <md-icon>mode_edit</md-icon> edit </a></small> <strong *ngIf="userAddress.address_type">{{userAddress.address_type}}</strong> Address</h1>
+                <div class="ac-address-container">
+                
+                  <div *ngIf="addressEdit" class="ac-address-form">
+                    <account-address-edit (notify)="onAddressUpdate($event)" [acId]="accountID"></account-address-edit>
+                  </div>  
+                <div [class.card]="datacard" class="ac-address-data">
+                    <div class="address">
+                      <!-- <h2>Address:</h2> -->
+                      <h3>{{userAddress.address}}</h3>
+                    </div>
+                    <div class="address">
+                      <!-- <h2>Address2:</h2> -->
+                        <h3>{{userAddress.address2}}</h3>
+                    </div>
+                    <div class="address">
+                      <!-- <h2>City:</h2> -->
+                      <h3> {{userAddress.city}}</h3>
+                    </div>
+                    <div class="address">
+                      <!-- <h2>Post Code:</h2> -->
+                      <h3>{{userAddress.post_code}}</h3>
+                    </div>
+                    <div class="address">
+                      <!-- <h2>Country:</h2> -->
+                      <h3> {{userAddress.country}}</h3>
+                    </div>
+                </div>
+              </div>
+              </div>
+            
+        </md-expansion-panel>
+    </div>
+
+    <div class="xpandable-panel">
+        <md-expansion-panel>
+            <md-expansion-panel-header>
+                <md-panel-title>
+                Delivery Address
+                </md-panel-title>
+                <md-panel-description>
+                <span>Please expand the tab to view or edit your address</span>
+                <span></span>
+                
+                </md-panel-description>
+            </md-expansion-panel-header>
+            <p *ngIf="!deliveryAddress">There is no delivery address present in your account</p>
+            <div *ngIf="deliveryAddress" class="card address-component">
+                <h1><small><a (click)="addressEditForm(userAccount._id)" md-raised-button> <md-icon>mode_edit</md-icon> edit </a></small> <strong *ngIf="deliveryAddress.address_type">{{deliveryAddress.address_type}}</strong> Address</h1>
+                <div class="ac-address-container">
+                
+                  <div *ngIf="addressEdit" class="ac-address-form">
+                      <delivery-edit (notify)="onAddressUpdate($event)" [acId]="accountID"></delivery-edit>
+                  </div>  
+                <div [class.card]="datacard" class="ac-address-data">
+                    <div class="address">
+                      <!-- <h2>Address:</h2> -->
+                      <h3>{{deliveryAddress.address}}</h3>
+                    </div>
+                    <div class="address">
+                      <!-- <h2>Address2:</h2> -->
+                        <h3>{{deliveryAddress.address2}}</h3>
+                    </div>
+                    <div class="address">
+                      <!-- <h2>City:</h2> -->
+                      <h3> {{deliveryAddress.city}}</h3>
+                    </div>
+                    <div class="address">
+                      <!-- <h2>Post Code:</h2> -->
+                      <h3>{{deliveryAddress.post_code}}</h3>
+                    </div>
+                    <div class="address">
+                      <!-- <h2>Country:</h2> -->
+                      <h3> {{deliveryAddress.country}}</h3>
+                    </div>
+                </div>
+              </div>
+              </div>
+          </md-expansion-panel>
+      </div>
+    
+  </div>
 </div>

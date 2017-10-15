@@ -1,5 +1,15 @@
 .main-container{
     background-color: #ffffff;
+    p a{
+        margin-top: 10px!important;
+    }
+    p{
+        font-family: 'Open Sans Regular', sans-serif;
+    }
+    p small{
+        margin-left: 10px;
+        padding-bottom: 5px;
+    }
 }
 //Page content start
 .flex-container{
@@ -11,10 +21,40 @@
         margin: 0px !important;
         .flex-left-content-inner{
             .right-image-widget{
+                position: relative;
                 flex: 3;
                 min-width: 300px;
                 .prod-left-image{
                     img{
+                        width: 100%;
+                    }
+                }
+                .left-side-ad{
+                    height: 100%;
+                    margin: 0px;
+                    padding: 0px;
+                }
+                overflow: hidden;
+                .product-offer{
+                    position: absolute;
+                    left: -40px;
+                    // top:10px;
+                    float: left;
+                    background-color: red;
+                    width: 150px;
+                    margin: 0px;
+                    padding: 0px;
+                    -webkit-transform: rotateZ(-45deg);
+                    transform: rotateZ(-45deg);
+                    
+
+                    p{
+                        color: #ffffff;
+                        font-size: 14px;
+                        background-color: red;
+                        margin: 0px;
+                        padding: 0px;
+                        padding-left: 50px;
                         width: 100%;
                     }
                 }
@@ -93,11 +133,11 @@ div>a{
     text-decoration: none;
     
 }
-div.left-side-ad{
-    background-color: red;
-    height: 200px;
-    padding: 20px;
-}
+// div.left-side-ad{
+//     background-color: red;
+//     height: 200px;
+//     padding: 20px;
+// }
 div.prod-left-image{
     margin-bottom: 10px;
 }
@@ -220,4 +260,47 @@ p#error-msg{
     color: brown;
     font-size: 11px;
     margin-top: 10px;
+}
+
+.reconmend-product-wrapper{
+    padding-top: 80px;
+    background-color: #ffffff;
+    h1#r-title{
+        font-family: 'Open Sans Regular', sans-serif;
+    }
+    .icon-T md-icon{
+        color: #00796B;
+    }
+    .reconmend-product{
+        .rec-prod{
+            position: relative;
+            background-color: #ffffff;
+            width: 300px;
+            max-height: 200px;
+            margin-right: 10px;
+            img{
+                width: 100px;
+            }
+            h1{
+                margin: 0px;
+                margin-bottom: 5px;
+                font-size: 16px;
+                font-family: 'Open Sans Regular', sans-serif;
+            }
+            p{
+                margin: 0px;
+                padding: 0px;
+            }
+            p#price{
+                font-family: 'Open Sans Bold', sans-serif;
+                margin: 2px;
+            }
+            a{
+                position: relative;
+                bottom: -10px;
+                color: #ffffff;
+            }
+        }
+        
+    }
 }

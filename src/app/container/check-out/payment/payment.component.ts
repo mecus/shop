@@ -8,11 +8,12 @@ import { PaymentService } from "../../../services/payment.service";
 import { WindowService } from "../../../services/window.service";
 import { CartService } from "../../../services/cart.service";
 import * as _ from 'lodash';
+import { ProgressService } from '../../../services/checkout-progress.service';
 
 @Component({
   selector: 'app-payment',
-  templateUrl: './payment.component.html',
-  styleUrls: ['./payment.component.scss']
+  templateUrl: 'payment.component.html',
+  styleUrls: ['payment.component.scss']
 })
 export class PaymentComponent implements OnInit, AfterViewInit {
   order;
@@ -27,7 +28,7 @@ export class PaymentComponent implements OnInit, AfterViewInit {
     private accountService:AccountService, private authService:AuthService,
     private storeService:StorageService, private paymentService:PaymentService,
     private windowService:WindowService, private tempOrderService:TempOrderService,
-    private cartService:CartService) { 
+    private cartService:CartService, private progressService:ProgressService) { 
       this.document = windowService.getDocumentRef();
   }
   finishOrder(pay, c_id, ord_no){
@@ -51,11 +52,13 @@ export class PaymentComponent implements OnInit, AfterViewInit {
 
   }
   runPaymentOrder(payobject){
+    let final = {name: "finish"};
     this.paymentService.paymentTransaction(payobject)
     .subscribe((response)=>{
       if(response.success == 'true' || response.success == true){
          //Do cleanup here
         // this.cleanUp();
+        this.progressService.setProgress(final);
         let result = this.document.querySelector('.payment-completed');
         let container = this.document.querySelector('.main-container');
         this.windowService.getWindowObject().setTimeout(()=>{
@@ -109,12 +112,14 @@ export class PaymentComponent implements OnInit, AfterViewInit {
     //delete tempoder
     //delete cart items
     //remove token from local storage
+    //delete progress service
     this.tempOrderService.deleteTemOrder(this.storeService.retriveData('user')['uid'])
       .then((res)=>{
         console.log("Deleting TempOrder");
         this.cartService.removeBatchCart(this.storeService.retriveData('postcode'));
         this.storeService.cleardata('token');
         this.storeService.cleardata('deviceData');
+        // this.progressService.deleteProgress();
       },(err)=>console.log(err));
   }
 

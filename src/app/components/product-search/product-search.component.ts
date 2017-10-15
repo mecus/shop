@@ -15,8 +15,8 @@ import * as _ from 'lodash';
 
 @Component({
   selector: 'product-search',
-  templateUrl: './product-search.component.html',
-  styleUrls: ['./product-search.component.scss']
+  templateUrl: 'product-search.component.html',
+  styleUrls: ['product-search.component.scss']
 })
 export class ProductSearchComponent implements OnInit {
   searchForm:FormGroup;

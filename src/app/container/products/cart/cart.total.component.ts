@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { iCart } from "../../../models/cart.model";
 import { Observable } from "rxjs/Observable";
 import { CartService } from '../../../services/cart.service';
@@ -13,9 +13,10 @@ export class CartTotalComponent implements OnInit {
     totalPrice;
 
     constructor(private storeService:StorageService, private cartService:CartService){
-        
-       this.getCatTotal();
+
+    this.getCatTotal();
     }
+  
 
     getCatTotal(){
         this.cartService.cartTotal().subscribe((carts)=>{

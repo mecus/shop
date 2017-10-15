@@ -3,8 +3,8 @@ import { WindowService } from '../../../services/window.service';
 
 @Component({
   selector: 'footer-menu',
-  templateUrl: './footer.component.html',
-  styleUrls: ['./footer.component.scss']
+  templateUrl: 'footer.component.html',
+  styleUrls: ['footer.component.scss']
 })
 export class FooterComponent implements OnInit {
   window; document;

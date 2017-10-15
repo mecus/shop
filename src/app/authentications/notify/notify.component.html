@@ -1,12 +1,16 @@
  <div class="tool-bar-wrapper d-flex align-items-center flex-row-reverse">
 
-  <div class="get-help">
+  <div routerLink="/get_help" class="get-help">
     <p>Help</p>
     <md-icon>help</md-icon>
   </div>
   <div class="basket">
-    <md-icon>local_grocery_store</md-icon>
-    <span id="all-price"><p><cart-total></cart-total></p></span>
+    <div class="d-flex justify-content-center">
+      <div class="p-2"><md-icon>local_grocery_store</md-icon></div>
+      <div (click)="cartOption()" class="p-2"><cart-total></cart-total></div>
+      <div (click)="cartOption()" class="p-2"><md-icon>keyboard_arrow_down</md-icon></div>
+    </div>
+    <!-- <span id="all-price"><p><cart-total></cart-total> <md-icon>keyboard_arrow_down</md-icon> </p></span> -->
   </div>
   <div class="account">
      <a *ngIf="!authenticated" (click)="clearMenu()" routerLink="/login">Login</a> 
@@ -58,10 +62,18 @@
   <div *ngIf="authenticated" class="orders">
     <a routerLink="/your_orders">Orders</a>
   </div>
-  <div *ngIf="authenticated" class="favourites">
+  <!-- <div *ngIf="authenticated" class="favourites">
     <a href="">Favourites</a>
-  </div>
+  </div> -->
   <div *ngIf="authenticated" class="shopping-list">
-    <a href="">Shopping_List</a>
+    <a routerLink="/shopping_list">Shopping_List</a>
   </div>
+</div>
+
+<div *ngIf="dropDown" id="cart-option">
+  <span class="d-flex justify-content-between">
+    <span class="p-2 d-flex"><a routerLink="/basket"><md-icon>arrow_backward</md-icon> View Basket</a></span>
+    <span class="p-2 d-flex"><a (click)="goCheckOut()" >Checkout <md-icon>arrow_forward</md-icon> </a></span>
+  </span>
+  <p *ngIf="limitMsg">{{limitMsg}}</p>
 </div>

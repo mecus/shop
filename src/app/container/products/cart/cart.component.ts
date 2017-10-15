@@ -13,6 +13,7 @@ import { Location } from '@angular/common';
     styleUrls: ['carts/cart.component.scss']
 })
 export class CartComponent {
+    discoutSave:number = 40;
     cart$:Observable<iCart>;
     constructor(private cartService:CartService, private _location:Location, private _router:Router, 
         private storeService:StorageService){
@@ -21,11 +22,32 @@ export class CartComponent {
        })
 
     }
+    checkOut(){
+        this._router.navigate(["/checkout"]);
+    }
     removeCart(cart){
         this.cartService.removeCart(this.payLoad(cart));
     }
     goBack(){
         this._location.back();
+    }
+
+    increment(product){
+        this.cartService.incrementCart(this.payLoad(product));
+    //  this.store.dispatch({type: cart.INCREMENT, payload: this.payLoad(product)})
+    }
+    decrement(product, e){
+        if(product.qty == 1){
+            e.target.innerHTML = "pan_tool";
+            e.target.style.color = "red";
+            return;
+        //    this.cartService.removeCart(this.payLoad(product));
+        }else{
+            this.cartService.decrementCart(this.payLoad(product));
+        }
+  
+    //  this.store.dispatch({type: cart.DECREMENT, payload: this.payLoad(product)})
+        
     }
     private payLoad(product) {
       return {

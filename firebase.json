@@ -1,11 +1,15 @@
 {
   "hosting": {
     "public": "dist",
+    "ignore": [
+      "firebse.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
     "rewrites": [
       {
         "source": "**",
         "function": "server"
-        
       }
     ]
   }

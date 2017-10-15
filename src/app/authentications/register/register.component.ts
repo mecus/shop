@@ -29,8 +29,6 @@ export class RegisterComponent implements OnInit {
   setTempcode;
   progressOn:boolean = false;
   titles;
-  color = 'Accent';
-  mode = 'indeterminate';
 
   constructor(private storeService:StorageService, private _router:Router, private _fb:FormBuilder, 
   private authService:AuthService, private addressService:AddressSearchService,
@@ -115,7 +113,11 @@ export class RegisterComponent implements OnInit {
     }
    }
    postCodeSearch(postcode){
+    this.searchNotFound = false;
+    this.searchResultErr = false;
+    this.searchResult = false;
     let code = postcode.toUpperCase();
+    // console.log(code);
      if(postcode == ""){
           this.posterror = "Post code must not be empty!";
           return;

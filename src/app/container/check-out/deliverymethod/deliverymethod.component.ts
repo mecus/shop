@@ -8,11 +8,12 @@ import { TempOrder, tempOtype } from "../../../models/tempOrder.model";
 import { AccountService } from "../../../services/account.service";
 import * as _ from 'lodash';
 import { StorageService } from "../../../services/storage.service";
+import { ProgressService } from '../../../services/checkout-progress.service';
 
 @Component({
   selector: 'delivery-method',
-  templateUrl: './delivery.component.html',
-  styleUrls: ['./delivery.component.scss']
+  templateUrl: 'delivery.component.html',
+  styleUrls: ['delivery.component.scss']
 })
 
 export class DeliveryMethodComponent implements OnInit {
@@ -32,7 +33,7 @@ export class DeliveryMethodComponent implements OnInit {
     addresses;
     constructor(private _fb:FormBuilder, private tempOrderService:TempOrderService,
     private authService:AuthService, private _router:Router, private accountService:AccountService,
-    private storeService:StorageService){
+    private storeService:StorageService, private progressService:ProgressService){
       this.deliveryForm = _fb.group({
         full_name: null,
         address: null,
@@ -67,11 +68,13 @@ export class DeliveryMethodComponent implements OnInit {
     })
   }
   goToOrder(){
+    let delivery ={ name: "delivery"}
     this.tempOrderService.getTempOrder(this.user.uid).subscribe((torder)=>{
       if(_.isNaN(torder.ground_total) || _.isNull(torder.ground_total)){
         this.trueMsg = "Please select delivery method from the one listed above..";
         return;
       }else if(this.trueAddress == true){
+        this.progressService.setProgress(delivery);
         return this._router.navigate(["/place_order"]);
       }else{
         return this.trueMsg = "please make sure you have fill in the delivery address and also select delivery method"

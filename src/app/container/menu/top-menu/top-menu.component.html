@@ -1,26 +1,38 @@
 
 <div id="md-toolbar">
     <div class="container">
-      <div class="row top-menu">
-        <div class="branded col-lg-8">
+      <div class="d-flex justify-content-end top-menu">
+        <div class="branded mr-auto p-2">
           <div id="brand-link">
-            <a (click)="goHome()" ><h1>uRGy<span><small style="font-size:18px">groceries</small></span></h1></a>
+            <a (click)="goHome()"><h1>uRGy<span><small style="font-size:18px">groceries</small></span></h1></a>
           </div>
         </div>
         
-        <div class="right-util col-lg-4"> 
+        <div class="right-util p-2"> 
           <div *ngIf="triger" class="trigger">
             <md-icon id="fashIcon"></md-icon>
           </div>
           <div class="tool-bar-top"> <!-- add notify here -->
             <notify></notify>
           </div>
+          
+          <!-- <div *ngIf="cta" class="cta">
+            <div class="buttin">
+              <a md-raised-button>Basket</a>
+            </div>
+            <div class="buttin">
+              <a md-raised-button>Checkout</a>
+            </div>
+          </div> -->
 
           <div class="search-form">
             <product-search></product-search>
           </div>
         </div>
-    </div>
+        <!-- <div (click)="openCta()" class="p-2 cta-btn">
+            <md-icon>more_vert</md-icon>
+        </div> -->
+      </div>
    </div>
 </div>
 

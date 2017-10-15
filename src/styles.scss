@@ -1,4 +1,3 @@
-// @import "~@progress/kendo-theme-default/scss/all";
 @import "node_modules/bootstrap/scss/bootstrap";
 @import './assets/stylesheets/app-theme';
 @import "./variables";
@@ -18,6 +17,8 @@
 // font-family: 'Lobster', cursive;
 // font-family: 'Saira Extra Condensed', sans-serif;
 
+/*----- General Classes ------*/
+.page-rule{padding-bottom: 50px;}
 
 body{
     // background-color: #f5f8fa;
@@ -26,13 +27,36 @@ body{
     font-family: $open-sans-light !important;
     background-color: #ebeff1;
 }
+.mobile-menu{
+    display: none;
+}
+.main-menu{
+    display: block;
+}
+@media screen and (max-width: 480px){
+    .main-menu{
+        display: none;
+    }
+    .mobile-menu{
+        display: block;
+    }
+    .mobile-margin-top{
+        margin-top: 70px;
+    }
+    .welcome-slider{
+        display: none;
+    }
+    .hide-on-mobile{
+        display: none;
+    }
+}
+
+
+
 
 /* Typography
 
 ----------------------------------------------------------- */
-body{
-    // font-family: Helvetica, Arial, sans-serif;
-}
 button {
     // background-color: $primary-color-light !important;
 }
@@ -86,4 +110,5 @@ p a, p a:visited { line-height: inherit }
 
 a:link { text-decoration: none }
 
-a:focus { outline: 0 }
+a { color: #FF9100; }
+a:hover { color: #f15a23 }

@@ -3,20 +3,38 @@
     <md-toolbar>
       <div class="nav-inner-container d-flex flex-row justify-content-between">
         <div class="brand">
-            <a (click)="goHome()" >uRGy</a>
+            <a routerLink="/" ><h1>uRGy</h1></a>
         </div>
         
         <div class="check-progress">
-          <span>Billing Infomation></span>
-          <span>Payment Method ></span>
-          <span>Delivery Method ></span>
-          <span>Place Order ></span>
-          <span>Finish</span>
+          <span id="billing">
+            Billing Infomation
+            <md-icon *ngIf="!billIcon">keyboard_arrow_right</md-icon>
+            <md-icon *ngIf="billIcon">done</md-icon>
+          </span>
+          <span id="payment">Payment Method 
+              <md-icon *ngIf="!payIcon">keyboard_arrow_right</md-icon>
+              <md-icon *ngIf="payIcon">done</md-icon>
+          </span>
+          <span id="delivery">Delivery Method 
+              <md-icon *ngIf="!delivIcon">keyboard_arrow_right</md-icon>
+              <md-icon *ngIf="delivIcon">done</md-icon>
+          </span>
+          <span id="order">Place Order 
+              <md-icon *ngIf="!ordIcon">keyboard_arrow_right</md-icon>
+              <md-icon *ngIf="ordIcon">done</md-icon>
+          </span>
+          <span id="finish">Finish 
+              <md-icon *ngIf="finIcon">done</md-icon>
+          </span>
         </div>
         <div class="store">
           <!-- <span>Shop</span> -->
           <img src="assets/shopping-icon.png" alt="">
         </div>
+        <!-- <span>
+            <a (click)="sendMail()" class="nav-link" >Mail</a>
+        </span> -->
       </div>
     </md-toolbar>
   </div>

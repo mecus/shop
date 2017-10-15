@@ -3,7 +3,7 @@
     grid-gap: 10px;
     grid-template-columns: repeat(4, 1fr);
     // height: 300px;
-    background-color: red;
+    // background-color: red;
     width: 100%;
     .grid-list{
         margin: 20px;
@@ -18,7 +18,7 @@
 .video-box{
     // background-color: green;
     position: relative;
-    height: 150px;
+    // height: 120px;
     overflow: hidden;
     .embed-responsive{
         position: relative;
@@ -42,7 +42,7 @@
             md-icon{
                 margin: 0 auto;
                 font-size: 60px;
-                color: red;
+                color: #00796B;
             }
         }
     }

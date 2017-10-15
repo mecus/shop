@@ -1,3 +1,20 @@
+div.check-notice{
+  height: 40px;
+  background-color: #f15a23;
+  margin-bottom: 5px;
+  transition: height 2s;
+  padding-right: 5px;
+  p{
+    margin: 0px;
+    padding: 0px;
+    padding: 5px 10px;
+    font-size: 14px;
+  }
+  span md-icon{
+    padding-top: 5px;
+
+  }
+}
 div.shp-header{
     height: 40px;
     background-color: #fff;
@@ -46,10 +63,14 @@ div.shp-header{
     background-color: #FF9100;
   }
 
-  div.check-button button{
-    border-radius: none !important;
+  div.check-button a{
+    border-radius: 0px !important;
     width: 100%;
-    background-color: #ffffff;
+    background-color: #009688;
+    text-decoration: none;
+    &:hover{
+      color: #ffffff;
+    }
   }
    p.cart-head{
       padding: 0px;

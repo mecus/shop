@@ -1,18 +1,32 @@
-<primary-navigation></primary-navigation>
+<div class="main-menu">
+    <primary-navigation></primary-navigation>
+  </div>
+  <div class="mobile-menu">
+    <mobile-menu></mobile-menu> 
+  </div>
 <div class="page-content">
     <div class="container order-container">     
         <div class="card order-view">
             <div class="card-header">
                 <h1>Your Orders</h1>
             </div>
-            <div class="card-body">
+        
+            <div class="xpandable-panel">
                 <p>You can view all order placed in the last 12 months</p>
-                <div *ngFor="let order of (orders$ | async)">
-                    <span>{{order.customer_name}}</span>
-                    <span>{{order.amount | currency:'GBP':true}}</span>
-                    <span>{{order.order_no}}</span>
-                    <span>{{order.createdAt | date}}</span>
-                </div>
+                <md-expansion-panel *ngFor="let order of (orders$ | async)">
+                    <md-expansion-panel-header>
+                        <md-panel-title>
+                        Order no. {{order.order_no}}
+                        </md-panel-title>
+                        <md-panel-description>
+                        <span>{{order.createdAt | date}}</span>
+                        <span>Order Amount: {{order.amount | currency:'GBP':true}}</span>
+                        <span><md-icon>check_circle</md-icon></span>
+                        </md-panel-description>
+                    </md-expansion-panel-header>
+                    <p>{{order.note}}</p>
+                    
+                </md-expansion-panel>
             </div>
         </div>
     </div>

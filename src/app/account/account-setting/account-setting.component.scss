@@ -1,6 +1,20 @@
+.page-container{
+    min-height: 500px;
+}
+div.xpandable-panel{
+    h3{
+        font-family: 'Open Sans Light', sans-serif;
+        color: grey;
+    }
+}
+
 div.setting-container{
     // display: flex;
     margin-top: 20px;
+    h3{
+        font-family: 'Open Sans Light', sans-serif;
+        color: lightslategrey;
+    }
 }
 div.card{
     flex: 2;
@@ -26,13 +40,14 @@ div.p-card-info{
         margin: 0px;
         margin: 10px 20px;
     }
-    a{
-        width: 150px;
-        margin: 0 auto;
-        margin-top: 20px;
-    }
+    // a{
+    //     width: 150px;
+    //     margin: 0 auto;
+    //     margin-top: 20px;
+    // }
     h1{
         margin: 0 auto;
+        margin-bottom: 10px;
     }
 }
 a.btn{

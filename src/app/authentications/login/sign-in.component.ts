@@ -54,11 +54,12 @@ export class LoginComponent implements OnInit {
     }
 
     postCodeSearch(post):void{
-        console.log(post)
+        // console.log(post)
+        let pcode = post.toUpperCase();
         if(post == ""){
             this.posterror = "Post code must not be empty!"
         }else{
-            this.storeService.storeData('tempcode', post);
+            this.storeService.storeData('tempcode', pcode);
             this._router.navigate(["/register"]);
         }
        

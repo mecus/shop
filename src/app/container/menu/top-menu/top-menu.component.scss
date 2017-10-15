@@ -6,17 +6,56 @@
     height: 120px;
     /*margin: 0px !important;
     padding: 0px !important;*/
+    .top-menu{
+        .cta-btn{
+            height: 40px;
+            background-color: #000000;
+            color: #ffffff;
+        }
+        .branded{
+            #brand-link{
+                max-width: 100px;
+                height: 100px;
+                padding: 20px 0;
+                margin-top: 10px;
+                a h1{
+                    font-size: 48px;
+                    font-family: 'Dosis', sans-serif;
+                    color: #00796B;
+                }
+                span{
+                    color: slategray;
+                    font-family: 'Open Sans Regular', sans-serif;
+                }
+            }
+
+        }
+        .right-util{
+            position: relative;
+            margin: 0px !important;
+            padding: 0px !important;
+
+            .cta{
+                position: absolute;
+                top: 0px;
+                right: 0px;
+                margin-right: 0px;
+                margin-top: 40px;
+                background-color: #000000;
+                z-index: 1001;
+                .buttin{
+                    a{
+                        width: 200px;
+                        border-radius: 0px !important;
+                        margin-top: 2px;
+                    }
+                }
+            }
+        }
+    }
     
 }
-div#brand-link{
-    max-width: 100px;
-    height: 100px;
-    padding: 20px 0;
-    margin-top: 10px;
-    a h1{
-        font-size: 45px;
-    }
-}
+
 .tool-bar-top{
     width: 100%;
     position: relative;

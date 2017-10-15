@@ -6,8 +6,8 @@ import { YoutubeService } from "../../services/youtube.service";
 
 @Component({
   selector: 'how-to',
-  templateUrl: './how-to.component.html',
-  styleUrls: ['./how-to.component.scss']
+  templateUrl: 'how-to.component.html',
+  styleUrls: ['how-to.component.scss']
 })
 export class HowToComponent implements OnInit {
   youtube;

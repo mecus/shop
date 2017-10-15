@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
-import { LocalStorageService, SessionStorageService } from 'ng2-webstorage';
 import { Http } from '@angular/http';
 import * as firebase from 'firebase';
 

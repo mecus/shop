@@ -1,16 +1,16 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { MaterialModule } from './modules/material/material.module';
-import { Ng2Webstorage } from 'ng2-webstorage';
+// import { Ng2Webstorage } from 'ng2-webstorage';
 import { AppSharedModule } from "./modules/shared-modules/app.shared.module";
+import { PostcodeModule } from './modules/postcode-module/postcode.module';
 
 //Bootstrap Modules
-import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
-import { CarouselModule } from 'ngx-bootstrap/carousel';
+// import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+// import { CarouselModule } from 'ngx-bootstrap/carousel';
 // import { AlertModule } from 'ngx-bootstrap/alert';
 
 //cloudinary module
@@ -25,13 +25,14 @@ import { firebaseConfig } from './firebase-configuration';
 
 
 //Needed Hammerjs to work with material Design module
-import 'hammerjs';
+// import 'hammerjs';
 
 //Custom Modules
 import { AppRouterModule } from './routers/app-router/app-router.module';
 import { ProductModule } from './container/products/product.module';
 import { CheckOutModule } from './container/check-out/check-out.module';
 import { AccountModule } from "./account/account.module";
+import { ShopModule } from "./container/shop-container/shop-module/shop.module";
 
 //Services
 import { AdvertService } from "./services/advert.service";
@@ -45,6 +46,7 @@ import { WindowService } from "./services/window.service";
 import { ClearHeighlightMenu } from "./services/clearfunction.service";
 import { AddressSearchService } from "./services/addresssearch.service";
 import { AccountService } from "./services/account.service";
+import { MailerService } from "./services/mailer.service";
 
 //Directives
 // import { AdvertDirective } from './directives/advert.directive';
@@ -59,6 +61,10 @@ import { AppComponent } from './app.component';
 // import { TopMenuComponent } from './container/menu/top-menu/top-menu.component';
 // import { SubMenuComponent } from './container/menu/top-menu/sub-menu';
 import { HomeComponent } from './container/home/home.component';
+import { CookieNoticeComponent } from './container/shop-container/cookie-notice/cookie-notice.component';
+
+
+
 // import { CustomersComponent } from './container/customers/customers.component';
 // import { BannerComponent } from './components/advert/banner.component';
 // import { NewProdComponent } from './components/advert/dynamic-components/newprod.component';
@@ -72,37 +78,34 @@ import { HomeComponent } from './container/home/home.component';
 // import { PrimaryNavigationComponent } from './container/menu/primary-navigation/primary-navigation.component';
 
 
-
-
-
-
-const BootstrapModules = [BsDropdownModule.forRoot(), CarouselModule.forRoot()]
+// const BootstrapModules = [ CarouselModule.forRoot()]
+import { LibModule } from 'confirm-alert';
 
 @NgModule({
   declarations: [
     AppComponent, 
-    HomeComponent
+    HomeComponent,
+    CookieNoticeComponent
     
    
   ],
   imports: [
-    BrowserModule.withServerTransition({appId: 'shop-front'}),
-    BrowserAnimationsModule, NoopAnimationsModule,
+    BrowserAnimationsModule, LibModule,
+    BrowserModule.withServerTransition({appId: 'shop'}),
     FormsModule,MaterialModule, ReactiveFormsModule,
     HttpModule, AppRouterModule,ProductModule, CheckOutModule,
-    BootstrapModules, AppSharedModule,
-
+    AppSharedModule, ShopModule, PostcodeModule,
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireDatabaseModule,AngularFireAuthModule,
     AuthenticationsModule,
-    Ng2Webstorage, AccountModule
+    AccountModule,
   ],
   providers: [
     ProductService, CartService, StorageService, SearchService,
     ReviewService, YoutubeService, WindowService, ClearHeighlightMenu,
-    AddressSearchService, AccountService, AdvertService
+    AddressSearchService, AccountService, AdvertService, MailerService
     ],
   bootstrap: [AppComponent]
-  // entryComponents: [NewProdComponent, NewCatComponent]
+  
 })
 export class AppModule { }

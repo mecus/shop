@@ -3,7 +3,7 @@
     <h2 *ngIf="reviews.length < 2"><span>{{reviews.length}}</span> Review</h2>
     <h2 *ngIf="reviews.length > 1"><span>{{reviews.length}}</span> Reviews</h2>
     <md-list>
-      <md-list-item *ngFor="let review of reviews">
+      <md-list-item *ngFor="let review of reviews | paginate: {itemsPerPage: 3, currentPage: page}">
         <img md-list-avatar src="assets/avatar.png" alt="...">
         <h3 md-line> <strong>{{review.userName}}</strong> </h3>
         <p md-line>
@@ -12,6 +12,11 @@
         </p>
       </md-list-item>
     </md-list>
+    <!-- Implementing pagination -->
+    <div class="pagination">
+      <pagination-controls (pageChange)="page = $event" class="pg-pagination"></pagination-controls>
+    </div>
+  <!-- Pagination ends -->
   </div>
 
   <ng-template #firstReview>

@@ -10,11 +10,12 @@ import { OrderService } from "../../../services/order.service";
 import { TempOrderService } from "../../../services/temp-order.service";
 import { WindowService } from "../../../services/window.service";
 import * as _ from 'lodash';
+import { ProgressService } from '../../../services/checkout-progress.service';
 
 @Component({
   selector: 'app-order',
-  templateUrl: './order.component.html',
-  styleUrls: ['./order.component.scss']
+  templateUrl: 'order.component.html',
+  styleUrls: ['order.component.scss']
 })
 export class OrderComponent implements OnInit {
   ordForm;
@@ -26,7 +27,7 @@ export class OrderComponent implements OnInit {
   constructor(private accountService:AccountService, private authService:AuthService, 
     private storeService:StorageService, private _fb:FormBuilder, private _router:Router,
     private paymentService:PaymentService, private windowService:WindowService, private cartService:CartService,
-    private tempOrderService:TempOrderService, private orderService:OrderService) { 
+    private tempOrderService:TempOrderService, private orderService:OrderService, private progressService:ProgressService) { 
       this.document = this.windowService.getDocumentRef();
       this.orderForm();
     }
@@ -54,7 +55,7 @@ export class OrderComponent implements OnInit {
     //   alert('Pending Order');
     //   return;
     // }
-  
+    let orderP = {name: "order"};
     this.grayPage = true;
     //Generate Order number
     let order_no = order.customer_no * 100 + Math.floor((Math.random() * 10) + 1);
@@ -113,6 +114,7 @@ export class OrderComponent implements OnInit {
     setTimeout(()=>{
       this.grayPage = false;
       console.log(this.saveProg);
+        this.progressService.setProgress(orderP);
         this._router.navigate(["/review_and_payment"]);
     }, 5000);
   

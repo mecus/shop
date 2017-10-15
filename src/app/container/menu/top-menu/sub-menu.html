@@ -27,22 +27,25 @@
             <span hoverMenu class="nav-item" *ngFor="let dept of departments">
                 <a class="nav-link" (click)="selectedDept(dept, $event)">{{dept.name}}</a>
             </span>
-            <span selectMenu id="how-to">
-                <a class="nav-link" (click)="showHowTo()" >How to?<span class="sr-only">(current)</span></a>
+            <span  id="how-to"> <!-- selectMenu -->
+                <a class="nav-link" (click)="showHowTo()" >Cooking <i class="fa fa-cutlery" aria-hidden="true"></i><span class="sr-only">(current)</span></a>
             </span>
             <span hoverMenu id="brand-select" (mouseleave)="getBrands($event)" (mouseenter)="getBrands($event)" class="nav-item">
                 <a class="nav-link" >Brands<span class="sr-only">(current)</span></a>
+            </span>
+            <span  id="best-offer" class="nav-item-0">
+                <a routerLink="/products/offer" class="nav-link-0" >Best Offer<span class="sr-only">(current)</span></a>
             </span>
         </div>
     </div>
 </div>
 
 <div selectMenu class="howTo-video">
-    <div class="how-to-do">
+    <div class="container how-to-do">
         <how-to></how-to>
     </div>
 </div>
-<div class="brand-list" (mouseleave)="getBrands($event)" (mouseenter)="getBrands($event)">
+<div class="brand-list w3-card-2" (mouseleave)="getBrands($event)" (mouseenter)="getBrands($event)">
     <div class="container">
         <div class="brands d-flex flex-rows flex-nowrap">
             <div id="brand-item" class="p-2" *ngFor="let brand of (brands$ | async)">
