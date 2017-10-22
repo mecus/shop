@@ -1,0 +1,72 @@
+.carousel-contianer{
+    position: relative;
+    width:100%;
+    height: 100%;
+    overflow:  hidden;
+    margin: 0px;
+    padding: 0px;
+    .bubble-container{
+        display: flex;
+        position: absolute;
+        justify-content: center;
+        bottom: 0;
+        right: 0;
+        left: 0;
+        margin-bottom: 10px;
+        // color: #ffffff;
+        .buble{
+            margin: 2.5px;
+            width: 10px;
+            height: 10px;
+            display: inline-block;
+            background-color: #ffffff;  
+        }
+    }
+    .carousel{
+        position: absolute;
+        display: flex;
+        left: 0px; 
+        // z-index: 0; 
+        .image img{
+            // width: 100%;
+            // height: 300px;
+        }
+    }
+    .next{
+        position: absolute;
+        top: 50%;
+        color: #ffffff;
+        z-index: 1;
+        right: 0;
+        width: 30px;
+        height: 40px;
+        transform: translateY(-50%);
+        line-height: 40px;
+        padding: 0px;
+        margin: 0px;
+        mat-icon{
+            font-size: 40px;
+            margin: 0px;
+            padding: 0px;
+        }
+        opacity: 0.25;
+        transition: opacity 0.5s linear;
+        &:hover{
+            opacity: 1;
+        }
+        cursor: pointer;
+    }
+    .prev{
+        @extend .next;
+        left: 0;
+        float: left;
+        
+        mat-icon{
+            font-size: 40px;
+            margin: 0px;
+            padding: 0px;
+            text-align: left;
+        }
+    }
+
+}

@@ -1,6 +1,6 @@
 <check-out-menu></check-out-menu>
 
-<div class="container d-flex flex-row justify-content-around">
+<div class="container d-flex flex-row justify-content-around page-rule">
   <div class="p-2 card-form">
     <form [formGroup]="ordForm" (ngSubmit)="createOrder(ordForm.value)">
         <div class="form-group">
@@ -21,18 +21,18 @@
             <textarea formControlName="note" class="form-control" id="exampleTextarea" placeholder="tell us what you want with your order" rows="3"></textarea>
         </div>
         
-        <button md-raised-button type="submit" >Order and Continue</button>
+        <button mat-raised-button type="submit" >Order and Continue</button>
     </form>
   </div>
   <div class="p-2 card aside-check-cart">
       <div class="card-block">
           <checkout-cart></checkout-cart>
-          <!-- <a md-raised-button routerLink="/review_and_payment" >Review and Pay</a> -->
+          <!-- <a mat-raised-button routerLink="/review_and_payment" >Review and Pay</a> -->
       </div>
   </div>
 </div>
 <div *ngIf="grayPage" class="pageProcessCover">
     <div class="center-point">
-        <md-spinner></md-spinner>
+        <mat-spinner></mat-spinner>
     </div>
 </div>

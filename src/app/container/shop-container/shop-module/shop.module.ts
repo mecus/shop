@@ -8,10 +8,12 @@ import { CookiePrivacyComponent } from '../cookie-privacy/cookie-privacy.compone
 import { SiteMapComponent } from '../site-map/site-map.component';
 import { ShopService } from '../../../services/shop.service';
 import { VideoInstructionComponent } from '../video-instruction/video-instruction.component';
+import { NgeCarouselModule } from '../../../modules/carousel-module/nge-carousel.module';
 
 @NgModule({
   imports: [
-    CommonModule, AppSharedModule, MaterialModule
+    CommonModule, AppSharedModule, MaterialModule,
+    NgeCarouselModule
   ],
   declarations: [
     HelpComponent, TermsComponent, CookiePrivacyComponent,

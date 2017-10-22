@@ -1,12 +1,13 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
-  MdButtonModule, MdCheckboxModule,MdToolbarModule,
-  MdIconModule, MdMenuModule, MdInputModule, MdCardModule,
-  MdGridListModule, MdSelectModule, MdSidenavModule,
-  MdDialogModule, MdChipsModule, MdListModule, MdTableModule,
-  MdRadioModule, MdProgressBarModule, MdProgressSpinnerModule,
-  MdPaginatorModule, MdExpansionModule, MdDatepickerModule
+  MatButtonModule, MatCheckboxModule,MatToolbarModule,
+  MatIconModule, MatMenuModule, MatInputModule, MatCardModule,
+  MatGridListModule, MatSelectModule, MatSidenavModule,
+  MatDialogModule, MatChipsModule, MatListModule, MatTableModule,
+  MatRadioModule, MatProgressBarModule, MatProgressSpinnerModule,
+  MatPaginatorModule, MatExpansionModule, MatDatepickerModule,
+  MatFormFieldModule
 } from '@angular/material';
 
   
@@ -14,20 +15,22 @@ import {
 @NgModule({
   imports: [
     CommonModule,
-    MdButtonModule, MdCheckboxModule,MdIconModule,MdMenuModule,
-    MdToolbarModule, MdInputModule, MdCardModule, MdGridListModule,
-    MdSelectModule, MdSidenavModule, MdDialogModule, MdChipsModule,
-    MdListModule, MdTableModule, MdRadioModule, MdProgressBarModule,
-    MdProgressSpinnerModule, MdPaginatorModule, MdExpansionModule,
-    MdDatepickerModule
+    MatButtonModule, MatCheckboxModule,MatToolbarModule,
+    MatIconModule, MatMenuModule, MatInputModule, MatCardModule,
+    MatGridListModule, MatSelectModule, MatSidenavModule,
+    MatDialogModule, MatChipsModule, MatListModule, MatTableModule,
+    MatRadioModule, MatProgressBarModule, MatProgressSpinnerModule,
+    MatPaginatorModule, MatExpansionModule, MatDatepickerModule,
+    MatFormFieldModule
   ],
   exports: [
-    MdButtonModule, MdCheckboxModule,MdIconModule,MdMenuModule,
-    MdToolbarModule, MdInputModule, MdCardModule, MdGridListModule,
-    MdSelectModule, MdSidenavModule, MdDialogModule, MdChipsModule,
-    MdListModule, MdTableModule, MdRadioModule, MdProgressBarModule,
-    MdProgressSpinnerModule, MdPaginatorModule, MdExpansionModule,
-    MdDatepickerModule
+    MatButtonModule, MatCheckboxModule,MatToolbarModule,
+    MatIconModule, MatMenuModule, MatInputModule, MatCardModule,
+    MatGridListModule, MatSelectModule, MatSidenavModule,
+    MatDialogModule, MatChipsModule, MatListModule, MatTableModule,
+    MatRadioModule, MatProgressBarModule, MatProgressSpinnerModule,
+    MatPaginatorModule, MatExpansionModule, MatDatepickerModule,
+    MatFormFieldModule
   ],
   declarations: []
 })

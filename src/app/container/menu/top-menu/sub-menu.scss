@@ -3,15 +3,16 @@
     display: none;
     // margin-top: - 62px;
     background-color: #ffffff;
+    border-bottom: 1px solid #00796B;
     width: 100%;
     transition: 0.2s;
-    md-toolbar{
+    mat-toolbar{
         width: 100%;
         // display: none;
         padding: 0px !important;
         margin: 0px !important;
         background-color: #fff;
-        md-toolbar{
+        mat-toolbar{
             // width: 90%;
             display: -webkit-box;
             display: -moz-box;
@@ -36,10 +37,11 @@
                 margin-left: 20px;
             }
             .item2{
+                // position: relative;
                 flex: 1;
-                margin: 0 auto;
+                // margin: 0 auto;
                 font-size: 14px;
-                width: 300px;
+                width: 400px;
             }
             .item3{
                 flex: 1;
@@ -65,7 +67,7 @@
     line-height: 40px;
     color:#fff;
     .side-menu-btn{
-        md-icon{
+        mat-icon{
             color: #00796B;
             font-weight: bold;
             
@@ -75,7 +77,7 @@
     transition: .5s;
     &:hover{
         .side-menu-btn{
-            md-icon{
+            mat-icon{
                 color: #f15a23;
                 font-weight: bold;
                 
@@ -90,24 +92,24 @@
 .active {
     background-color: #f5f5f5;
     height: 40px;
-    color: #000 !important; 
+    color: #00796B !important;
 }
 
 //Custom and main navigation
 .nav-menu{
-    background-color: rgba(0, 0, 0, 1);
+    background-color: rgb(211, 209, 209);
     height: 40px;
     .nav-content{
         padding: 0px;
         .nav-item a{
-            color: lightslategrey;
+            color: black;
             height: 40px;
             font-family: Dosis, sans-serif;
             font-weight: normal;
             font-size: 1.1em;
             &:hover{
                 cursor: pointer;
-                // color: #ffffff !important;
+                color: #00796B !important;
             }
         }
         #how-to{
@@ -121,7 +123,7 @@
             }
             &:hover{
                 cursor: pointer;
-                a{color: #000 !important;}
+                a{color: lightblue !important;}
         
             }
         }

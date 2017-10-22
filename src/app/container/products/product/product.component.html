@@ -39,23 +39,9 @@
               </div>
           </div>
           <div class="p-2 advert-container-half">
-            <div class="advert">
-              <div *ngIf="advert">
-                  <img [src]=advert.photo_url style="width:100%;" alt="First slide">
-                <!--<p></p>
-                <p></p>
-                <img [src]=advert.photo_url style="width:80px;" alt="">-->
-                <!-- <carousel>
-                  <slide *ngFor="let ad of advert">
-                    <img [src]=ad.photo_url style="width:100%;" alt="First slide">
-                    <div class="carousel-caption">
-                      <h3>{{ad.title}}</h3>
-                      <p>{{ad.sub_title}}</p>
-                    </div>
-                  </slide>
-                </carousel> -->
-              </div>
-            </div>
+              <nge-carousel
+                [images]="adverts">
+              </nge-carousel>
           </div>
           
         </div><!--End of Row -->
@@ -68,26 +54,26 @@
       <div class="main-content col col-lg-9">
         <div class="row">
           <div class="pd-item col col-xs-6 col-sm-6 col-lg-3" *ngFor="let product of products">
-            <md-card class="example-card product">
+            <mat-card class="example-card product">
               <div [style.min-height.px]="60">
-                <img *ngIf="product.imageUrl !== undefined; else load" (click)="viewProduct(product)" md-card-image  [src]="product.imageUrl">
+                <img *ngIf="product.imageUrl !== undefined; else load" (click)="viewProduct(product)" mat-card-image  [src]="product.imageUrl">
                 <ng-template #load>waiting..</ng-template>
               </div>
               
-              <md-card-content>
+              <mat-card-content>
                 <p id="size">({{product.description.size}})</p>
                 <p id="title">{{product.name}}</p>
                 <p id="price">{{product.price | currency: 'GBP': 'true'}}</p>
-              </md-card-content>
-              <md-card-actions>
-                  <a  role="button" (click)="addToCart(product)"  md-raised-button >ADD</a>
-              </md-card-actions>
+              </mat-card-content>
+              <mat-card-actions>
+                  <a  role="button" (click)="addToCart(product)"  mat-raised-button >ADD</a>
+              </mat-card-actions>
               <div class="inCart-wrapper" *ngFor="let cart of carts$">
                   <div *ngIf="cart.name == product.name">
                     <p id="inCart">{{cart.qty}} in cart</p>
                   </div>
               </div>
-            </md-card>
+            </mat-card>
           </div>
         </div>
       </div>
@@ -96,10 +82,10 @@
         <div class="post-box card" *ngIf="cartErrorMsg">
             <div class="card-body" >
                   <p>{{cartErrorMsg}}</p>
-                  <md-input-container>
-                      <input #postcode type="text" mdInput name="postcode" placeholder="Enter Postcode">
-                  </md-input-container>
-                  <a (click)="submitPostcode(postcode.value)" md-raised-button>Submit</a>
+                  <mat-input-container>
+                      <input #postcode type="text" matInput name="postcode" placeholder="Enter Postcode">
+                  </mat-input-container>
+                  <a (click)="submitPostcode(postcode.value)" mat-raised-button>Submit</a>
               </div>
         </div>
       </div>
@@ -111,15 +97,17 @@
     <div class="product-container d-flex flex-row" >
         <div class="product-content p-2">
           <div class="sorting d-flex justify-content-between">
-            <div class="p-2">
+            <div class="p-2 d-flex">
                 <p><strong>{{groupName}}</strong></p>
+                <span class="prod-count"><p>{{productCount}}</p></span>
+                
             </div>
             <!-- <div class="pagination-top p-2">
-                <md-paginator [length]="products.length"
+                <mat-paginator [length]="products.length"
                               [pageSize]="pageSize"
                               [pageSizeOptions]="pageSizeOptions"
                               (page)="pageEvent = $event">
-                </md-paginator>
+                </mat-paginator>
               </div> -->
             <div class="p-2 d-flex flex-row" id="sort-input">
                 <select  class="form-control p-2" #sorted  placeholder="sorting">
@@ -133,28 +121,35 @@
           </div>
           <div [@loadproduct]="products" class="product-list d-flex align-content-stretch flex-row flex-wrap">
             <div class="product-item p-2" *ngFor="let product of products | paginate: {itemsPerPage: pageSize, currentPage: page}">
-                <md-card class="example-card product">
+                <mat-card class="example-card product">
                   <div *ngIf="product.offer == 'yes'" class="shop-offer"><p>Offer</p></div>
+                  <div class="inyourcart" *ngFor="let cart of carts$">
+                    <mat-icon *ngIf="cart.name == product.name">shopping_cart</mat-icon>
+                    <span *ngIf="cart.name == product.name" class="cart-no">{{cart.qty}}</span>
+                  </div>
                   <div [style.min-height.px]="60">
-                    <img *ngIf="product.imageUrl !== undefined; else load" (click)="viewProduct(product)" md-card-image  [src]="product.imageUrl">
+                    <img *ngIf="product.imageUrl !== undefined; else load" (click)="viewProduct(product)" mat-card-image  [src]="product.imageUrl">
                     <ng-template #load>waiting..</ng-template>
                   </div>
                   
-                  <md-card-content>
+                  <mat-card-content>
                    
                     <h1 id="title">{{product.name}}</h1>
                     <p id="size">( {{product.description.size}} )</p>
                     <p id="price">{{product.price | currency: 'GBP': 'true'}}</p>
-                  </md-card-content>
-                  <md-card-actions>
-                      <a role="button" color="primary" (click)="addToCart(product)"  md-raised-button >Add</a>
-                  </md-card-actions>
-                  <div class="inCart-wrapper" *ngFor="let cart of carts$">
-                      <div class="inCart-select" *ngIf="cart.name == product.name">
-                        <p id="inCart">{{cart.qty}} in cart</p>
+                  </mat-card-content>
+                  <mat-card-actions>
+                      <a *ngIf="product.stock > 0"  role="button" color="primary" (click)="addToCart(product)"  mat-raised-button >Add</a>
+                      <a *ngIf="product.stock < 1"  role="button" style="background-color: red" [style.color]="'lightgray'" mat-raised-button >sorry!</a>
+                  </mat-card-actions>
+                  
+                  <div class="inCart-wrapper">
+                      <div class="inCart-select">
+                        <p *ngIf="product.stock > 0" id="inCart">{{product.stock}} in stock</p>
+                        <p [style.color]="'red'" *ngIf="product.stock < 1" id="inCart">Out of stock</p>
                       </div>
                   </div>
-                </md-card>
+                </mat-card>
             </div>
           </div>
           <!-- Implementing pagination -->
@@ -163,11 +158,11 @@
           </div>
           
           <!-- <div class="pagination">
-            <md-paginator [length]="products.length"
+            <mat-paginator [length]="products.length"
                           [pageSize]="pageSize"
                           [pageSizeOptions]="pageSizeOptions"
                           (page)="pageEvent = $event">
-            </md-paginator>
+            </mat-paginator>
           </div> -->
           <!-- <div *ngIf="pageEvent">
               <h5>Page Change Event Properties</h5>
@@ -192,17 +187,12 @@
         <div class="side-widget p-2">
           <div class="side-innner">
               <widget-right></widget-right>
-              <div class="post-box card" *ngIf="cartErrorMsg">
-                  <div class="card-body" >
-                        <p>{{cartErrorMsg}}</p>
-                        <md-input-container>
-                            <input #postcode type="text" mdInput name="postcode" placeholder="Your Postcode">
-                        </md-input-container>
-                        <a (click)="submitPostcode(postcode.value)" md-raised-button>Check</a>
-                    </div>
-              </div>
           </div>         
         </div>
       </div>
   </div>
 </div>
+<div>
+    <post-code [requestPost]="openPostInput"></post-code>
+</div>
+

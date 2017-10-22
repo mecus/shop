@@ -6,7 +6,7 @@
     </div>
  <div class="main-container">  
     <div *ngIf="selectedProduct" class="container">
-        <p><a (click)="back()" md-mini-fab ><md-icon>arrow_back</md-icon></a> <small>{{selectedProduct.category}}</small> > {{selectedProduct.name}}</p>
+        <p><a (click)="back()" mat-mini-fab ><mat-icon>arrow_back</mat-icon></a> <small>{{selectedProduct.category}}</small> > {{selectedProduct.name}}</p>
         <div class="d-flex flex-row flex-container">
             <div class="p-2 flex-left-content">
                 <div class="d-flex flex-row flex-left-content-inner">
@@ -29,23 +29,26 @@
                         <h1 id="price">Price: {{selectedProduct.price | currency: 'GBP' :true}}</h1>
                         <p>( {{selectedProduct.description.size}} )</p>
                         
-                        <a role="button" (click)="addToCart()" md-raised-button > Add to Cart</a>
+                        <a *ngIf="selectedProduct.stock > 0" role="button" (click)="addToCart()" mat-raised-button > Add to Cart</a>
+                        <a *ngIf="selectedProduct.stock < 1"  role="button" style="background-color: red" [style.color]="'lightgray'" mat-raised-button >sorry!</a>
+                        <small *ngIf="selectedProduct.stock < 1" style="color: red">Out of stock</small>
                         <div class="inCart-wrapper" *ngFor="let cart of carts$">
                             <div *ngIf="cart.name == selectedProduct.name">
                                 <!-- <p id="inCart">{{cart.qty}} in cart</p> -->
                                 <p id="inCart" class="p-2">
                                     <span>{{cart.qty}} in</span>
-                                    <md-icon>shopping_cart</md-icon>
+                                    <mat-icon>shopping_cart</mat-icon>
                                 </p>
 
                             </div>
                         </div>
                         <div id="post-code-msg" *ngIf="cartErrorMsg">
-                            <p>{{cartErrorMsg}}</p>
-                            <md-input-container>
-                                <input #postcode type="text" mdInput name="postcode" placeholder="Your Postcode">
-                            </md-input-container>
-                            <a (click)="submitPostcode(postcode.value)" md-raised-button>Check</a>
+                            <!-- <p>{{cartErrorMsg}}</p> -->
+                            <post-code [requestPost]="openPostInput"></post-code>
+                            <!-- <mat-input-container>
+                                <input #postcode type="text" matInput name="postcode" placeholder="Your Postcode">
+                            </mat-input-container>
+                            <a (click)="submitPostcode(postcode.value)" mat-raised-button>Check</a> -->
                         </div>
                     <div *ngIf="selectedProduct" class="product-details">
                         <br><br>
@@ -91,25 +94,25 @@
                                 <div *ngIf="review" class="reviews">
                                 
                                     <h1>product Reviews</h1>
-                                    <md-checkbox (change)="showReviewForm($event)" >Please add your review to this product</md-checkbox>
+                                    <mat-checkbox (change)="showReviewForm($event)" >Please add your review to this product</mat-checkbox>
                                     <span *ngIf="userErr"><p id="error-msg" >{{userErr}}</p> <small (click)="redirectLogin()" >Sign In here</small> </span>
                                     <form *ngIf="showForm" class="example-form" [formGroup]="reviewForm" (ngSubmit)="addReviews(reviewForm.value)">
                                         <input hidden formControlName="user">
                                         <input hidden formControlName="productId">
                                         <input hidden formControlName="productName">
                                 
-                                        <md-input-container>
-                                            <input formControlName="userName" mdInput placeholder="Nickname" value="">
-                                        </md-input-container>
+                                        <mat-input-container>
+                                            <input formControlName="userName" matInput placeholder="Nickname" value="">
+                                        </mat-input-container>
                                         <p>
-                                            <md-input-container class="example-full-width">
-                                                <textarea formControlName="comment" mdInput #comment maxlength="256" placeholder="Your Review"></textarea>
-                                                <md-hint align="start"><strong>Please tell us what you think about this product</strong> </md-hint>
-                                                <md-hint align="end">{{comment.value.length}} / 256</md-hint>
-                                            </md-input-container>
+                                            <mat-input-container class="example-full-width">
+                                                <textarea formControlName="comment" matInput #comment maxlength="256" placeholder="Your Review"></textarea>
+                                                <mat-hint align="start"><strong>Please tell us what you think about this product</strong> </mat-hint>
+                                                <mat-hint align="end">{{comment.value.length}} / 256</mat-hint>
+                                            </mat-input-container>
                                         </p>
                                         <div id="submit-btn">
-                                            <button type="submit" md-raised-button>Submit</button>
+                                            <button type="submit" mat-raised-button>Submit</button>
                                         </div>
                                         <span *ngIf="errMsg"><p id="error-msg" >{{errMsg}}</p> </span>
                                     </form>
@@ -137,7 +140,7 @@
 <div class="reconmend-product-wrapper container-fluid page-rule">
     <div class="d-flex container">
         <span class="p-2"><h1 id="r-title">Reconmended for you</h1></span>
-        <span class="p-2 icon-T"><md-icon >thumb_up</md-icon></span>
+        <span class="p-2 icon-T"><mat-icon >thumb_up</mat-icon></span>
     </div>
     <div  class="container reconmend-product d-flex justify-content-between">
         <div  *ngFor="let recomend of reconmendProduct$" class="d-flex p-2 w3-card-2 rec-prod">
@@ -149,7 +152,7 @@
                 <h1>{{recomend.name}}</h1>
                 <p id="size">({{recomend.description.size}})</p>
                 <p id="price">{{recomend.price | currency: 'GBP': true}}</p>
-                <a (click)="reconmendFunction(recomend)" class="primary-color" md-raised-button>Add</a>
+                <a (click)="reconmendFunction(recomend)" class="primary-color" mat-raised-button>Add</a>
             </div>
         </div>
         

@@ -20,8 +20,11 @@
                 </carousel> -->
             </div>
             <div class="product-list d-flex align-content-stretch flex-row flex-wrap">
-                <md-card class="carosel-image">
-                    <img [src]=offerad$.photo_url alt="First slide">
+                <mat-card class="carosel-image">
+                    <!-- <img [src]=offerad$.photo_url alt="First slide"> -->
+                    <nge-carousel  *ngIf="offerad$"
+                        [images]="offerad$">
+                    </nge-carousel>
                     <!-- <carousel>
                         <slide *ngFor="let ad of offerad$">
                             <img [src]=ad.photo_url alt="First slide">
@@ -31,30 +34,35 @@
                             </div>
                         </slide>
                     </carousel> -->
-                </md-card>
+                </mat-card>
                 <div class="product-item p-2" *ngFor="let product of products | paginate: {itemsPerPage:pageSize, currentPage: page}">
                     
-                    <md-card class="example-card product">
+                    <mat-card class="example-card product">
                         <div *ngIf="product.offer == 'yes'" class="shop-offer"><p>Offer</p></div>
+                        <div class="inyourcart" *ngFor="let cart of carts$">
+                            <mat-icon *ngIf="cart.name == product.name">shopping_cart</mat-icon>
+                            <span *ngIf="cart.name == product.name" class="cart-no">{{cart.qty}}</span>
+                        </div>
                         <div [style.min-height.px]="60">
-                        <img (click)="viewProduct(product)" md-card-image  [src]="product.imageUrl">
+                        <img (click)="viewProduct(product)" mat-card-image  [src]="product.imageUrl">
 
                         </div>
                         
-                        <md-card-content>
+                        <mat-card-content>
                         <h1 id="title">{{product.name}}</h1>
                         <p id="size">( {{product.description.size}} )</p>
                         <p id="price">{{product.price | currency: 'GBP': 'true'}}</p>
-                        </md-card-content>
-                        <md-card-actions>
-                            <a role="button" color="accent" (click)="addToCart(product)"  md-raised-button >Add</a>
-                        </md-card-actions>
-                        <div class="inCart-wrapper" *ngFor="let cart of carts$">
-                            <div class="inCart-select" *ngIf="cart.name == product.name">
-                            <p id="inCart">{{cart.qty}} in cart</p>
+                        </mat-card-content>
+                        <mat-card-actions>
+                            <a role="button" color="accent" (click)="addToCart(product)"  mat-raised-button >Add</a>
+                        </mat-card-actions>
+                        <div class="inCart-wrapper">
+                            <div class="inCart-select" >
+                                <p *ngIf="product.stock > 0" id="inCart">{{product.stock}} in stock</p>
+                                <p [style.color]="'red'" *ngIf="product.stock < 1" id="inCart">Out of stock</p>
                             </div>
                         </div>
-                    </md-card>
+                    </mat-card>
                 </div>
             </div>
              <!-- Implementing pagination -->
@@ -68,10 +76,10 @@
             <div class="post-box card" *ngIf="cartErrorMsg">
                 <div class="card-body" >
                         <p>{{cartErrorMsg}}</p>
-                        <md-input-container>
-                            <input #postcode type="text" mdInput name="postcode" placeholder="Your Postcode">
-                        </md-input-container>
-                        <a (click)="submitPostcode(postcode.value)" md-raised-button>Check</a>
+                        <mat-input-container>
+                            <input #postcode type="text" matInput name="postcode" placeholder="Your Postcode">
+                        </mat-input-container>
+                        <a (click)="submitPostcode(postcode.value)" mat-raised-button>Check</a>
                     </div>
             </div>
         </div>

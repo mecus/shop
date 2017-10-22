@@ -21,7 +21,7 @@ export class OrderComponent implements OnInit {
   ordForm;
   document;
   grayPage;
-  user;
+  currentUser;
   existingOrder;
   saveProg = new Array();
   constructor(private accountService:AccountService, private authService:AuthService, 
@@ -66,27 +66,28 @@ export class OrderComponent implements OnInit {
     this.orderService.postOrder(order).subscribe((res)=>{
       //get temp order address to be saved in the permanent database
       if(res){
-        this.tempOrderService.updateTempOrder(this.user.uid, {return_orderId: res.order_no});
-        this.accountService.getAccount(this.user.email).subscribe((account)=>{
-          this.tempOrderService.getTempOrder(this.user.uid).subscribe((tempO)=>{
-            if(tempO.delivery_address){
-              let address = {
-                full_name: tempO.delivery_address.full_name,
-                address: tempO.delivery_address.address,
-                post_code: tempO.delivery_address.post_code,
-                city: tempO.delivery_address.city,
-                country: tempO.delivery_address.country,
-                address_type: "delivery",
-                customer_id: account.ac_no,
-                account_id: account._id
-              }
-              // console.log(address);
-              this.accountService.postAddress(address);
-            }
-          });
+        this.tempOrderService.updateTempOrder(this.currentUser.uid, {return_orderId: res.order_no});
+        this.accountService.getAccount(this.currentUser.email).subscribe((account)=>{
+          // this.tempOrderService.getTempOrder(this.currentUser.uid).subscribe((tempO)=>{
+          //   if(tempO.delivery_address){
+          //     let address = {
+          //       full_name: tempO.delivery_address.full_name,
+          //       address: tempO.delivery_address.address,
+          //       post_code: tempO.delivery_address.post_code,
+          //       city: tempO.delivery_address.city,
+          //       country: tempO.delivery_address.country,
+          //       address_type: "delivery",
+          //       customer_id: account.ac_no,
+          //       account_id: account._id
+          //     }
+          //     // console.log(address);
+          //     this.accountService.postAddress(address);
+          //   }
+          // });
         });
       
-        this.cartService.getCart().subscribe((carts)=>{
+        this.cartService.getCart()
+        .subscribe((carts)=>{
           let Carts = carts.filter(cart=>cart.postcode == this.storeService.retriveData('postcode'));
           //Call Create Order Items function here to create individual item
             Carts.forEach((item)=>{
@@ -120,8 +121,7 @@ export class OrderComponent implements OnInit {
   
   }
 
-  patchOrderForm(){
-    this.authService.authState().subscribe((user)=>{
+  patchOrderForm(user){
       if(user){
         this.accountService.getAccount(user.email)
         .subscribe((account)=>{
@@ -136,43 +136,39 @@ export class OrderComponent implements OnInit {
           })
         });
 
-        this.tempOrderService.getTempOrder(user.uid)
-        .subscribe((temporders)=>{
-          console.log(temporders.token);
-          this.ordForm.patchValue({
-            amount: temporders.ground_total,
-            delivery_method: temporders.delivery_option.method,
-            ip_address: this.storeService.retriveData('ip')
-          })
-        });
+        // this.tempOrderService.getTempOrder(user.uid)
+        // .subscribe((temporders)=>{
+        //   console.log(temporders.token);
+        //   this.ordForm.patchValue({
+        //     amount: temporders.ground_total,
+        //     delivery_method: temporders.delivery_option.method,
+        //     ip_address: this.storeService.retriveData('ip')
+        //   })
+        // });
 
         
       }
-      
-    })
   }
   getCurrentUser(){
     this.authService.authState().subscribe((user)=>{
-      this.user = user;
+      this.currentUser = user;
+      this.getExistingOrder(user);
+      this.patchOrderForm(user);
     })
   }
-  ngOnInit() {
-    this.patchOrderForm();
-    this.getCurrentUser();
-    
-    setTimeout(()=>{
-      this.getExistingOrder();
-    }, 1000);
-     //query order with customer no
-    // this.orderService.getOrders("655706564").subscribe((orders)=>{
-    //   console.log(orders);
-    // });
-  }
-  getExistingOrder(){
-    this.accountService.getAccount(this.user.email).subscribe((account)=>{
+  getExistingOrder(user){
+    this.accountService.getAccount(user.email).subscribe((account)=>{
       this.orderService.getOrders(account.ac_no).subscribe((orders)=>{
         this.existingOrder = _.last(_.filter(orders, {"status": "pending"}));
       });
     });
+  }
+  ngOnInit() {
+    this.getCurrentUser();
+  
+     //query order with customer no
+    // this.orderService.getOrders("655706564").subscribe((orders)=>{
+    //   console.log(orders);
+    // });
   }
 }

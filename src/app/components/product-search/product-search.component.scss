@@ -4,15 +4,31 @@ div.input-group-2{
     form{
         margin: 0px;
         padding: 0xp;
+
+        .input-group{
+            width: 400px;
+
+            input{
+                border-color: #ebeff1 !important;
+                color: #00796B !important;
+            }
+            .input-group-btn{
+                background-color: #00796B;
+                border-color: #00796B !important;
+                button{
+                    background-color: #00796B;
+                }
+            }
+        }
     }
 }
 div.search-result-list{
-    width: 220px;
-    max-height: 200px;
+    width: 400px;
+    max-height: 300px;
     transition: height 2s;
     position: relative;
     right: -2px;
-    top: -15px;
+    // top: 0px;
     z-index: 100;
     overflow-y: scroll;
     ul li {
@@ -34,10 +50,10 @@ div.search-result-list{
         }
     }
     // overflow: scroll;
-    md-list{
+    mat-list{
         padding: 0px !important;
         margin: 0px !important;
-        md-list-item{
+        mat-list-item{
             padding: 0px !important;
             margin: 0px !important;
         }

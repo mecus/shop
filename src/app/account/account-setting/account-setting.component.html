@@ -29,12 +29,18 @@
           </div>
           
           <div class="d-flex p-2">
-            <a id="button" md-raised-button>Change Password <md-icon>keyboard_arrow_down</md-icon></a>
-            <a (click)="pInfoEditForm(userAccount.email)" role="button" md-raised-button> <md-icon>mode_edit</md-icon> Personal Details <md-icon *ngIf="pInfoEdit">keyboard_arrow_up</md-icon> <md-icon *ngIf="!pInfoEdit">keyboard_arrow_down</md-icon></a>
+            <a (click)="passwordChange()" id="button" mat-raised-button>Change Password <mat-icon>keyboard_arrow_down</mat-icon></a>
+            <a (click)="pInfoEditForm(userAccount.email)" role="button" mat-raised-button> <mat-icon>mode_edit</mat-icon> Personal Details <mat-icon *ngIf="pInfoEdit">keyboard_arrow_up</mat-icon> <mat-icon *ngIf="!pInfoEdit">keyboard_arrow_down</mat-icon></a>
           </div>
+          <!-- password change edit -->
+          <div *ngIf="changePassword" class="password-chg">
+            <change-password></change-password>
+          </div>
+          <!-- Account information edit -->
           <div *ngIf="pInfoEdit" class="edit-p-info">
               <account-edit (notify)="onInfoUpdate($event)" [acId]="accountIDE"></account-edit> 
           </div>
+
         </div>
       </div>
       <div class="card p-card-info jumbotron2">
@@ -61,10 +67,10 @@
         <div class="d-flex justify-content-between">
           <div class="p-2">
               <app-paypal (returnResult)="paymentMethodResult($event)"></app-paypal>
-              <!-- <a md-raised-button id="paypalButton" (click)="addPaypal()" >Add Paypal Account</a> -->
+              <!-- <a mat-raised-button id="paypalButton" (click)="addPaypal()" >Add Paypal Account</a> -->
           </div>
           <div class="p-2">
-              <a md-raised-button id="cardButton" (click)="addCardDetail()" >Add New Card <md-icon *ngIf="!addNewCard">keyboard_arrow_down</md-icon> <md-icon *ngIf="addNewCard">keyboard_arrow_up</md-icon></a>
+              <a mat-raised-button id="cardButton" (click)="addCardDetail()" > <mat-icon>credit_card</mat-icon> Add New Card <mat-icon *ngIf="!addNewCard">keyboard_arrow_down</mat-icon> <mat-icon *ngIf="addNewCard">keyboard_arrow_up</mat-icon></a>
           </div>
           
         </div>
@@ -76,20 +82,20 @@
     </div>
 
     <div class="xpandable-panel">
-        <md-expansion-panel>
-            <md-expansion-panel-header>
-                <md-panel-title>
+        <mat-expansion-panel>
+            <mat-expansion-panel-header>
+                <mat-panel-title>
                 Billing Address
-                </md-panel-title>
-                <md-panel-description>
+                </mat-panel-title>
+                <mat-panel-description>
                 <span>Please expand the tab to view or edit your address</span>
                 <span></span>
                 
-                </md-panel-description>
-            </md-expansion-panel-header>
+                </mat-panel-description>
+            </mat-expansion-panel-header>
             <p *ngIf="!userAddress">There is no billing address present in your account</p>
             <div *ngIf="userAddress" class="card address-component">
-                <h1><small><a (click)="addressEditForm(userAccount._id)" md-raised-button> <md-icon>mode_edit</md-icon> edit </a></small> <strong *ngIf="userAddress.address_type">{{userAddress.address_type}}</strong> Address</h1>
+                <h1><small><a (click)="addressEditForm(userAccount._id)" mat-raised-button> <mat-icon>mode_edit</mat-icon> edit </a></small> <strong *ngIf="userAddress.address_type">{{userAddress.address_type}}</strong> Address</h1>
                 <div class="ac-address-container">
                 
                   <div *ngIf="addressEdit" class="ac-address-form">
@@ -120,24 +126,25 @@
               </div>
               </div>
             
-        </md-expansion-panel>
+        </mat-expansion-panel>
     </div>
 
     <div class="xpandable-panel">
-        <md-expansion-panel>
-            <md-expansion-panel-header>
-                <md-panel-title>
+        <mat-expansion-panel>
+            <mat-expansion-panel-header>
+                <mat-panel-title>
                 Delivery Address
-                </md-panel-title>
-                <md-panel-description>
+                </mat-panel-title>
+                <mat-panel-description>
                 <span>Please expand the tab to view or edit your address</span>
                 <span></span>
                 
-                </md-panel-description>
-            </md-expansion-panel-header>
-            <p *ngIf="!deliveryAddress">There is no delivery address present in your account</p>
+                </mat-panel-description>
+            </mat-expansion-panel-header>
+            <p *ngIf="!deliveryAddress">There is no delivery address present in your account!</p>
+            <small *ngIf="!deliveryAddress">Don't worry, you can add when you are ready to order.</small>
             <div *ngIf="deliveryAddress" class="card address-component">
-                <h1><small><a (click)="addressEditForm(userAccount._id)" md-raised-button> <md-icon>mode_edit</md-icon> edit </a></small> <strong *ngIf="deliveryAddress.address_type">{{deliveryAddress.address_type}}</strong> Address</h1>
+                <h1><small><a (click)="addressEditForm(userAccount._id)" mat-raised-button> <mat-icon>mode_edit</mat-icon> edit </a></small> <strong *ngIf="deliveryAddress.address_type">{{deliveryAddress.address_type}}</strong> Address</h1>
                 <div class="ac-address-container">
                 
                   <div *ngIf="addressEdit" class="ac-address-form">
@@ -167,7 +174,7 @@
                 </div>
               </div>
               </div>
-          </md-expansion-panel>
+          </mat-expansion-panel>
       </div>
     
   </div>

@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, OnChanges } from '@angular/core';
 import { ReviewService } from "../../services/review.service";
 import { Observable } from 'rxjs/Observable';
+import * as _ from 'lodash';
 
 @Component({
   selector: 'app-reviews',
@@ -8,11 +9,11 @@ import { Observable } from 'rxjs/Observable';
   styleUrls: ['reviews.component.scss']
 })
 export class ReviewsComponent implements OnInit, OnChanges {
-  reviews:Observable<any>;
+  reviews;
   @Input() Id;
   constructor(private reviewService:ReviewService) {
     this.reviewService.getReviews().subscribe((review)=>{
-      this.reviews = review.filter(rev=>rev.productId == this.Id).reverse();
+      this.reviews = _.reverse(_.filter(review, {'productId': this.Id}));
     });
   }
 
@@ -21,7 +22,7 @@ export class ReviewsComponent implements OnInit, OnChanges {
   }
   ngOnChanges(Id){
     this.reviewService.getReviews().subscribe((review)=>{
-      this.reviews = review.filter(rev=>rev.productId == this.Id).reverse();
+      this.reviews = _.reverse(_.filter(review, {'productId': this.Id}));
     });
   }
 

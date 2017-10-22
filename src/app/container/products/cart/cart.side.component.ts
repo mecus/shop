@@ -54,17 +54,25 @@ import * as _ from 'lodash';
 
 })
 export class SideCartComponent implements OnInit {
-    cart$:Observable<iCart>;
+    cart$;
     document;
     toggle: boolean = false;
     constructor(private storeService:StorageService, private cartService:CartService,
         private windowService: WindowService){
        this.document = windowService.getDocumentRef();
-       this.cartService.getCart().subscribe((carts)=>{
-        
-         this.cart$ = carts.filter(cat=> cat.postcode == this.storeService.retriveData('postcode'));
+       this.cartService.getListCart().map(carts =>{
+           return carts.map(val =>{
+               let data = val.payload.doc.data() as iCart
+               let id = val.payload.doc.id;
+               return {id, data}
+           })
+       })
+       
+       .subscribe((carts)=>{
+        // console.log(carts);
+         this.cart$ = carts.filter(cat=> cat.data.postcode == this.storeService.retriveData('postcode'));
         //  console.log();
-        if((_.size(carts.filter(cat=> cat.postcode == this.storeService.retriveData('postcode')))) > 4){
+        if((_.size(carts.filter(cat=> cat.data.postcode == this.storeService.retriveData('postcode')))) > 4){
             this.toggle = true;
         }else{
             this.toggle = false;
@@ -74,23 +82,22 @@ export class SideCartComponent implements OnInit {
     }
     // [@cartList]="cart$.length"
     removeItem(product){
-        this.cartService.removeCart(this.payLoad(product));
+        this.cartService.removeCart(product);
     //  this.store.dispatch({type: cart.REMOVE, payload: this.payLoad(product)})
     }
     increment(product){
-        this.cartService.incrementCart(this.payLoad(product));
+        this.cartService.incrementCart(product);
     //  this.store.dispatch({type: cart.INCREMENT, payload: this.payLoad(product)})
     }
     decrement(product, e){
-        if(product.qty == 1){
+        if(product.data.qty == 1){
             e.target.innerHTML = "pan_tool";
             e.target.style.color = "lightsteelblue";
             return;
         //    this.cartService.removeCart(this.payLoad(product));
         }else{
-            this.cartService.decrementCart(this.payLoad(product));
-        }
-             
+            this.cartService.decrementCart(product);
+        }  
     //  this.store.dispatch({type: cart.DECREMENT, payload: this.payLoad(product)})
         
     }
@@ -112,15 +119,15 @@ export class SideCartComponent implements OnInit {
         more.style.display = "block";
     }
 
-   private payLoad(product) {
-      return {
-        key$: product.$key,
-        name: product.name,
-        id: product.id,
-        price: product.price,
-        qty: product.qty
-      }
-   }
+//    private payLoad(product) {
+//       return {
+//         key$: product.$key,
+//         name: product.name,
+//         id: product.id,
+//         price: product.price,
+//         qty: product.qty
+//       }
+//    }
    ngOnInit(){
        
    }

@@ -1,86 +1,98 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
-// import { LocalStorageService, SessionStorageService } from 'ng2-webstorage';
+import { 
+    AngularFirestore, 
+    AngularFirestoreCollection, 
+    AngularFirestoreDocument 
+} from 'angularfire2/firestore';
 import { Http } from '@angular/http';
 import * as firebase from 'firebase';
+import 'firebase/firestore';
 import { iCart } from '../models/cart.model';
 import { StorageService } from './storage.service';
+import 'rxjs/add/operator/map';
+import * as _ from 'lodash';
+
 
 @Injectable()
 
 export class CartService {
+    db = firebase.firestore();
     private oneCart;
-    cartSum;
-    constructor(private _af:AngularFireDatabase,
-    private storeService:StorageService){}
+    cartSum = 200;
+    private cartCollection: AngularFirestoreCollection<iCart>;
+    constructor(private _afs:AngularFirestore,
+    private storeService:StorageService){
+        this.cartCollection = _afs.collection<iCart>('carts');
+    }
 
-    createCart(cart){
-        //checking to see if the cart already exist
-        this.getCart().map((carts)=>
-         this.oneCart = carts.filter(findcart=> findcart.postcode == this.storeService.retriveData('postcode'))
-                .find(anCart=> anCart.name == cart.name)
-        ).subscribe(); 
-        console.log(this.oneCart);
-        if(this.oneCart){
-            firebase.database().ref('/carts/'+this.oneCart.$key)
-                .update({qty: this.oneCart.qty + 1}).then((res)=>console.log(res))
-                                    .catch((error)=> console.log(error));
-            return;
-        }else{
-            return this._af.list('/carts')
-                .push(cart).then(res=> console.log(res))
-                     .catch(err=> console.log(err));
-        }
+
+    createCart(cart:iCart){
+        let postcode = this.storeService.retriveData('postcode');
+        let carts = this.db.collection("carts").where('postcode', '==', postcode).where('name', '==', cart.name);
+
+        carts.get().then((querySnapshot) => {
+            
+            if(querySnapshot.docs.length){
+                const data = {id: querySnapshot.docs[0].id, data: querySnapshot.docs[0].data()}
+                this._afs.doc('carts/'+ data.id)
+                .update({qty: data.data.qty + 1});
+            }else{
+                this.cartCollection.add(cart);
+            }
+        });
     }
-    getCart():Observable<any>{
-        return this._af.list('/carts');
+    getCart(){
+        return this.cartCollection.valueChanges();
     }
-    incrementCart(cart):Observable<iCart>{
-        // console.log(cart);
+    getListCart(){
+        return this.cartCollection.snapshotChanges();
+    }
+
+    incrementCart(cart){
+        console.log(cart);
         let data = {
-            qty: cart.qty + 1
+            qty: cart.data.qty + 1
         }
-
-        let cartRef = firebase.database().ref('/carts/'+cart.key$);
-            cartRef.update(data).then((res)=>console.log(res))
-                                .catch((error)=> console.log(error));
+        let catRef = this._afs.doc('carts/'+ cart.id);
+        catRef.update(data);
         return;
     }
     decrementCart(cart):Observable<iCart>{
          let data = {
-            qty: cart.qty - 1
+            qty: cart.data.qty - 1
         }
-       
-        let cartRef = firebase.database().ref('/carts/'+cart.key$);
-            cartRef.update(data).then((res)=>{console.log(res)})
-                                .catch((error)=> console.log(error));
+        let catRef = this._afs.doc('carts/'+ cart.id);
+        catRef.update(data);
         return;
     }
     removeCart(cart):Observable<iCart>{
-        let cartRef = firebase.database().ref('/carts/'+cart.key$);
-            cartRef.remove().then((res)=>console.log(res))
-                                .catch((error)=> console.log(error));
+        let catRef = this._afs.doc('carts/'+ cart.id);
+        catRef.delete();
         return;
     }
 
-    removeBatchCart(postcode):Observable<any>{
-        this.getCart().map((cart)=>{
-            if(!cart){return null;}
-            cart.filter(res=>res.postcode == postcode)
+    removeBatchCart(postcode){
+        this.getListCart().map((cartList)=>{
+            const extCart = cartList.map(cart=>{
+               const data = cart.payload.doc.data() as iCart
+               const id = cart.payload.doc.id
+               return {id, data}
+            });
+            if(!extCart){return null;}
+            extCart.filter(res=>res.data.postcode == postcode)
             .forEach((cat)=>{
-                firebase.database().ref('/carts/'+cat.$key)
-                    .remove().then((res)=>console.log(res))
+                this._afs.doc('carts/'+cat.id)
+                    .delete().then((res)=>console.log(res))
                         .catch((error)=> console.log(error));
                 });
-            
         }).subscribe();
-        return;
+    
     }
 
     
     cartTotal(){
-        return this._af.list('/carts');
+        return this.cartCollection.valueChanges();
     }
     
     getTotal(){

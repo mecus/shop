@@ -68,7 +68,7 @@ export class SubMenuComponent implements OnInit {
  
     this.clearHeighlightMenu.clearMenu();
     event.target.style.backgroundColor = "#f5f5f5";
-    event.target.style.color = "#000";
+    event.target.style.color = "#00796B";
   
     this.showHow = false;
 
@@ -97,6 +97,7 @@ export class SubMenuComponent implements OnInit {
       for (i = 0; i < tab.length; i++) {
           if(tab[i].innerHTML == selected['dept']){    
             tab[i].style.backgroundColor = "#f5f5f5";
+            tab[i].style.color = "#00796B";
           }
       }
     }, 300);

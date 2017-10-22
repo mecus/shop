@@ -1,5 +1,5 @@
 
-#md-toolbar{
+#mat-toolbar{
     background-color: #fff !important;
     background-size: cover;
     color: #000 !important;
@@ -81,7 +81,7 @@ div.basket{
 .search-form{
     position: relative;
     float: right;
-    top: 30px;
+    top: 35px;
     padding: 0px;
     margin: 0px;
     
@@ -89,7 +89,7 @@ div.basket{
 .trigger{
     position: absolute;
     top: 10px;
-    md-icon{
+    mat-icon{
         color: red;
     }
 }

@@ -143,7 +143,7 @@ export class BillingInfoComponent implements OnInit {
        contact_permission: $event.value
      });
    }
-    patchFormData():void{
+    patchFormatata():void{
         this.BForm.patchValue({
             billing_address:{ 
                 post_code: this.storeService.retriveData('postcode'),
@@ -152,6 +152,6 @@ export class BillingInfoComponent implements OnInit {
         })
     }
     ngOnInit(){
-        this.patchFormData();
+        this.patchFormatata();
     }
 }

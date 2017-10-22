@@ -1,136 +1,136 @@
 <div class="billing">
     <h2>Billing Information</h2>
     <form novalidate class="billing-form" [formGroup]="BForm" (ngSubmit)="createCustomer(BForm.value)">
-        <!--<md-input-container class="example-full-width">
-            <input mdInput placeholder="Company" placeholder="company">
-        </md-input-container>-->
+        <!--<mat-input-container class="example-full-width">
+            <input matInput placeholder="Company" placeholder="company">
+        </mat-input-container>-->
         <p>{{errorMsg}}</p>
         <p>
-            <md-select formControlName="title" placeholder="Select Title">
-                <md-option *ngFor="let title of titles" [value]="title">
+            <mat-select formControlName="title" placeholder="Select Title">
+                <mat-option *ngFor="let title of titles" [value]="title">
                     {{ title }}
-                </md-option>
-            </md-select>
+                </mat-option>
+            </mat-select>
         </p>
 
         <table class="example-full-width" cellspacing="0">
             <tr>
-                <td><md-input-container class="example-full-width">
-                <input formControlName="first_name" mdInput placeholder="First name">
-                </md-input-container></td>
-                <td><md-input-container class="example-full-width">
-                <input formControlName="last_name" mdInput placeholder="Last Name">
-                </md-input-container></td>
+                <td><mat-input-container class="example-full-width">
+                <input formControlName="first_name" matInput placeholder="First name">
+                </mat-input-container></td>
+                <td><mat-input-container class="example-full-width">
+                <input formControlName="last_name" matInput placeholder="Last Name">
+                </mat-input-container></td>
             </tr>
         </table>
         <table class="example-full-width" cellspacing="0">
             <tr>
-                <td><md-input-container class="example-full-width">
-                <input formControlName="email" type="email" mdInput placeholder="Email">
-                </md-input-container></td>
+                <td><mat-input-container class="example-full-width">
+                <input formControlName="email" type="email" matInput placeholder="Email">
+                </mat-input-container></td>
                 
             </tr>
             <tr formGroupName="telephone">
                 
-                <!-- <td><md-input-container class="example-full-width">
-                <input formControlName="home" type="telephone" mdInput placeholder="Home telephone">
-                </md-input-container></td> -->
-                <td><md-input-container class="example-full-width">
-                <input formControlName="mobile" type="telephone" mdInput placeholder="Telephone">
-                </md-input-container></td>
+                <!-- <td><mat-input-container class="example-full-width">
+                <input formControlName="home" type="telephone" matInput placeholder="Home telephone">
+                </mat-input-container></td> -->
+                <td><mat-input-container class="example-full-width">
+                <input formControlName="mobile" type="telephone" matInput placeholder="Telephone">
+                </mat-input-container></td>
                 
 
             </tr>
         </table>
         <table class="example-full-width" cellspacing="0">
             <tr>
-                <td><md-input-container class="example-full-width">
-                <input formControlName="password" type="password" mdInput placeholder="Password">
-                </md-input-container></td>
-                <td><md-input-container class="example-full-width">
-                <input formControlName="passwordrepeat" type="password" mdInput placeholder="Repeat Password">
-                </md-input-container></td>
+                <td><mat-input-container class="example-full-width">
+                <input formControlName="password" type="password" matInput placeholder="Password">
+                </mat-input-container></td>
+                <td><mat-input-container class="example-full-width">
+                <input formControlName="passwordrepeat" type="password" matInput placeholder="Repeat Password">
+                </mat-input-container></td>
             </tr>
         </table>
         <div class="jumbotron" formGroupName="billing_address">
             <p>
-                <md-input-container class="example-full-width">
-                <input formControlName="address" mdInput placeholder="Address">
-                </md-input-container>
-                <!-- <md-input-container class="example-full-width"> -->
-                <input hidden formControlName="address2" mdInput placeholder="Address Line 2">
-                <!-- </md-input-container> -->
+                <mat-input-container class="example-full-width">
+                <input formControlName="address" matInput placeholder="Address">
+                </mat-input-container>
+                <!-- <mat-input-container class="example-full-width"> -->
+                <input hidden formControlName="address2" matInput placeholder="Address Line 2">
+                <!-- </mat-input-container> -->
             </p>
 
             <table class="example-full-width" cellspacing="0"><tr>
-                <td><md-input-container class="example-full-width">
-                <input formControlName="city" mdInput placeholder="City">
-                </md-input-container></td>
-                <td><md-input-container class="example-full-width">
-                <input formControlName="country" mdInput placeholder="Country">
-                </md-input-container></td>
-                <td><md-input-container class="example-full-width">
-                <input formControlName="post_code" mdInput placeholder="Postal Code" >
-                <!--<md-hint align="end">{{postalCode.value.length}} / 5</md-hint>-->
-                </md-input-container></td>
+                <td><mat-input-container class="example-full-width">
+                <input formControlName="city" matInput placeholder="City">
+                </mat-input-container></td>
+                <td><mat-input-container class="example-full-width">
+                <input formControlName="country" matInput placeholder="Country">
+                </mat-input-container></td>
+                <td><mat-input-container class="example-full-width">
+                <input formControlName="post_code" matInput placeholder="Postal Code" >
+                <!--<mat-hint align="end">{{postalCode.value.length}} / 5</mat-hint>-->
+                </mat-input-container></td>
             </tr></table>
         </div>
         
-        <!-- <md-input-container class="example-full-width">
-            <input formControlName="selected_address" mdInput placeholder="selected Address">
-        </md-input-container> -->
+        <!-- <mat-input-container class="example-full-width">
+            <input formControlName="selected_address" matInput placeholder="selected Address">
+        </mat-input-container> -->
 
        <!-- <p>
-            <md-radio-group (change)="onChange($event)">
-                <md-radio-button value="Deliver to this Address">Deliver to this Address</md-radio-button>
+            <mat-radio-group (change)="onChange($event)">
+                <mat-radio-button value="Deliver to this Address">Deliver to this Address</mat-radio-button>
                 <br>
-                <md-radio-button value="Deliver to different address">Deliver to different address</md-radio-button>
-            </md-radio-group>
+                <mat-radio-button value="Deliver to different address">Deliver to different address</mat-radio-button>
+            </mat-radio-group>
         </p> -->
 
         <!-- <div *ngIf="differentAddress" formGroupName="delivery_address">
             <h2>Add Delivery Address</h2>
-            <md-input-container class="example-full-width">
-                <input formControlName="full_name" mdInput placeholder="Fullname">
-            </md-input-container>
+            <mat-input-container class="example-full-width">
+                <input formControlName="full_name" matInput placeholder="Fullname">
+            </mat-input-container>
              <p>
-                <md-input-container class="example-full-width">
-                <textarea formControlName="address" mdInput placeholder="Address"></textarea>
-                </md-input-container>
-                <md-input-container class="example-full-width">
-                <textarea formControlName="address2" mdInput placeholder="Address 2"></textarea>
-                </md-input-container>
+                <mat-input-container class="example-full-width">
+                <textarea formControlName="address" matInput placeholder="Address"></textarea>
+                </mat-input-container>
+                <mat-input-container class="example-full-width">
+                <textarea formControlName="address2" matInput placeholder="Address 2"></textarea>
+                </mat-input-container>
             </p>
 
             <table class="example-full-width" cellspacing="0"><tr>
-                <td><md-input-container class="example-full-width">
-                <input formControlName="city" mdInput placeholder="City">
-                </md-input-container></td>
-                <td><md-input-container class="example-full-width">
-                <input formControlName="country" mdInput placeholder="Country">
-                </md-input-container></td>
-                <td><md-input-container class="example-full-width">
-                <input formControlName="post_code" mdInput placeholder="Post Code" >
-                </md-input-container></td>
+                <td><mat-input-container class="example-full-width">
+                <input formControlName="city" matInput placeholder="City">
+                </mat-input-container></td>
+                <td><mat-input-container class="example-full-width">
+                <input formControlName="country" matInput placeholder="Country">
+                </mat-input-container></td>
+                <td><mat-input-container class="example-full-width">
+                <input formControlName="post_code" matInput placeholder="Post Code" >
+                </mat-input-container></td>
             </tr></table>
 
         </div> -->
         <div class="jumbotron contact-permit">
             <h2>Contact Permission</h2>
             <p>We'd love to send you money-off coupons, exclusive offers and the latest info from us by email, post, SMS, phone and other electronic means. We'll always treat your personal details with the utmost care and will never sell them to other companies for marketing purposes.</p>
-            <md-radio-group (change)="onChnage($event)">
-                <md-radio-button value="yes">Yes please, I'd like to hear about offers and services.</md-radio-button>
+            <mat-radio-group (change)="onChnage($event)">
+                <mat-radio-button value="yes">Yes please, I'd like to hear about offers and services.</mat-radio-button>
                 <br>
-                <md-radio-button value="no">No thanks, I don't want to hear about offers and services.</md-radio-button>
-            </md-radio-group>
-            <input hidden formControlName="contact_permission" mdInput placeholder="Permission">
+                <mat-radio-button value="no">No thanks, I don't want to hear about offers and services.</mat-radio-button>
+            </mat-radio-group>
+            <input hidden formControlName="contact_permission" matInput placeholder="Permission">
         </div>
 
-        <md-checkbox formControlName="terms" >I've read and accepted the Terms & Conditions</md-checkbox>
+        <mat-checkbox formControlName="terms" >I've read and accepted the Terms & Conditions</mat-checkbox>
         <br>
-        <md-checkbox formControlName="age_limit">I'm over 18 years old</md-checkbox>
+        <mat-checkbox formControlName="age_limit">I'm over 18 years old</mat-checkbox>
         <div class="submit-btn">
-            <button md-raised-button type="submit" >Submit</button>
+            <button mat-raised-button type="submit" >Submit</button>
         </div>
     </form>
 </div>

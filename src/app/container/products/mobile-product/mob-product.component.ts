@@ -15,7 +15,7 @@ import 'rxjs/add/operator/share';
 
 
 import { WindowService } from "../../../services/window.service";
-import { PageEvent, MdPaginator } from '@angular/material';
+import { PageEvent} from '@angular/material';
 
 @Component({
     selector: 'mob-product',

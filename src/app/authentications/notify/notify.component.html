@@ -2,15 +2,15 @@
 
   <div routerLink="/get_help" class="get-help">
     <p>Help</p>
-    <md-icon>help</md-icon>
+    <mat-icon>help</mat-icon>
   </div>
   <div class="basket">
     <div class="d-flex justify-content-center">
-      <div class="p-2"><md-icon>local_grocery_store</md-icon></div>
+      <div class="p-2"><mat-icon>local_grocery_store</mat-icon></div>
       <div (click)="cartOption()" class="p-2"><cart-total></cart-total></div>
-      <div (click)="cartOption()" class="p-2"><md-icon>keyboard_arrow_down</md-icon></div>
+      <div (click)="cartOption()" class="p-2"><mat-icon>keyboard_arrow_down</mat-icon></div>
     </div>
-    <!-- <span id="all-price"><p><cart-total></cart-total> <md-icon>keyboard_arrow_down</md-icon> </p></span> -->
+    <!-- <span id="all-price"><p><cart-total></cart-total> <mat-icon>keyboard_arrow_down</mat-icon> </p></span> -->
   </div>
   <div class="account">
      <a *ngIf="!authenticated" (click)="clearMenu()" routerLink="/login">Login</a> 
@@ -19,7 +19,7 @@
     <!-- <div *ngIf="authenticated" class="btn-group" dropdown>
       <a dropdownToggle  class="btn">
           <span>Your Account</span>  -->
-          <!-- <span> <md-icon>expand_more</md-icon> </span>  -->
+          <!-- <span> <mat-icon>expand_more</mat-icon> </span>  -->
       <!-- </a>
       <ul *dropdownMenu class="dropdown-menu" role="menu">
         <li role="menuitem"><a class="dropdown-item" href="#">Your Vouchers</a></li>
@@ -31,28 +31,28 @@
       </ul>
     </div> -->
 
-    <a *ngIf="authenticated" [mdMenuTriggerFor]="menu">
+    <a *ngIf="authenticated" [matMenuTriggerFor]="menu">
      <span>Account</span>
-       <!-- <span> <md-icon>expand_more</md-icon> </span> -->
+       <!-- <span> <mat-icon>expand_more</mat-icon> </span> -->
     </a>
-    <md-menu #menu="mdMenu" [overlapTrigger]="false"  yPosition="below" xPosition="before">
-      <button md-menu-item>
-        <md-icon>dialpad</md-icon>
+    <mat-menu #menu="matMenu" [overlapTrigger]="false"  yPosition="below" xPosition="before">
+      <button mat-menu-item>
+        <mat-icon>dialpad</mat-icon>
         <span>Your Vouchers</span>
       </button>
-      <button routerLink="/account/account_setting" md-menu-item >
-        <md-icon>settings</md-icon>
+      <button routerLink="/account/account_setting" mat-menu-item >
+        <mat-icon>settings</mat-icon>
         <span>Account Setting</span>
       </button>
-      <button md-menu-item>
-        <md-icon>notifications_off</md-icon>
+      <button mat-menu-item>
+        <mat-icon>notifications_off</mat-icon>
         <span>Your Preference</span>
       </button>
-      <button (click)="logOut()" md-menu-item>
-        <md-icon>power_settings_new</md-icon>
+      <button (click)="logOut()" mat-menu-item>
+        <mat-icon>power_settings_new</mat-icon>
         <span>LogOut</span>
       </button>
-    </md-menu>
+    </mat-menu>
 
 
   </div>
@@ -72,8 +72,8 @@
 
 <div *ngIf="dropDown" id="cart-option">
   <span class="d-flex justify-content-between">
-    <span class="p-2 d-flex"><a routerLink="/basket"><md-icon>arrow_backward</md-icon> View Basket</a></span>
-    <span class="p-2 d-flex"><a (click)="goCheckOut()" >Checkout <md-icon>arrow_forward</md-icon> </a></span>
+    <span class="p-2 d-flex"><a routerLink="/basket"><mat-icon>arrow_backward</mat-icon> View Basket</a></span>
+    <span class="p-2 d-flex"><a (click)="goCheckOut()" >Checkout <mat-icon>arrow_forward</mat-icon> </a></span>
   </span>
   <p *ngIf="limitMsg">{{limitMsg}}</p>
 </div>

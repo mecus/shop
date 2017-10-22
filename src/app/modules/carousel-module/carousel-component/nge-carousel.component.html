@@ -1,0 +1,16 @@
+<div class="carousel-contianer">
+    <div class="carousel">
+        <div class="image">
+            <!-- (mouseleave)="unFreezSlide($event)" (mouseenter)="freezSlide($event)" -->
+            <img id="nge-img" [src]="carouselImg" alt="">
+        </div>
+    </div>
+    <div *ngIf="controls" class="prev">
+        <mat-icon (click)="prev()" >keyboard_arrow_left</mat-icon>
+    </div>
+    <div *ngIf="controls" class="next">
+        <mat-icon (click)="next()">keyboard_arrow_right</mat-icon>
+    </div>
+
+    <div id="bubble-container" class="bubble-container"></div>
+</div>

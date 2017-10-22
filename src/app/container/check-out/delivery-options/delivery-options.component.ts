@@ -44,14 +44,14 @@ export class DeliveryOptionsComponent implements OnInit, OnChanges {
         price: opt.price.toString()
       }
     }
-    let dom = document.getElementsByClassName('list-group-item');
-
+    let dom = document.getElementsByClassName('list-group')[0];
+    console.log(dom);
     let i;
-    for(i = 0; i < dom.length; i++){
-      // dom[i]['list-group-item'] = dom[i]['list-group-item'].style.backgroundColor = "transparent";
-      // console.log(dom[i]);
-      event.target.style.backgroundColor = "transparent";
-    }
+    // for(i = 0; i < dom.length; i++){
+    //   // dom[i]['list-group-item'] = dom[i]['list-group-item'].style.backgroundColor = "transparent";
+    //   // console.log(dom[i]);
+    //   // event.target.style.backgroundColor = "transparent";
+    // }
     
     event.target.style.backgroundColor = "lightgrey";
     event.target.style.color = "slategrey";
@@ -91,17 +91,17 @@ export class DeliveryOptionsComponent implements OnInit, OnChanges {
     }
     checkForAddress(){
       this.authService.authState().subscribe((user)=>{
-        this.tempOrderService.getTempOrder(user.uid).subscribe((address)=>{
-          if(!address.delivery_address){
+        // this.tempOrderService.getTempOrder(user.uid).subscribe((address)=>{
+        //   if(!address.delivery_address){
 
-            this.addOpacity = "1";
-          }
-          if(address.delivery_option){
-            this.addOpacity = "1";
-            let sum = Number(address.delivery_option.price);
-            this.getCatTotal(sum);
-          }
-        })
+        //     this.addOpacity = "1";
+        //   }
+        //   if(address.delivery_option){
+        //     this.addOpacity = "1";
+        //     let sum = Number(address.delivery_option.price);
+        //     this.getCatTotal(sum);
+        //   }
+        // })
       })
     }
 }

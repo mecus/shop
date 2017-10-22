@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, FormControl, Validators, AbstractControl } from
 import { AuthService } from '../authentication.service';
 import { StorageService } from "../../services/storage.service";
 import { Router } from '@angular/router';
+import { Location } from '@angular/common';
 import { AddressSearchService } from "../../services/addresssearch.service";
 import { AccountService } from "../../services/account.service";
 
@@ -32,7 +33,7 @@ export class RegisterComponent implements OnInit {
 
   constructor(private storeService:StorageService, private _router:Router, private _fb:FormBuilder, 
   private authService:AuthService, private addressService:AddressSearchService,
-  private accountService:AccountService) {
+  private accountService:AccountService, private _location:Location) {
     
     this.newUser = _fb.group({
       title: [null, Validators.required],
@@ -68,13 +69,13 @@ export class RegisterComponent implements OnInit {
        contact_permission: $event.value
      });
    }
-  register(customer){
+  registerUser(customer){
     let user = {
       email: customer.email,
       password: customer.password
     }
     let address = {
-        account_id: "",
+        account_id: null,
         address_type: "billing",
         full_name: customer.first_name+" "+customer.last_name,
         address: customer.billing_address.address,
@@ -93,19 +94,24 @@ export class RegisterComponent implements OnInit {
         home: customer.telephone.home,
         mobile: customer.telephone.mobile
       },
+      contact_permission: customer.contact_permission,
       terms: customer.terms,
       age_limit: customer.age_limit,
-      uid: ""
+      uid: null
     }
-    // console.log(registration);
     // console.log(user);
+    // console.log(account);
+    // console.log(address);
+    
     if(user.email){
        this.authService.createUser(user).then((ruser)=>{
         account.uid = ruser.uid;
-       this.storeService.storeData('user', ruser);
+      //  this.storeService.storeData('user', ruser);
+       this.storeService.storeData('uid', ruser.uid);
        this.storeService.storeData('email', ruser.email);
        this.accountService.createAccount(account, address);
        this._router.navigate(["/"]);
+      // this._location.back();
      }).catch((err)=>{
        this.errMsg = err.message;
       console.log(err);

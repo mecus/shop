@@ -1,7 +1,7 @@
 .nav-container{
     background-color: #ffffff;
 
-    md-toolbar{
+    mat-toolbar{
         position: relative;
         background-color: #ffffff;
 
@@ -21,7 +21,7 @@
                 padding: 5px;
             }
             .check-progress{
-                md-icon{
+                mat-icon{
                     padding: 0px !important;
                     margin: 0px !important;
                     // margin-top: 50px !important;

@@ -36,19 +36,35 @@ import { AdvertService } from '../../services/advert.service';
   ]
 })
 export class HomeComponent implements OnInit {
-  searchingPostcode;
+  userlogin: string = "Login here";
+  currentUser;
+  // searchingPostcode;
   ads;
   emptyErr;
   successMsg;
   state:string = 'start';
   openPostInput;
-
+  options = {
+    speed:  80000,
+    width: "100%",
+    height: "300px",
+    opacity: "1"
+  };
+  
   constructor(private _router:Router, private searchService:SearchService, 
   private PS:ProductService, private storeService:StorageService,
   private cartService:CartService, private addressService:AddressSearchService,
   private authService:AuthService, private advertService:AdvertService) {
     // title.setTitle('Welcome to our shop');
     // console.log(this.store.select('appState'));
+   }
+   gotoLogin(){
+     if(this.currentUser){
+       this.userlogin = "A user has logged on!";
+       return;
+     }else{
+      this._router.navigate(["/login"]);
+     }
    }
    animate(){
      this.state = (this.state == 'start'? 'end': 'start');
@@ -93,10 +109,13 @@ export class HomeComponent implements OnInit {
     // this.addressService.getMyIp().subscribe((data)=>{
     //   this.storeService.storeData('ip', data.ip);
     // })
-  
+  this.authService.authState().subscribe((userstate)=>{
+    this.currentUser = userstate;
+  });
     this.advertService.getAdvertCached().subscribe((ad)=>{
-      this.ads = _.take(ad, 4)[2];
-      // console.log(this.ads);
+      //Transforming image object to string array with lodash _map
+      this.ads = _.map(_.take(ad, 4), 'photo_url');
+      // console.log(this.ads); 
     });
   }
 

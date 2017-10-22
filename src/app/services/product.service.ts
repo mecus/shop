@@ -1,14 +1,16 @@
 import { Injectable } from '@angular/core';
-import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
+// import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
+// import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 import { Http, URLSearchParams, RequestOptions, Headers } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import { ReplaySubject } from 'rxjs/ReplaySubject';
 import * as Rx from 'rxjs';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
-import 'rxjs/add/operator/merge';
-import 'rxjs/add/operator/switchMap';
-import 'rxjs/add/operator/share';
+// import 'rxjs/add/operator/merge';
+// import 'rxjs/add/operator/switchMap';
+// import 'rxjs/add/operator/share';
+import 'rxjs/add/operator/filter';
 
 import { iProduct } from "../models/product.model";
 
@@ -44,14 +46,14 @@ export class ProductService {
     this.departmentItem$ = new ReplaySubject(1);
    }
 
-  getFireBaseProduct(){
-    let dbRef = firebase.database().ref('/products');
-      return dbRef.once('value').then((snapshot)=>{
-        return snapshot.val();
-      }).catch((err)=>{
-        console.log(err);
-      });
-  }
+  // getFireBaseProduct(){
+  //   let dbRef = firebase.database().ref('/products');
+  //     return dbRef.once('value').then((snapshot)=>{
+  //       return snapshot.val();
+  //     }).catch((err)=>{
+  //       console.log(err);
+  //     });
+  // }
   getDeptAd():Observable<any>{
     return this._http.get(this.adUrl).map((advert)=>{
       return advert.json();
@@ -165,5 +167,10 @@ export class ProductService {
     ];
     let newBrand = Rx.Observable.from([brands]);
     return newBrand;
+  }
+
+  getProductIngredients(){
+   return this.getCachedData().map(data => data.products);
+
   }
 }

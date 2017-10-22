@@ -51,7 +51,7 @@ div.line-hero-inner .p-2{
     margin: 0px;
     padding: 0px;
 }
-div.line-hero-inner md-icon{
+div.line-hero-inner mat-icon{
     font-size: 16px;
 }
 
@@ -69,7 +69,7 @@ div.qty-control .inc{
     margin: 2px !important;
     color: #00897B;
 }
-div.qty-control md-icon{
+div.qty-control mat-icon{
     
 }
 div.qty-control .dec{
@@ -78,7 +78,7 @@ div.qty-control .dec{
     margin: 2px !important;
     color: #00897B;
 }
-div.delet-but md-icon{
+div.delet-but mat-icon{
     color: red;
 }
 div.more-cart, .less-cart{
@@ -92,7 +92,7 @@ div.more-cart, .less-cart{
     background-color: #009688;
     margin: 0 auto;
     text-align: center;
-    md-icon{
+    mat-icon{
         position: relative;
         margin: 0 auto;
         padding: 0px;
@@ -104,7 +104,7 @@ div.more-cart, .less-cart{
         cursor: pointer;
         background-color: #B2DFDB;
         // color: #ffffff;
-        md-icon{
+        mat-icon{
             color: gray;
         }
     }

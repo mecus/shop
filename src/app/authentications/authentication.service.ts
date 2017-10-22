@@ -3,7 +3,7 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { Http, Response, RequestOptions, Headers } from '@angular/http';
 import { StorageService } from "../services/storage.service";
-import * as firebase from 'firebase/app';
+import * as firebase from 'firebase';
 import { Observable } from 'rxjs/Observable';
 import { Router } from '@angular/router';
 import { UserType } from '../models/user.model';
@@ -11,7 +11,7 @@ import { UserType } from '../models/user.model';
 @Injectable()
 
 export class AuthService {
-    user: Observable<firebase.User>;
+    user;
     authUr: string = "http://localhost:3000/api/authentication/clients";
     authToken: string = "http://localhost:3000/api/authentication/client_token";
     constructor(public AF: AngularFireAuth, private storeService:StorageService, 

@@ -2,6 +2,7 @@ import { Component, OnInit, Input, OnChanges, ChangeDetectionStrategy } from '@a
 import { Observable } from 'rxjs/Observable';
 import { PostCodeService } from '../postcode.service';
 import { StorageService } from '../../../services/storage.service';
+import { AuthService } from '../../../authentications/authentication.service';
 
 
 @Component({
@@ -11,16 +12,26 @@ import { StorageService } from '../../../services/storage.service';
     // changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class PostcodeComponent implements OnInit, OnChanges {
+    postcodecomponentdom;
     spinning:boolean=false;
     succex:boolean = false;
     failureMsg:string;
     inputLabel: string = "Please enter you postcode";
     @Input() requestPost:string;
+    currentUser;
+    constructor(private storeService:StorageService, 
+        private postcodeService:PostCodeService,
+        private authService:AuthService){
+            authService.authState().subscribe(user=>{
+                this.currentUser = user;
+            });
+        }
     
-    constructor(private storeService:StorageService, private postcodeService:PostCodeService){}
-    
-    setPostcode(postcode){
-        
+    setPostcode(postCode){
+        let postcode = postCode.toUpperCase();
+        if(!this.currentUser && postcode){
+            this.storeService.storeData('postcode', postcode);
+        }
         if(postcode){
             this.spinning = true;
             // this.storeService.storeData('postcode', postcode);
@@ -31,6 +42,10 @@ export class PostcodeComponent implements OnInit, OnChanges {
                 if(address.addresses){
                     this.succex = true;
                     this.spinning = false;
+                    setTimeout(()=>{
+                        this.postcodecomponentdom.style.display = "none";
+                    }, 5000);
+                    // this.storeService.storeData('postcode', postcode);
                 
                 }else{
                     this.failureMsg = "Sorry we can not deliver to you at this moment"; 
@@ -45,6 +60,7 @@ export class PostcodeComponent implements OnInit, OnChanges {
         }else{
             this.inputLabel = "Sorry we didn't recognise your postcode, please check and try again.";
         }
+        
     }
     closeX(){
         this.inputLabel = "Please enter you postcode";
@@ -53,12 +69,12 @@ export class PostcodeComponent implements OnInit, OnChanges {
     }
 
     ngOnInit(){
-
+        this.postcodecomponentdom = document.getElementById('post-alert');
     }
     ngOnChanges(){
         if(this.requestPost){
-            let domE = document.getElementById('post-alert');
-            domE.style.display = "block";
+            // let domE = document.getElementById('post-alert');
+            this.postcodecomponentdom.style.display = "block";
         }
         
     }

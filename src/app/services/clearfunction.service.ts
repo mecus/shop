@@ -16,7 +16,7 @@ export class ClearHeighlightMenu {
         for (i = 0; i < tab.length; i++) {
             // tab[i].className = tab[i].className.replace("active", "");
             tab[i].style.backgroundColor = "transparent";
-            tab[i].style.color = "lightslategrey";
+            tab[i].style.color = "black";
             
         }
     }

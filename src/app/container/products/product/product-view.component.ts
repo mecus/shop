@@ -36,6 +36,8 @@ import * as _ from 'lodash';
   
 })
 export class ProductViewComponent implements OnInit {
+    openPostInput;
+    counter = 0;
     selectedProduct;
     description:boolean = true;
     review:boolean;
@@ -44,7 +46,7 @@ export class ProductViewComponent implements OnInit {
     errMsg;
     userErr;
     cartErrorMsg?;
-    carts$:Observable<any>;
+    carts$;
     reconmendProduct$;
     constructor(private _router:Router,
     private route:ActivatedRoute, private productService:ProductService,
@@ -87,7 +89,7 @@ export class ProductViewComponent implements OnInit {
       return;
     }
     let review = {
-      'user': comment.user.uid,
+      'user': comment.user,
       'productName': comment.productName,
       'productId': comment.productId,
       'userName': comment.userName,
@@ -101,6 +103,7 @@ export class ProductViewComponent implements OnInit {
     });
     
   }
+  //to be removed later
   submitPostcode(value){
     if((value == "" || value.length < 5)){
       return;
@@ -111,8 +114,13 @@ export class ProductViewComponent implements OnInit {
     }, 500);
     
   }
+  
+  openPostBox(){
+    this.openPostInput = "open" + this.counter++;
+  }
   addToCart(){
       if(!this.storeService.retriveData('postcode')){
+        this.openPostBox();
         this.cartErrorMsg = "Please enter your postcode to make sure we deliver to you";
         return;
         // DA17 4GH
@@ -124,10 +132,12 @@ export class ProductViewComponent implements OnInit {
       return {
         postcode: this.storeService.retriveData('postcode'),
         name: this.selectedProduct.name,
-        id: this.selectedProduct._id,
+        product_id: this.selectedProduct._id,
         price: this.selectedProduct.price,
         imageUrl: this.selectedProduct.imageUrl,
-        qty: 1
+        qty: 1,
+        id:null
+
       }
    }
    redirectLogin(){
@@ -156,7 +166,7 @@ export class ProductViewComponent implements OnInit {
            this.reviewForm.patchValue({
               'productName': this.selectedProduct.name,
               'productId': this.selectedProduct._id,
-              'user': this.storeService.retriveData('user')
+              'user': this.storeService.retriveData('uid')
             });
         })
     });

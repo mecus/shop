@@ -26,6 +26,7 @@ export class AccountSettingComponent implements OnInit, OnChanges {
   addNewCard: boolean = false;
   customerID;
   card;paypal;
+  changePassword:boolean = false;
   constructor(private accountService:AccountService, 
     private storeService:StorageService, private windowService:WindowService,
     private paymentService:PaymentService) {
@@ -49,6 +50,9 @@ export class AccountSettingComponent implements OnInit, OnChanges {
   }
   addCardDetail(){
     this.addNewCard = (this.addNewCard == false? true : false);
+  }
+  passwordChange(){
+    this.changePassword = (this.changePassword == false? true : false);
   }
   pInfoEditForm(email){
     if(!this.pInfoEdit){

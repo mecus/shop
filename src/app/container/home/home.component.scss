@@ -61,6 +61,8 @@
                     font-family: Dosis, sans-serif;
                     font-size: 13px;
                     letter-spacing: 2px;
+                    color: #FF9100;
+                    &:hover{cursor: pointer;}
                 }
             }
             .c-shopping{
@@ -68,8 +70,15 @@
             }
         }
         .welcome-slider{
+            position: relative;
+            // z-index: 1000;
             flex: 6;
             width: 100%;
+            margin: 0px !important;
+            padding: 0px !important;
+            img{
+                width: 100%;
+            }
             .home-slide-image{
                 width: 100%;
             }
@@ -92,7 +101,7 @@
     
     background-color: #fff;
     margin: 4px;
-    md-icon{
+    mat-icon{
         font-size: 5em;
     }
 }
@@ -153,7 +162,7 @@
     }
 }
 
-md-progress-spinner{
+mat-progress-spinner{
     position: absolute;
     top: 0px;
     left: 30px;

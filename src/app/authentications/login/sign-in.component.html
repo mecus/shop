@@ -4,8 +4,8 @@
   <div class="mobile-menu">
     <mobile-menu></mobile-menu> 
 </div>
-<div class="head-title">
-    <h1>Login or Register</h1>
+<div class="container head-title">
+    <h1>Register or Login</h1>
 </div>
 <div class="login-form page-rule">
     
@@ -15,11 +15,14 @@
         <label for="">Post Code</label>
         <input [class.postError]="posterror" #postcode required type="text">
         <p *ngIf="posterror" id="post-err">{{posterror}}</p>
+        
         <p>By creating an account with our store, you will be able to move through the checkout process faster, store multiple shipping addresses, view and track your orders in your account and more.</p>
-        <a md-raised-button (click)="postCodeSearch(postcode.value)">Continue</a>
+
+        <a mat-raised-button (click)="postCodeSearch(postcode.value)">Continue</a>
+
     </div>
     <div class="login-link">
-        <h2>Registered Customer</h2>
+        <h2>Returning Customer</h2>
         <hr>
         <div *ngIf="toggForm" class="forgott-password">
             <forgot-password></forgot-password>
@@ -27,19 +30,20 @@
        
         <form *ngIf="!toggForm" novalidate class="control-form" [formGroup]="user" (ngSubmit)="logIn(user.value)">
             <p>
-                <md-input-container class="input-full-width">
-                <span mdPrefix><md-icon>email</md-icon> &nbsp;</span>
-                <input type="email" formControlName="email" mdInput placeholder="Email">
-                </md-input-container>
-                <md-input-container class="input-full-width">
-                <span mdPrefix><md-icon>lock_outline</md-icon> &nbsp;</span>
-                <input type="password" formControlName="password" mdInput placeholder="Password">
-                </md-input-container>
+                <mat-form-field class="input-full-width">
+                <span matPrefix><mat-icon>email</mat-icon> &nbsp;</span>
+                <input type="email" formControlName="email" matInput placeholder="Email">
+                </mat-form-field>
+                <mat-form-field>
+                    <span matPrefix><mat-icon>lock_outline</mat-icon> &nbsp;</span>
+                    <input formControlName="password" matInput placeholder="password" [type]="hide ? 'password' : 'text'">
+                    <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+                </mat-form-field>
             </p>
             <p id="errorMsg" *ngIf="errMsg"> {{errMsg}}</p>
             <div class="submit-button">
                 <a (click)="passwordRequest()">Forgotten Password</a>
-                <button [disabled]="!user.valid" md-raised-button type="submit">Login</button>
+                <button [disabled]="!user.valid" mat-raised-button type="submit">Login</button>
             </div>
         </form>
         

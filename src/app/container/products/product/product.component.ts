@@ -7,6 +7,7 @@ import { ProductService } from '../../../services/product.service';
 import { CartService } from '../../../services/cart.service';
 import { StorageService } from "../../../services/storage.service";
 import * as _ from 'lodash';
+import * as Rx from 'rxjs';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/merge';
@@ -15,7 +16,7 @@ import 'rxjs/add/operator/share';
 
 
 import { WindowService } from "../../../services/window.service";
-import { PageEvent, MdPaginator } from '@angular/material';
+import { PageEvent } from '@angular/material';
 
 @Component({
   selector: 'shop-products',
@@ -54,19 +55,23 @@ import { PageEvent, MdPaginator } from '@angular/material';
  
 })
 export class ProductComponent implements OnInit {
+  openPostInput;
+  counter = 0;
   state:string = 'small';
+  productCount:Number;
   products;
   category;
   subCategory;
   department;
-  advert;
+  adverts;
   cartErrorMsg?;
-  carts$:Observable<any>;
+  carts$;
   inCart:boolean = false;
   document;
   groupName;
-  page: number = 1;
+  page: Number = 1;
   pageSize=5;
+  loopSpeed:Number = 8000;
   sorting = ['Sort by', 'Popularity', 'Low to High Price', 'High to Low Price'];
   length=50; pageSizeOptions=[2, 4, 12, 16, 50]; pageEvent:PageEvent;
   
@@ -87,7 +92,8 @@ export class ProductComponent implements OnInit {
         product_id: product._id,
         price: product.price,
         imageUrl: product.imageUrl,
-        qty: 1
+        qty: 1,
+        id: null
       }
    }
    //remove this method and replace with postcode module
@@ -105,12 +111,16 @@ export class ProductComponent implements OnInit {
       // this.state = (this.state == 'small'? 'large': 'small');
       if(!this.storeService.retriveData('postcode')){
         this.cartErrorMsg = "Please enter your postcode to make sure we deliver to you";
+        this.openPostBox();
         return;
       }
       this.cartService.createCart(this.payLoad(product));
       // this.store.dispatch({type: cart.ADD, payload: this.payLoad(product) });
      
    }
+   openPostBox(){
+    this.openPostInput = "open" + this.counter++;
+  }
 
    //Displaying a single product
    viewProduct(product){
@@ -118,8 +128,8 @@ export class ProductComponent implements OnInit {
    }
    showSubCat(cat, event){
      this.clearMenu();
-      event.target.style.backgroundColor = "#000";
-      event.target.style.color = "#f5f5f5";
+      // event.target.style.backgroundColor = "#000";
+      event.target.style.color = "#00796B";
      this._router.navigate(["/products/?", {dept_id:cat.department_id, cat_id: cat._id, selected: true, dept: cat.name}]);
    }
    displayProduct(subcat, event){
@@ -131,8 +141,8 @@ export class ProductComponent implements OnInit {
         subL[i].style.backgroundColor = "transparent";
         subL[i].style.color = "#000"; 
     }
-    event.target.style.backgroundColor = "#000";
-    event.target.style.color = "#f5f5f5";
+    // event.target.style.backgroundColor = "#000";
+    event.target.style.color = "#00796B";
     this._router.navigate(["/products/?", {dept_id:subcat.department_id, cat_id: subcat.category_id, subCat_id: subcat._id, selected: true, dept: subcat.name }]);
    }
    
@@ -163,22 +173,34 @@ export class ProductComponent implements OnInit {
       this.route.params.forEach((param)=>{
         // this.store.dispatch({type: "ACTIVE", payload: param});
         this.productService.getCachedData().subscribe((data)=>{
-          this.products = _.takeRight(data.products.filter((product)=> product.department_id === param['dept_id']), 10);
-          // console.log(this.products);
+          if(param['dept_id'] && (!param['cat_id']) && (!param['subCat_id'])){
+            this.products = _.takeRight(data.products.filter((product)=> product.department_id === param['dept_id']), 10);
+            let numb = this.products.length + 1;
+            let interval = Rx.Observable.interval(100).take(numb);
+            interval.subscribe(val=> this.productCount = val);
+          }
+          
           this.category  = data.category.filter((cat)=>cat.department_id == param['dept_id']);
           this.groupName = param['dept'];
           this.subCategory = data.subcategory.filter((subcat)=> subcat.category_id == param['cat_id']);
-          if(param['cat_id']){
+          if(param['cat_id'] && !param['subCat_id']){
             this.products = data.products.filter((product)=> product.category_id === param['cat_id']);
+            let numb = this.products .length + 1;
+            let interval = Rx.Observable.interval(100).take(numb);
+            interval.subscribe(val=> this.productCount = val);
           }
           if(param['subCat_id']){
             this.products = data.products.filter((product)=> product.subcategory_id === param['subCat_id']);
+            let numb = this.products.length + 1;
+            let interval = Rx.Observable.interval(100).take(numb);
+            interval.subscribe(val=> this.productCount = val);
           } 
         });
 
         this.productService.getCachedDeptAd().subscribe((Ad)=>{
      
-          this.advert = Ad.filter(ad=> ad.department_id === param['dept_id'])[0];
+          this.adverts = _.map(Ad.filter(ad=> ad.department_id === param['dept_id']), 'photo_url');
+          // console.log(this.adverts);
         });
 
       })
@@ -199,11 +221,11 @@ export class ProductComponent implements OnInit {
     let domE = document.querySelector('#sortBox');
     // domE.setAttribute('id', 'p-2');
     domE.innerHTML = `
-      <md-select class="p-2" (change)="sortByLowPrice($event.value)" placeholder="Sort by">
-      <md-option *ngFor="let sort of sorting" [value]="sort">
+      <mat-select class="p-2" (change)="sortByLowPrice($event.value)" placeholder="Sort by">
+      <mat-option *ngFor="let sort of sorting" [value]="sort">
         {{ sort }}
-      </md-option>
-    </md-select>
+      </mat-option>
+    </mat-select>
     `
   }
 }

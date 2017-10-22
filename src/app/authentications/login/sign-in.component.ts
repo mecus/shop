@@ -18,10 +18,13 @@ import { AccountService } from "../../services/account.service";
 })
 
 export class LoginComponent implements OnInit {
+    hide = true;
     user:FormGroup;
     errMsg;
     posterror;
     toggForm;
+    postcode;
+
 
     constructor(private storeService:StorageService, private location:Location, 
     private authService:AuthService, private accountService:AccountService,
@@ -34,6 +37,7 @@ export class LoginComponent implements OnInit {
     logIn(user):void{
        this.authService.emailLogin(user).then((res)=>{
            this.storeService.storeData('user', res);
+           this.storeService.storeData('uid', res.uid);
            this.storeService.storeData('email', res.email);
            //Note! Query account with the ac_no of the customer 
            this.accountService.getAccount(res.email).subscribe((account)=>{
@@ -55,12 +59,16 @@ export class LoginComponent implements OnInit {
 
     postCodeSearch(post):void{
         // console.log(post)
-        let pcode = post.toUpperCase();
-        if(post == ""){
-            this.posterror = "Post code must not be empty!"
-        }else{
-            this.storeService.storeData('tempcode', pcode);
+        if(this.postcode){
             this._router.navigate(["/register"]);
+        }else{
+            let pcode = post.toUpperCase();
+            if(post == ""){
+                this.posterror = "Post code must not be empty!"
+            }else{
+                this.storeService.storeData('tempcode', pcode);
+                this._router.navigate(["/register"]);
+            }
         }
        
     }
@@ -72,6 +80,7 @@ export class LoginComponent implements OnInit {
         this.authService.authState();
     }
     ngOnInit(){
-        
+        this.postcode = this.storeService.retriveData('postcode');
+
     }
 }

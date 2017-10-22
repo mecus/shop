@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
+import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
 import { Http } from '@angular/http';
 import * as firebase from 'firebase';
 
@@ -8,14 +8,14 @@ import * as firebase from 'firebase';
 
 export class ReviewService {
 
-    constructor(private _afDB:AngularFireDatabase){}
+    constructor(private _afs:AngularFirestore){}
 
-    getReviews():Observable<any>{
-        return this._afDB.list('/reviews');
+    getReviews(){
+        return this._afs.collection('reviews').valueChanges();
     }
-    createReview(revw):Observable<any>{
-        return this._afDB.list('/reviews')
-            .push(revw).then((res)=>{
+    createReview(revw){
+        return this._afs.collection('reviews')
+            .add(revw).then((res)=>{
             console.log('Review Saved');
         }).catch(err=>console.log(err));
     }

@@ -45,7 +45,7 @@
                         height: 80px;
                         width: 120px;
                         background-color: #000;
-                        z-index: 100;
+                        z-index: 1;
                         opacity: 0.7;
                     }
                 }
@@ -76,7 +76,10 @@
                     .item-1{
                         img{
                             width: 50px;
+                            padding: 2px; 
+                            border: 1px solid rgb(233, 231, 231);
                             border-radius: 50%;
+
                         }
                     }
                     .item-2{

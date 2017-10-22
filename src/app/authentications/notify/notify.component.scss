@@ -8,25 +8,33 @@ div.tool-bar-wrapper{
     padding: 0 10px;
     a{
         text-decoration: none;
-        color: #000;
+        color: lightslategrey;
 
+    }
+    &:hover{
+        cursor: pointer;
     }
 }
 .orders, .favourites, .shopping-list{
-    background-color: lightgrey;
+    background-color: #ebeff1;
     margin-right: 2px;
     a{
-        color: #000;
+        color: grey;
+        font-size: 12px;
         font-family: 'Open Sans Regular', sans-serif;
     }
 }
+.shopping-list{
+    background: #ebeff1;
+    background: linear-gradient(to right, white , #ebeff1);
+}
 .account{
-    background-color: #00796B;
+    background-color: #ebeff1;
     height: 40px;
     padding: 0px;
     margin: 0px;
     padding: 0 10px;
-    color: #fff;
+    color: slategray !important;
     border: none;
     // .btn-group a{
     //     position: relative;
@@ -39,28 +47,33 @@ div.tool-bar-wrapper{
     //         position: relative;
     //         z-index: 1000;
     //     }
-    //     md-icon{
+    //     mat-icon{
 
     //     }
     // }
     a{
         // padding: 5px;
         text-decoration: none;
-        color: #000;
+        color: slategray !important;
         // font-size: 14px;
         font-family: 'Open Sans Regular', sans-serif;
         span{
-            color: #fff;
+            color: slategray !important;
             padding: 5px;
             // margin-right: 5px;
+            &:hover{
+                cursor: pointer;
+            }
         }
     }
 }
 .register{
-    background-color: lightgrey;
+    background: #ebeff1;
+    background: linear-gradient(to right, white , #ebeff1);
     margin-left: 0px;
     color: #fff;
     font-size: 12px;
+    margin-right: 1.5px;
 }
 // .account{
 //     border-bottom: 1px solid lightgray;
@@ -70,11 +83,12 @@ div.tool-bar-wrapper{
 .get-help{
     display: flex;
     background-color: #FF9100;
+    width: 70px;
     p{ 
         padding: 0px; margin: 0px; margin-right: 2px;
         font-family: 'Open Sans Regular', sans-serif;
     }
-    md-icon{
+    mat-icon{
         font-size: 18px;
         padding: 0px;
         margin-top: 10px;
@@ -85,7 +99,8 @@ div.basket{
     background-color: black;
     color: #fff;
     height: 40px;
-    md-icon{
+    width: 100px;
+    mat-icon{
         font-size: 16px;
         padding: 0px;
         margin-top: 11px;
@@ -104,7 +119,9 @@ div.basket{
             padding: 0px !important; 
         }
     }
+   
 }
+
 #cart-option{
     position: absolute;
     top: 40px;
@@ -122,10 +139,13 @@ div.basket{
         padding: 0px;
         margin: 0px;
     }
-    md-icon{
+    mat-icon{
         padding: 0px !important;
         margin: 0px !important;
         font-size: 10px !important;
+        &:hover{
+            cursor: pointer;
+        }
     }
     p{
         background-color: red;

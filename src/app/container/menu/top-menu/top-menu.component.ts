@@ -47,7 +47,7 @@ export class TopMenuComponent implements OnInit {
       }, 500000)
       setTimeout(()=>{
         let code = this.storeService.retriveData('postcode');
-        this.cartService.removeBatchCart(code);
+        // this.cartService.removeBatchCart(code);
         this.storeService.cleardata('postcode');
         clearInterval(this.interV);
         this.triger = false;
@@ -74,7 +74,7 @@ export class TopMenuComponent implements OnInit {
     })
       
     
-    let dom = document.getElementById('md-toolbar');
+    let dom = document.getElementById('mat-toolbar');
     
     this.window.addEventListener('scroll', (e)=>{
       let yPos = this.window.pageYOffset;
@@ -93,7 +93,7 @@ export class TopMenuComponent implements OnInit {
   
   //Start Particlr js
   
-  // this.window.particlesJS("md-toolbar", {
+  // this.window.particlesJS("mat-toolbar", {
   //   "particles": {
   //     "number": {
   //       "value": 88,

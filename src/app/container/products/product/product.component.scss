@@ -21,12 +21,12 @@ div.product-container{
                     margin-right: 1px;
                     img{padding: 20px;}
         
-                    md-card-actions{
+                    mat-card-actions{
                         margin: 0 auto;
                         text-align: center;
                         padding: 0px;
                     }
-                    md-card-content{
+                    mat-card-content{
                         // height: 70px;
                     }
                     p{
@@ -50,7 +50,7 @@ div.product-container{
                         font-weight: bold
                     }
                     
-                    md-card-actions{
+                    mat-card-actions{
                         a{
                             font-family: 'Open Sans Regular', sans-serif;
                             color: #ffffff;
@@ -58,21 +58,23 @@ div.product-container{
                     }
                     .inCart-wrapper{
                         position: absolute;
-                        
+                        text-align: center;
+                        bottom: 0;
+                        right: 0;
+                        left: 0;
+                        margin-left: -10px;
+                        // margin-bottom: -5px;
                         .inCart-select{
-                            text-align: center;
-                            margin: 0 auto;
-                            margin-left: 15px;
                             width: 100%;
                             transition: 2s;
                             p#inCart{
-                                // text-align: center;
-                                transition: 3s;
                                 margin: 5px;
                                 padding: 0px 5px;
                                 width:100%;
-                                background-color: #FF9100;
-                                border-radius: 2px;
+                                color: #FF9100;
+                                // background-color: #FF9100;
+                                // border-radius: 2px;
+                                
                             }
                         }
                         
@@ -98,6 +100,33 @@ div.product-container{
                             margin: 0px;
                             padding: 0px;
                             width: 100%;
+                        }
+                    }
+                    .inyourcart{
+                        position: absolute;
+                        top: 0;
+                        right: 0;
+                        float: right;
+                        margin-right: 10px;
+                        margin-top: 10px;
+                        // background-color: red;
+                        width: 35px;
+                        height: 35px;
+                        .cart-no{
+                            position: absolute;
+                            top: 0;
+                            right: 0;
+                            margin-left: 4px;
+                            background-color: #ebeff1;
+                            width: 20px;
+                            height: 20px;
+                            text-align: center;
+                            border-radius: 50%;
+                            font-size: 12px;
+                        }
+                        mat-icon{
+                            font-size: 18px;
+                            color: #00796B;
                         }
                     }
                 }
@@ -131,6 +160,8 @@ div.product-container{
             margin-top: 40px;
             margin-right: 5px;
             border: none !important;
+            background: white;
+            background: linear-gradient(to right, white , #ebeff1);
             
             h1{
                 font-family: 'Open Sans Light', sans-serif;
@@ -143,7 +174,7 @@ div.product-container{
             .p-2{
                 margin: 0px !important;
                 padding: 0px !important;
-                background-color: lightgray;
+                background-color: #ebeff1;
                 margin-right: 5px !important;
                 padding: 5px !important;
                 border-radius: 4px;
@@ -160,11 +191,37 @@ div.product-container{
             height: 50px;
             margin-bottom: 20px;
             margin-right: 34px;
-            background-color: #ffffff;
+            background: #ffffff;
+            background: radial-gradient(circle, #f0f1f1 20%, #f1f2f3 30%, white 50%);
             padding: 0px 10px;
             .p-2{
                 padding: 0px !important;
                 margin: 0px !important;
+                .prod-count{
+                    margin: 0px !important;
+                    padding: 0px !important;
+                    // margin-top: 10px;
+                    margin-left: 10px !important;
+                    // padding: 5px;
+                    // font-size: 14px;
+                    
+                    p{
+                        margin: 0px !important;
+                        padding: 0px !important;
+                        
+                        font-size: 12px;
+                        font-family: 'Open Sans Light', sans-serif;
+                        margin: 0 auto;
+                        border-radius: 50%;
+                        background-color: lightgray;
+                        width: 30px;
+                        height: 30px;
+                        margin-top: 10px !important;
+                        padding: 5px !important;
+                        text-align: center;
+
+                    }
+                }
             }
             p{
                 font-size: 18px;
@@ -178,18 +235,19 @@ div.product-container{
             // padding-top: 5px !important;
               padding-top: 10px !important;
              .form-control{
-                 border: none;
-                 border: 1px dotted #FF9100 !important;
-                 border-radius: 0px 4px 4px 0px;
-                 color: #FF9100;
+                 border: none !important;
+                //  border: 1px dotted #FF9100 !important;
+                //  border-radius: 0px 4px 4px 0px;
+                 color: lightgray;
                  height: 30px;
                  
 
              }
              .btn{
                  border-radius: 0px 4px 4px 0px;
-                 background-color: #FF9100;
-                 border-color: #FF9100;
+                 background-color: lightgray;
+                 border-color: lightgray;
+                 color: slategray;
                  height: 30px;
                  padding: 0px;
                  margin: 0px;
@@ -197,6 +255,7 @@ div.product-container{
              }
             
             }
+            //Remove later
             .pagination-top{
                 max-width: 500px;
                 margin: 0 auto;
@@ -223,7 +282,7 @@ div.product-container{
         
     }
 }
-md-grid-list{
+mat-grid-list{
     margin: 0px !important;
     padding: 0px !important;
 }
@@ -257,7 +316,12 @@ md-grid-list{
         
     }
     .advert-container-half{
-        
+        margin: 0px !important;
+        padding: 0px !important;
+        padding-left: 5px !important;
+        width: 100%;
+        height: 200px;
+        // background-color: red;
     }
 }
 
@@ -292,8 +356,9 @@ div.cat-list, .sub-list{
     border-bottom: 1px solid lighten(lightgray, 2);
     
     &:hover{
-        color: lightslategrey !important;
-        background-color: rgba(0,0,0, 0.9);
+        cursor: pointer;
+        color: #00796B !important;
+        // background-color: rgba(0,0,0, 0.9);
         border-radius: 0px 4px 4px 0px;
     }
     .arrow-icon{
@@ -323,11 +388,11 @@ div.horizotal{
     background-color: rgba(0,0,0, 0.9);
     border-radius: 0px 4px 4px 0px;
 }
-.advert{
-    padding: 10px 0px;
-    height: 150px;
-    /*background-color: red;*/
-}
+// .advert{
+//     padding: 10px 0px;
+//     height: 150px;
+//     /*background-color: red;*/
+// }
 
 
 
@@ -338,7 +403,7 @@ div.horizotal{
             position: relative;
             img{padding: 5px;}
 
-            md-card-actions{
+            mat-card-actions{
                 margin: 0 auto;
                 text-align: center;
                 padding: 0px;
@@ -357,7 +422,7 @@ div.horizotal{
                 font-weight: bold
             }
             
-            md-card-actions{
+            mat-card-actions{
                 button{}
             }
             .inCart-wrapper{

@@ -10,7 +10,7 @@
 div.example-form{
     width: 100% !important;
 }
-md-input-container{
+mat-input-container{
     width: 100% !important;
 }
 div.example-full-width{
@@ -47,6 +47,16 @@ div.aside-check-cart{
     margin: 0 auto;
     width: 600px;
     margin-top: 40px;
+    padding: 0px !important;
+    border: none !important;
+    .card-header{
+        margin: 0px !important;
+        .proceed-button a{
+            background-color: #00796B;
+            color: #ffffff;
+            text-decoration: none;
+        }
+    }
 }
 div.check-box{
     margin-top: 10px;

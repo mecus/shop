@@ -1,4 +1,6 @@
 <div class="input-group-2">
+
+  
   <form [formGroup]="searchForm">
     <!--<input type="text" class="form-control" formControlName="search" placeholder="Search for...">-->
     <!--<span class="input-group-btn">
@@ -6,22 +8,32 @@
         <i class="fa fa-search" aria-hidden="true"></i>
         </button>
     </span>-->
-      <md-input-container class="example-full-width">
-        <span mdPrefix><i class="material-icons">search</i> &nbsp;</span>
-        <input type="text" mdInput formControlName="search" placeholder="Searching for..">
-        <md-icon *ngIf="searchForm.dirty" mdSuffix>mode_edit</md-icon>
-      </md-input-container>
+      <!-- <mat-input-container class="example-full-width">
+        <span matPrefix><i class="material-icons">search</i> &nbsp;</span>
+        <input type="text" matInput formControlName="search" placeholder="Searching for..">
+        <mat-icon *ngIf="searchForm.dirty" matSuffix>mode_edit</mat-icon>
+      </mat-input-container> -->
+
+      <div class="input-group">
+          <input type="text" class="form-control" formControlName="search" placeholder="Search for..." aria-label="Search for...">
+          <span class="input-group-btn">
+            <button class="btn btn-secondary" type="button">Go!</button>
+          </span>
+      </div>
+
   </form>
+ 
+  <div class="search-result-list">
+      <!-- <div *ngIf="searchProducts" class="remove-list">
+          <mat-icon (click)="closeResult()">close</mat-icon>
+      </div> -->
+      <ul *ngIf="searchProducts " class="list-group">
+        <li *ngFor="let result of searchProducts | async" class="list-group-item justify-content-between">
+          <img (click)="findResult(result)" (click)="closeResult()" [src]="result.imageUrl" style="width: 30px;" alt="search-photo">
+          <span><a (click)="findResult(result)" (click)="closeResult()">{{result.name}}</a></span>
+          <!--<span class="badge badge-default badge-pill">14</span>-->
+        </li>
+      </ul>
+  </div>
 </div>
-<div class="search-result-list">
-    <!-- <div *ngIf="searchProducts" class="remove-list">
-        <md-icon (click)="closeResult()">close</md-icon>
-    </div> -->
-    <ul *ngIf="searchProducts" class="list-group">
-      <li *ngFor="let result of searchProducts | async" class="list-group-item justify-content-between">
-        <img [src]="result.imageUrl" style="width: 30px;" alt="search-photo">
-        <span><a (click)="findResult(result)" (click)="closeResult()">{{result.name}}</a></span>
-        <!--<span class="badge badge-default badge-pill">14</span>-->
-      </li>
-    </ul>
-</div>
+

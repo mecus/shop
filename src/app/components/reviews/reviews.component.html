@@ -2,16 +2,16 @@
   <div class="list-reviews" *ngIf="reviews.length > 0; else firstReview">
     <h2 *ngIf="reviews.length < 2"><span>{{reviews.length}}</span> Review</h2>
     <h2 *ngIf="reviews.length > 1"><span>{{reviews.length}}</span> Reviews</h2>
-    <md-list>
-      <md-list-item *ngFor="let review of reviews | paginate: {itemsPerPage: 3, currentPage: page}">
-        <img md-list-avatar src="assets/avatar.png" alt="...">
-        <h3 md-line> <strong>{{review.userName}}</strong> </h3>
-        <p md-line>
+    <mat-list>
+      <mat-list-item *ngFor="let review of reviews | paginate: {itemsPerPage: 3, currentPage: page}">
+        <img mat-list-avatar src="assets/avatar.png" alt="...">
+        <h3 mat-line> <strong>{{review.userName}}</strong> </h3>
+        <p mat-line>
           <span id="post-date"> {{review.postedOn | date}} </span>
           <span class="demo-2"> -- {{review.comment}} </span>
         </p>
-      </md-list-item>
-    </md-list>
+      </mat-list-item>
+    </mat-list>
     <!-- Implementing pagination -->
     <div class="pagination">
       <pagination-controls (pageChange)="page = $event" class="pg-pagination"></pagination-controls>

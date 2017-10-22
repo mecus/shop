@@ -4,28 +4,21 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { MaterialModule } from './modules/material/material.module';
-// import { Ng2Webstorage } from 'ng2-webstorage';
 import { AppSharedModule } from "./modules/shared-modules/app.shared.module";
 import { PostcodeModule } from './modules/postcode-module/postcode.module';
 
-//Bootstrap Modules
-// import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
-// import { CarouselModule } from 'ngx-bootstrap/carousel';
-// import { AlertModule } from 'ngx-bootstrap/alert';
-
-//cloudinary module
-// import { Ng2CloudinaryModule } from 'ng2-cloudinary';
-// import { FileUploadModule } from 'ng2-file-upload';
 
 import { AuthenticationsModule } from "./authentications/authentications.module";
 import { AngularFireModule } from 'angularfire2';
-import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { AngularFireAuthModule } from 'angularfire2/auth';
-import { firebaseConfig } from './firebase-configuration';
+// import { AngularFireDatabaseModule } from 'angularfire2/database';
+
+import { firebaseConfig } from './environment-var';
 
 
 //Needed Hammerjs to work with material Design module
-// import 'hammerjs';
+import 'hammerjs';
 
 //Custom Modules
 import { AppRouterModule } from './routers/app-router/app-router.module';
@@ -64,22 +57,8 @@ import { HomeComponent } from './container/home/home.component';
 import { CookieNoticeComponent } from './container/shop-container/cookie-notice/cookie-notice.component';
 
 
-
-// import { CustomersComponent } from './container/customers/customers.component';
-// import { BannerComponent } from './components/advert/banner.component';
-// import { NewProdComponent } from './components/advert/dynamic-components/newprod.component';
-// import { NewCatComponent } from './components/advert/dynamic-components/newcat.component';
-
-
-
-// import { FooterComponent } from './container/menu/footer/footer.component';
-// import { ProductSearchComponent } from './components/product-search/product-search.component';
-// import { HowToComponent } from './components/how-to/how-to.component';
-// import { PrimaryNavigationComponent } from './container/menu/primary-navigation/primary-navigation.component';
-
-
-// const BootstrapModules = [ CarouselModule.forRoot()]
 import { LibModule } from 'confirm-alert';
+import { NgeCarouselModule } from './modules/carousel-module/nge-carousel.module';
 
 @NgModule({
   declarations: [
@@ -90,13 +69,13 @@ import { LibModule } from 'confirm-alert';
    
   ],
   imports: [
-    BrowserAnimationsModule, LibModule,
+    BrowserAnimationsModule, LibModule, NgeCarouselModule,
     BrowserModule.withServerTransition({appId: 'shop'}),
     FormsModule,MaterialModule, ReactiveFormsModule,
     HttpModule, AppRouterModule,ProductModule, CheckOutModule,
     AppSharedModule, ShopModule, PostcodeModule,
     AngularFireModule.initializeApp(firebaseConfig),
-    AngularFireDatabaseModule,AngularFireAuthModule,
+    AngularFirestoreModule,AngularFireAuthModule,
     AuthenticationsModule,
     AccountModule,
   ],

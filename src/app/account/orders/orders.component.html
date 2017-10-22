@@ -13,20 +13,20 @@
         
             <div class="xpandable-panel">
                 <p>You can view all order placed in the last 12 months</p>
-                <md-expansion-panel *ngFor="let order of (orders$ | async)">
-                    <md-expansion-panel-header>
-                        <md-panel-title>
+                <mat-expansion-panel *ngFor="let order of (orders$ | async)">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
                         Order no. {{order.order_no}}
-                        </md-panel-title>
-                        <md-panel-description>
+                        </mat-panel-title>
+                        <mat-panel-description>
                         <span>{{order.createdAt | date}}</span>
                         <span>Order Amount: {{order.amount | currency:'GBP':true}}</span>
-                        <span><md-icon>check_circle</md-icon></span>
-                        </md-panel-description>
-                    </md-expansion-panel-header>
+                        <span><mat-icon>check_circle</mat-icon></span>
+                        </mat-panel-description>
+                    </mat-expansion-panel-header>
                     <p>{{order.note}}</p>
                     
-                </md-expansion-panel>
+                </mat-expansion-panel>
             </div>
         </div>
     </div>

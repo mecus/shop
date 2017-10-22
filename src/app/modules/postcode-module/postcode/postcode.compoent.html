@@ -4,10 +4,10 @@
           <span class="d-flex head flex-row justify-content-start">
             <span *ngIf="!succex" class="p-2"><p>Postcode Check!</p></span>
             <span *ngIf="succex" class="p-2"><p>Congratulations!!</p></span>
-            <span class="p-2 ml-auto"><md-icon (click)="closeX()">clear</md-icon></span>
+            <span class="p-2 ml-auto"><mat-icon (click)="closeX()">clear</mat-icon></span>
           </span>
         </div>
-        <md-progress-bar *ngIf="spinning" color="accent" mode="indeterminate"></md-progress-bar>
+        <mat-progress-bar *ngIf="spinning" color="accent" mode="indeterminate"></mat-progress-bar>
         <div class="card-body">
           <h4 class="card-title">{{inputLabel}}</h4>
           <!-- <p class="card-text">With supporting text below as a natural lead-in to additional content.</p> -->
@@ -16,7 +16,7 @@
             
             <input #postcode type="text" class="form-control" id="exampleFormControlInput1" placeholder="post code">
           </div>
-          <a (click)="setPostcode(postcode.value)" md-raised-button color="primary" >Check</a>
+          <a (click)="setPostcode(postcode.value)" mat-raised-button color="primary" >Check</a>
         </div>
         <div class="card-footer text-muted">
           <p *ngIf="succex">yes we can deliver to you..</p>

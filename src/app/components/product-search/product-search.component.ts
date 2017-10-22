@@ -25,11 +25,13 @@ export class ProductSearchComponent implements OnInit {
   constructor(private _fb:FormBuilder, private _router:Router, 
     private searchService:SearchService, private windowService:WindowService){
       this.searchForm = _fb.group({
-        search: [""]
+        search: ["", Validators.required]
       })
+
     this.search()
     this.document = windowService.getDocumentRef();
   }
+
   
   search(){
     this.searchProducts = this.searchForm.controls.search.valueChanges
@@ -55,7 +57,8 @@ export class ProductSearchComponent implements OnInit {
   }
 
   ngOnInit() {
-    // console.log(this.document);
+   
+    // console.log( this.searchForm.dirty);
     let domE1 = this.document.querySelector('#top-screen');
     let domE = this.document.querySelector('.search-result-list');
     // domE1.addEventListener('click', ()=>{

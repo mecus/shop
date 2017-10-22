@@ -34,7 +34,7 @@
     <div class="card-block">
       <h4 class="card-title">Special title treatment</h4>
       <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-      <a (click)="finishOrder(order.amount, order.customer_no, order.order_no)" md-raised-button >Finish Order</a>
+      <a (click)="finishOrder(order.amount, order.customer_no, order.order_no)" mat-raised-button >Finish Order</a>
     </div>
     <div class="card-footer text-muted">
       your order will be dispatched within 24hrs after full payment is recieved!
@@ -46,12 +46,12 @@
   <small>{{acceptedMsg}}</small>
   <small>{{declineMsg}}</small>
   <p *ngIf="processMsg">{{processMsg}}</p>
-  <a *ngIf="acceptedMsg" md-raised-button routerLink="/">Close page</a>
-  <a *ngIf="declineMsg" md-raised-button routerLink="/payment_method">Try again</a>
+  <a *ngIf="acceptedMsg" mat-raised-button routerLink="/">Close page</a>
+  <a *ngIf="declineMsg" mat-raised-button routerLink="/payment_method">Try again</a>
 </div>
 
 <div *ngIf="grayPage" class="pageProcessCover">
     <div class="center-point">
-        <md-spinner></md-spinner>
+        <mat-spinner></mat-spinner>
     </div>
 </div>

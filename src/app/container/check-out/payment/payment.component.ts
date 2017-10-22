@@ -43,12 +43,12 @@ export class PaymentComponent implements OnInit, AfterViewInit {
       deviceData: this.storeService.retriveData('deviceData') || ""
     }
     // console.log(payment);
-    this.tempOrderService.getTempOrder(this.storeService.retriveData('user')['uid'])
-    .subscribe((temporder)=>{
-      payment.token = temporder.token;
-      payment.payment_method = temporder.payment_method;
-      this.runPaymentOrder(payment);
-    });
+    // this.tempOrderService.getTempOrder(this.storeService.retriveData('user')['uid'])
+    // .subscribe((temporder)=>{
+    //   payment.token = temporder.token;
+    //   payment.payment_method = temporder.payment_method;
+    //   this.runPaymentOrder(payment);
+    // });
 
   }
   runPaymentOrder(payobject){
@@ -113,14 +113,14 @@ export class PaymentComponent implements OnInit, AfterViewInit {
     //delete cart items
     //remove token from local storage
     //delete progress service
-    this.tempOrderService.deleteTemOrder(this.storeService.retriveData('user')['uid'])
-      .then((res)=>{
-        console.log("Deleting TempOrder");
-        this.cartService.removeBatchCart(this.storeService.retriveData('postcode'));
-        this.storeService.cleardata('token');
-        this.storeService.cleardata('deviceData');
-        // this.progressService.deleteProgress();
-      },(err)=>console.log(err));
+    // this.tempOrderService.deleteTemOrder(this.storeService.retriveData('user')['uid'])
+    //   .then((res)=>{
+    //     console.log("Deleting TempOrder");
+    //     // this.cartService.removeBatchCart(this.storeService.retriveData('postcode'));
+    //     this.storeService.cleardata('token');
+    //     this.storeService.cleardata('deviceData');
+    //     // this.progressService.deleteProgress();
+    //   },(err)=>console.log(err));
   }
 
 }

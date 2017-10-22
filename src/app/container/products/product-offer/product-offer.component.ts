@@ -6,7 +6,7 @@ import * as _ from 'lodash';
 import { StorageService } from '../../../services/storage.service';
 import { CartService } from '../../../services/cart.service';
 import { WindowService } from '../../../services/window.service';
-import { PageEvent, MdPaginator } from '@angular/material';
+import { PageEvent } from '@angular/material';
 
 
 
@@ -19,13 +19,13 @@ import { PageEvent, MdPaginator } from '@angular/material';
 export class ProductOfferComponent implements OnInit {
     products;
     cartErrorMsg;
-    carts$:Observable<any>;
+    carts$;
     inCart:boolean = false;
     document;
-    offerad$= [
-        {name: "offer1", photo_url: "assets/offer1.jpeg"},
-        {name: "offer1", photo_url: "assets/offer2.jpeg"}
-    ][0];
+    offerad$= [ "assets/offer1.jpeg", "assets/offer2.jpeg",
+        // {name: "offer1", photo_url: "assets/offer1.jpeg"},
+        // {name: "offer1", photo_url: "assets/offer2.jpeg"}
+    ];
     pageSize:number = 4;
     page:number = 1;
     length=50; pageSizeOptions=[2, 4, 12, 16, 50]; pageEvent:PageEvent;
@@ -57,7 +57,8 @@ export class ProductOfferComponent implements OnInit {
           product_id: product._id,
           price: product.price,
           imageUrl: product.imageUrl,
-          qty: 1
+          qty: 1,
+          id: null
         }
      }
      submitPostcode(value){

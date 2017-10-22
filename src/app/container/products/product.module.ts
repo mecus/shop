@@ -20,6 +20,8 @@ import { CartComponent } from "./cart/cart.component";
 import { ProductOfferComponent } from "./product-offer/product-offer.component";
 import { BrandProductComponent } from "./brands/brand-product.component";
 import { NgxPaginationModule } from 'ngx-pagination';
+import { NgeCarouselModule } from '../../modules/carousel-module/nge-carousel.module';
+import { PostcodeModule } from "../../modules/postcode-module/postcode.module";
 
 @NgModule({
     declarations: [ 
@@ -32,8 +34,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
     ],
     imports: [
         MaterialModule, BrowserModule, AppRouterModule,
-        FormsModule, ReactiveFormsModule,
-        AppSharedModule, NgxPaginationModule
+        FormsModule, ReactiveFormsModule, NgeCarouselModule,
+        AppSharedModule, NgxPaginationModule, PostcodeModule
         
     ],
     providers: [CartService],

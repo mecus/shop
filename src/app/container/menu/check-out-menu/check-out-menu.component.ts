@@ -39,14 +39,14 @@ export class CheckOutMenuComponent implements OnInit, OnChanges {
   ngOnInit() {
     // setTimeout(()=>{
     //   this.checkProgress.forEach((prog)=>{
-    //     this.setProgress(prog);
+    //     // this.setProgress(prog);
     //   })
     // }, 500);
     setTimeout(()=>{
       this.progressService.getProgress().subscribe((prog)=>{
-        console.log(prog);
+        // console.log(prog);
         prog.forEach((res)=>{
-          this.setProgress(res.name);
+           this.setProgress(res.name);
         })
         
       });

@@ -3,31 +3,31 @@
     <div *ngFor="let cat of cart$" class="colC">
         <div class="d-flex justify-content-between cart-list">
             <div class="p-2 img-hero">
-                <img [src]="cat.imageUrl"  alt="prod-image">
+                <img [src]="cat.data.imageUrl"  alt="prod-image">
             </div>
             <div class="p-2 line-hero">
                 <div class="line-hero-inner d-flex justify-content-between">
                     <div class="p-2">
-                        <p>{{cat.name}}</p>
+                        <p>{{cat.data.name}}</p>
                     </div>
                     <div class="p-2">
-                        <p>qty: {{cat.qty}}</p>
+                        <p>qty: {{cat.data.qty}}</p>
                     </div>
                     <div class="p-2">
-                        <p>{{cat.qty * cat.price | currency : 'GBP' :true}}</p>
+                        <p>{{cat.data.qty * cat.data.price | currency : 'GBP' :true}}</p>
                     </div>
                 </div>
 
                 <div class="line-hero-inner d-flex justify-content-between">
                     <div class="p-2">
                         <div class="d-flex qty-control">
-                            <div class="p-2 dec" (click)="decrement(cat, $event)"><md-icon>remove</md-icon></div>
+                            <div class="p-2 dec" (click)="decrement(cat, $event)"><mat-icon>remove</mat-icon></div>
 
-                            <div class="p-2 inc" (click)="increment(cat)"><md-icon>add</md-icon></div>
+                            <div class="p-2 inc" (click)="increment(cat)"><mat-icon>add</mat-icon></div>
                         </div>
                     </div>
                     <div class="p-2 delet-but">
-                        <p (click)="removeItem(cat)"><md-icon>delete</md-icon></p>
+                        <p (click)="removeItem(cat)"><mat-icon>delete</mat-icon></p>
                     </div>
                 </div>
 
@@ -37,10 +37,10 @@
 </div>
 <div *ngIf="toggle" id="more" class="more-cart" (click)="seeMoreCart()">
     <!-- <small>more</small> -->
-    <md-icon>expand_more</md-icon>
+    <mat-icon>expand_more</mat-icon>
     
 </div>
 <div *ngIf="toggle" id="less" class="less-cart" (click)="seeLessCart()">
-    <md-icon>expand_less</md-icon>
+    <mat-icon>expand_less</mat-icon>
     <!-- <small>less</small> -->
 </div>

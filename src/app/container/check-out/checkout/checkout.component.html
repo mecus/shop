@@ -10,17 +10,17 @@
                             <div class="card-body">
                                 <h3>Register for future convenience</h3>
                                 <!-- <app-paypal></app-paypal> -->
-                                <!-- <md-radio-group (change)="onChnage($event)">
-                                    <md-radio-button value="guest">Guest Checkout</md-radio-button>
+                                <!-- <mat-radio-group (change)="onChnage($event)">
+                                    <mat-radio-button value="guest">Guest Checkout</mat-radio-button>
                                     <br>
-                                    <md-radio-button value="register">Register</md-radio-button>
-                                </md-radio-group> -->
+                                    <mat-radio-button value="register">Register</mat-radio-button>
+                                </mat-radio-group> -->
                             <p>We accept number of payment card and also accept payment with paypal account.</p>
                             <small>In the next step you will have the option to choose payment method of your choice..</small>
                             <div class="check-continue">
-                                    <md-checkbox (change)="checkContinue($event)">
+                                    <mat-checkbox (change)="checkContinue($event)">
                                             Check box to continue!
-                                    </md-checkbox>
+                                    </mat-checkbox>
                             </div>
                             
                             </div>
@@ -38,17 +38,17 @@
                                 <p>please login below</p>
                                 <form novalidate class="login-form" [formGroup]="loginForm" (ngSubmit)="userLogin(loginForm.value)">
                                     <p>
-                                        <md-input-container class="login-full-width">
-                                        <span mdPrefix><md-icon>email</md-icon> &nbsp;</span>
-                                        <input formControlName="email" type="email"  mdInput placeholder="Email">
-                                        </md-input-container>
-                                        <md-input-container class="login-full-width">
-                                        <span mdPrefix><md-icon>lock_outline</md-icon> &nbsp;</span>
-                                        <input formControlName="password" type="password"  mdInput placeholder="Password">
-                                        </md-input-container>
+                                        <mat-input-container class="login-full-width">
+                                        <span matPrefix><mat-icon>email</mat-icon> &nbsp;</span>
+                                        <input formControlName="email" type="email"  matInput placeholder="Email">
+                                        </mat-input-container>
+                                        <mat-input-container class="login-full-width">
+                                        <span matPrefix><mat-icon>lock_outline</mat-icon> &nbsp;</span>
+                                        <input formControlName="password" type="password"  matInput placeholder="Password">
+                                        </mat-input-container>
                                     </p>
                                     <p id="errMsg">{{loginErrMsg}}</p>
-                                    <button md-raised-button type="submit">Login</button>
+                                    <button mat-raised-button type="submit">Login</button>
                                     
                                 </form>
                             </div>

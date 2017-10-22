@@ -14,12 +14,12 @@
           <small>Please enter your postcode to make sure we deliver to you</small>
         </strong></p>
         <post-code [requestPost]="openPostInput"></post-code>
-        <a color="primary" md-raised-button (click)="openPostBox()">Check your postcode</a>
+        <a color="primary" mat-raised-button (click)="openPostBox()">Check your postcode</a>
         <!-- <div class="request-postcode">  
-            <md-input-container>
-              <input #postcode type="text" mdInput name="postcode" required placeholder="Enter Postcode">
-            </md-input-container>
-            <a (click)="submitPostcode(postcode.value)" color= "primary" md-raised-button> <span>Check <i *ngIf="searchingPostcode" class="fa fa-spin fa-spinner" aria-hidden="true"></i></span></a>
+            <mat-input-container>
+              <input #postcode type="text" matInput name="postcode" required placeholder="Enter Postcode">
+            </mat-input-container>
+            <a (click)="submitPostcode(postcode.value)" color= "primary" mat-raised-button> <span>Check <i *ngIf="searchingPostcode" class="fa fa-spin fa-spinner" aria-hidden="true"></i></span></a>
         </div>
         
         <p id="succMsg" *ngIf="successMsg">{{successMsg}}</p>
@@ -31,76 +31,67 @@
         
         <div class="customer-login">
           <p>Already a Customer</p>
-          <a routerLink="/login">  Login here</a>
-          <!-- <md-icon>vpn_key</md-icon> -->
+          <a (click)="gotoLogin()"> {{userlogin}}</a>
+          <!-- <mat-icon>vpn_key</mat-icon> -->
         </div>
       </div>
       <div  class="p-2 welcome-slider">
-        <div *ngIf="ads">
-            <img class="home-slide-image" [src]=ads.photo_url alt="">
-          <!-- <carousel>
-            <slide *ngFor="let ad of ads">
-              <img class="home-slide-image" [src]=ad.photo_url alt="">
-              {{ad._id}}
-              <div class="carousel-caption">
-                <h3>Our Product</h3>
-                <p>Making good food</p>
-              </div>
-            </slide>
-           
-          </carousel> -->
-        </div>
+        <nge-carousel
+          [images]="ads"
+          [options]="options">
+        </nge-carousel>
+       
       </div>
     </div>
   </div>
 </div>
 <!-- <confirm-alert></confirm-alert> -->
-<!-- <my-lib></my-lib> -->
+
 <div class="container page-rule">
   <div class="grid-container d-flex flex-wrap flex-row justify-content-between">
     <div class="grid-1 p-2">
         <h1>Shopping Assistance</h1>
         <div class="grid-set-1 d-flex flex-row align-self-stretch">
           <div class="p-1">
-            <md-icon>transfer_within_a_station</md-icon>
+            <mat-icon>transfer_within_a_station</mat-icon>
           </div>
           <div class="p-2">
               <p>Our friendly drivers are on hand at your doorstep to answer any questions you might have</p>
           </div>
         </div>
-        <a md-raised-button>more</a>
+        <a mat-raised-button>more</a>
     </div>
     <div class="grid-2 p-2">
       <h1>Home Delivery</h1>
       <div class="grid-set-2 d-flex flex-row align-self-stretch">
         <div class="p-1">
-          <md-icon>airport_shuttle</md-icon>
+          <mat-icon>airport_shuttle</mat-icon>
         </div>
         <div class="p-2">
             <p>Buy uRGy groceries online for delivery straight to your door where ever you leave in the UK.</p>
         </div>
       </div>
-      <a md-raised-button>read more</a>
+      <a mat-raised-button>read more</a>
       
     </div>
     <div class="grid-3 p-2">
         <h1>Cooking Video</h1>
         <div class="grid-set-3 d-flex flex-row align-self-stretch">
           <div class="p-1 icon-container">
-            <md-icon class="icon-main">personal_video</md-icon>
+            <mat-icon class="icon-main">personal_video</mat-icon>
             <div class="icon-cover"></div>
           </div>
           <div class="p-2">
               <p>We make some cooking videos on how to make differnt kind of food including their condiments and provision to order them on the fly.. check it out</p>
           </div>
         </div>
-        <a routerLink="/instruction_video" md-raised-button>Watch</a>
+        <a routerLink="/instruction_video" mat-raised-button>Watch</a>
     </div>
   </div>
   
-  <!-- <button md-raised-button (click)="onButtonClick()" > Create Client</button>
-  <button md-raised-button > Google Logout</button>
-  <a md-mini-fab ><md-icon>clear</md-icon></a> -->
+  <!-- <button mat-raised-button (click)="onButtonClick()" > Create Client</button>
+  <button mat-raised-button > Google Logout</button>
+  <a mat-mini-fab ><mat-icon>clear</mat-icon></a> -->
 
   <div class="d-flex flex-row justify-content-between hero-ad-container">
     <div class="p-2">
@@ -110,6 +101,5 @@
         <img src="assets/foodadvert-2.jpeg" alt="">
     </div>
   </div>
-
 
 </div>

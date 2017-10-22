@@ -9,11 +9,11 @@
         <div class="p-2 d-flex flex-column cart-left-side">
             <div *ngFor="let cart of cart$" class="p-2 d-flex justify-content-start cart-item">
                 <div class="p-2 cart-image">
-                    <img [src]="cart.imageUrl" alt="cart-image">
+                    <img [src]="cart.data.imageUrl" alt="cart-image">
                 </div>
                 <div class="p-2 d-flex">
                     <div class="p-2">
-                        <h1>{{cart.name}}</h1>
+                        <h1>{{cart.data.name}}</h1>
                     </div>
                     <!-- <div class="p-2">
                         <h2>Quantity</h2>
@@ -27,32 +27,32 @@
                         <h2>Quantity</h2>
                         <span class="d-flex justify-content-around">
                             <span class="p-2 minus-icon">
-                                <md-icon (click)="decrement(cart, $event)">remove</md-icon>
+                                <mat-icon (click)="decrement(cart, $event)">remove</mat-icon>
                             </span>
-                            <span class="p-2">{{cart.qty}}</span>
+                            <span class="p-2">{{cart.data.qty}}</span>
                             <span class="p-2 add-icon">
-                                <md-icon (click)="increment(cart)">add</md-icon>
+                                <mat-icon (click)="increment(cart)">add</mat-icon>
                             </span>
                         </span>
                     </div>
                     <div class="p-2">
                         <h2>Unit Price</h2>
-                        <p>{{cart.price | currency : 'GBP' :true}}</p>
+                        <p>{{cart.data.price | currency : 'GBP' :true}}</p>
                     </div>
                     <div class="p-2 total">
                         <h2>Total</h2>
-                        <p>{{cart.qty * cart.price | currency : 'GBP' :true}}</p>
+                        <p>{{cart.data.qty * cart.data.price | currency : 'GBP' :true}}</p>
                     </div>
                     <div class="p-2 delete">
                         <!-- <span>Remove</span> -->
-                        <md-icon (click)="removeCart(cart)">delete_forever</md-icon>
+                        <mat-icon (click)="removeCart(cart)">delete_forever</mat-icon>
                     </div>
                 </div>
             </div>
         </div>
 
         <div class="p-2 align-middle total-calc">
-            <a md-raised-button (click)="goBack()">Keep Shopping</a>
+            <a mat-raised-button (click)="goBack()">Keep Shopping</a>
             <div class="cart-ad">
                     <h1>advert here</h1>
             </div>
@@ -65,7 +65,8 @@
                     <p>you just saved: {{discoutSave | currency: 'GBP': true}}</p>
                 </div>
             </div>
-            <a md-raised-button (click)="checkOut()" >Continue to Checkout</a>
+            <button *ngIf="checkoutMsg" mat-raised-button>{{checkoutMsg}}</button>
+            <a mat-raised-button (click)="checkOut()" >Continue to Checkout</a>
         </div>
     </div>
 
@@ -90,12 +91,12 @@
             <td>{{cat.qty}}</td>
             <td>{{cat.price | currency : 'GBP' :true}}</td>
             <td>{{cat.qty * cat.price | currency : 'GBP' :true}}</td>
-            <th> <a (click)="removeCart(cat)"><md-icon>delete_forever</md-icon> </a></th>
+            <th> <a (click)="removeCart(cat)"><mat-icon>delete_forever</mat-icon> </a></th>
             </tr>
         
         </tbody>
         </table>
-        <a md-raised-button (click)="goBack()">Continue Shopping</a>
+        <a mat-raised-button (click)="goBack()">Continue Shopping</a>
     </div> -->
 </div>
 <!-- <footer-menu></footer-menu> -->

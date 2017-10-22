@@ -2,7 +2,7 @@
     <div class="cart-total d-flex justify-content-end">
         <div *ngIf="togglecart" id="check-out" class="p-2 d-flex check-out flex-column">
             <div class="p-2">
-                <button md-raised-button>Checkout</button>
+                <button mat-raised-button>Checkout</button>
             </div>
             <div class="p-2">
                 <p>View Basket</p>
@@ -10,7 +10,7 @@
         </div>
         <div (click)="toggleCart()" class="p-2 cart-holder d-flex flex-column">
             <div class="p-2 cart-ico">
-                <md-icon>shopping_cart</md-icon>
+                <mat-icon>shopping_cart</mat-icon>
             </div>
             <div class="p-2 cart-p">
                 <h1 ><cart-total></cart-total></h1>
@@ -21,25 +21,25 @@
     <div id="menu-head" class="d-flex w3-card-2 justify-content-between menu-head">
         <div class="user-auth d-flex p-2">
             <div *ngIf="currentUser" class="login p-2">
-                <a (click)="logOff()" md-raised-button>
-                    <md-icon>power_settings_new</md-icon> Off
+                <a (click)="logOff()" mat-raised-button>
+                    <mat-icon>power_settings_new</mat-icon> Off
                 </a>
             </div>
             <div *ngIf="currentUser" class="login p-2">
-                    <a routerLink="/account/account_setting" md-raised-button>
-                        <md-icon>account_circle</md-icon> Set
+                    <a routerLink="/account/account_setting" mat-raised-button>
+                        <mat-icon>account_circle</mat-icon> Set
                     </a>
                 </div>
             <div *ngIf="!currentUser" class="login p-2">
-                <a routerLink="/login" md-raised-button>Login</a>
+                <a routerLink="/login" mat-raised-button>Login</a>
             </div>
             <div *ngIf="!currentUser" class="register p-2">
-                <a routerLink="/register" md-raised-button>Register</a>
+                <a routerLink="/register" mat-raised-button>Register</a>
             </div>
         </div>
         <div class="buttn p2">
-            <md-icon *ngIf="!menu" (click)="slideMenu()" >menu</md-icon>
-            <md-icon *ngIf="menu" (click)="slideMenu()" >clear</md-icon>
+            <mat-icon *ngIf="!menu" (click)="slideMenu()" >menu</mat-icon>
+            <mat-icon *ngIf="menu" (click)="slideMenu()" >clear</mat-icon>
         </div>
         <div (click)="goHome()" class="brand p2">
             <h1>uRGy</h1>
@@ -54,20 +54,20 @@
     <div class="mobile-menu d-flex justify-content-start">
         <div class="icons p-2 d-flex flex-column">
             <span>
-                <md-icon>home</md-icon>
+                <mat-icon>home</mat-icon>
             </span>
             <span>
-                <md-icon class="icon-main">personal_video</md-icon>
+                <mat-icon class="icon-main">personal_video</mat-icon>
             </span>
             <span>
-                <md-icon class="icon-main">airport_shuttle</md-icon>
+                <mat-icon class="icon-main">airport_shuttle</mat-icon>
             </span>
             
         </div>
-        <md-list class="p-2 list-dept">
+        <mat-list class="p-2 list-dept">
             <div class="list-control d-flex justify-content-start">
                 <span (click)="back()" class="p-2">
-                    <md-icon>arrow_back</md-icon>
+                    <mat-icon>arrow_back</mat-icon>
                 </span>
                 <span (click)="back()" class="p-2">
                     <h1>Back</h1>
@@ -76,31 +76,31 @@
                     <h1 id="dept-name">{{name}}</h1>
                 </span>
             </div>
-            <md-list-item class="md-list-item-1" *ngFor="let dept of departments">
+            <mat-list-item class="mat-list-item-1" *ngFor="let dept of departments">
                 <span (click)="getCatMenu(dept)" class="item d-flex justify-content-between">
                     <span class="p-2">{{dept.name}}</span>
                     <span class="arrow-icon p-2">
                         <i class="fa fa-angle-right" aria-hidden="true"></i>
                     </span>
                 </span>
-            </md-list-item>
-            <!-- <md-list-item class="md-list-item-2" *ngFor="let dept of departments">
+            </mat-list-item>
+            <!-- <mat-list-item class="mat-list-item-2" *ngFor="let dept of departments">
                     <span (click)="getCatMenu(dept)" class="item-2 d-flex justify-content-between">
                         <span class="p-2 d-name">{{dept.name}}</span>
                         <span class="arrow-icon p-2">
                             <i class="fa fa-angle-right" aria-hidden="true"></i>
                         </span>
                     </span>
-                </md-list-item> -->
-            <md-list-item class="ls-offer">
+                </mat-list-item> -->
+            <mat-list-item class="ls-offer">
                 <span  class="offer-item d-flex justify-content-between">
                     <span class="p-2 offer">Special Offer</span>
                     <span class="arrow-icon p-2">
                         <!-- <i class="fa fa-angle-right" aria-hidden="true"></i> -->
                     </span>
                 </span>
-            </md-list-item>
+            </mat-list-item>
         
-        </md-list>
+        </mat-list>
     </div>
 </div>

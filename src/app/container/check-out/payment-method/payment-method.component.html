@@ -7,25 +7,27 @@
                 <div class="card-header">
                     <h1>Payment Method</h1>
                     <div *ngIf="paymentMethod" class="proceed-button">
-                        <a md-raised-button (click)="goToDeliveryMethod()" >Proceed to delivery method</a> 
+                        <a mat-raised-button (click)="goToDeliveryMethod()" >Proceed to delivery method</a> 
                     </div>
                 </div>
-                <p *ngIf="notice"> <small>{{notice}}</small> </p>
-                <small style="color:lightgreen">{{paymentAdded}}</small>
-                <small *ngIf="!card && !paypal">you do not have payment method in your account.. pls add payment method now</small>
-                <md-radio-group (change)="selectedMethod($event)"> 
-                        <md-radio-button *ngIf="card" value="card">
-                                <md-list>
-                                    <md-list-item>
-                                        <md-icon md-list-icon>credit_card</md-icon>
-                                        <h4 md-line>{{card.cardType}}</h4>
-                                        <p md-line> {{card.maskedNumber}} </p>
-                                    </md-list-item>
-                                </md-list>
-                        </md-radio-button>
-                    
-                        <md-radio-button *ngIf="paypal" value="paypal">Pay with paypal account.. {{paypal.email}}</md-radio-button>
-                </md-radio-group>
+            <div class="card-body">
+                    <p *ngIf="notice"> <small>{{notice}}</small> </p>
+                    <small style="color:lightgreen">{{paymentAdded}}</small>
+                    <small *ngIf="!card && !paypal">you do not have payment method in your account.. pls add payment method now</small>
+                    <mat-radio-group (change)="selectedMethod($event)"> 
+                            <mat-radio-button *ngIf="card" value="card">
+                                    <mat-list>
+                                        <mat-list-item>
+                                            <mat-icon mat-list-icon>credit_card</mat-icon>
+                                            <h4 mat-line>{{card.cardType}}</h4>
+                                            <p mat-line> {{card.maskedNumber}} </p>
+                                        </mat-list-item>
+                                    </mat-list>
+                            </mat-radio-button>
+                        
+                            <mat-radio-button *ngIf="paypal" value="paypal">Pay with paypal account.. {{paypal.email}}</mat-radio-button>
+                    </mat-radio-group>
+            </div>
             </div>
         </div>
     </div>
@@ -34,7 +36,7 @@
             <app-paypal (returnResult)="paymentMethodResult($event)"></app-paypal>
         </div>
         <div class="p-2">
-            <a (click)="showCardForm()" md-raised-button><md-icon>credit_card</md-icon> Checkout with card</a>
+            <a (click)="showCardForm()" mat-raised-button><mat-icon>credit_card</mat-icon> Checkout with card</a>
         </div>
     </div>
     <div id="pay-card">
@@ -43,7 +45,7 @@
 
     <div *ngIf="grayPage" class="pageProcessCover">
         <div class="center-point">
-            <md-spinner></md-spinner>
+            <mat-spinner></mat-spinner>
         </div>
     </div>
 </div>

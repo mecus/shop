@@ -39,28 +39,35 @@ export class CheckoutComponent implements OnInit, OnDestroy {
             // this._router.navigate(["/payment_method"]);
             
         }
+        // this.progressService.setProgress(bill);
     }
 
     userLogin(user){
-        console.log(user)
         if(!user.email && !user.password){
             return this.loginErrMsg = "fields must not be empty!";
         }
-
-        this.authService.emailLogin(user).then((res)=>{
-           this.storeService.storeData('user', res);
-           this.storeService.storeData('email', res.email);
-           this.accountService.getAccount(res.email).subscribe((account)=>{
-               this.accountService.getAddress(account._id).subscribe((addresses)=>{
-                    this.storeService.storeData('postcode', addresses[0].post_code);
-                    this._router.navigate(["/payment_method"]);
-               });
-           });
-     
-        },(err)=>{
-            console.log(err)
-            this.loginErrMsg = err.message;
-        })
+        this.authService.authState().subscribe((state)=>{
+            if(state){
+                return this.loginErrMsg = `A user has already logged on with ${state.email}`;
+            }else{
+                this.authService.emailLogin(user).then((res)=>{
+                    this.storeService.storeData('user', res);
+                    this.storeService.storeData('email', res.email);
+                    this.storeService.storeData('uid', res.uid);
+                    this.accountService.getAccount(res.email).subscribe((account)=>{
+                        this.accountService.getAddress(account._id).subscribe((addresses)=>{
+                             this.storeService.storeData('postcode', addresses[0].post_code);
+                             this._router.navigate(["/payment_method"]);
+                        });
+                    });
+              
+                 },(err)=>{
+                     console.log(err)
+                     this.loginErrMsg = err.message;
+                 })
+            }
+        });
+        
     }
 
     ngOnInit(){

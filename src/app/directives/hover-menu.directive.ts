@@ -15,7 +15,7 @@ export class HoverMenuDirective {
   }
   @HostListener('mouseleave') mouseleave(eventData:Event){
     this.backgroundColor = "transparent";
-    this.textColor = "lightslategrey";
+    // this.textColor = "lightslategrey";
   }
   // @HostListener('click') onClcik(e:Event){
   //   this.backgroundColor = "#f5f5f5";

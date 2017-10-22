@@ -10,7 +10,7 @@ import { AuthService } from "../../../authentications/authentication.service";
 import { TempOrderService } from "../../../services/temp-order.service";
 import { OrderService } from "../../../services/order.service";
 import { CartService } from "../../../services/cart.service";
-import { TempOrder, tempOtype } from "../../../models/tempOrder.model";
+// import { TempOrderType } from "../../../models/tempOrder.model";
 import * as _ from 'lodash';
 import { ProgressService } from '../../../services/checkout-progress.service';
 
@@ -30,14 +30,14 @@ export class PaymentMethodComponent implements OnInit, AfterViewInit {
   card;
   notice:string;
   paypal;
-  temporder:tempOtype;
+  temporder;
   constructor(private accountService:AccountService, private authService:AuthService, 
     private storeService:StorageService, private _fb:FormBuilder, private _router:Router,
     private paymentService:PaymentService, private windowService:WindowService, private cartService:CartService,
     private tempOrderService:TempOrderService, private orderService:OrderService, private progressService: ProgressService) {
       this.document = this.windowService.getDocumentRef();
       this.temporder = {
-        userid: null,
+        userid: "",
         delivery_address: {
           full_name: null,
           address: null,
@@ -46,7 +46,7 @@ export class PaymentMethodComponent implements OnInit, AfterViewInit {
           post_code: null,
           country: null
         },
-        delivery_method: {
+        delivery_option: {
           method: null,
           price: null
         },

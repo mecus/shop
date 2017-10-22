@@ -4,7 +4,7 @@
 /dist
 /tmp
 /out-tsc
-/src/app/firebase-configuration.ts
+/src/app/environment-var.ts
 .vscode
 **/**/*.js
 **/**/*.js.map

@@ -28,18 +28,18 @@
                     <h2>List of Ingridents needed</h2>
                 </div>
                 <div class="p-2">
-                  <a md-raised-button>Add all to cart</a>
+                  <a mat-raised-button>Add all to cart</a>
                 </div>
               </div>
               
               <div *ngFor="let item of ingridents" class="d-flex justify-content-start list-items ">
                 <div class="p-2 item-1">
-                  <img [src]="item.image" alt="prod-image">
+                  <img [src]="item.imageUrl" alt="prod-image">
                 </div>
                 <div class="p-2 item-2">
                   <h1>{{item.name}}</h1>
                   <strong><p>Price: {{item.price | currency: 'GBP': true}}</p></strong>
-                  <p>Size: {{item.size}}</p>
+                  <p>Size: {{item.description.size}}</p>
                 </div>
                 <div class="p-2 ml-auto item-3">
                   <button class="btn btn-success">Add</button>

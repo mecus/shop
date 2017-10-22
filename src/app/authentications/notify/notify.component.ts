@@ -26,16 +26,18 @@ export class NotifyComponent implements OnInit {
     
    }
    goCheckOut(){
-    this.cartService.cartTotal().subscribe((carts)=>{
-      let total = carts.filter(cart=> cart.postcode == this.storeService.retriveData('postcode'))
-      .map(cart=>cart.qty * Number(cart.price));
-       this.sum = total.reduce((sum, num)=>{return sum + num}, 0).toFixed(2);
-      
-      });
       if(this.sum > 40){
-        this._router.navigate(["/checkout"]);
+        if(this.authenticated == true){
+          this._router.navigate(["/checkout"]);
+        }else{
+          this._router.navigate(["/login"]);
+        }
+  
        }else{
         this.limitMsg = "You need to spend £40 or more";
+        setTimeout(()=>{
+          this.limitMsg = "";
+        }, 8000);
       }
     // this._router.navigate(["/checkout"]);
    }
@@ -62,11 +64,18 @@ export class NotifyComponent implements OnInit {
     this.storeService.cleardata('postcode');
     this.storeService.cleardata('email');
     this.storeService.cleardata('user');
+    this.storeService.cleardata('uid');
     this.authService.logout();
   }
   clearMenu(){
     this.clearHeighlightMenu.clearMenu();
   }
-  ngOnInit() {}
+  ngOnInit() {
+    this.cartService.cartTotal().subscribe((carts)=>{
+      let total = carts.filter(cart=> cart.postcode == this.storeService.retriveData('postcode'))
+      .map(cart=>cart.qty * Number(cart.price));
+       this.sum = total.reduce((sum, num)=>{return sum + num}, 0).toFixed(2);
+      });
+  }
 
 }
