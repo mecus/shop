@@ -1,0 +1,22 @@
+.product-container{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+    h1{
+        font-family: 'Open Sans Bold', sans-serif;
+        font-size: 1.5em;
+        text-transform: uppercase;
+    }
+}
+
+.list-container {
+    display: flex;
+    flex-direction: column;
+    // max-height: 500px;
+    width: 700px;
+  }
+  
+  .mat-table {
+    overflow: auto;
+    // max-height: 500px;
+  }

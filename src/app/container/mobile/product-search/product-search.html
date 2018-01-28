@@ -1,0 +1,20 @@
+<div class="search-container">
+    <mat-toolbar color="primary">
+        <a mat-mini-fab color="primary" (click)="goback()"><mat-icon>arrow_back</mat-icon></a>
+        <form [formGroup]="searchForm">
+            <mat-form-field>
+                <input autofocus matInput formControlName="search" placeholder="Search">
+            </mat-form-field>
+        </form>
+    </mat-toolbar>
+    <mat-nav-list *ngIf="searchProducts">
+        <mat-list-item *ngFor="let product of searchProducts | async">
+            <img (click)="findResult(product)" matListAvatar [src]="product.imageUrl" alt="...">
+            <h3 (click)="findResult(product)" matLine> {{product.name}} </h3>
+            <p matLine>
+            <span> {{product.price | currency:'GBP':true}} </span>
+            <!-- <span class="demo-2"> -- {{product.size}} </span> -->
+            </p>
+        </mat-list-item>
+    </mat-nav-list>
+</div>

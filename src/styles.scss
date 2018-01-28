@@ -1,7 +1,7 @@
 @import "node_modules/bootstrap/scss/bootstrap";
 @import './assets/stylesheets/app-theme';
 @import "./variables";
-@import "./w3c.css";
+// @import "./w3c.css";
 
 // $primary-color-dark:   #00796B;
 // $primary-color:        #009688;
@@ -20,6 +20,13 @@
 /*----- General Classes ------*/
 .page-rule{padding-bottom: 50px;}
 
+* {
+    box-sizing: border-box;
+}
+// .container{
+//     width: 80%;
+//     margin: auto;
+// }
 body{
     // background-color: #f5f8fa;
     margin: 0px;
@@ -27,21 +34,24 @@ body{
     font-family: $open-sans-light !important;
     background-color: #ebeff1;
 }
-.mobile-menu{
-    display: none;
+// .moby{
+//     display: none;
+// }
+.flex-container{
+    display: flex;
+    flex-direction: row;
 }
-.main-menu{
-    display: block;
-}
-@media screen and (max-width: 480px){
-    .main-menu{
+
+// Apply to mobile
+@media only screen and (max-width: 768px){
+    .dextop{
         display: none;
     }
-    .mobile-menu{
+    .moby{
         display: block;
     }
     .mobile-margin-top{
-        margin-top: 70px;
+        margin-top: 50px;
     }
     .welcome-slider{
         display: none;
@@ -49,11 +59,25 @@ body{
     .hide-on-mobile{
         display: none;
     }
+    .mobile-background{
+        background-color: #ffffff;
+    }
+    
+    
 }
-
-
-
-
+// Apply to Desktop
+@media only screen and (min-width: 768px){
+    // hide mobile items
+    .hide-on-desktop{
+        display: none;
+    }
+    .dextop{
+        display: block;
+    }
+    .moby{
+        display: none;
+    }
+}
 /* Typography
 
 ----------------------------------------------------------- */

@@ -3,18 +3,18 @@
     <div *ngFor="let cat of cart$" class="colC">
         <div class="d-flex justify-content-between cart-list">
             <div class="p-2 img-hero">
-                <img [src]="cat.data.imageUrl"  alt="prod-image">
+                <img [src]="cat.imageUrl"  alt="prod-image">
             </div>
             <div class="p-2 line-hero">
                 <div class="line-hero-inner d-flex justify-content-between">
                     <div class="p-2">
-                        <p>{{cat.data.name}}</p>
+                        <p>{{cat.name}}</p>
                     </div>
                     <div class="p-2">
-                        <p>qty: {{cat.data.qty}}</p>
+                        <p>qty: {{cat.qty}}</p>
                     </div>
                     <div class="p-2">
-                        <p>{{cat.data.qty * cat.data.price | currency : 'GBP' :true}}</p>
+                        <p>{{cat.qty * catprice | currency : 'GBP' :true}}</p>
                     </div>
                 </div>
 

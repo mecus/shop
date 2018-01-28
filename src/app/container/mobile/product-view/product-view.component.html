@@ -1,0 +1,111 @@
+<div class="mobile-container moby">
+<mat-toolbar color="primary">
+    <a mat-mini-fab color="primary" (click)="goback()"><mat-icon>arrow_back</mat-icon></a>
+    <span><h1>{{productName}}</h1></span>
+    <span (click)="open()" class="more-vert"><mat-icon>more_vert</mat-icon></span>
+</mat-toolbar>
+
+<mat-card *ngIf="product" class="card-holder">
+    <mat-card-header>
+        <div class="additional-info">
+            <span class="product-code">
+                <span>Code: </span>
+                <span>{{product.code}}</span>
+            </span>
+            <span class="in-cart" *ngFor="let cart of carts$">
+                <span *ngIf="cart.name == product.name"><mat-icon>add_shopping_cart</mat-icon></span>
+                <span *ngIf="cart.name == product.name" class="cart-num">{{cart.qty}}</span>
+            </span>
+        </div>
+    </mat-card-header>
+    <img md-card-image [src]="product.imageUrl" alt="">
+    <mat-card-content>
+        <h1>{{product.name}}</h1>
+        <p>{{product.price | currency:'GBP':true}}</p>
+       <a (click)="addToCart(product)" mat-raised-button>Add</a>
+    </mat-card-content>
+    <!-- <mat-card-actions>
+        <button md-button>REVIEW</button>
+        <button md-button>SHARE</button>
+    </mat-card-actions> -->
+</mat-card>
+<div class="description">
+    <mat-expansion-panel>
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+            Product Description
+            </mat-panel-title>
+            <mat-panel-description>
+            see details
+            </mat-panel-description>
+        </mat-expansion-panel-header>
+        <p>
+            The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
+            A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
+            bred for hunting.
+        </p>
+    </mat-expansion-panel>
+</div>
+
+<div class="nutrition">
+    <mat-expansion-panel>
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+            Product Nutrition
+            </mat-panel-title>
+            <mat-panel-description>
+            view nutrient info
+            </mat-panel-description>
+        </mat-expansion-panel-header>
+        <p>
+            The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
+            A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
+            bred for hunting.
+        </p>
+    </mat-expansion-panel>
+</div>
+
+<div class="reviews">
+    <mat-expansion-panel>
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                Reviews
+            </mat-panel-title>
+
+            <mat-panel-description>
+            view or write reviews
+            </mat-panel-description>
+        </mat-expansion-panel-header>
+        <mat-checkbox (change)="showReviewForm($event)" >Please add your review to this product</mat-checkbox>
+        <p style="color: red; margin: 5px;" *ngIf="userErr">{{userErr}} </p>
+        <a style="color: #FF9100;" *ngIf="userErr" mat-button routerLink="/login" >Sign In here <mat-icon>navigate_next</mat-icon> </a>
+        <div class="review-form">
+            <form *ngIf="showForm" class="example-form jumbotron" [formGroup]="reviewForm" (ngSubmit)="addReviews(reviewForm.value)">
+                <input hidden formControlName="user">
+                <input hidden formControlName="productId">
+                <input hidden formControlName="productName">
+
+                <mat-input-container>
+                    <input formControlName="userName" matInput placeholder="Nickname" value="">
+                </mat-input-container>
+                <p>
+                    <mat-input-container class="example-full-width">
+                        <textarea formControlName="comment" matInput #comment maxlength="256" placeholder="Your Review"></textarea>
+                        <mat-hint align="start"><strong>Please tell us what you think about this product</strong> </mat-hint>
+                        <mat-hint align="end">{{comment.value.length}} / 256</mat-hint>
+                    </mat-input-container>
+                </p>
+                <div id="submit-btn">
+                    <button type="submit" mat-raised-button>Submit</button>
+                </div>
+                <span *ngIf="errMsg"><p id="error-msg" >{{errMsg}}</p> </span>
+            </form>
+        </div>
+        <div *ngIf="product" class="product-review">
+            <app-reviews [Id]="product._id"></app-reviews>
+        </div>
+    </mat-expansion-panel>
+</div>
+<post-code [requestPost]="openPostInput"></post-code>
+<home-link (click)="close($event)" [openDialog]="dialogBox"></home-link>
+</div>

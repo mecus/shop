@@ -1,0 +1,166 @@
+// Listing Department
+.department-container{
+    width: 500px;
+    h1{
+        font-family: 'Open Sans Bold', sans-serif;
+        font-size: 1.5em;
+        padding-top: 20px;
+        text-transform: uppercase;
+        small{
+            font-size: .6em;
+            color: lightgrey;
+          
+        }
+    }
+    .dept-item{
+        display: flex;
+        justify-content: space-between;
+        margin: 5px 0px;
+        padding-right: 20px;
+        background-color: #ffffff;
+        align-items: center;
+        &:hover{
+            background-color: lighten(lightgrey , 12%);
+            cursor: pointer;
+        }
+        .item{
+            img{width: 50px;}
+        }
+        .item:nth-child(2){
+            text-transform: uppercase;
+        }
+        .item:nth-child(3){
+            color: lighten(lightslategrey,  20%);
+            display: flex;
+            justify-content: flex-end;
+            span#group{
+                margin-right: 20px;
+            }span mat-icon {
+                color: lighten(lightslategrey, 30%);
+                &:hover{
+                    cursor: pointer;
+                    color: red;
+                }
+            }
+
+        }
+        
+    }
+    
+}
+// Single Department 
+.single-dept-container{
+    position: relative;
+    // width: 100vw;
+    small#ash{
+        font-size: 1em;
+        font-weight: bold;
+        text-transform: uppercase;
+    }
+    mat-icon{
+        position: relative;
+        top: 5%;
+        left: 5%;
+    }
+    .s-dept{
+        display: flex;
+        justify-content: space-between;
+        width: 500px;
+        mat-icon{
+            margin-top: 20px;
+            font-size: 1.5em;
+            color: lighten(lightslategrey, 1%);
+            &:hover{
+                cursor: pointer;
+                color: green;
+            }
+        }
+        h1{
+            font-family: 'Open Sans Bold', sans-serif;
+            font-size: 1.5em;
+            padding-top: 20px;
+            text-transform: uppercase;
+            small{
+                font-size: 0.6em;
+                text-transform: lowercase;
+                color: lighten(lightslategrey, 20%); 
+            }
+        }
+        small{
+            font-size: 1em;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+    }
+    .aisles-list{
+        margin-top: 10px;
+        width: 500px;
+        .ai-item{
+            display: flex;
+            justify-content: space-between;
+            background-color: lighten(lightgrey, 20%);
+            padding: 5px 10px;
+            span#group{
+                color: lighten(lightslategrey, 20%);
+            }
+            .right-hand{
+                display: flex;
+                justify-content: flex-end;
+                span#group{
+                    margin-right: 20px;
+                }
+                span mat-icon {
+                    color: lighten(lightslategrey, 30%);
+                    &:hover{
+                        cursor: pointer;
+                        color: red;
+                    }
+                }
+            }
+        }
+    }
+    .addbtn{
+        margin-top: 20px;
+    }
+    .aisle-form-container{
+        position: absolute;
+        top: 0;
+        width: 100vw;
+        height: 100vh;
+        background-color: #ffffff;
+        margin-left: -20px;
+        .form-content{
+            position: absolute;
+            top: 10%;
+            left: 10%;
+            width: 600px;
+            .form-fields>*{
+                margin-right: 20px;
+            }
+        }
+    }
+}
+
+// Adding Department
+.example-container {
+    display: flex;
+    flex-direction: column;
+    width: 500px;
+    padding: 20px;
+    .input-field{
+        display: flex;
+        justify-content: space-between;
+
+    }
+    .input-field>* {
+        width: 100%;
+        margin-right: 10px;
+    }
+    .file-input{
+        margin: 20px 0px;
+    }
+  }
+  
+  .example-container > * {
+    width: 100%;
+  }

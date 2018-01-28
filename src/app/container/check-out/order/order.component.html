@@ -1,38 +1,49 @@
-<check-out-menu></check-out-menu>
 
-<div class="container d-flex flex-row justify-content-around page-rule">
-  <div class="p-2 card-form">
-    <form [formGroup]="ordForm" (ngSubmit)="createOrder(ordForm.value)">
-        <div class="form-group">
-            <input formControlName="order_no" type="text" class="form-control" id="" placeholder="Order Number">
-            <input formControlName="email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-            <input formControlName="account_id" type="text" class="form-control" id="" placeholder="account id">
-            <input formControlName="customer_no" type="text" class="form-control" id="" placeholder="customer no">
-            <input formControlName="amount" type="text" class="form-control" id="" placeholder="Amount">
-            <input formControlName="telephone" type="text" class="form-control" id="" placeholder="Telephone">
-            <input formControlName="delivery_method" type="text" class="form-control" id="" placeholder="Delivery Method">
-            <input formControlName="status" type="text" class="form-control" id="" placeholder="Order Status">
-            <input formControlName="ip_address" type="text" class="form-control" id="" placeholder="Ip Address">
+<div class="container"> 
+    
+    <div class="order-container d-flex flex-column justify-content-around page-rule">
+        <ul class="list-group">
+            <li class="list-group-item d-flex justify-content-between active-color">
+                <span class="mr-auto">Your Basket</span>
+                <a>Order and Continue</a>
+                <mat-icon >arrow_forward</mat-icon> 
+            </li>
+        </ul>
+        <div class="p-2 aside-check-cart">
+            <div class="card-body-box">
+                <checkout-cart></checkout-cart>
+                <!-- <a mat-raised-button routerLink="/review_and_payment" >Review and Pay</a> -->
+            </div>
         </div>
-  
-        <div class="form-group">
-            <label for="exampleTextarea">Note</label>
-            <input hidden formControlName="customer_name" type="text" class="form-control" id="" placeholder="Customer Name">
-            <textarea formControlName="note" class="form-control" id="exampleTextarea" placeholder="tell us what you want with your order" rows="3"></textarea>
-        </div>
-        
-        <button mat-raised-button type="submit" >Order and Continue</button>
-    </form>
-  </div>
-  <div class="p-2 card aside-check-cart">
-      <div class="card-block">
-          <checkout-cart></checkout-cart>
-          <!-- <a mat-raised-button routerLink="/review_and_payment" >Review and Pay</a> -->
-      </div>
-  </div>
+    <div class="p-2 card-form">
+        <form [formGroup]="ordForm" (ngSubmit)="createOrder(ordForm.value)">
+            <div class="form-group">
+                <input hidden formControlName="order_no" type="text" class="form-control" id="" placeholder="Order Number">
+                <input hidden formControlName="email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                <input hidden formControlName="account_id" type="text" class="form-control" id="" placeholder="account id">
+                <input hidden formControlName="customer_no" type="text" class="form-control" id="" placeholder="customer no">
+                <input hidden formControlName="amount" type="text" class="form-control" id="" placeholder="Amount">
+                <input hidden formControlName="telephone" type="text" class="form-control" id="" placeholder="Telephone">
+                <input hidden formControlName="delivery_method" type="text" class="form-control" id="" placeholder="Delivery Method">
+                <input hidden formControlName="status" type="text" class="form-control" id="" placeholder="Order Status">
+                <input hidden formControlName="ip_address" type="text" class="form-control" id="" placeholder="Ip Address">
+            </div>
+    
+            <div class="form-group">
+                <label for="exampleTextarea">Note</label>
+                <input hidden formControlName="customer_name" type="text" class="form-control" id="" placeholder="Customer Name">
+                <textarea formControlName="note" class="form-control" id="exampleTextarea" placeholder="tell us what you want with your order" rows="3"></textarea>
+            </div>
+            
+            <button mat-raised-button type="submit" >Order and Continue</button>
+        </form>
+    </div>
+    
+    </div>
 </div>
-<div *ngIf="grayPage" class="pageProcessCover">
+<nge-load-spinner [start]="grayPage"></nge-load-spinner>
+<!-- <div *ngIf="grayPage" class="pageProcessCover">
     <div class="center-point">
         <mat-spinner></mat-spinner>
     </div>
-</div>
+</div> -->

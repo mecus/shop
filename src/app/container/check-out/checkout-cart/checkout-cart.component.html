@@ -1,9 +1,9 @@
 <div class="card">
-  <div class="card-header d-flex justify-content-between">
+  <!-- <div class="card-header d-flex justify-content-between">
     <h1>Your Basket</h1>
     <div id="sum-basket"><h1>Basket Total: {{totalBask | currency:'GBP':true}}</h1></div>
-  </div>
-  <div class="card-block">
+  </div> -->
+  <div class="card-body">
    <div *ngFor="let cart of cart$" class="d-flex flex-row justify-content-between"  id="cart-item">
     <div class="p-2">
       <img [src]="cart.imageUrl" alt="Product Image">
@@ -12,17 +12,23 @@
     <div id="cart-name" class="p-2">
       {{cart.name}}
     </div>
-    <div id="cart-name" class="p-2">
-      {{cart.price | currency: 'GBP': true}}
+
+    <div id="cart-name" class="p-2 ml-auto d-flex">
+      <span>{{cart.qty}}</span>
+      <span> <mat-icon>clear</mat-icon> </span>
+      <span>{{cart.price | currency: 'GBP': true}}</span>
+      <span style="width:50px;"></span>
+      <span>{{cart.qty * cart.price | currency: 'GBP': true}}</span>
     </div>
   </div>
-  <div class="jumbotron">
+  
+ </div> 
+</div>
+<div class="jumbotron">
     <div>
       <!-- <p>Gross Total: £ <cart-total></cart-total></p> -->
       <p>Delivery: {{delivery}}</p>
       <h2>Ground Total: {{totalBask | currency:'GBP':true}}</h2>
     </div>
-  </div>
- </div> 
 </div>
  

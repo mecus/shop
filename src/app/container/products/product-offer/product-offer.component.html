@@ -1,17 +1,14 @@
-<div class="main-menu">
-    <primary-navigation></primary-navigation>
-</div>
-<div class="mobile-menu">
+<div class="moby">
     <mobile-menu></mobile-menu>
 </div>
 <div class="container product-offer-container page-rule">
 
     <div class="d-flex flex-wrap flex-row justify-content-between">
         <div class="p-2 product-offer">
-            <div class="top-offer">
+            <div class="top-offer hide-on-mobile">
                 <h1>Clearance</h1>
             </div>
-            <div class="offer-baner">
+            <div class="offer-baner hide-on-mobile">
                 <!-- <carousel>
                     <slide *ngFor="let ad of offerad$">
                         <img [src]=ad.photo_url alt="First slide">
@@ -20,7 +17,7 @@
                 </carousel> -->
             </div>
             <div class="product-list d-flex align-content-stretch flex-row flex-wrap">
-                <mat-card class="carosel-image">
+                <mat-card class="carosel-image hide-on-mobile">
                     <!-- <img [src]=offerad$.photo_url alt="First slide"> -->
                     <nge-carousel  *ngIf="offerad$"
                         [images]="offerad$">
@@ -66,7 +63,7 @@
                 </div>
             </div>
              <!-- Implementing pagination -->
-             <div class="pagination">
+             <div class="pagination hide-on-mobile">
                 <pagination-controls (pageChange)="page = $event" class="pg-pagination"></pagination-controls>
               </div>
             <!-- Pagination ends -->

@@ -1,0 +1,28 @@
+h1{
+    font-size: 1.2em;
+    font-family: 'Open Sans Bold', sans-serif;
+    text-transform: uppercase;
+    margin-top: 20px;
+    margin-left: 5%;
+    width: 400px;
+}
+.selection-container{
+    margin: 5%;
+    text-align: center;
+    .selected{
+        width: 500px;
+        display: flex;
+        justify-content: space-between;
+        background-color: #ffffff;
+        padding: 0px 20px;
+        margin: auto;
+        // padding-top: 10px;
+        span{
+            display: flex;
+            flex-direction: row;  
+        }
+    }
+    .selected:nth-child(2){
+        margin: auto 40px;
+    }
+}

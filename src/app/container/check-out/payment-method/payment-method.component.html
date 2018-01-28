@@ -1,15 +1,21 @@
-<!-- <primary-navigation></primary-navigation> -->
-<check-out-menu></check-out-menu>
+
 <div class="page-rule page-container">
     <div class="container">
         <div  class="card-fetch d-flex flex-row">
             <div id="card-fetch" class="p-2 check-box card">
-                <div class="card-header">
+                <!-- <div class="card-header">
                     <h1>Payment Method</h1>
                     <div *ngIf="paymentMethod" class="proceed-button">
                         <a mat-raised-button (click)="goToDeliveryMethod()" >Proceed to delivery method</a> 
                     </div>
-                </div>
+                </div> -->
+                <ul class="list-group">
+                    <li class="list-group-item d-flex justify-content-between active-color">
+                        <span class="mr-auto">Payment Method</span>
+                        <a *ngIf="paymentMethod" (click)="goToDeliveryMethod()">Proceed to delivery method</a>
+                        <mat-icon *ngIf="paymentMethod" (click)="goToDeliveryMethod()">arrow_forward</mat-icon> 
+                    </li>
+                </ul>
             <div class="card-body">
                     <p *ngIf="notice"> <small>{{notice}}</small> </p>
                     <small style="color:lightgreen">{{paymentAdded}}</small>
@@ -25,7 +31,7 @@
                                     </mat-list>
                             </mat-radio-button>
                         
-                            <mat-radio-button *ngIf="paypal" value="paypal">Pay with paypal account.. {{paypal.email}}</mat-radio-button>
+                            <mat-radio-button *ngIf="paypal" value="paypal">Paypal.. {{paypal.email}}</mat-radio-button>
                     </mat-radio-group>
             </div>
             </div>

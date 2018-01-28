@@ -9,6 +9,9 @@ div.product-container{
         // background-color: green;
         flex: 7;
         .product-list{
+            justify-content: flex-start;
+            flex-direction: row;
+            flex-wrap: wrap;
             .product-item{
                 margin: 0px !important;
                 padding: 0px !important;
@@ -171,7 +174,7 @@ div.product-container{
                 // width: 200px;
                 // padding: 5px;
             }
-            .p-2{
+            .p-2-brows{
                 margin: 0px !important;
                 padding: 0px !important;
                 background-color: #ebeff1;
@@ -194,7 +197,8 @@ div.product-container{
             background: #ffffff;
             background: radial-gradient(circle, #f0f1f1 20%, #f1f2f3 30%, white 50%);
             padding: 0px 10px;
-            .p-2{
+            justify-content: space-between;
+            .p-2-flex{
                 padding: 0px !important;
                 margin: 0px !important;
                 .prod-count{

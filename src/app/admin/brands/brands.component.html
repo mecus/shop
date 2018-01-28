@@ -1,0 +1,35 @@
+<div class="brands-container">
+    <h1>Brands <small>
+        <a (click)="openForm()">add</a>
+    </small></h1>
+
+    <div class="brands">
+        <span *ngFor="let brand of brand$ | async">
+            <span class="brand-item">
+                <span><a>{{brand.name}}</a></span>
+                <span class="right-hand">
+                    <!-- <span id="group">{{cat.group}}</span> -->
+                    <span><mat-icon (click)="removeBrand(brand.id)">clear</mat-icon></span>
+                </span>
+            </span>
+        </span>
+    </div>
+
+    <div *ngIf="brandForm" class="new-brands-wrapper">
+        <mat-icon (click)="closeForm()">clear</mat-icon>
+        <div class="brand-form">
+            <p>Add Brand</p>
+            <small [style.color]="color">{{statusMsg}}</small>
+            <form [formGroup]="brandModel" (ngSubmit)="addBrand(brandModel.value)">
+                <div class="input-field">
+                    <mat-form-field>
+                        <input matInput formControlName="name" placeholder="Brand">
+                    </mat-form-field>
+                    <div class="subBtn">
+                        <button mat-raised-button type="submit">Submit</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

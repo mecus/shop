@@ -1,0 +1,25 @@
+<div class="category-container">
+    <mat-toolbar color="primary">
+        <a mat-mini-fab color="primary" (click)="goback()"><mat-icon>arrow_back</mat-icon></a>
+        <span *ngIf="categoryName"><h1>{{categoryName}}</h1></span>
+        <span (click)="open()" class="more-vert"><mat-icon>more_vert</mat-icon></span>
+    </mat-toolbar>
+
+    <mat-nav-list>
+        <mat-list-item *ngFor="let category of Category$ | async">
+            <a matLine  (click)="goToProducts(category)">{{ category.name }}</a>
+            <button mat-icon-button (click)="goToProducts(category)">
+                <mat-icon>keyboard_arrow_right</mat-icon>
+            </button>
+        </mat-list-item>
+    </mat-nav-list>
+    <!-- <mat-nav-list *ngIf="subcat">
+        <mat-list-item *ngFor="let category of selectedCategory">
+            <a matLine  (click)="goToProducts(category)">{{ category.name }}</a>
+            <button mat-icon-button (click)="goToProducts(category)">
+                <mat-icon>keyboard_arrow_right</mat-icon>
+            </button>
+        </mat-list-item>
+    </mat-nav-list> -->
+</div>
+<home-link (click)="close($event)" [openDialog]="dialogBox"></home-link>

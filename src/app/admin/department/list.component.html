@@ -1,0 +1,17 @@
+<div class="department-container">
+    <h1>Departments <small>
+        <a routerLink="/admin/new_department">add</a>
+    </small></h1>
+    <div *ngFor="let dept of department$ | async">
+        <span class="dept-item">
+            <span class="item">
+                <img [src]="dept.image_url" alt="">
+            </span>
+            <span class="item"><a [routerLink]="['/admin/departments', dept.id]">{{dept.name}}</a></span>
+            <span class="item">
+                <span id="group">{{dept.code}}</span>
+                <span><mat-icon (click)="removeDepartment(dept)">clear</mat-icon></span>
+            </span>
+        </span>
+    </div>
+</div>

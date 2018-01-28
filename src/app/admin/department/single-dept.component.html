@@ -1,0 +1,43 @@
+<div class="single-dept-container">
+    <small [style.color]="color" >{{statusMsg}}</small>
+    <div *ngIf="department$ | async as dept">
+        <span class="s-dept">
+            <h1>{{dept.name}} <small>Department</small></h1>
+            <mat-icon (click)="back()">arrow_back</mat-icon>
+        </span>
+    </div>
+    <small id="ash">Aisles</small>
+    <div *ngFor="let ai of aisles$ | async" class="aisles-list">
+        <span class="ai-item">
+            <span><a [routerLink]="['/admin/aisle', ai.id]">{{ai.name}}</a></span>
+            <span class="right-hand">
+                <span id="group">{{ai.group}}</span>
+                <span><mat-icon (click)="removeAisle(ai.id)">clear</mat-icon></span>
+            </span>
+        </span>
+    </div>
+    <div class="addbtn">
+        <button mat-raised-button (click)="showForm()" >Add Aisle</button>
+    </div>
+    <div *ngIf="aisleForm" class="aisle-form-container">
+        <mat-icon (click)="closeForm()">clear</mat-icon>
+        <div class="form-content">
+            <small [style.color]="color" >{{statusMsg}}</small>
+            <form novalidate [formGroup]="aisleModel" (ngSubmit)="addAisle(aisleModel.value)">
+                <div class="form-fields">
+                    <input hidden formControlName="department_id" matInput placeholder="id">
+                    <mat-form-field>
+                        <input formControlName="name" matInput placeholder="Aisle">
+                    </mat-form-field>
+                    <mat-form-field>
+                        <input formControlName="group" matInput placeholder="Group">
+                    </mat-form-field>
+                </div>
+                <div class="subBtn">
+                    <button mat-raised-button type="submit">Submit Aisle</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+

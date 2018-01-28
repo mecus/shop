@@ -1,0 +1,21 @@
+.primary-nav{
+    position: fixed;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+}
+.side-bar{
+    position: fixed;
+    top: 60px;
+    width: 250px;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-color: #ffffff;
+    .item{
+        background-color: lighten(lightgrey, 10%);
+        background: linear-gradient(to right, lighten(lightgrey, 10%) , #ffffff);
+        padding: 10px;
+        margin-bottom: 2px;
+    }
+}

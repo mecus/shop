@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-// import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
+import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from 'angularfire2/firestore';
 // import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 import { Http, URLSearchParams, RequestOptions, Headers } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
@@ -13,6 +13,8 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/filter';
 
 import { iProduct } from "../models/product.model";
+import { tDepartment } from '../models/department';
+import { tAisle } from '../models/aisle';
 
 // import { AdItem } from '../components/advert/ad-item';
 // import { NewProdComponent } from '../components/advert/dynamic-components/newprod.component';
@@ -21,6 +23,8 @@ import { iProduct } from "../models/product.model";
 
 @Injectable()
 export class ProductService {
+  departmentCol: AngularFirestoreCollection<tDepartment>;
+
   host:string = "https://urgyshop.herokuapp.com/";
   resourceUrl;
   dataResource;
@@ -32,8 +36,7 @@ export class ProductService {
   departmentItem$;
   departmentUrl: string;
 
-
-  constructor( private _http:Http) {
+  constructor( private _http:Http, private afs: AngularFirestore) {
     this.graphql = this.host+"graphql?";
     this.departmentUrl = this.host+"api/v1/stores/departments";
     this.resourceUrl = this.host+"api/v1/stores/products";
@@ -44,16 +47,55 @@ export class ProductService {
     this.storeData$ = new ReplaySubject(1);
     this.storeDeptAd$ = new ReplaySubject(1);
     this.departmentItem$ = new ReplaySubject(1);
+
+    this.departmentCol = afs.collection<tDepartment>('departments');
+   
    }
 
-  // getFireBaseProduct(){
-  //   let dbRef = firebase.database().ref('/products');
-  //     return dbRef.once('value').then((snapshot)=>{
-  //       return snapshot.val();
-  //     }).catch((err)=>{
-  //       console.log(err);
-  //     });
-  // }
+   getStoreDepartment(){
+     return this.departmentCol.snapshotChanges();
+   }
+   getStoreIsle(key){
+    return this.afs.collection<tAisle>('aisles', ref => ref.where('department_id', '==', key)).snapshotChanges();
+   }
+   getStoreCategory(key){
+     return this.afs.collection<any>('category', ref => ref.where('aisle_id', '==', key)).snapshotChanges();
+   }
+   getStoreProducts(key, instruct){
+     switch(instruct.type){
+       case 'DEPARTMENT':
+        return this.afs.collection<any>('products', ref => ref.where('department_id', '==', key)).snapshotChanges();
+        
+      case 'AISLE':
+        return this.afs.collection<any>('products', ref => ref.where('aisle_id', '==', key)).snapshotChanges();
+        
+      case 'CATEGORY':
+        return this.afs.collection<any>('products', ref => ref.where('category_id', '==', key)).snapshotChanges();
+      case 'OFFER':
+        return this.afs.collection<any>('products', ref => ref.where('offer', '==', key)).snapshotChanges();
+      default:
+        return this.afs.collection<any>('products', ref => ref.where('department_id', '==', key)).snapshotChanges();
+     }
+   }
+   getStoreSingleProduct(id){
+    return this.afs.collection('products').doc(id).snapshotChanges();
+   }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   getDeptAd():Observable<any>{
     return this._http.get(this.adUrl).map((advert)=>{
       return advert.json();

@@ -1,8 +1,8 @@
 <div>
   <ul class="list-group">
-     <li class="list-group-item active-color">
-      Select Delivery Type
-    </li>
+     <!-- <li class="list-group-item active-color">
+      <mat-icon>keyboard_backspace</mat-icon> Select Delivery Type
+    </li> -->
     <li [style.opacity]="addOpacity" id="option" (click)="selectOption($event, opt)" *ngFor="let opt of options" class="list-group-item justify-content-between">
       {{opt.option}}
       <span class="badge badge-default badge-pill">{{opt.price | currency:'GBP': true}}</span>

@@ -1,0 +1,50 @@
+.nav-container{
+    // display: none;
+    background-color: #ffffff;
+
+    mat-toolbar{
+        position: relative;
+        background-color: #ffffff;
+
+        .nav-inner-container{
+            position: relative;
+            width: 100%;
+            justify-content: space-between;
+            // float: right;
+            .brand a h1{
+                font-size: 28px;
+                font-family: 'Dosis', sans-serif;
+                font-weight: bold;
+                color: #00796B;
+            }
+            div:nth-child(3){
+                // background-color: red;
+                // border: 1px solid #00796B;
+                padding: 5px;
+            }
+            .check-progress{
+                
+                mat-icon{
+                    padding: 0px !important;
+                    margin: 0px !important;
+                    font-size: 14px;
+                    // margin-top: 50px !important;
+                }
+                span{
+                    margin: 0px 5px;
+                    font-size: 14px;
+                    font-family: 'Dosis', sans-serif;
+                    color: #B2DFDB;
+                    
+                }
+            }
+            .store{
+                padding: 10px;
+                img{
+                    width: 35px;
+                    padding: 5px;
+                }
+            }
+        }
+    }
+}

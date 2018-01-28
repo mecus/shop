@@ -1,0 +1,102 @@
+
+#mat-toolbar{
+    background-color: #fff !important;
+    background-size: cover;
+    color: #000 !important;
+    height: 120px;
+    /*margin: 0px !important;
+    padding: 0px !important;*/
+    .top-menu{
+        justify-content: space-between;
+        .cta-btn{
+            height: 40px;
+            background-color: #000000;
+            color: #ffffff;
+        }
+        .branded{
+            #brand-link{
+                max-width: 100px;
+                height: 100px;
+                padding: 20px 0;
+                margin-top: 10px;
+                a h1{
+                    font-size: 48px;
+                    font-family: 'Dosis', sans-serif;
+                    color: #00796B;
+                }
+                span{
+                    color: slategray;
+                    font-family: 'Open Sans Regular', sans-serif;
+                }
+            }
+
+        }
+        .right-util{
+            position: relative;
+            margin: 0px !important;
+            padding: 0px !important;
+
+            .cta{
+                position: absolute;
+                top: 0px;
+                right: 0px;
+                margin-right: 0px;
+                margin-top: 40px;
+                background-color: #000000;
+                z-index: 1001;
+                .buttin{
+                    a{
+                        width: 200px;
+                        border-radius: 0px !important;
+                        margin-top: 2px;
+                    }
+                }
+            }
+        }
+    }
+    
+}
+
+.tool-bar-top{
+    width: 100%;
+    position: relative;
+    top: 0px;
+    float: right;
+    padding: 0px;
+    margin: 0px;
+    // border-bottom: 1px solid lightgray;
+    // border-left: 1px solid lightgray;
+    // border-right: 1px solid lightgray;
+}
+div.tool-bar-wrapper{
+    display: flex;
+}
+.sign-in, .basket, .get-help{
+    flex: 1;
+    padding: 3px 5px;
+}
+div.basket{
+    background-color: goldenrod;
+}
+
+.search-form{
+    position: relative;
+    float: right;
+    top: 35px;
+    padding: 0px;
+    margin: 0px;
+    
+}
+.trigger{
+    position: absolute;
+    top: 10px;
+    mat-icon{
+        color: red;
+    }
+}
+.form-control {
+    /*border-radius: 0; */
+    height: 40px;
+}
+
+

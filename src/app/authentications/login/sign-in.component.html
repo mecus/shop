@@ -1,53 +1,63 @@
-<div class="main-menu">
-    <primary-navigation></primary-navigation>
-  </div>
-  <div class="mobile-menu">
-    <mobile-menu></mobile-menu> 
-</div>
-<div class="container head-title">
+
+<!-- <div class="container head-title">
     <h1>Register or Login</h1>
-</div>
-<div class="login-form page-rule">
-    
-    <div class="signup-link">
-        <h2>New Customer</h2>
-        <hr>
-        <label for="">Post Code</label>
-        <input [class.postError]="posterror" #postcode required type="text">
-        <p *ngIf="posterror" id="post-err">{{posterror}}</p>
-        
-        <p>By creating an account with our store, you will be able to move through the checkout process faster, store multiple shipping addresses, view and track your orders in your account and more.</p>
-
-        <a mat-raised-button (click)="postCodeSearch(postcode.value)">Continue</a>
-
-    </div>
-    <div class="login-link">
-        <h2>Returning Customer</h2>
-        <hr>
-        <div *ngIf="toggForm" class="forgott-password">
-            <forgot-password></forgot-password>
-        </div>
-       
-        <form *ngIf="!toggForm" novalidate class="control-form" [formGroup]="user" (ngSubmit)="logIn(user.value)">
-            <p>
-                <mat-form-field class="input-full-width">
-                <span matPrefix><mat-icon>email</mat-icon> &nbsp;</span>
-                <input type="email" formControlName="email" matInput placeholder="Email">
-                </mat-form-field>
-                <mat-form-field>
-                    <span matPrefix><mat-icon>lock_outline</mat-icon> &nbsp;</span>
-                    <input formControlName="password" matInput placeholder="password" [type]="hide ? 'password' : 'text'">
-                    <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
-                </mat-form-field>
-            </p>
-            <p id="errorMsg" *ngIf="errMsg"> {{errMsg}}</p>
-            <div class="submit-button">
-                <a (click)="passwordRequest()">Forgotten Password</a>
-                <button [disabled]="!user.valid" mat-raised-button type="submit">Login</button>
+</div> -->
+<div style="background-image: url('assets/images/arabesque.png'); background-color: #ffffff;" class="mobile-background">        
+    <div class="login-form">
+        <ul class="list-group">
+            <li class="list-group-item d-flex justify-content-between active-color">
+                <mat-icon (click)="goBack()">arrow_back</mat-icon> 
+                <span class="mr-auto">Login to uRGy</span>
+                <!-- <span class="mr-auto">Congratulations!!</span> -->
+                <!-- <span (click)="closeX()">Close</span> -->
+                <mat-icon>account_circle</mat-icon> 
+            </li>
+        </ul>
+        <div class="d-flex flex-column">
+            <div class="signup-link">
+                <h2>New Customer</h2>
+                <hr>
+                <p>By creating an account with our store, you will be able to move through the checkout process faster, store multiple shipping addresses, view and track your orders in your account and more.</p>
+                <a class="p-2-3" mat-raised-button routerLink="/register">Sign up</a>
+                <!-- <div class="d-flex flex-row">
+                    <label class="p-2-1" for="">Post Code</label>
+                    <input class="p-2-2" [class.postError]="posterror" #postcode required type="text">
+                    <a class="p-2-3" mat-raised-button (click)="postCodeSearch(postcode.value)">Continue</a>
+                </div> -->
+                
+                <p *ngIf="posterror" id="post-err">{{posterror}}</p>
+                
             </div>
-        </form>
-        
-        
+            <div class="login-link">
+                <h2>Returning Customer</h2>
+                <hr>
+                <div *ngIf="toggForm" class="forgott-password card">
+                        <!-- *ngIf="toggForm" -->
+                    <mat-icon (click)="passwordRequest()">clear</mat-icon>
+                    <forgot-password></forgot-password>
+                </div>
+                
+                <form *ngIf="!toggForm" novalidate class="control-form" [formGroup]="user" (ngSubmit)="logIn(user.value)">
+                    <p>
+                        <mat-form-field class="input-full-width">
+                        <span matPrefix><mat-icon>email</mat-icon> &nbsp;</span>
+                        <input type="email" formControlName="email" matInput placeholder="Email">
+                        </mat-form-field>
+                        <mat-form-field>
+                            <span matPrefix><mat-icon>lock_outline</mat-icon> &nbsp;</span>
+                            <input formControlName="password" matInput placeholder="password" [type]="hide ? 'password' : 'text'">
+                            <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+                        </mat-form-field>
+                    </p>
+                    <p id="errorMsg" *ngIf="errMsg"> {{errMsg}}</p>
+                    <div class="submit-button">
+                        <a (click)="passwordRequest()">Forgotten Password</a>
+                        <button [disabled]="!user.valid" mat-raised-button type="submit">Login</button>
+                    </div>
+                </form>
+                
+                
+            </div>
+        </div>  
     </div>
-    
 </div>

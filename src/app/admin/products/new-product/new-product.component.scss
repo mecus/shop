@@ -1,0 +1,59 @@
+.new-product-container{
+    width: 100%;
+    .header{
+        margin-top: 20px;
+        display: flex;
+        justify-content: space-between;
+        p{
+            font-size: 1.2em;
+            font-family: 'Open Sans Bold', sans-serif;
+            text-transform: uppercase;
+        }
+        .back-btn{
+            display: flex;
+            flex-direction: row;
+            mat-icon{
+                font-size: 1.5em;
+                margin-right: 20px;
+                &:hover{
+                    cursor: pointer;
+                    color: green;
+                }
+            }
+            p{
+                font-size: 1.2em;
+                font-family: 'Open Sans Bold', sans-serif;
+                text-transform: uppercase;
+            }
+        }
+    }
+    .form-content{
+        width: 700px;
+        h3{
+            font-family: 'Open Sans Regular', sans-serif;
+            font-size: 1.2em;
+            text-transform: uppercase;
+        }
+        .form-field{
+            width: 700px;
+        }
+        .form-field>*{
+            // display: flex;
+            // flex-direction: row;
+            // justify-content: space-between;
+            width: 320px;
+            margin-right: 10px;
+        }
+        .form-field-group{
+            width: 100%;
+            margin: 40px 0px;
+            .detail{
+                width: 100%;
+            }
+        }
+        .subBtn{
+            margin-bottom: 50px;
+            margin-top: 20px;
+        }
+    }
+}

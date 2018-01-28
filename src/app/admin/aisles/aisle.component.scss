@@ -1,0 +1,90 @@
+.single-aisle-container{
+    position: relative;
+    .back-btn{
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        mat-icon{
+            font-size: 1.5em;
+            color: lighten(lightslategrey, 1%);
+            &:hover{
+                cursor: pointer;
+                color: green;
+            }
+        }
+    }
+    mat-icon{
+        position: relative;
+        top: 5%;
+        left: 5%;
+    }
+    .s-aisle{
+        // background-color: red;
+        width: 300px;
+        h1{
+            font-family: 'Open Sans Bold', sans-serif;
+            font-size: 1.5em;
+            padding-top: 20px;
+            text-transform: uppercase;
+            small{
+                font-size: 0.6em;
+                text-transform: lowercase;
+                color: lighten(lightslategrey, 20%); 
+            }
+        }
+        small{
+            font-size: 1em;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+    }
+    .categories{
+        width: 500px;
+        margin-top: 10px;
+        .cat-item{
+            display: flex;
+            justify-content: space-between;
+            background-color: lighten(lightgrey, 20%);
+            padding: 5px 10px;
+            margin-top: 5px;
+            span#group{
+                color: lighten(lightslategrey, 20%);
+            }
+            .right-hand{
+                display: flex;
+                justify-content: flex-end;
+                span#group{
+                    margin-right: 20px;
+                }
+                span mat-icon {
+                    color: lighten(lightslategrey, 30%);
+                    &:hover{
+                        cursor: pointer;
+                        color: red;
+                    }
+                }
+            }
+        }
+    }
+
+    .addbtn{
+        margin-top: 20px;
+    }
+    .cat-form-container{
+        position: absolute;
+        top: 0;
+        width: 100vw;
+        height: 100vh;
+        background-color: #ffffff;
+        margin-left: -20px;
+        .form-content{
+            position: absolute;
+            top: 10%;
+            left: 10%;
+            width: 600px;
+            .form-fields>*{
+                margin-right: 20px;
+            }
+        }
+    }
+}

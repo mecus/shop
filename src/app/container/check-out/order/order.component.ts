@@ -50,6 +50,7 @@ export class OrderComponent implements OnInit {
 
   //Craeting Customer Order here
   createOrder(order){
+    this._router.navigate(["/review_and_payment"]);
     //Checking for existing order status
     // if(this.existingOrder.status == 'pending' || null){
     //   alert('Pending Order');
@@ -86,38 +87,38 @@ export class OrderComponent implements OnInit {
           // });
         });
       
-        this.cartService.getCart()
-        .subscribe((carts)=>{
-          let Carts = carts.filter(cart=>cart.postcode == this.storeService.retriveData('postcode'));
-          //Call Create Order Items function here to create individual item
-            Carts.forEach((item)=>{
-              let itemToSave = {
-                order_no: res.order_no,
-                order_id: res.order_id,
-                name: item.name,
-                price: item.price,
-                qty: item.qty,
-                image: item.imageUrl,
-                product_id: item.product_id
-              }
-              // console.log(itemToSave);
-              this.orderService.createOrderItems(itemToSave)
-              .subscribe((data)=>{
-                this.saveProg.push(data);
+        // this.cartService.getCart()
+        // .subscribe((carts)=>{
+        //   let Carts = carts.filter(cart=>cart.postcode == this.storeService.retriveData('postcode'));
+        //   //Call Create Order Items function here to create individual item
+        //     Carts.forEach((item)=>{
+        //       let itemToSave = {
+        //         order_no: res.order_no,
+        //         order_id: res.order_id,
+        //         name: item.name,
+        //         price: item.price,
+        //         qty: item.qty,
+        //         image: item.imageUrl,
+        //         product_id: item.product_id
+        //       }
+        //       // console.log(itemToSave);
+        //       this.orderService.createOrderItems(itemToSave)
+        //       .subscribe((data)=>{
+        //         this.saveProg.push(data);
                 
-              });
-            })
-        });
+        //       });
+        //     })
+        // });
       }//If res ends here
     });
 
     //Don't forget to delete the carts associated to the order
-    setTimeout(()=>{
-      this.grayPage = false;
-      console.log(this.saveProg);
-        this.progressService.setProgress(orderP);
-        this._router.navigate(["/review_and_payment"]);
-    }, 5000);
+    // setTimeout(()=>{
+    //   this.grayPage = false;
+    //   console.log(this.saveProg);
+    //     this.progressService.setProgress(orderP);
+    //     this._router.navigate(["/review_and_payment"]);
+    // }, 5000);
   
   }
 
@@ -164,11 +165,15 @@ export class OrderComponent implements OnInit {
     });
   }
   ngOnInit() {
+   
     this.getCurrentUser();
   
      //query order with customer no
     // this.orderService.getOrders("655706564").subscribe((orders)=>{
     //   console.log(orders);
     // });
+    // setTimeout(()=>{
+    //   window.scrollTo(0, 0);
+    // }, 500)
   }
 }

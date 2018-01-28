@@ -1,0 +1,39 @@
+
+<div id="mat-toolbar">
+    <div class="container">
+      <div class="flex-container top-menu">
+        <div class="branded">
+          <div id="brand-link">
+            <a (click)="goHome()"><h1>uRGy<span><small style="font-size:18px">groceries</small></span></h1></a>
+          </div>
+        </div>
+        
+        <div class="right-util"> 
+          <div *ngIf="triger" class="trigger">
+            <mat-icon id="fashIcon"></mat-icon>
+          </div>
+          <div class="tool-bar-top"> <!-- add notify here -->
+            <notify></notify>
+          </div>
+          
+          <!-- <div *ngIf="cta" class="cta">
+            <div class="buttin">
+              <a mat-raised-button>Basket</a>
+            </div>
+            <div class="buttin">
+              <a mat-raised-button>Checkout</a>
+            </div>
+          </div> -->
+
+          <div class="search-form">
+            <product-search></product-search>
+          </div>
+        </div>
+        <!-- <div (click)="openCta()" class="p-2 cta-btn">
+            <mat-icon>more_vert</mat-icon>
+        </div> -->
+      </div>
+   </div>
+</div>
+
+

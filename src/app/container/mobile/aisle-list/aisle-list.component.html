@@ -1,0 +1,17 @@
+<div class="category-container moby">
+    <mat-toolbar color="primary">
+        <a mat-mini-fab color="primary" (click)="goback()"><mat-icon>arrow_back</mat-icon></a>
+        <span *ngIf="aisleName"><h1>{{aisleName}}</h1></span>
+        <span (click)="open()" class="more-vert"><mat-icon>more_vert</mat-icon></span>
+    </mat-toolbar>
+
+    <mat-nav-list>
+        <mat-list-item *ngFor="let ai of aisle$ | async">
+            <a matLine  (click)="showAisles(ai)">{{ ai.name }}</a>
+            <button mat-icon-button (click)="showAisles(ai)">
+                <mat-icon>keyboard_arrow_right</mat-icon>
+            </button>
+        </mat-list-item>
+    </mat-nav-list>
+</div>
+<home-link (click)="close($event)" [openDialog]="dialogBox"></home-link>

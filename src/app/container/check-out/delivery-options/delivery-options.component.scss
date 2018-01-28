@@ -3,5 +3,22 @@
     color: #ffffff;
 }
 .jumbotron{
-    background-color: #ffffff;
+    background: #ffffff;
+    background: linear-gradient(to right, #00796B, #ebeff1);
+}
+.list-group{
+    background: #ffffff;
+    background: linear-gradient(to right, #ffffff, #ebeff1);
+    .list-group-item{
+        border-radius: 0;
+        border: 0;
+        border-bottom: 1px solid lightgray;
+        background: #ffffff;
+        background: linear-gradient(to right, #ffffff, #ebeff1);
+        &:hover{
+            background: #00796B;
+            background: linear-gradient(to right, #00796B, #ebeff1); 
+            color: #ffffff;
+        }
+    }
 }

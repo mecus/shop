@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { AddressSearchService } from "../../services/addresssearch.service";
 import { AccountService } from "../../services/account.service";
+import { WindowService } from '../../services/window.service';
 
 
 function passwordMather(c:AbstractControl){
@@ -21,6 +22,7 @@ function passwordMather(c:AbstractControl){
 })
 export class RegisterComponent implements OnInit {
   newUser: FormGroup;
+  hide;
   errMsg;
   setPostcode;
   searchResult;
@@ -31,9 +33,15 @@ export class RegisterComponent implements OnInit {
   progressOn:boolean = false;
   titles;
 
-  constructor(private storeService:StorageService, private _router:Router, private _fb:FormBuilder, 
-  private authService:AuthService, private addressService:AddressSearchService,
-  private accountService:AccountService, private _location:Location) {
+  constructor(
+    private storeService:StorageService, 
+    private _router:Router, private _fb:FormBuilder, 
+    private authService:AuthService, 
+    private addressService:AddressSearchService,
+    private accountService:AccountService, 
+    private _location:Location,
+    private windowService: WindowService,
+  ) {
     
     this.newUser = _fb.group({
       title: [null, Validators.required],
@@ -46,13 +54,13 @@ export class RegisterComponent implements OnInit {
         home: null,
         mobile: null
       }),
-      billing_address: _fb.group({
-          address: null,
-          address2: null,
-          post_code: null,
-          city: null,
-          country: "United Kingdom"
-      }),
+      // billing_address: _fb.group({
+      //     address: null,
+      //     address2: null,
+      //     post_code: null,
+      //     city: null,
+      //     country: "United Kingdom"
+      // }),
       terms: null,
       age_limit: null,
       contact_permission: null,
@@ -70,22 +78,31 @@ export class RegisterComponent implements OnInit {
      });
    }
   registerUser(customer){
-    let user = {
+    if(this.newUser.status == "INVALID"){
+      window.scrollTo(0, 0);
+      return this.errMsg = "Please fill in all required field";
+    }
+    let users = {
       email: customer.email,
-      password: customer.password
+      password: customer.password,
+      emailVerified: false,
+      phoneNumber: customer.telephone.mobile,
+      displayName: customer.first_name,
+      photoURL: "http://www.example.com/12345678/photo.png",
+      disabled: false
     }
-    let address = {
-        account_id: null,
-        address_type: "billing",
-        full_name: customer.first_name+" "+customer.last_name,
-        address: customer.billing_address.address,
-        address2: customer.billing_address.address2,
-        post_code: customer.billing_address.post_code,
-        city: customer.billing_address.city,
-        country: customer.billing_address.country
-    }
+    // let address = {
+    //     account_id: null,
+    //     address_type: "billing",
+    //     full_name: customer.first_name+" "+customer.last_name,
+    //     address: customer.billing_address.address,
+    //     address2: customer.billing_address.address2,
+    //     post_code: customer.billing_address.post_code,
+    //     city: customer.billing_address.city,
+    //     country: customer.billing_address.country
+    // }
 
-    let account = {
+    let accounts = {
       title: customer.title,
       email: customer.email,
       first_name: customer.first_name,
@@ -99,24 +116,34 @@ export class RegisterComponent implements OnInit {
       age_limit: customer.age_limit,
       uid: null
     }
-    // console.log(user);
-    // console.log(account);
-    // console.log(address);
-    
-    if(user.email){
-       this.authService.createUser(user).then((ruser)=>{
-        account.uid = ruser.uid;
-      //  this.storeService.storeData('user', ruser);
-       this.storeService.storeData('uid', ruser.uid);
-       this.storeService.storeData('email', ruser.email);
-       this.accountService.createAccount(account, address);
-       this._router.navigate(["/"]);
-      // this._location.back();
-     }).catch((err)=>{
-       this.errMsg = err.message;
-      console.log(err);
-     })
+    let customER = {
+      user: users,
+      account: accounts
     }
+    this.authService.createUser(customER).subscribe((user:any)=>{
+      // Handle errors
+      if(user.error){
+        return console.log(user.error);
+      }
+      // authenticate user and push to state management
+      // Handle errors in the ui
+      if(user.accountStatus == "success"){
+        // send to ui
+      }
+      console.log(user);
+    
+      if(user.token){
+        this.authService.loginWithCustomToken(user.token);
+      }
+
+      this.windowService.getWindowObject().setTimeout(()=>{
+        this._location.back();
+      }, 500);
+      
+    }, (err)=>{
+      console.log(err);
+    });
+ 
    }
    postCodeSearch(postcode){
     this.searchNotFound = false;
@@ -157,6 +184,9 @@ export class RegisterComponent implements OnInit {
         this.searchNotFound = true;
       });
      }  
+  }
+  goBack(){
+    this._location.back();
   }
 
   ngOnInit() {

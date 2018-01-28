@@ -57,6 +57,23 @@ div.aside-check-cart{
             text-decoration: none;
         }
     }
+    .list-group{
+        .list-group-item{
+            border-radius: 0;
+            background-color: #00796B;
+            color: #ffffff;
+            height: 50px;
+            mat-icon{
+              // line-height: 50px;
+            }
+            span{
+              margin-right: 10px;
+              font-family: 'Open Sans Light', sans-serif;
+              // line-height: 50px;
+            }
+          
+        }
+    }
 }
 div.check-box{
     margin-top: 10px;

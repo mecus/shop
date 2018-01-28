@@ -22,8 +22,24 @@
     max-width: 700px;
     min-height: 500px;
     margin: 0 auto;
-    margin-top: 20px;
-    margin-bottom: 100px;
+    margin-top: 0px;
+    padding-bottom: 50px;
+    .list-group{
+        .list-group-item{
+            border-radius: 0;
+            background-color: #00796B;
+            color: #ffffff;
+            height: 50px;
+            mat-icon{
+              // line-height: 50px;
+            }
+            span{
+              margin-left: 10px;
+              font-family: 'Open Sans Light', sans-serif;
+              // line-height: 50px;
+            }
+        }
+    }
     .input-full-width{
         width: 100%;
     }
@@ -32,6 +48,7 @@
         float: right;
     }
     .search-head{
+        border-radius: 0 0;
         background-color: #ffffff;
         margin: 0px;
         padding: 0px;
@@ -39,6 +56,11 @@
     }
 }
 div.search-postcode{
+    display: flex;
+    justify-content: space-between;
+    a{
+        height: 40px;
+    }
     .postError{
         border: 1px solid brown;
         
@@ -63,13 +85,15 @@ p#post-err{
 }
 
 .example-full-width {
-  width: 100%;
+  width: 100% !important;
 }
 .contact-permit{
     margin: 0px;
     padding: 0px;
     padding: 10px 20px;
-    margin-bottom: 20px;
+    // margin-bottom: 20px;
+    margin: 10px !important;
+    background-color: #ffffff;
     h2{
         margin: 0px;
         font-size: 18px;
@@ -80,12 +104,34 @@ p#post-err{
         color: lightslategrey;
     }
 }
+.submit-terms{
+    margin: 10px !important;
+}
 .form-sec-1{
     margin: 0px;
     margin-bottom: 10px;
-    background-color: #ffffff;;
+    background-color: #ffffff;
+    margin: 10px !important;
     // border-color: lightgrey !important;
 }
 .more-info{
     background-color: #ffffff;
+    margin: 10px !important;
+}
+.flex-container{
+    flex-direction: row;
+    justify-content: space-between;
+
+    mat-input-container{
+        width: 300px !important;
+    }
+}
+@media only screen and (max-width: 768px){
+    .flex-container{
+        flex-direction: column;
+    
+        mat-input-container{
+            width: 100% !important;
+        }
+    }
 }

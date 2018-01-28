@@ -1,0 +1,15 @@
+.admin-container{
+    display: flex;
+    flex-direction: row;
+
+    .side-bar{
+        width: 250px;
+        background-color: #ffffff;
+        height: 100vh;
+
+    }
+    .main-content{
+        padding-left: 20px;
+        margin-top: 60px;
+    }
+}

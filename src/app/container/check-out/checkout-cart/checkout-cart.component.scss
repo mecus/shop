@@ -1,11 +1,32 @@
 div#cart-item{
-    // border-bottom: 1px solid lightgrey;
-    background-color: lightgrey;
-    margin: 2px 0px;
+    border-bottom: 1px solid lightgrey;
+    // background-color: lightgrey;
+    margin: 0px;
     img{
         width: 50px;
     }
     
+}
+.card{
+    border: none !important; 
+    border-radius: 0 !important;
+    border-color: #ffffff;
+    .card-body{
+        margin: 0;
+        padding: 0;
+
+        
+    }
+}
+.jumbotron{
+    background: #ffffff;
+    background: linear-gradient(to right, #00796B, #ebeff1);
+    // background: linear-gradient(to right, white , #ebeff1);
+    margin-top: 10px;
+    color: #ffffff;
+    h2{
+        color: #ffffff; 
+    }
 }
 div.p-2{
     // width: 100%; 
@@ -20,5 +41,7 @@ div#cart-name{
     float: left;
     padding-top: 20px;
     margin: 10px 0px;
-
+    mat-icon{
+        font-size: 14px;
+    }
 }

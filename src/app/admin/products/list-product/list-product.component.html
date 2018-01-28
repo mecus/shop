@@ -1,0 +1,62 @@
+<div class="product-container">
+    <h1>products</h1>
+    <a [routerLink]="['/admin/products/department']">add product</a>
+    
+    <!-- <div class="products">
+        <p>List product here</p>
+    </div> -->
+</div>
+<div class="list-container mat-elevation-z2">
+    <mat-table #table [dataSource]="dataSource">
+    
+        <!--- Note that these columns can be defined in any order.
+            The actual rendered columns are set as a property on the row definition" -->
+    
+        <!-- Position Column -->
+        <ng-container matColumnDef="photo">
+        <mat-header-cell *matHeaderCellDef> Photo. </mat-header-cell>
+        <mat-cell *matCellDef="let element"> <img [src]="element.imageUrl" style="width: 50px;" alt=""> </mat-cell>
+        </ng-container>
+    
+        <!-- Name Column -->
+        <ng-container matColumnDef="name">
+        <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+        <mat-cell *matCellDef="let element"> <a [routerLink]="['/admin/products/view', element.id]">{{element.name}}</a> </mat-cell>
+        </ng-container>
+    
+        <!-- Weight Column -->
+        <ng-container matColumnDef="price">
+        <mat-header-cell *matHeaderCellDef> Price </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.price | currency:'GBP':true}} </mat-cell>
+        </ng-container>
+    
+        <!-- Color Column -->
+        <ng-container matColumnDef="stock">
+        <mat-header-cell *matHeaderCellDef> Stock </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.stock}} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="cat">
+            <mat-header-cell *matHeaderCellDef> Category </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.category}} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="offer">
+            <mat-header-cell *matHeaderCellDef> Offer </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.offer}} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="publish">
+            <mat-header-cell *matHeaderCellDef> Publish </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.publish}} </mat-cell>
+        </ng-container>
+        <!-- <ng-container matColumnDef="empty">
+            <mat-header-cell *matHeaderCellDef> </mat-header-cell>
+            <mat-cell *matCellDef="let element"> </mat-cell>
+        </ng-container> -->
+        <ng-container matColumnDef="delete">
+            <mat-header-cell *matHeaderCellDef> </mat-header-cell>
+            <mat-cell *matCellDef="let element"> <mat-icon (click)="removeProduct(element)" >clear</mat-icon> </mat-cell>
+        </ng-container>
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+</div>
+      

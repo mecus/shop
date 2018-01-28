@@ -43,6 +43,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
     }
 
     userLogin(user){
+       
         if(!user.email && !user.password){
             return this.loginErrMsg = "fields must not be empty!";
         }
@@ -71,6 +72,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit(){
+        // this.progressService.deleteProgress();
         if(!this.storeService.retriveData('token')){
             this.storeService.getPaymentToken();
         }
@@ -91,6 +93,6 @@ export class CheckoutComponent implements OnInit, OnDestroy {
        
     }
     ngOnDestroy(){
-        
+       
     }
 }

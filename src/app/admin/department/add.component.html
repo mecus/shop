@@ -1,0 +1,27 @@
+<form novalidate [formGroup]="formInput" (ngSubmit)="sendDept(formInput.value)" class="example-container">
+    <small [style.color]="color">{{invalidMsg}}</small>
+    <div class="input-field">
+        <mat-form-field>
+            <input matInput formControlName="name" placeholder="Department Name">
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput formControlName="group" placeholder="Group">
+        </mat-form-field>
+    </div>
+    <div class="input-field">
+        <mat-form-field>
+            <input matInput formControlName="code" placeholder="Code">
+        </mat-form-field>
+        <!-- <mat-form-field>
+            <input matInput placeholder="Feature Image">
+        </mat-form-field> -->
+    </div>
+
+    <div class="file-input">
+        <input (change)="fileCahnge($event)" type="file">
+    </div>
+
+    <div class="submit">
+        <button mat-raised-button type="submit">Submit</button>
+    </div>
+</form>

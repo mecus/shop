@@ -1,0 +1,120 @@
+mat-toolbar{
+    span mat-icon{
+        padding: 0px;
+        margin: 0px;
+        font-size: 26px !important;
+        margin-top: 5px;
+    }
+    span h1{
+        color: #ffffff;
+        margin: 0px;
+        padding: 0px;
+        margin-left: 20px;
+        font-size: 16px;
+        font-family: 'Open Sans Regular', sans-serif;
+    }
+    .more-vert{
+        position: absolute;
+        right: 10px;
+        float: right;
+    }
+
+}
+
+.page-container{
+    min-height: 500px;
+    .mob-product-wrapper{
+
+        .product{
+            position: relative;
+            background-color: #ffffff;
+            margin-bottom: 5px;
+            overflow: hidden;
+            // border-bottom: 1px solid gray;
+            .p-image{
+                img{
+                    width: 100px;
+                }
+                #inCart{
+                    padding: 10px;
+                    p{
+                     font-family: 'Dosis', sans-serif;
+                     font-size: 12px; 
+                     text-align: center;  
+                    }
+                }
+            }
+            .p-caption{
+                .p-dtails{
+                    flex: 4;
+                    p#price{
+                        margin: 0px !important;
+                        padding: 0px !important;
+                        font-family: 'Open Sans Regular', sans-serif;
+                        font-weight: bold;
+                        color: red;
+                    }
+                    h1, p{
+                        margin: 0px !important;
+                        padding: 0px !important;
+                    }
+                    h1{
+                        font-size: 16px;
+                        font-family: 'Open Sans Regular', sans-serif;
+                        margin-bottom: 10px;
+                    }
+                    
+                }
+                .cart-btn{
+                    flex: 1;
+                    margin-top: 30px;
+                    // width: 100%;
+                    text-align: center;
+                    small{
+                        color: lightslategrey;
+                    }
+                    a{
+                        text-decoration: none;
+                    }
+                }
+            }
+            .offer{
+                position: absolute;
+                background-color: red;
+                height: 20px;
+                width: 100px;
+                margin-left: -30px;
+                transform: rotateZ(-45deg);
+                p{
+                    text-align: center;
+                    font-family: 'Open Sans Regular', sans-serif;
+                    color: #ffffff;
+                    line-height: 20px;
+                }
+            }
+            .in-cart{
+                position: absolute;
+                top: 0;
+                right: 0;
+                margin-right: 10px;
+                margin-top: 5px;
+
+                mat-icon{
+                    margin: 0px;
+                    padding: 0px;
+                    font-size: 16px;
+                    color: green;
+                }
+                small{
+                    position: absolute;
+                    top: 0;
+                    right: 0;
+                    margin-right: 10px;
+                    padding: 0px;
+                    margin: 0px;
+                    color: lightslategray;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,25 @@
+<h1>Select Aisle</h1>
+<div class="selection-container">
+    <mat-form-field>
+        <mat-select [(value)]="selected" placeholder="Select Aisle">
+            <!-- <mat-option>None</mat-option> -->
+            <mat-option *ngFor="let ai of aisle$ | async" [value]="ai">
+               {{ai.name}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+    <div class="selected">
+        <span (click)="back()">
+            <mat-icon>arrow_back</mat-icon>
+            Back
+        </span>
+        <span *ngIf="selected">
+            <p>You selected: {{selected.name}}</p>
+        </span>
+        <span *ngIf="selected" (click)="next()" >
+            Next
+            <mat-icon>arrow_forward</mat-icon>
+        </span>
+    </div>
+   
+</div>

@@ -1,21 +1,16 @@
-<div class="main-menu">
-    <primary-navigation></primary-navigation>
-</div>
-<div class="mobile-menu">
-    <mobile-menu></mobile-menu>
-</div>
+
 <!--Listing out the Category for query selection -->
-<div class="main-container page-rule">
-  <div class="list-menu w3-card-2">
+<div class="main-container dextop page-rule">
+  <div class="list-menu card">
       <div class="container">
-        <div class="d-flex flex-row list-menu-container">
-          <div class="p-2 category-container-half">
-            <div class="category-inner d-flex flex-row">
-              <div class="p-2 first-cat">
-                  <ul *ngIf="category">
-                    <li *ngFor="let cat of category">
-                        <div class="cat-list" (click)="showSubCat(cat, $event)">
-                            {{cat.name}}
+        <div class="flex-container list-menu-container">
+          <div class="category-container-half">
+            <div class="category-inner flex-container">
+              <div class="first-cat">
+                  <ul>
+                    <li *ngFor="let ai of aisle$">
+                        <div class="cat-list" (click)="displayCategory(ai, $event)">
+                            {{ai.name}}
                             <span class="arrow-icon">
                               <i class="fa fa-angle-right" aria-hidden="true"></i>
                             </span>
@@ -23,12 +18,12 @@
                       </li>
                   </ul>
                 </div>
-                <div *ngIf="subCategory && subCategory.length" class="p-2 horizotal"></div>
-                <div *ngIf="subCategory" class="p-2 second-cat">
+                <div *ngIf="category$ && category$.length" class="horizotal"></div>
+                <div class="second-cat">
                   <ul>
-                      <li *ngFor="let subcat of subCategory">
-                        <div class="sub-list" (click)="displayProduct(subcat, $event)">
-                            {{subcat.name}}
+                      <li *ngFor="let cat of category$">
+                        <div class="sub-list" (click)="displayProducts(cat, $event)">
+                            {{cat.name}}
                             <span class="arrow-icon">
                               <i  class="fa fa-angle-right" aria-hidden="true"></i>
                             </span>
@@ -38,7 +33,7 @@
                 </div>
               </div>
           </div>
-          <div class="p-2 advert-container-half">
+          <div class="advert-container-half">
               <nge-carousel
                 [images]="adverts">
               </nge-carousel>
@@ -93,14 +88,13 @@
   </div> -->
   <!-- <footer-menu></footer-menu> -->
 
-  <div class="container"  *ngIf="products">
-    <div class="product-container d-flex flex-row" >
-        <div class="product-content p-2">
-          <div class="sorting d-flex justify-content-between">
-            <div class="p-2 d-flex">
+  <div class="container">
+    <div class="product-container flex-container" >
+        <div class="product-content">
+          <div class="sorting flex-container">
+            <div class="p-2-flex flex-container">
                 <p><strong>{{groupName}}</strong></p>
-                <span class="prod-count"><p>{{productCount}}</p></span>
-                
+                <span class="prod-count"><p>{{productCount}}</p></span>      
             </div>
             <!-- <div class="pagination-top p-2">
                 <mat-paginator [length]="products.length"
@@ -109,8 +103,8 @@
                               (page)="pageEvent = $event">
                 </mat-paginator>
               </div> -->
-            <div class="p-2 d-flex flex-row" id="sort-input">
-                <select  class="form-control p-2" #sorted  placeholder="sorting">
+            <div class="flex-container" id="sort-input">
+                <select  class="form-control" #sorted  placeholder="sorting">
                   <option *ngFor="let sort of sorting" [value]="sort">
 
                     {{sort}}
@@ -119,8 +113,9 @@
                 <span><button (click)="sortProduct(sorted.value)" class="btn btn-primary">Go</button></span>
             </div>
           </div>
-          <div [@loadproduct]="products" class="product-list d-flex align-content-stretch flex-row flex-wrap">
-            <div class="product-item p-2" *ngFor="let product of products | paginate: {itemsPerPage: pageSize, currentPage: page}">
+
+          <div [@loadproduct]="products" class="product-list flex-container">
+            <div class="product-item" *ngFor="let product of products | paginate: {itemsPerPage: pageSize, currentPage: page}">
                 <mat-card class="example-card product">
                   <div *ngIf="product.offer == 'yes'" class="shop-offer"><p>Offer</p></div>
                   <div class="inyourcart" *ngFor="let cart of carts$">
@@ -175,8 +170,8 @@
           <div id="explore-dept" class="card">
             <div class="card-body">
               <h1>Browse Department</h1>
-              <div class="d-flex flex-row justify-content-start">
-                <div *ngFor="let catX of category" class="p-2">
+              <div class="flex-container">
+                <div *ngFor="let catX of category$" class="p-2-brows">
                   {{catX.name}}
                 </div>
               </div>
@@ -184,7 +179,7 @@
           </div>
           <!-- End Explore department -->
         </div>
-        <div class="side-widget p-2">
+        <div class="side-widget">
           <div class="side-innner">
               <widget-right></widget-right>
           </div>         

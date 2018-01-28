@@ -10,12 +10,12 @@ export interface iProduct {
     nutrition: nutrition;
 
 }
-export interface Description {
+interface Description {
     detail: string;
     size: string;
     origin: string;
 }
-export interface nutrition {
+interface nutrition {
     energy: string;
     fat: string;
     saturates: string;

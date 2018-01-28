@@ -1,11 +1,7 @@
-<div class="main-menu">
-  <primary-navigation></primary-navigation>
-</div>
-<div class="mobile-menu">
-  <mobile-menu></mobile-menu> 
-</div>
+
 <div class="page-container page-rule">
-  <div *ngIf="userAccount" class="container ">
+  <p>user account</p>
+  <div *ngIf="userAccount" class="container">
     <span><h2>Account Setting</h2></span>
     <div *ngIf="updatedNotify" class="alert alert-success" role="alert">
       <strong>{{updatedNotify}}</strong>
@@ -34,7 +30,8 @@
           </div>
           <!-- password change edit -->
           <div *ngIf="changePassword" class="password-chg">
-            <change-password></change-password>
+            <p>Change password form here</p>
+            <!-- <change-password></change-password> -->
           </div>
           <!-- Account information edit -->
           <div *ngIf="pInfoEdit" class="edit-p-info">
@@ -66,7 +63,7 @@
 
         <div class="d-flex justify-content-between">
           <div class="p-2">
-              <app-paypal (returnResult)="paymentMethodResult($event)"></app-paypal>
+              <!-- <app-paypal (returnResult)="paymentMethodResult($event)"></app-paypal> -->
               <!-- <a mat-raised-button id="paypalButton" (click)="addPaypal()" >Add Paypal Account</a> -->
           </div>
           <div class="p-2">
@@ -75,7 +72,7 @@
           
         </div>
 
-        <pay-card *ngIf="addNewCard" [customerId]="customerID"></pay-card>
+        <!-- <pay-card *ngIf="addNewCard" [customerId]="customerID"></pay-card> -->
 
       </div>
     

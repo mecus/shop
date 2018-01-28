@@ -1,0 +1,124 @@
+<div class="new-product-container">
+        <div class="header">
+            <p>Edit product</p>
+            <small [style.color]="color">{{statusMsg}}</small>
+            <!-- <div class="back-btn">
+                <mat-icon (click)="back()">arrow_back</mat-icon>
+            </div> -->
+            
+        </div>
+        
+        <div class="form-content">
+            <form novalidate [formGroup]="productModel" (ngSubmit)="updateProduct(productModel.value)">
+                <div class="form-field">
+                    <mat-form-field>
+                        <input matInput formControlName="name" placeholder="Product Name">
+                    </mat-form-field>
+                    
+                    <mat-form-field>
+                            <input matInput formControlName="code" placeholder="Product Code">
+                    </mat-form-field>
+                </div>
+                <div class="form-field">
+                    <mat-form-field>
+                        <input matInput formControlName="old_price" placeholder="Old Price">
+                    </mat-form-field>
+                    
+                    <mat-form-field>
+                            <input matInput formControlName="price" placeholder="New Price">
+                    </mat-form-field>
+                    
+                    <mat-form-field>
+                            <input matInput formControlName="stock" placeholder="Stock">
+                    </mat-form-field>
+                    <mat-form-field *ngIf="category$">
+                            <input [value]="category$.name" matInput  placeholder="Category">
+                    </mat-form-field>
+                </div>
+                <div class="form-field">
+                    <mat-form-field>
+                        <mat-select formControlName="brand" placeholder="Select Brand">
+                        <mat-option *ngFor="let brand of brand$ | async" [value]="brand.name">
+                           {{brand.name}}
+                        </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    
+                    <mat-form-field>
+                        <mat-select formControlName="offer"  placeholder="Offer">
+                        <mat-option value="no">No</mat-option>
+                        <mat-option value="yes">Yes</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                
+                </div>
+                <div class="form-field">
+                    <mat-form-field>
+                        <mat-select formControlName="recommend" placeholder="Reconmended">
+                        <mat-option value="no">No</mat-option>
+                        <mat-option value="yes">Yes</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    
+                    <mat-form-field>
+                        <mat-select formControlName="sponsored" placeholder="Sponsored">
+                            <mat-option value="no">No</mat-option>
+                            <mat-option value="yes">Yes</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    
+                </div>
+                <h3>Image Upload</h3>
+                <div class="image-file">
+                    <input (change)="imageUpload($event)" type="file">
+                </div>
+    
+                <!-- <div class="form-field">
+                    <mat-form-field>
+                            <mat-select placeholder="Select">
+                            <mat-option value="option">Option</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                        
+                        <mat-form-field>
+                            <mat-select placeholder="Select">
+                            <mat-option value="option">Option</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                </div> -->
+                <h3>Description</h3>
+                <div formGroupName="description" class="form-field-group">
+                    <mat-form-field class="detail">
+                        <textarea matInput formControlName="detail" placeholder="Product Details"></textarea>
+                    </mat-form-field>
+                    
+                    <mat-form-field>
+                        <input matInput formControlName="size" placeholder="Product size">
+                    </mat-form-field>
+                    <mat-form-field>
+                        <input matInput formControlName="origin" placeholder="Product Origin">
+                    </mat-form-field>
+                </div>
+                <h3>Nutritions</h3>
+                <div formGroupName="nutrition" class="form-field">
+                    <mat-form-field class="detail">
+                        <input matInput formControlName="energy" placeholder="Energy">
+                    </mat-form-field>
+                    
+                    <mat-form-field>
+                        <input matInput formControlName="fat" placeholder="Fat">
+                    </mat-form-field>
+                    <mat-form-field>
+                        <input matInput formControlName="saturates" placeholder="Saturates">
+                    </mat-form-field>
+                    <mat-form-field>
+                        <input matInput formControlName="salt" placeholder="Salt">
+                    </mat-form-field>
+                </div>
+                <mat-checkbox formControlName="publish">Publish</mat-checkbox>
+                <div class="subBtn">
+                    <button mat-raised-button type="submin">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>

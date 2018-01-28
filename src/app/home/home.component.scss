@@ -1,0 +1,186 @@
+.destop-page{
+
+}
+.header-content{
+    margin-bottom: 40px;
+    background-color: #fff;
+    .welcome-container{
+        justify-content: space-between;
+        .welcome-msg{
+            flex: 2;
+            width: 100%;
+            padding-right: 10px;
+            margin: 20px 0px;
+            p{
+                font-size: 12px;
+                margin: 0px;
+                font-size: 13px;
+            }
+            p#errMsg{
+                color: red;
+                padding: 0px;
+            }
+            p#succMsg{
+                color: #00796B;
+            }
+            h1{
+                font-family: 'Saira', sans-serif;
+                font-size: 28px;
+                font-weight: 400;
+                border-bottom: 2px dotted grey;
+            }
+            .request-postcode{
+                padding: 0px;
+                margin: 0px;
+                input{
+                    // border-left: 2px solid #009688;
+                    // padding-left: 5px;
+                    // width: 100%;
+                   
+                }
+                display: flex;
+                a:hover{
+                    text-decoration: none;
+
+                }
+                a{
+                    font-size: 14px;
+                    line-height: 40px;
+                    height: 40px;
+                    padding: 0px;
+                    padding: 0px 10px;
+                    margin-top: 8px;
+                    text-decoration: none;
+                }
+            }
+            .customer-login{
+                margin-top: 20px;
+                p{font-size: 14px; font-weight: bold; border-bottom: 1px dotted lightgray;}
+                a{
+                    font-family: Dosis, sans-serif;
+                    font-size: 13px;
+                    letter-spacing: 2px;
+                    color: #FF9100;
+                    &:hover{cursor: pointer;}
+                }
+            }
+            .c-shopping{
+                p{padding-left: 4px; font-size: 14px;}
+            }
+        }
+        .welcome-slider{
+            position: relative;
+            // z-index: 1000;
+            flex: 6;
+            width: 100%;
+            margin: 0px !important;
+            padding: 0px !important;
+            img{
+                width: 100%;
+            }
+            .home-slide-image{
+                width: 100%;
+            }
+        }
+    }
+}
+
+.grid-container{
+    // .p-2{
+    //     height: 200px;
+    //     background-color: red;
+    // }
+    .p-2{
+        padding: 20px;
+    }
+    
+}
+.grid-container>*{
+    // height: 200px;
+    
+    background-color: #fff;
+    margin: 4px;
+    mat-icon{
+        font-size: 5em;
+    }
+}
+.hero-ad-container>* {
+    // height: 400px;
+    background-color: #fff;
+    width: 100%;
+    margin: 4px;
+    img{
+        width: 100%;
+    }
+}
+.grid-1, .grid-2, .grid-3{
+    width: 100%;
+    flex: 1;
+    padding: 10px;
+    h1{
+        font-size: 18px;
+        font-family: 'Open Sans Regular', sans-serif;
+        // padding: 5px;
+    }
+}
+.grid-set-1, .grid-set-2, .grid-set-3{
+    height: 150px;
+    .p-2{
+        flex: 2 ;
+        width: 100%;
+    }
+    .p-1{
+        flex: 1;
+        width: 100%;
+    }
+    p{
+        font-size: 13px;
+        font-family: 'Open Sans Light', sans-serif;
+    }
+    
+}
+.grid-3{
+    .grid-set-3{
+        // background-color: red;
+        .icon-container{
+            position: relative;
+            z-index: 0;
+            .icon-main{
+                position: absolute;
+                z-index: 01;
+            }
+            .icon-cover{
+                position: relative;
+                top: 10px;
+                left: 5px;
+                background: url('/assets/cooking-video.jpg');
+                width: 62px;
+                height: 45px;
+                border-radius: 5px;
+                z-index: 0;
+            }
+        }
+    }
+}
+
+mat-progress-spinner{
+    position: absolute;
+    top: 0px;
+    left: 30px;
+    width: 30px;
+    margin: 0 auto;
+    .example-section {
+        // display: flex;
+        align-content: center;
+        align-items: center;
+        height: 0px;
+        margin: 0px;
+        padding: 0px;
+    }
+    [_nghost-c14] {
+        // display: block;
+        height: 30px;
+        width: 30px;
+        overflow: hidden;
+    }
+}

@@ -11,6 +11,7 @@ import * as Rx from 'rxjs';
 // import 'rxjs/add/operator/switchMap';
 // import 'rxjs/add/operator/share';
 import { StorageService } from './storage.service';
+import { AuthService } from '../authentications/authentication.service';
 // import * as firebase from 'firebase';
 // import 'firebase/firestore';
 
@@ -19,22 +20,46 @@ import { StorageService } from './storage.service';
 
 export class ProgressService {
     progress$;
-    constructor(private AFs:AngularFirestore, private store:StorageService ){
-        this.progress$ = AFs.collection('progress').doc(this.store.retriveData('uid') || null).collection('checkprogress');
+    currentUser;
+    progress;
+    constructor(private AFs:AngularFirestore, private store:StorageService, private authService:AuthService ){
+        authService.authState().subscribe(user=>{
+            if(user){
+                this.currentUser = user;
+                this.progress$ = AFs.collection('progress').doc(user.uid).collection('checkprogress/');
+
+                this.progress$.snapshotChanges().map(snapshot=>{
+                    this.progress = snapshot.map(doc=>{
+                        const data = doc.payload.doc.data()
+                        const id = doc.payload.doc.id
+                        return {id, data};
+                    });
+                    // console.log(this.progress);
+                }).subscribe();
+            }
+        })
+        
     }
 
     setProgress(prog){
-        let DBRef = this.progress$;
-            DBRef.add(prog).then(res=>res).catch(err=>console.log(err));
+       this.progress$
+            .add(prog).then(res=>res).catch(err=>console.log(err));
     }
 
     getProgress(){
-        let DBRef = this.progress$.valueChanges();
-        return DBRef;
-
+        let db = this.progress$.valueChanges();
+        return db;
+    
     }
     deleteProgress(){
-        let DBRef = this.progress$.doc(this.store.retriveData('uid') || null);
-        return DBRef;
+        this.progress.forEach(doc=>{
+            if(doc){
+                let prog = this.AFs.collection('progress').doc(this.currentUser.uid).collection('checkprogress');
+                prog.doc(doc.id).delete().then(res=>console.log(res)).catch(err=>console.log(err));
+            }else{
+                return;
+            }
+        });
+
     }
 }

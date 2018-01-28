@@ -1,0 +1,37 @@
+
+<mat-toolbar color="primary">
+    <a mat-mini-fab color="primary" (click)="goback()"><mat-icon>arrow_back</mat-icon></a>
+    <span *ngIf="categoryName"><h1>{{categoryName}}</h1></span>
+    <span (click)="open()" class="more-vert"><mat-icon>more_vert</mat-icon></span>
+</mat-toolbar>
+
+<div class="page-container moby">
+    <div class="d-flex flex-column justify-content-between mob-product-wrapper">
+        <div class="p-2 d-flex product" *ngFor="let product of products$ | async">
+            <div class="p-2 d-flex flex-column p-image">
+                <img (click)="viewProduct(product)" [src]="product.imageUrl" alt="product-image">
+            </div>
+            <div class="p-2 d-flex flex-row justify-content-between p-caption">
+                <span class="p-2 p-dtails">
+                    <h1 (click)="viewProduct(product)">{{product.name}}</h1>
+                    <p id="price"><strong>Price: </strong> {{product.price | currency:"GBP":true}}</p>
+                    <p>Size: ({{product.description.size}})</p>
+                </span>
+               <span class="p-2 cart-btn">
+                    <a *ngIf="product.stock > 0" (click)="addToCart(product)" mat-raised-button>Add</a>
+                    <a *ngIf="product.stock < 1" [style.opacity]="'0.5'" [style.color]="'white'" [style.backgroundColor]="'red'"  mat-raised-button>sorry</a>
+                    <small *ngIf="product.stock > 0">{{product.stock}} in stock</small>
+                    <small *ngIf="product.stock < 1">out of stock</small>
+               </span>
+                
+            </div>
+            <div class="in-cart" *ngFor="let cart of carts$">
+                <mat-icon *ngIf="cart.name == product.name">add_shopping_cart</mat-icon>
+                <small *ngIf="cart.name == product.name">{{cart.qty}}</small>
+            </div>
+            <div class="offer"><p>Offer</p></div>
+        </div>
+    </div>
+</div>
+<post-code [requestPost]="openPostInput"></post-code>
+<home-link (click)="close($event)" [openDialog]="dialogBox"></home-link>

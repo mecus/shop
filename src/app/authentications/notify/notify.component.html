@@ -1,19 +1,19 @@
- <div class="tool-bar-wrapper d-flex align-items-center flex-row-reverse">
+ <div class="tool-bar-wrapper flex-container">
 
   <div routerLink="/get_help" class="get-help">
     <p>Help</p>
     <mat-icon>help</mat-icon>
   </div>
   <div class="basket">
-    <div class="d-flex justify-content-center">
-      <div class="p-2"><mat-icon>local_grocery_store</mat-icon></div>
-      <div (click)="cartOption()" class="p-2"><cart-total></cart-total></div>
-      <div (click)="cartOption()" class="p-2"><mat-icon>keyboard_arrow_down</mat-icon></div>
+    <div class="flex-container">
+      <div class="p"><mat-icon>local_grocery_store</mat-icon></div>
+      <div (click)="cartOption()" class=""><cart-total></cart-total></div>
+      <div (click)="cartOption()" class=""><mat-icon>keyboard_arrow_down</mat-icon></div>
     </div>
     <!-- <span id="all-price"><p><cart-total></cart-total> <mat-icon>keyboard_arrow_down</mat-icon> </p></span> -->
   </div>
   <div class="account">
-     <a *ngIf="!authenticated" (click)="clearMenu()" routerLink="/login">Login</a> 
+     <a *ngIf="!currentUser" (click)="clearMenu()" routerLink="/login">Login</a> 
      <!-- <a *ngIf="authenticated" (click)="logOut()" >Your Account</a>  -->
 
     <!-- <div *ngIf="authenticated" class="btn-group" dropdown>
@@ -31,14 +31,14 @@
       </ul>
     </div> -->
 
-    <a *ngIf="authenticated" [matMenuTriggerFor]="menu">
+    <a *ngIf="currentUser" [matMenuTriggerFor]="menu">
      <span>Account</span>
        <!-- <span> <mat-icon>expand_more</mat-icon> </span> -->
     </a>
     <mat-menu #menu="matMenu" [overlapTrigger]="false"  yPosition="below" xPosition="before">
       <button mat-menu-item>
-        <mat-icon>dialpad</mat-icon>
-        <span>Your Vouchers</span>
+        <mat-icon>account_circle</mat-icon>
+        <span *ngIf="currentUser">{{currentUser}}</span>
       </button>
       <button routerLink="/account/account_setting" mat-menu-item >
         <mat-icon>settings</mat-icon>
@@ -56,24 +56,24 @@
 
 
   </div>
-  <div *ngIf="!authenticated" class="register" >
+  <div *ngIf="!currentUser" class="register" >
     <a routerLink="/register" (click)="clearMenu()">Register</a>
   </div>
-  <div *ngIf="authenticated" class="orders">
-    <a routerLink="/your_orders">Orders</a>
+  <div *ngIf="currentUser" class="orders">
+    <a routerLink="/account/your_orders">Orders</a>
   </div>
   <!-- <div *ngIf="authenticated" class="favourites">
     <a href="">Favourites</a>
   </div> -->
-  <div *ngIf="authenticated" class="shopping-list">
-    <a routerLink="/shopping_list">Shopping_List</a>
+  <div *ngIf="currentUser" class="shopping-list">
+    <a routerLink="/account/shopping_list">Shopping_List</a>
   </div>
 </div>
 
 <div *ngIf="dropDown" id="cart-option">
-  <span class="d-flex justify-content-between">
-    <span class="p-2 d-flex"><a routerLink="/basket"><mat-icon>arrow_backward</mat-icon> View Basket</a></span>
-    <span class="p-2 d-flex"><a (click)="goCheckOut()" >Checkout <mat-icon>arrow_forward</mat-icon> </a></span>
+  <span class="drop-flex flex-container">
+    <span class="flex-container"><a routerLink="/shop/basket"><mat-icon>arrow_backward</mat-icon> View Basket</a></span>
+    <span class="flex-container"><a (click)="goCheckOut()" >Checkout <mat-icon>arrow_forward</mat-icon> </a></span>
   </span>
   <p *ngIf="limitMsg">{{limitMsg}}</p>
 </div>

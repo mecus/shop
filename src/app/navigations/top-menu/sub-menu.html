@@ -1,0 +1,66 @@
+<div id="sticky-menu" class="sticky-menu-container">
+    <div class="container">
+        <div id="toolbar" class="mat-toolbar"> 
+            <!-- <div class="sub-toolbar">
+                    <div class="side-menu-btn">
+                        <a (click)="goTop()" mat-icon-button>
+                            <mat-icon>keyboard_arrow_up</mat-icon>
+                        </a>
+                    </div>
+                </div> -->
+            <div class="mat-toolbar">
+                <div class="item1"><h1>uRGy</h1></div>
+                <div class="item2"><product-search></product-search></div>
+                <div class="item3">
+                    <div class="notify"> 
+                        <notify></notify>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="sub-menu" class="nav-menu container-fluid">
+    <div class="container">
+        <div class="nav-content flex-container">
+            <span hoverMenu class="nav-item" *ngFor="let dept of departments">
+                <a class="nav-link" (click)="selectedDept(dept, $event)">{{dept.name}}</a>
+            </span>
+            <span  id="how-to"> <!-- selectMenu -->
+                <a class="nav-link" (click)="showHowTo()" >Cooking <i class="fa fa-cutlery" aria-hidden="true"></i><span class="sr-only">(current)</span></a>
+            </span>
+            <span hoverMenu id="brand-select" (mouseleave)="getBrands($event)" (mouseenter)="getBrands($event)" class="nav-item">
+                <a class="nav-link" >Brands<span class="sr-only">(current)</span></a>
+            </span>
+            <span  id="best-offer" class="nav-item-0">
+                <a (click)="bestOffer()" class="nav-link-0" >Best Offer<span class="sr-only">(current)</span></a>
+            </span>
+            <span [style.backgroundColor]="'red'" id="best-offer" class="nav-item-0">
+                <a routerLink="/admin" class="nav-link-0" >ADMIN<span class="sr-only">(current)</span></a>
+            </span>
+        </div>
+    </div>
+</div>
+
+<div selectMenu class="howTo-video">
+    <div class="container how-to-do">
+        <how-to></how-to>
+    </div>
+</div>
+<div class="brand-list" (mouseleave)="getBrands($event)" (mouseenter)="getBrands($event)">
+    <div class="container">
+        <div class="brands flex-container">
+            <div id="brand-item" class="" *ngFor="let brand of (brands$ | async)">
+                <div (click)="searchBrand(brand.name)">
+                    <p><strong>{{brand.name}}</strong></p>
+                    <small>{{brand.contained_product}}</small>
+                </div>
+            </div>
+        </div>
+        <div>
+            <p>Search product by its brand</p>
+        </div>
+    </div>
+</div>
+

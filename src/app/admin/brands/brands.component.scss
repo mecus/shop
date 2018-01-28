@@ -1,0 +1,78 @@
+.brands-container{
+    position: relative;
+    h1{
+        font-family: 'Open Sans Bold', sans-serif;
+        font-size: 1.5em;
+        padding-top: 20px;
+        text-transform: uppercase;
+        small{
+            font-size: .6em;
+            color: lightgrey;
+            &:hover{
+                cursor: pointer;
+                color: #ffffff;
+            }
+          
+        }
+    }
+    .brands{
+        width: 500px;
+        margin-top: 10px;
+        .brand-item{
+            display: flex;
+            justify-content: space-between;
+            background-color: lighten(lightgrey, 20%);
+            padding: 5px 10px;
+            margin-top: 5px;
+            span#group{
+                color: lighten(lightslategrey, 20%);
+            }
+            .right-hand{
+                display: flex;
+                justify-content: flex-end;
+                span#group{
+                    margin-right: 20px;
+                }
+                span mat-icon {
+                    color: lighten(lightslategrey, 30%);
+                    
+                    &:hover{
+                        cursor: pointer;
+                        color: red;
+                    }
+                }
+            }
+        }
+    }
+
+    .new-brands-wrapper{
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background-color: lighten(#ffffff, 20%);
+        margin-left: -20px;
+        mat-icon{
+            position: absolute;
+            top: 5%;
+            left: 5%;
+            font-size: 2em !important;
+            color: darken(lightgrey , 20%);
+            &:hover{
+                cursor: pointer;
+                color: red;
+            }
+        }
+        .brand-form{
+            padding-top: 5%;
+            padding-left: 5%;
+
+            p{
+                padding-top: 20px;
+                color: lightgrey;
+            }
+        }
+    }
+}
+

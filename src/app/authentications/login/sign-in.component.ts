@@ -8,7 +8,8 @@ import { Router } from '@angular/router';
 import * as firebase from 'firebase';
 import { StorageService } from "../../services/storage.service";
 import { AccountService } from "../../services/account.service";
-
+import { DbService } from '../../services/db.service';
+import { WindowService } from '../../services/window.service';
 
 
 @Component({
@@ -26,27 +27,28 @@ export class LoginComponent implements OnInit {
     postcode;
 
 
-    constructor(private storeService:StorageService, private location:Location, 
-    private authService:AuthService, private accountService:AccountService,
-    private _fb:FormBuilder, private _router:Router){
+    constructor(
+        private storeService:StorageService, 
+        private location:Location, 
+        private authService:AuthService, 
+        private accountService:AccountService,
+        private _fb:FormBuilder, private _router:Router,
+        private db: DbService,
+        private windowService: WindowService,
+    ){
+        
         this.user = this._fb.group({
             email: [null, Validators.required],
             password: [null, Validators.required]
         }) 
     }
-    logIn(user):void{
+
+    logIn(user):void{  
        this.authService.emailLogin(user).then((res)=>{
-           this.storeService.storeData('user', res);
-           this.storeService.storeData('uid', res.uid);
-           this.storeService.storeData('email', res.email);
-           //Note! Query account with the ac_no of the customer 
-           this.accountService.getAccount(res.email).subscribe((account)=>{
-               this.accountService.getAddress(account._id).subscribe((addresses)=>{
-                this.storeService.storeData('postcode', addresses[0].post_code);
-               }) 
-           })
-           this._router.navigate(['/']);
-        // this.location.back();
+            this.authService.getClientToken();
+            this.windowService.getWindowObject().setTimeout(()=>{
+                this.location.back();
+            },500);
         })
         .catch((err)=>{
             console.log(err);
@@ -73,14 +75,23 @@ export class LoginComponent implements OnInit {
        
     }
     passwordRequest(){
-        this.toggForm = true;
+        // this.toggForm = true;
+        if(this.toggForm == true){
+            this.toggForm = false;
+        }else{
+            this.toggForm = true;
+        }
     }
     signOut():void{
         this.authService.logout();
         this.authService.authState();
     }
+    goBack(){
+        this.location.back();
+    }
     ngOnInit(){
-        this.postcode = this.storeService.retriveData('postcode');
+        this.db.createDb();
+        // this.postcode = this.storeService.retriveData('postcode');
 
     }
 }

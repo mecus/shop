@@ -1,17 +1,68 @@
 .delivery-container{
+  max-width: 700px;
+  overflow: hidden;
   margin-top: 2em;
-  .delivery{
+  .delivery-inner{
     width: 100%;
-    margin: 0 5px;
-    .delivery-form{
-      width: 100%;
+    .delivery{
+      width: 700px;
+      margin: 0 5px;
+      border: 0;
+      background: #ffffff;
+      // background: linear-gradient(to right, #ffffff, #ebeff1);
+      .list-group{
+        .list-group-item{
+            border-radius: 0;
+            background-color: #00796B;
+            color: #ffffff;
+            height: 50px;
+            mat-icon{
+              // line-height: 50px;
+            }
+            span{
+              margin-right: 10px;
+              font-family: 'Open Sans Light', sans-serif;
+              // line-height: 50px;
+            }
+        }
+      }
+      .delivery-form{
+        width: 100%;
+      }
+    }
+    .aside-comp{
+      width: 700px;
+      margin: 0 5px;
+
+      .list-group{
+        .list-group-item{
+            border-radius: 0;
+            background-color: #00796B;
+            color: #ffffff;
+            height: 50px;
+            mat-icon{
+              // line-height: 50px;
+            }
+            span{
+              margin-left: 10px;
+              font-family: 'Open Sans Light', sans-serif;
+              // line-height: 50px;
+            }
+        }
+      }
     }
   }
-  .aside-comp{
-    width: 100%;
-    margin: 0 5px;
+  
+}
+.your-address{
+  background: #ffffff;
+  background: linear-gradient(to right, #00796B, #ffffff);
+  color: #ffffff;
+  a{
+    color: #00796B !important;
   }
 }
+
 
 .input-full-width{
     width: 100%;
@@ -24,19 +75,19 @@
   width: 100%;
 }
 
-.pageProcessCover{
-  position: fixed;
-  width: 100%;
-  top: 0px;
-  background-color: #fff;
-  opacity: 0.4;
-  height: 100vh;
-  z-index: 100;
-  margin: 0 auto;
-  .center-point{
-      position: absolute;
-      top: 45%;
-      left: 45%;
-      margin: 0 auto;
-  }
-}
+// .pageProcessCover{
+//   position: fixed;
+//   width: 100%;
+//   top: 0px;
+//   background-color: #fff;
+//   opacity: 0.4;
+//   height: 100vh;
+//   z-index: 100;
+//   margin: 0 auto;
+//   .center-point{
+//       position: absolute;
+//       top: 45%;
+//       left: 45%;
+//       margin: 0 auto;
+//   }
+// }

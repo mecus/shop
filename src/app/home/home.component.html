@@ -1,0 +1,157 @@
+<div class="dextop">
+    <primary-navigation></primary-navigation>
+</div>
+<div class="moby">
+    <mobile-menu></mobile-menu>
+</div>
+<div class="destop-page mobile-margin-top page-rule hide-on-mobile">
+  <div class="header-content">
+    <div class="container">
+      <div class="flex-container welcome-container">
+        <div class="welcome-msg">
+          <h1>Welcome to uRGy</h1>
+          <p><strong>
+            Shop here and we will deliver straigth to your door.
+            <small>Please enter your postcode to make sure we deliver to you</small>
+          </strong></p>
+          <!-- <post-code [requestPost]="openPostInput"></post-code> -->
+          <a color="primary" mat-raised-button (click)="openPostBox()">Check your postcode</a>
+          <!-- <div class="request-postcode">  
+              <mat-input-container>
+                <input #postcode type="text" matInput name="postcode" required placeholder="Enter Postcode">
+              </mat-input-container>
+              <a (click)="submitPostcode(postcode.value)" color= "primary" mat-raised-button> <span>Check <i *ngIf="searchingPostcode" class="fa fa-spin fa-spinner" aria-hidden="true"></i></span></a>
+          </div>
+          
+          <p id="succMsg" *ngIf="successMsg">{{successMsg}}</p>
+          <p id="errMsg" *ngIf="emptyErr">{{emptyErr}}</p> -->
+          <div class="c-shopping">
+            <p>Want to look around first ?</p>
+            <a (click)="continueShop()" role="button" class="btn btn-success">Go Shopping </a>
+          </div>
+          
+          <div class="customer-login">
+            <p>Already a Customer</p>
+            <a (click)="gotoLogin()"> {{userlogin}}</a>
+            <!-- <mat-icon>vpn_key</mat-icon> -->
+          </div>
+        </div>
+        <div  class="welcome-slider">
+          <nge-carousel
+            [images]="ads"
+            [options]="options">
+          </nge-carousel>
+        
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- <confirm-alert></confirm-alert> -->
+
+  <div class="container">
+    <div class="grid-container flex-container">
+      <div class="grid-1">
+          <h1>Shopping Assistance</h1>
+          <div class="grid-set-1 flex-container">
+            <div class="p-1">
+              <mat-icon>transfer_within_a_station</mat-icon>
+            </div>
+            <div class="p-2">
+                <p>Our friendly drivers are on hand at your doorstep to answer any questions you might have</p>
+            </div>
+          </div>
+          <a mat-raised-button>more</a>
+      </div>
+      <div class="grid-2">
+        <h1>Home Delivery</h1>
+        <div class="grid-set-2 flex-container">
+          <div class="p-1">
+            <mat-icon>airport_shuttle</mat-icon>
+          </div>
+          <div class="p-2">
+              <p>Buy uRGy groceries online for delivery straight to your door where ever you leave in the UK.</p>
+          </div>
+        </div>
+        <a mat-raised-button>read more</a>
+        
+      </div>
+      <div class="grid-3">
+          <h1>Cooking Video</h1>
+          <div class="grid-set-3 flex-container">
+            <div class="p-1 icon-container">
+              <mat-icon class="icon-main">personal_video</mat-icon>
+              <div class="icon-cover"></div>
+            </div>
+            <div class="p-2">
+                <p>We make some cooking videos on how to make differnt kind of food including their condiments and provision to order them on the fly.. check it out</p>
+            </div>
+          </div>
+          <a routerLink="/instruction_video" mat-raised-button>Watch</a>
+      </div>
+    </div>
+    
+    <!-- <button mat-raised-button (click)="onButtonClick()" > Create Client</button>
+    <button mat-raised-button > Google Logout</button>
+    <a mat-mini-fab ><mat-icon>clear</mat-icon></a> -->
+
+    <div class="flex-container hero-ad-container">
+      <div class="">
+        <img src="assets/foodadvert-1.jpeg" alt="">
+      </div>
+      <div class="">
+          <img src="assets/foodadvert-2.jpeg" alt="">
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- Display for mobile -->
+<div class="mobile-page hide-on-desktop">
+  <div  class="mobile-slider">
+      <img *ngIf="ads" [style.width]="'100%'" src="{{ads[0]}}" alt="">
+      <nge-carousel
+        [images]="ads"
+        [options]="options">
+      </nge-carousel>
+  </div>
+  <div class="delivery-check">
+    <h1>Welcome to uRGy</h1>
+    <p>To make sure we deliver to you, please check your postcode below or login</p>
+    <a (click)="openPostBox()" mat-raised-button >check postcode</a>
+    <span *ngIf="!currentUser">or <a routerLink="/login">login</a></span>
+    
+  </div>
+  <div class="product-cat flex-container">
+    <span mat-button *ngFor="let cat of category$ | async" class="flex-container cat-list">
+      <img (click)="goToCategory(cat)" class="" [src]="cat.image_url" alt="">
+      <h1 (click)="goToCategory(cat)" class="">{{cat.name}}</h1>
+    </span>
+    <span mat-button class="flex-container cat-list">
+      <img class="" (click)="bestOffer()" src="assets/offer2.jpeg" alt="">
+      <h1 (click)="bestOffer()" [style.color]="'red'" class="">Clearance</h1>
+    </span>
+  </div>
+  <div class="buyer-protect-container">
+      <div style="background-image: url('assets/buyer-protect.webp');" class="buyer-protect">
+        <span class="flex-container">
+            <span><mat-icon>security</mat-icon></span>
+            <span><h1>Buyer protection</h1></span>
+        </span>
+        <p>1. Full refund if you did not recieved your items</p>
+        <p>2. Full or partial refund if item didn't arrived as described</p>
+          
+      </div>
+  </div>
+  <div class="mob-foot">
+    <a routerLink="/shop/terms_conditions" mat-button>Terms and Conditions</a>
+    <a routerLink="/shop/cookie_privacy" mat-button>Privacy Policy</a>
+  </div>
+</div>
+<post-code [requestPost]="openPostInput"></post-code>
+<!-- <nge-load-spinner></nge-load-spinner> -->
+
+<div class="dextop">
+  <footer-menu></footer-menu>
+</div>

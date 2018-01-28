@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { trigger, state, style, stagger, transition, animate, keyframes, query } from '@angular/animations';
@@ -17,6 +17,7 @@ import { ProgressService } from '../../../services/checkout-progress.service';
 })
 
 export class DeliveryMethodComponent implements OnInit {
+    processDone;
     trueAddress:boolean = false; trueMsg:string;
     currentUser;
     certify:boolean = false;
@@ -25,12 +26,14 @@ export class DeliveryMethodComponent implements OnInit {
     postCode;
     deliveryForm;
     selectAddress;
+    selectAddressNotice:boolean;
     errorMsg;
     toggles:boolean = false;
     tempOrder;
     notify;
     grayPage;
     billingAddresses;
+    updateNotice;
     constructor(private _fb:FormBuilder, private tempOrderService:TempOrderService,
     private authService:AuthService, private _router:Router, private accountService:AccountService,
     private storeService:StorageService, private progressService:ProgressService){
@@ -43,22 +46,43 @@ export class DeliveryMethodComponent implements OnInit {
         country: "United Kingdom"
       })
     }
+  goToDeliveryAddress(){
+    this.processDone = false;
+  }
+  goToDeliveryOption(){
+    this.processDone = true;
+  }
   //Set billing address as delivery address
-  useAsdevivery(check){
-    console.log(check);
-    if(this.billingAddresses && check){
-      console.log(check); 
-      this.deliveryForm.patchValue({
-        full_name: this.billingAddresses.full_name,
-        address: this.billingAddresses.address,
-        address2: this.billingAddresses.address2,
-        city: this.billingAddresses.city,
-        post_code: this.billingAddresses.post_code,
-        country: this.billingAddresses.country
-  
-      });
-    }
-
+  @HostListener('change', ['$event']) useAsdevivery(e){
+    console.log(e);
+      // e.stopPropagation();
+      // e.preventDefault();
+      // e.cancelBubble = true;
+      // // e.bubbles = false;
+      // e.stopImmediatePropagation();
+      
+      if(this.billingAddresses && e.checked == true){
+        this. updateNotice = e.checked;
+        this.deliveryForm.patchValue({
+          full_name: this.billingAddresses.full_name,
+          address: this.billingAddresses.address,
+          address2: this.billingAddresses.address2,
+          city: this.billingAddresses.city,
+          post_code: this.billingAddresses.post_code,
+          country: this.billingAddresses.country
+    
+        });
+      }else{
+        this. updateNotice = e.checked;
+        this.deliveryForm.patchValue({
+          full_name: this.billingAddresses.full_name,
+          address: null,
+          address2: null,
+          city: this.billingAddresses.city,
+          post_code: null,
+          country: this.billingAddresses.country
+        });
+      }
     // let dom = document.querySelector('button[type="submit"]');
     // dom.setAttribute('submit', 'true');
   }
@@ -77,6 +101,7 @@ export class DeliveryMethodComponent implements OnInit {
   }
   //Saving temp order address to firebase
   deliveryAddress(address){
+    window.scrollTo(0, 0);
     this.grayPage = true;
     // console.log(this.currentUser);
     if(!address.full_name){
@@ -99,8 +124,9 @@ export class DeliveryMethodComponent implements OnInit {
     if(this.currentUser){
     // this.temOrder.userid = this.currentUser.uid;
     this.tempOrderService.updateTempOrder(this.currentUser.uid, temOrder);
-    this.toggles = false;
+    // this.toggles = false;
     setTimeout(()=>{
+      this.toggles = true;
       this.notify = true;
       this.grayPage = false;
     }, 1000)
@@ -113,8 +139,10 @@ export class DeliveryMethodComponent implements OnInit {
   editAddress(){
     if(this.toggles){
       this.toggles = false;
+      window.scrollTo(0, 0);
     }else{
       this.toggles = true;
+      window.scrollTo(0, 0);
     }
 
   }
@@ -130,13 +158,14 @@ export class DeliveryMethodComponent implements OnInit {
   getDeliveryAddress(){
       this.tempOrderService.getTempOrder(this.currentUser.uid).subscribe((address)=>{
         if(address){
-          console.log(address['delivery_option']);
+          // console.log(address['delivery_option']);
           this.selectAddress = address['delivery_address'];
           this.toggles = true; //address['delivery_address'];
           if(address['delivery_address'] && address['delivery_option']){
             this.certify = true;
           }else{ this.certify = false; }
-          if(address['delivery_address']){
+          if(address['delivery_address'].address){
+            this.selectAddressNotice = false;
             this.trueAddress = true;
             this.deliveryForm.patchValue({
               full_name: address['delivery_address'].full_name,
@@ -147,7 +176,8 @@ export class DeliveryMethodComponent implements OnInit {
               country: address['delivery_address'].country
             })
           }else{
-            alert("You can now load address from the server");
+            // this.selectAddressNotice = false;
+            // alert("You can now load address from the server");
           }
 
         }
@@ -161,8 +191,10 @@ export class DeliveryMethodComponent implements OnInit {
           this.selectAddress =_.last(_.filter(addresses, {"address_type":"delivery"}));
           this.billingAddresses = _.last(_.filter(addresses, {"address_type":"billing"}));
           if(!this.selectAddress){
+            this.selectAddressNotice = true;
             console.log("No Old address found");
             this.getDeliveryAddress();
+            
           }
           if(this.selectAddress){
             this.toggles = true;
@@ -201,6 +233,7 @@ export class DeliveryMethodComponent implements OnInit {
           this._router.navigate(["/login"]);
         }
       });
+     
 
   }
 

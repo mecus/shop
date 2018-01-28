@@ -1,6 +1,7 @@
 import { Component, OnInit, HostListener, AfterContentInit } from '@angular/core';
 import { trigger, state, style, stagger, transition, animate, keyframes, query } from '@angular/animations';
 import { Location } from '@angular/common';
+import { Store } from '@ngrx/store';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { Observable } from 'rxjs/Observable';
@@ -11,6 +12,9 @@ import { StorageService } from "../../../services/storage.service";
 import { ReviewService } from "../../../services/review.service";
 
 import * as _ from 'lodash';
+import { WindowService } from '../../../services/window.service';
+import * as cartActions from '../../../store-management/actions/cart.action';
+import { Cart } from '../../../store-management/models/cart.model';
 
 @Component({
   selector: 'app-product',
@@ -45,14 +49,18 @@ export class ProductViewComponent implements OnInit {
     showForm: boolean;
     errMsg;
     userErr;
+    dialogBox;
     cartErrorMsg?;
     carts$;
     reconmendProduct$;
-    constructor(private _router:Router,
-    private route:ActivatedRoute, private productService:ProductService,
-    private location:Location, private cartService:CartService, 
-    private storeService:StorageService, private _fb:FormBuilder,
-    private reviewService:ReviewService
+    constructor(
+      private _router: Router,
+      private route: ActivatedRoute, private productService: ProductService,
+      private location: Location, private cartService: CartService, 
+      private storeService: StorageService, private _fb: FormBuilder,
+      private reviewService: ReviewService, private windowRef: WindowService,
+      private store: Store<any>,
+
   ) { 
       this.reviewForm = _fb.group({
         'user': [null],
@@ -62,13 +70,29 @@ export class ProductViewComponent implements OnInit {
         'comment': [null, Validators.required]
       });
 
-    cartService.getCart().subscribe((carts)=>{
-      this.carts$ = carts.filter(cart=>cart.postcode == this.storeService.retriveData('postcode'));
+      store.select('cart').subscribe((cart: Cart[]) => {
+        this.carts$ = cart;
     });
+
+    // Store Management source of truth
+    windowRef.getWindowObject().setTimeout(()=> {
+      store.select('shop').subscribe(state => {
+        if(state.product_id !== null){
+          this.selectedProduct = 
+          this.productService.getStoreSingleProduct(state.product_id)
+          .map(product => {
+            let data = product.payload.data();
+            let id = product.payload.id;
+            return {id, ...data};
+          });
+        }      
+      });
+    }, 100);
+  
 
   }
   @HostListener('change', ['$event']) showReviewForm($event){
-    if(!this.storeService.retriveData('user')){
+    if(!this.storeService.retriveData('uid')){
       this.userErr = "Please sign in to reviews this product";
       return;
     }
@@ -84,7 +108,7 @@ export class ProductViewComponent implements OnInit {
       this.errMsg = "Please fill in all fields";
       return;
     }
-    if(!this.storeService.retriveData('user')){
+    if(!this.storeService.retriveData('uid')){
       this.errMsg = "Please sign in to reviews this product";
       return;
     }
@@ -118,28 +142,20 @@ export class ProductViewComponent implements OnInit {
   openPostBox(){
     this.openPostInput = "open" + this.counter++;
   }
-  addToCart(){
-      if(!this.storeService.retriveData('postcode')){
-        this.openPostBox();
-        this.cartErrorMsg = "Please enter your postcode to make sure we deliver to you";
-        return;
-        // DA17 4GH
-      }
-      this.cartService.createCart(this.payLoad());
-      // this.store.dispatch({type: cart.ADD, payload: this.payLoad() })
+  private payLoad(product) {
+    return {
+      name: product.name,
+      pid: product.id,
+      price: product.price,
+      imageUrl: product.imageUrl,
+      size: product.description.size,
+      qty: 1
+    }
+  }
+  addToCart(product){
+      this.store.dispatch({type: cartActions.CREATE, payload: this.payLoad(product)})
    }
-   private payLoad() {
-      return {
-        postcode: this.storeService.retriveData('postcode'),
-        name: this.selectedProduct.name,
-        product_id: this.selectedProduct._id,
-        price: this.selectedProduct.price,
-        imageUrl: this.selectedProduct.imageUrl,
-        qty: 1,
-        id:null
 
-      }
-   }
    redirectLogin(){
      this._router.navigate(["/login"]);
    }
@@ -158,25 +174,19 @@ export class ProductViewComponent implements OnInit {
   reconmendFunction(reconmend){
     this._router.navigate(["/product", {id:reconmend._id, product: reconmend.name}]);
   }
+  goback(){
+    this.location.back();
+  }
+
+  open(){
+      this.dialogBox = "open";
+  }
+  close(e){
+      e.stopPropagation();
+      if(e.target['id'] == 'link-container'){
+          this.dialogBox = "close";
+      }
+  }
   ngOnInit() {
-    this.route.params.forEach((param)=>{
-        this.productService.getCachedData().subscribe((products)=>{
-           this.selectedProduct = products.products.find(product=> product._id === param.id)
-           
-           this.reviewForm.patchValue({
-              'productName': this.selectedProduct.name,
-              'productId': this.selectedProduct._id,
-              'user': this.storeService.retriveData('uid')
-            });
-        })
-    });
-    setTimeout(()=>{
-       this.productService.getCachedData()
-        .subscribe((product)=> {
-          this.reconmendProduct$ = _.takeRight(product.products, 4);
-          console.log(this.reconmendProduct$);
-        });
-        
-    }, 300)
   }
 }

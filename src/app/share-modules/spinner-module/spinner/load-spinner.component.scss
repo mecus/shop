@@ -1,0 +1,28 @@
+.spinner-conatainer{
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    background-size: cover;
+    z-index: 100000;
+    text-align: center;
+    align-items: center;
+    box-sizing: border-box;
+    .spinner{
+        position: relative;
+        width: 100px;
+        height: 100px;
+        top: 30%;
+        margin: 0 auto;
+        mat-progress-spinner{
+            margin: 0 auto;
+            top: 20%;
+            width: 100px !important;
+            height: 100px !important;
+        }        
+    }
+}

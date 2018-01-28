@@ -1,0 +1,47 @@
+<div class="single-aisle-container">
+    <div class="back-btn">
+        <mat-icon (click)="back()">arrow_back</mat-icon>
+    </div>
+    <div *ngIf="aisle$ | async as aisle">
+        <span class="s-aisle">
+            <h1>{{aisle.name}} <small>Aisle</small></h1>
+            <small>Categories</small>
+        </span>
+    </div>
+    <div class="categories">
+        <span *ngFor="let cat of category$ | async">
+            <span class="cat-item">
+                <span><a [routerLink]="['/admin/products/new/', cat.id]">{{cat.name}}</a></span>
+                <span class="right-hand">
+                    <span id="group">{{cat.group}}</span>
+                    <span><mat-icon (click)="removeCategory(cat.id)">clear</mat-icon></span>
+                </span>
+            </span>
+        </span>
+    </div>
+
+    <div class="addbtn">
+        <button mat-raised-button (click)="showForm()" >Add Category</button>
+    </div>
+    <div *ngIf="catForm" class="cat-form-container">
+        <mat-icon (click)="closeForm()">clear</mat-icon>
+        <div class="form-content">
+            <small [style.color]="color" >{{statusMsg}}</small>
+            <form novalidate [formGroup]="catModel" (ngSubmit)="addCat(catModel.value)">
+                <div class="form-fields">
+                    <input hidden formControlName="department_id" matInput placeholder="id">
+                    <input hidden formControlName="aisle_id" matInput placeholder="id">
+                    <mat-form-field>
+                        <input formControlName="name" matInput placeholder="Category">
+                    </mat-form-field>
+                    <mat-form-field>
+                        <input formControlName="group" matInput placeholder="Group">
+                    </mat-form-field>
+                </div>
+                <div class="subBtn">
+                    <button mat-raised-button type="submit">Submit Category</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

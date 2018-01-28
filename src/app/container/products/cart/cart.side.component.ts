@@ -8,7 +8,10 @@ import { WindowService } from '../../../services/window.service';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import * as _ from 'lodash';
-
+import { Store } from '@ngrx/store';
+import * as cartActions from '../../../store-management/actions/cart.action';
+import { Cart } from '../../../store-management/models/cart.model';
+import { DbService } from '../../../services/db.service';
 
 
 @Component({
@@ -57,49 +60,42 @@ export class SideCartComponent implements OnInit {
     cart$;
     document;
     toggle: boolean = false;
-    constructor(private storeService:StorageService, private cartService:CartService,
-        private windowService: WindowService){
+    constructor(
+        private storeService:StorageService, 
+        private cartService:CartService,
+        private windowService: WindowService,
+        private db: DbService,
+        private store: Store<any>
+        ){
        this.document = windowService.getDocumentRef();
-       this.cartService.getListCart().map(carts =>{
-           return carts.map(val =>{
-               let data = val.payload.doc.data() as iCart
-               let id = val.payload.doc.id;
-               return {id, data}
-           })
-       })
-       
-       .subscribe((carts)=>{
-        // console.log(carts);
-         this.cart$ = carts.filter(cat=> cat.data.postcode == this.storeService.retriveData('postcode'));
-        //  console.log();
-        if((_.size(carts.filter(cat=> cat.data.postcode == this.storeService.retriveData('postcode')))) > 4){
-            this.toggle = true;
-        }else{
-            this.toggle = false;
-        }
-         
-       })
+        store.select('cart').subscribe((cart: Cart[]) => {
+            this.cart$ = cart;
+            if(cart.length > 4){
+                this.toggle = true;
+            }else{
+                this.toggle = false;
+            }
+        });
     }
-    // [@cartList]="cart$.length"
+    private payLoad(product) {
+        return {
+          name: product.name,
+          id: product.id,
+          pid: product.pid,
+          price: product.price,
+          qty: product.qty
+        }
+     }
+
     removeItem(product){
-        this.cartService.removeCart(product);
-    //  this.store.dispatch({type: cart.REMOVE, payload: this.payLoad(product)})
+        this.store.dispatch({type: cartActions.DELETE, payload: this.payLoad(product)})
     }
     increment(product){
-        this.cartService.incrementCart(product);
-    //  this.store.dispatch({type: cart.INCREMENT, payload: this.payLoad(product)})
+        // console.log(product);
+        this.store.dispatch({type: cartActions.UPDATE, payload: {...this.payLoad(product), do: 'increment'}});
     }
-    decrement(product, e){
-        if(product.data.qty == 1){
-            e.target.innerHTML = "pan_tool";
-            e.target.style.color = "lightsteelblue";
-            return;
-        //    this.cartService.removeCart(this.payLoad(product));
-        }else{
-            this.cartService.decrementCart(product);
-        }  
-    //  this.store.dispatch({type: cart.DECREMENT, payload: this.payLoad(product)})
-        
+    decrement(product){ 
+        this.store.dispatch({type: cartActions.UPDATE, payload: {...this.payLoad(product), do: 'decrement'}});   
     }
     seeMoreCart(){
         let domE = this.document.querySelector('.jumbotron-clone');
@@ -119,15 +115,7 @@ export class SideCartComponent implements OnInit {
         more.style.display = "block";
     }
 
-//    private payLoad(product) {
-//       return {
-//         key$: product.$key,
-//         name: product.name,
-//         id: product.id,
-//         price: product.price,
-//         qty: product.qty
-//       }
-//    }
+
    ngOnInit(){
        
    }

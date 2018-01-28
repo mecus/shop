@@ -95,23 +95,23 @@ export class BillingInfoComponent implements OnInit {
         }
         if(customer){
             if(user){
-                this.authService.createUser(user).then((res)=>{
-                    account.uid = res.uid;
-                    console.log(res);
-                    this.storeService.storeData('user', res);
-                    //Remove this line later
-                    this.storeService.storeData('postcode', customer.billing_address.post_code);
-                    this.storeService.storeData('email', customer.email);
-                    this.accountService.createAccount(account, address);
-                    this.authService.createUserAccount(res.uid, accountUser);
+                // this.authService.createUser(user).then((res)=>{
+                //     account.uid = res.uid;
+                //     console.log(res);
+                //     this.storeService.storeData('user', res);
+                //     //Remove this line later
+                //     this.storeService.storeData('postcode', customer.billing_address.post_code);
+                //     this.storeService.storeData('email', customer.email);
+                //     this.accountService.createAccount(account, address);
+                //     this.authService.createUserAccount(res.uid, accountUser);
 
                     
-                    setTimeout(()=>{
-                        this._router.navigate(["/payment_method"]);
-                    }, 500)
-                }).catch((error)=>{
-                    console.log(error);
-                })
+                //     setTimeout(()=>{
+                //         this._router.navigate(["/payment_method"]);
+                //     }, 500)
+                // }).catch((error)=>{
+                //     console.log(error);
+                // })
             }
 
         }

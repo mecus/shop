@@ -1,0 +1,62 @@
+<div class="single-product-container">
+    <h1 *ngIf="product$ | async as product">{{product.name}}</h1>
+    <div *ngIf="product$ | async as product" class="product">
+        <span class="item-img">
+            <img [src]="product.imageUrl" alt="">
+        </span>
+        <span class="item">
+            <span class="attr-1">Product Number</span>
+            <span class="attr-2">{{product.code}}</span>
+        </span>
+        <span class="item">
+            <span class="attr-1">Name</span>
+            <span class="attr-2">{{product.name}}</span>
+        </span>
+        <span class="item">
+            <span class="attr-1">Price</span>
+            <span class="attr-2"><span id="oldP">{{product.old_price | currency: 'GBP' : true}}</span> {{product.price | currency: 'GBP' : true}}</span>
+        </span>
+        <span class="item">
+            <span class="attr-1">Stock</span>
+            <span class="attr-2">{{product.stock}}</span>
+        </span>
+        <span class="item">
+            <span class="attr-1">Category</span>
+            <span class="attr-2">{{product.category}}</span>
+        </span>
+        <span class="item">
+            <span class="attr-1">Brand</span>
+            <span class="attr-2">{{product.brand}}</span>
+        </span>
+        <span class="item">
+            <span class="attr-1">Size</span>
+            <span class="attr-2">{{product.description.size}}</span>
+        </span>
+        <span class="item">
+            <span class="attr-1">Origin</span>
+            <span class="attr-2">{{product.description.origin}}</span>
+        </span>
+        <span class="item">
+            <span class="attr-1">Offer</span>
+            <span class="attr-2">{{product.offer}}</span>
+        </span>
+        <span class="item">
+            <span class="attr-1">Recommended</span>
+            <span class="attr-2">{{product.recommend}}</span>
+        </span>
+        <span class="item">
+            <span class="attr-1">Sponsored</span>
+            <span class="attr-2">{{product.sponsored}}</span>
+        </span>
+        <span class="item">
+            <span class="attr-1">Publish</span>
+            <span class="attr-2">{{product.publish}}</span>
+        </span>
+        <span class="item">
+            <button mat-raised-button (click)="getEditForm()">Edit Product</button>
+        </span>
+    </div>
+</div>
+<div *ngIf="isForm" class="editForm">
+    <edit-product [key]="prodKey"></edit-product>
+</div>

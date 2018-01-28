@@ -7,6 +7,10 @@ import { StorageService } from '../../../services/storage.service';
 import { CartService } from '../../../services/cart.service';
 import { WindowService } from '../../../services/window.service';
 import { PageEvent } from '@angular/material';
+import { Store } from '@ngrx/store';
+import * as shopActions from '../../../store-management/actions/shop.action';
+import { iShop } from '../../../store-management/models/shop.model';
+import * as cartActions from '../../../store-management/actions/cart.action';
 
 
 
@@ -29,36 +33,33 @@ export class ProductOfferComponent implements OnInit {
     pageSize:number = 4;
     page:number = 1;
     length=50; pageSizeOptions=[2, 4, 12, 16, 50]; pageEvent:PageEvent;
-    constructor(private storeService:StorageService, private productService:ProductService,
-        private cartService:CartService, private windowRef:WindowService, private _router:Router){
+    constructor(
+        private storeService: StorageService, private productService: ProductService,
+        private cartService: CartService, private windowRef: WindowService, 
+        private _router: Router, private store: Store<any>
+        ){
             this.document = this.windowRef.getDocumentRef();
             cartService.getCart().subscribe((carts)=>{
               this.carts$ = carts.filter(cart=>cart.postcode == this.storeService.retriveData('postcode'));
-            }); 
-    }
+            });
+ 
+        }
     viewProduct(product){
-        this._router.navigate(["/product", {id:product._id, product: product.name}]);
+        this.store.dispatch({type: shopActions.PRODUCT, payload: product.id});
+        this._router.navigate(["/shop/product/"+product.name]);
     }
 
     addToCart(product){
-        // this.state = (this.state == 'small'? 'large': 'small');
-        if(!this.storeService.retriveData('postcode')){
-          this.cartErrorMsg = "Please enter your postcode to make sure we deliver to you";
-          return;
-        }
-        this.cartService.createCart(this.payLoad(product));
-        // this.store.dispatch({type: cart.ADD, payload: this.payLoad(product) });
+        this.store.dispatch({type: cartActions.CREATE, payload: this.payLoad(product) });
        
      }
      private payLoad(product) {
         return {
-          postcode: this.storeService.retriveData('postcode'),
           name: product.name,
-          product_id: product._id,
+          pid: product.id,
           price: product.price,
           imageUrl: product.imageUrl,
-          qty: 1,
-          id: null
+          qty: 1
         }
      }
      submitPostcode(value){
@@ -71,9 +72,24 @@ export class ProductOfferComponent implements OnInit {
          }, 500);
       }
     ngOnInit(){
-        this.productService.getCachedData().subscribe((data)=>{
-            // console.log(data.products);
-            this.products = _.filter(data.products, {'offer': 'yes'});
+        // Retrieving Offered Products
+        this.store.select('shop').subscribe((state)=> {
+        // console.log(state);
+        if(state.offer !== null){          
+            this.productService.getStoreProducts(state.offer, {type: 'OFFER'})
+                .map(snapshot => {
+                    return snapshot.map(p => {
+                        let id = p.payload.doc.id;
+                        let data = p.payload.doc.data();
+                        return {id, ...data};
+                    })
+                }).subscribe((data) => {
+                    console.log(data);
+                    this.products = data;
+                });
+            }
+        }, (err)=> {
+            console.log(err);
         });
     }
 }

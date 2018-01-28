@@ -1,3 +1,27 @@
+.order-container{
+    margin: 0 auto;
+    padding-top: 20px;
+    max-width: 700px;
+
+    .list-group{
+        .list-group-item{
+            border-radius: 0;
+            background-color: #00796B;
+            color: #ffffff;
+            height: 50px;
+            mat-icon{
+              // line-height: 50px;
+            }
+            span{
+              margin-right: 10px;
+              font-family: 'Open Sans Light', sans-serif;
+              // line-height: 50px;
+            }
+        }
+    }
+}
+
+
 .card-form{
     width: 100%;
     margin: 0 auto;
@@ -21,21 +45,23 @@ table tr td{
     
 }
 div.aside-check-cart{
+    margin: 0px !important;
+    padding: 0px !important;
     width: 100%;
 }
-.pageProcessCover{
-    position: fixed;
-    width: 100%;
-    top: 0px;
-    background-color: #fff;
-    opacity: 0.4;
-    height: 100vh;
-    z-index: 100;
-    margin: 0 auto;
-    .center-point{
-        position: absolute;
-        top: 45%;
-        left: 45%;
-        margin: 0 auto;
-    }
-}
+// .pageProcessCover{
+//     position: fixed;
+//     width: 100%;
+//     top: 0px;
+//     background-color: #fff;
+//     opacity: 0.4;
+//     height: 100vh;
+//     z-index: 100;
+//     margin: 0 auto;
+//     .center-point{
+//         position: absolute;
+//         top: 45%;
+//         left: 45%;
+//         margin: 0 auto;
+//     }
+// }

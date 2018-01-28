@@ -1,0 +1,169 @@
+<div class="menu-head-container">
+    <div class="cart-total flex-container">
+        <div *ngIf="!togglecart" id="check-out" class="search-icon">
+            <i routerLink="/shop/mobile_product_search" class="fa fa-search" aria-hidden="true"></i>
+        </div>
+        <div class="cart-holder flex-container">
+            <div class="cart-ico">
+                <mat-icon>shopping_cart</mat-icon>
+            </div>
+            <div class="cart-p">
+                <h1 ><cart-total></cart-total></h1>
+            </div>
+        </div>
+        
+    </div>
+    <div id="menu-head" class="flex-container menu-head">
+        <div class="user-auth flex-container">
+            <div *ngIf="currentUser" class="login">
+                <a (click)="logOff()" mat-raised-button>
+                    <mat-icon>power_settings_new</mat-icon> Off
+                </a>
+            </div>
+            <div *ngIf="currentUser" class="login">
+                    <a routerLink="/account/account_setting" mat-raised-button>
+                        <mat-icon>account_circle</mat-icon> Set
+                    </a>
+                </div>
+            <div *ngIf="!currentUser" class="login">
+                <a routerLink="/login" mat-raised-button>Login</a>
+            </div>
+            <div *ngIf="!currentUser" class="register">
+                <a routerLink="/register" mat-raised-button>Register</a>
+            </div>
+        </div>
+        <div class="buttn p2">
+            <mat-icon *ngIf="!menu" (click)="slideMenu()" >menu</mat-icon>
+            <mat-icon *ngIf="menu" (click)="slideMenu()" >clear</mat-icon>
+        </div>
+        <div (click)="goHome()" class="brand p2">
+            <h1>uRGy</h1>
+        </div>
+        <!-- <div class="cart ml-auto p2">
+            <cart-total></cart-total>
+        </div> -->
+    </div>
+</div>
+
+
+<div (click)="removeDom($event)" id="mob-page-container">
+    
+    <div class="mobile-menu">
+        <!-- <div class="icons p-2 d-flex flex-column">
+            <span>
+                <mat-icon>home</mat-icon>
+            </span>
+            <span>
+                <mat-icon class="icon-main">personal_video</mat-icon>
+            </span>
+            <span>
+                <mat-icon class="icon-main">airport_shuttle</mat-icon>
+            </span>
+            
+        </div> -->
+        <mat-list class="list-dept">
+            <div class="draw-header" style="background-image: url('assets/images/arabesque.png'); background-color: red;">
+                <div class="user-profile">
+                    <div class="user-icon">
+                        <i class="fa fa-user-circle" aria-hidden="true"></i>
+                        <!-- <mat-icon>account_circle</mat-icon> -->
+                    </div>
+                    <div  *ngIf="!currentUser" class="flex-container">
+                        <span  class="p-2-2"><a routerLink="/login" >Login</a></span>
+                        <span class="divider">|</span>
+                        <span class="p-2-1"><a routerLink="/register" >Join free</a></span>
+                    </div>
+                    <div class="c-user" *ngIf="currentUser">{{currentUser}}</div>
+                </div>
+
+            </div>
+            <mat-list-item class="mat-list-item-1">
+                <span class="item flex-container">
+                    <span class="setting flex-container">
+                        <span routerLink="/"><mat-icon>home</mat-icon></span>
+                        <span routerLink="/">Home</span>
+                    </span>
+                    <span class="arrow-icon">
+                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    </span>
+                </span>
+            </mat-list-item>
+            <mat-list-item class="mat-list-item-1">
+                <span  class="item flex-container">
+                    <span class="setting flex-container">
+                        <span class="" routerLink="/account/account_setting"><mat-icon>settings</mat-icon></span>
+                        <span class="" routerLink="/account/account_setting">Setting</span>
+                    </span>
+                    <span class="arrow-icon">
+                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    </span>
+                </span>
+            </mat-list-item>
+            <mat-list-item class="mat-list-item-1">
+                <span class="item flex-container">
+                    <span class="setting flex-container">
+                        <span routerLink="/shop/basket"><mat-icon>shopping_cart</mat-icon></span>
+                        <span routerLink="/shop/basket"> Cart</span>
+                    </span>
+                    <span class="arrow-icon">
+                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    </span>
+                </span>
+            </mat-list-item>
+            <mat-list-item class="mat-list-item-1">
+                <span class="item flex-container">
+                    <span class="setting flex-container">
+                        <span routerLink="/account/your_orders"><mat-icon>group_work</mat-icon></span>
+                        <span routerLink="/account/your_orders">My Order</span>
+                    </span>
+                    <span class="arrow-icon">
+                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    </span>
+                </span>
+            </mat-list-item>
+            <mat-list-item class="mat-list-item-1">
+                <span class="item flex-container">
+                    <span class="setting flex-container">
+                        <span  routerLink="/account/shopping_list"><mat-icon>favorite</mat-icon></span>
+                        <span  routerLink="/account/shopping_list">Shoppin List</span>
+                    </span>
+                    <span class="arrow-icon">
+                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    </span>
+                </span>
+            </mat-list-item>
+       
+            <mat-list-item class="mat-list-item-1">
+                <span class="item flex-container">
+                    <span class="setting flex-container">
+                        <span  routerLink="/shop/get_help"><mat-icon>help</mat-icon></span>
+                        <span  routerLink="/shop/get_help">Help Centre</span>
+                    </span>
+                    <span class="arrow-icon">
+                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    </span>
+                </span>
+            </mat-list-item>
+            <mat-list-item *ngIf="currentUser" class="mat-list-item-1">
+                <span class="item flex-container">
+                    <span class="setting flex-container">
+                        <span (click)="logOff()"><mat-icon>power_settings_new</mat-icon></span>
+                        <span (click)="logOff()">Off</span>
+                    </span>
+                    <!-- <span class="arrow-icon p-2 ml-auto">
+                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    </span> -->
+                </span>
+            </mat-list-item>
+
+            <!-- <mat-list-item class="ls-offer">
+                <span  class="offer-item d-flex justify-content-between">
+                    <span class="p-2 offer">Special Offer</span>
+                    <span class="arrow-icon p-2">
+                    </span>
+                </span>
+            </mat-list-item> -->
+        
+        </mat-list>
+    </div>
+</div>
